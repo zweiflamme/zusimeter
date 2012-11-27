@@ -36,6 +36,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.lblBrh = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnSettings = new System.Windows.Forms.Button();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
@@ -55,9 +57,12 @@
             this.btnFlag = new System.Windows.Forms.Button();
             this.btnDebugpanel = new System.Windows.Forms.Button();
             this.pnlRight = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblBrh = new System.Windows.Forms.Label();
             this.timerFlag = new System.Windows.Forms.Timer(this.components);
+            this.btnNacht = new System.Windows.Forms.Button();
+            this.lblHlldruck = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblBzdruck = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
@@ -98,7 +103,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(65, 21);
+            this.label4.Location = new System.Drawing.Point(60, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 4;
@@ -107,7 +112,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(65, 53);
+            this.label1.Location = new System.Drawing.Point(60, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(15, 13);
             this.label1.TabIndex = 5;
@@ -115,6 +120,10 @@
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.label6);
+            this.pnlData.Controls.Add(this.lblBzdruck);
+            this.pnlData.Controls.Add(this.label5);
+            this.pnlData.Controls.Add(this.lblHlldruck);
             this.pnlData.Controls.Add(this.lblBrh);
             this.pnlData.Controls.Add(this.label2);
             this.pnlData.Controls.Add(this.lblV);
@@ -126,12 +135,30 @@
             this.pnlData.Size = new System.Drawing.Size(101, 116);
             this.pnlData.TabIndex = 6;
             // 
+            // lblBrh
+            // 
+            this.lblBrh.AutoSize = true;
+            this.lblBrh.Location = new System.Drawing.Point(4, 75);
+            this.lblBrh.Name = "lblBrh";
+            this.lblBrh.Size = new System.Drawing.Size(16, 13);
+            this.lblBrh.TabIndex = 7;
+            this.lblBrh.Text = "---";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(60, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(25, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "BrH";
+            // 
             // btnSettings
             // 
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(8, 231);
+            this.btnSettings.Location = new System.Drawing.Point(8, 291);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(94, 26);
+            this.btnSettings.Size = new System.Drawing.Size(103, 26);
             this.btnSettings.TabIndex = 6;
             this.btnSettings.Text = "Einstellungen";
             this.btnSettings.UseVisualStyleBackColor = true;
@@ -317,29 +344,57 @@
             this.pnlRight.Size = new System.Drawing.Size(284, 309);
             this.pnlRight.TabIndex = 14;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(65, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "BrH";
-            // 
-            // lblBrh
-            // 
-            this.lblBrh.AutoSize = true;
-            this.lblBrh.Location = new System.Drawing.Point(4, 75);
-            this.lblBrh.Name = "lblBrh";
-            this.lblBrh.Size = new System.Drawing.Size(16, 13);
-            this.lblBrh.TabIndex = 7;
-            this.lblBrh.Text = "---";
-            // 
             // timerFlag
             // 
             this.timerFlag.Enabled = true;
             this.timerFlag.Interval = 1000;
             this.timerFlag.Tick += new System.EventHandler(this.timerFlag_Tick);
+            // 
+            // btnNacht
+            // 
+            this.btnNacht.Location = new System.Drawing.Point(8, 226);
+            this.btnNacht.Name = "btnNacht";
+            this.btnNacht.Size = new System.Drawing.Size(94, 23);
+            this.btnNacht.TabIndex = 15;
+            this.btnNacht.Text = "Nachtmodus";
+            this.btnNacht.UseVisualStyleBackColor = true;
+            this.btnNacht.Click += new System.EventHandler(this.btnNacht_Click);
+            // 
+            // lblHlldruck
+            // 
+            this.lblHlldruck.AutoSize = true;
+            this.lblHlldruck.Location = new System.Drawing.Point(4, 88);
+            this.lblHlldruck.Name = "lblHlldruck";
+            this.lblHlldruck.Size = new System.Drawing.Size(16, 13);
+            this.lblHlldruck.TabIndex = 8;
+            this.lblHlldruck.Text = "---";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(60, 88);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "bar Hll";
+            // 
+            // lblBzdruck
+            // 
+            this.lblBzdruck.AutoSize = true;
+            this.lblBzdruck.Location = new System.Drawing.Point(4, 101);
+            this.lblBzdruck.Name = "lblBzdruck";
+            this.lblBzdruck.Size = new System.Drawing.Size(16, 13);
+            this.lblBzdruck.TabIndex = 10;
+            this.lblBzdruck.Text = "---";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(60, 101);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "bar Bz";
             // 
             // CMainWindow
             // 
@@ -348,6 +403,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(409, 329);
+            this.Controls.Add(this.btnNacht);
             this.Controls.Add(this.lblSifa);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.btnSettings);
@@ -356,7 +412,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "CMainWindow";
-            this.Text = "ZusiMeter - v0.1";
+            this.Text = "ZusiMeter - v0.2";
             this.TopMost = true;
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -402,6 +458,11 @@
         private System.Windows.Forms.Label lblBrh;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timerFlag;
+        private System.Windows.Forms.Button btnNacht;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblHlldruck;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblBzdruck;
 
     }
 }
