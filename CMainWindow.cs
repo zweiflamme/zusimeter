@@ -52,6 +52,7 @@ namespace ZusiTCPDemoApp
 
 
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
+            MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
             MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
             MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
@@ -194,10 +195,17 @@ namespace ZusiTCPDemoApp
 
                 if (verbunden)
                 {
-                    //TODO: Druck Bremszylinder anzeigen
+                    float bzdruck = dataSet.Value; //TODO: Was kann man damit noch anstellen?                
+                    lblBzdruck.Text = String.Format("{0:0.0}", bzdruck);
                 }
 
             }
+            else if (dataSet.Id == MyTCPConnection["Druck Hauptluftleitung"]) // 2562
+            {
+                float hlldruck = dataSet.Value; //TODO: Was kann man damit noch anstellen?                
+                lblHlldruck.Text = String.Format("{0:0.0}", hlldruck);
+            }
+
             else if (dataSet.Id == MyTCPConnection["LM Schleudern"]) // 2599
             {
                 if (verbunden)
@@ -222,7 +230,7 @@ namespace ZusiTCPDemoApp
                 if (verbunden && dataSet.Value > 0)
                 {
                         streckenmeter = Convert.ToDouble(dataSet.Value);
-                        lblMeter.Text = String.Format("{0:f}", streckenmeter);
+                        lblMeter.Text = String.Format("{0:0.0}", streckenmeter);
                 }
                 else lblMeter.Text = "---";
             }
