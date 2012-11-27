@@ -38,7 +38,6 @@
             this.btnSettings = new System.Windows.Forms.Button();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpVisibledata = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
             this.cbDruckhll = new System.Windows.Forms.CheckBox();
@@ -91,7 +90,7 @@
             // lblbarbz
             // 
             this.lblbarbz.AutoSize = true;
-            this.lblbarbz.Location = new System.Drawing.Point(40, 63);
+            this.lblbarbz.Location = new System.Drawing.Point(40, 50);
             this.lblbarbz.Name = "lblbarbz";
             this.lblbarbz.Size = new System.Drawing.Size(37, 13);
             this.lblbarbz.TabIndex = 11;
@@ -100,7 +99,7 @@
             // lblBzdruck
             // 
             this.lblBzdruck.AutoSize = true;
-            this.lblBzdruck.Location = new System.Drawing.Point(3, 63);
+            this.lblBzdruck.Location = new System.Drawing.Point(3, 50);
             this.lblBzdruck.Name = "lblBzdruck";
             this.lblBzdruck.Size = new System.Drawing.Size(16, 13);
             this.lblBzdruck.TabIndex = 10;
@@ -109,7 +108,7 @@
             // lblbarhll
             // 
             this.lblbarhll.AutoSize = true;
-            this.lblbarhll.Location = new System.Drawing.Point(40, 50);
+            this.lblbarhll.Location = new System.Drawing.Point(40, 37);
             this.lblbarhll.Name = "lblbarhll";
             this.lblbarhll.Size = new System.Drawing.Size(37, 13);
             this.lblbarhll.TabIndex = 9;
@@ -118,7 +117,7 @@
             // lblHlldruck
             // 
             this.lblHlldruck.AutoSize = true;
-            this.lblHlldruck.Location = new System.Drawing.Point(3, 50);
+            this.lblHlldruck.Location = new System.Drawing.Point(3, 37);
             this.lblHlldruck.Name = "lblHlldruck";
             this.lblHlldruck.Size = new System.Drawing.Size(16, 13);
             this.lblHlldruck.TabIndex = 8;
@@ -147,7 +146,6 @@
             // 
             // grpVisibledata
             // 
-            this.grpVisibledata.Controls.Add(this.checkBox1);
             this.grpVisibledata.Controls.Add(this.cbBrh);
             this.grpVisibledata.Controls.Add(this.cbDruckbz);
             this.grpVisibledata.Controls.Add(this.cbDruckhll);
@@ -160,22 +158,11 @@
             this.grpVisibledata.TabStop = false;
             this.grpVisibledata.Text = "Anzeige";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(6, 132);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Geschwindigkeit";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // cbBrh
             // 
             this.cbBrh.AutoSize = true;
+            this.cbBrh.Checked = true;
+            this.cbBrh.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbBrh.Location = new System.Drawing.Point(7, 92);
             this.cbBrh.Name = "cbBrh";
             this.cbBrh.Size = new System.Drawing.Size(107, 17);
@@ -427,7 +414,7 @@
             // lblm
             // 
             this.lblm.AutoSize = true;
-            this.lblm.Location = new System.Drawing.Point(40, 37);
+            this.lblm.Location = new System.Drawing.Point(40, 24);
             this.lblm.Name = "lblm";
             this.lblm.Size = new System.Drawing.Size(15, 13);
             this.lblm.TabIndex = 5;
@@ -436,7 +423,7 @@
             // lblBrh
             // 
             this.lblBrh.AutoSize = true;
-            this.lblBrh.Location = new System.Drawing.Point(3, 24);
+            this.lblBrh.Location = new System.Drawing.Point(3, 63);
             this.lblBrh.Name = "lblBrh";
             this.lblBrh.Size = new System.Drawing.Size(16, 13);
             this.lblBrh.TabIndex = 7;
@@ -445,7 +432,7 @@
             // lblbremsh
             // 
             this.lblbremsh.AutoSize = true;
-            this.lblbremsh.Location = new System.Drawing.Point(40, 24);
+            this.lblbremsh.Location = new System.Drawing.Point(40, 63);
             this.lblbremsh.Name = "lblbremsh";
             this.lblbremsh.Size = new System.Drawing.Size(25, 13);
             this.lblbremsh.TabIndex = 6;
@@ -454,7 +441,7 @@
             // lblMeter
             // 
             this.lblMeter.AutoSize = true;
-            this.lblMeter.Location = new System.Drawing.Point(3, 37);
+            this.lblMeter.Location = new System.Drawing.Point(3, 24);
             this.lblMeter.Name = "lblMeter";
             this.lblMeter.Size = new System.Drawing.Size(16, 13);
             this.lblMeter.TabIndex = 3;
@@ -487,15 +474,15 @@
             this.pnlData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.pnlData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.pnlData.Controls.Add(this.lblV, 0, 0);
-            this.pnlData.Controls.Add(this.lblbarbz, 1, 4);
-            this.pnlData.Controls.Add(this.lblMeter, 0, 2);
+            this.pnlData.Controls.Add(this.lblbarbz, 1, 3);
             this.pnlData.Controls.Add(this.lblkmh, 1, 0);
-            this.pnlData.Controls.Add(this.lblBzdruck, 0, 4);
-            this.pnlData.Controls.Add(this.lblBrh, 0, 1);
-            this.pnlData.Controls.Add(this.lblm, 1, 2);
-            this.pnlData.Controls.Add(this.lblbarhll, 1, 3);
-            this.pnlData.Controls.Add(this.lblbremsh, 1, 1);
-            this.pnlData.Controls.Add(this.lblHlldruck, 0, 3);
+            this.pnlData.Controls.Add(this.lblBrh, 0, 4);
+            this.pnlData.Controls.Add(this.lblMeter, 0, 1);
+            this.pnlData.Controls.Add(this.lblHlldruck, 0, 2);
+            this.pnlData.Controls.Add(this.lblBzdruck, 0, 3);
+            this.pnlData.Controls.Add(this.lblbremsh, 1, 4);
+            this.pnlData.Controls.Add(this.lblm, 1, 1);
+            this.pnlData.Controls.Add(this.lblbarhll, 1, 2);
             this.pnlData.Location = new System.Drawing.Point(8, 97);
             this.pnlData.Name = "pnlData";
             this.pnlData.RowCount = 5;
@@ -576,7 +563,6 @@
         private System.Windows.Forms.CheckBox cbDruckhll;
         private System.Windows.Forms.CheckBox cbStreckenmeter;
         private System.Windows.Forms.CheckBox cbGeschwindigkeit;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label lblm;
         private System.Windows.Forms.Label lblBrh;
         private System.Windows.Forms.Label lblbremsh;

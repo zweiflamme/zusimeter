@@ -400,37 +400,63 @@ namespace ZusiTCPDemoApp
 
         private void cbGeschwindigkeit_CheckedChanged(object sender, EventArgs e)
         {
-            lblV.Visible = cbGeschwindigkeit.Checked;
-            lblkmh.Visible = cbGeschwindigkeit.Checked;
+            if (cbGeschwindigkeit.Checked == false)
+            {
+                pnlData.Controls.Remove(lblV);
+                pnlData.Controls.Remove(lblkmh);
+            }
+            else
+            {
+                pnlData.Controls.Add(lblV, 0, 0);
+                pnlData.Controls.Add(lblkmh, 1, 0);
+            }
         }
 
         private void cbStreckenmeter_CheckedChanged(object sender, EventArgs e)
         {
-            lblMeter.Visible = cbStreckenmeter.Checked;
-            lblm.Visible = cbStreckenmeter.Checked;
+            if (cbStreckenmeter.Checked == false)
+            {
+                pnlData.Controls.Remove(lblMeter);
+                pnlData.Controls.Remove(lblm);
+            }
+            else
+            {
+                pnlData.Controls.Add(lblMeter, 0, 1);
+                pnlData.Controls.Add(lblm, 1, 1);
+            }
         }
 
         private void cbDruckhll_CheckedChanged(object sender, EventArgs e)
         {
-            lblHlldruck.Visible = cbDruckhll.Checked;
-            lblbarhll.Visible = cbDruckhll.Checked;
+            if (cbDruckhll.Checked == false)
+            {
+                pnlData.Controls.Remove(lblHlldruck);
+                pnlData.Controls.Remove(lblbarhll);
+            }
+            else
+            {
+                pnlData.Controls.Add(lblHlldruck, 0, 2);
+                pnlData.Controls.Add(lblbarhll, 1, 2);
+            }
         }
 
         private void cbDruckbz_CheckedChanged(object sender, EventArgs e)
         {
-            lblBzdruck.Visible = cbDruckbz.Checked;
-            lblbarbz.Visible = cbDruckbz.Checked;
+            if (cbDruckbz.Checked == false)
+            {
+                pnlData.Controls.Remove(lblBzdruck);
+                pnlData.Controls.Remove(lblbarbz);
+            }
+            else
+            {
+                pnlData.Controls.Add(lblBzdruck, 0, 3);
+                pnlData.Controls.Add(lblbarbz, 1, 3);
+            }
         }
 
         private void cbBrh_CheckedChanged(object sender, EventArgs e)
         {
-            lblBrh.Visible = cbBrh.Checked;
-            lblbremsh.Visible = cbBrh.Checked;
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked == false)
+            if (cbBrh.Checked == false)
             {
                 pnlData.Controls.Remove(lblBrh);
                 pnlData.Controls.Remove(lblbremsh);
@@ -438,8 +464,13 @@ namespace ZusiTCPDemoApp
             else
             {
                 pnlData.Controls.Add(lblBrh, 0, 4);
-                pnlData.Controls.Add(lblbremsh, 0, 4);
+                pnlData.Controls.Add(lblbremsh, 1, 4);
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            
         }
 
         private void pnlData_Paint(object sender, PaintEventArgs e)
