@@ -164,7 +164,11 @@ namespace ZusiTCPDemoApp
 
                     if (geschwindigkeit > 0.5) hasMoved = true;
 
-                    if (hasMoved == true) pnlRight.Visible = debugging; // Sichtbar wenn debugging ein, ansonsten ausgeblendet
+                    if (hasMoved == true && settingsVisible == false)
+                    {
+                        pnlRight.Visible = false;
+                        //TODO: In eigener Methode unterbringen
+                    }
 
                     if (hasMoved == true && geschwindigkeit == 0) //Lok ist zum Stillstand gekommen
                     {                
@@ -261,8 +265,27 @@ namespace ZusiTCPDemoApp
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
+            /* TODO: Je nachdem ob pnlRight ständig sichtbar sein soll ein- oder ausblenden
+            
+            if (pnlRight.Visible == false) //DEBUG  && settingsVisible == false)
+            {
+                // settingsVisible = true; // sorgt für eine ständige Sichtbarkeit
+                pnlRight.Visible = true;
+                btnSettings.Text = "Einstellungen <<<";
+            }
+            if (pnlRight.Visible == true) //DEBUG && settingsVisible == true) //ansonsten ein- und ausblenden
+            {
+                // settingsVisible = false;
+                pnlRight.Visible = false;
+                btnSettings.Text = "Einstellungen >>>";
+            }
+             */
+
+            //DEBUG
+
             pnlRight.Visible = !pnlRight.Visible;
-                        
+            settingsVisible = true; // ständig sichtbar
+                                
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -283,6 +306,8 @@ namespace ZusiTCPDemoApp
         
         //TEST debugging-modus speichern
         public bool debugging = false;
+        // TEST Sichtbarkeit des rechten Panels speichern
+        public bool settingsVisible = false;
 
         private void btnDebugpanel_Click(object sender, EventArgs e)
         {
