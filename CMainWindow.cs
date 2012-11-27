@@ -297,5 +297,47 @@ namespace ZusiTCPDemoApp
             lblFlag.Visible = false;
             timerFlag.Stop();
         }
+
+        bool nightmode = false;
+
+        public void setNightmode()
+        {
+
+            BackColor = Color.DarkGray; // Hintergrund der Form
+            lblV.ForeColor = Color.WhiteSmoke;
+            lblMeter.ForeColor = Color.WhiteSmoke;
+            lblBrh.ForeColor = Color.WhiteSmoke;
+
+            tbServer.BackColor = Color.LightGray;
+            tbPort.BackColor = Color.LightGray;
+        }
+
+        public void setDaymode()
+        {
+            BackColor = CMainWindow.DefaultBackColor; // Hintergrund der Form
+            lblV.ForeColor = Color.Black;
+            lblMeter.ForeColor = Color.Black;
+            lblBrh.ForeColor = Color.Black;
+
+            tbServer.BackColor = Color.White;
+            tbPort.BackColor = Color.White;
+        }
+
+        private void btnNacht_Click(object sender, EventArgs e)
+        {
+            if (nightmode == false)
+            {
+                nightmode = true;
+                setNightmode();
+                btnNacht.Text = "Tagmodus";
+            }
+            else
+            {
+                nightmode = false;
+                setDaymode();
+                btnNacht.Text = "Nachtmodus";
+            }
+
+        }
     }
 }

@@ -36,6 +36,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.lblBrh = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnSettings = new System.Windows.Forms.Button();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
@@ -55,9 +57,8 @@
             this.btnFlag = new System.Windows.Forms.Button();
             this.btnDebugpanel = new System.Windows.Forms.Button();
             this.pnlRight = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblBrh = new System.Windows.Forms.Label();
             this.timerFlag = new System.Windows.Forms.Timer(this.components);
+            this.btnNacht = new System.Windows.Forms.Button();
             this.pnlData.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
@@ -125,6 +126,24 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(101, 116);
             this.pnlData.TabIndex = 6;
+            // 
+            // lblBrh
+            // 
+            this.lblBrh.AutoSize = true;
+            this.lblBrh.Location = new System.Drawing.Point(4, 75);
+            this.lblBrh.Name = "lblBrh";
+            this.lblBrh.Size = new System.Drawing.Size(16, 13);
+            this.lblBrh.TabIndex = 7;
+            this.lblBrh.Text = "---";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(65, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(25, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "BrH";
             // 
             // btnSettings
             // 
@@ -317,29 +336,21 @@
             this.pnlRight.Size = new System.Drawing.Size(284, 309);
             this.pnlRight.TabIndex = 14;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(65, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "BrH";
-            // 
-            // lblBrh
-            // 
-            this.lblBrh.AutoSize = true;
-            this.lblBrh.Location = new System.Drawing.Point(4, 75);
-            this.lblBrh.Name = "lblBrh";
-            this.lblBrh.Size = new System.Drawing.Size(16, 13);
-            this.lblBrh.TabIndex = 7;
-            this.lblBrh.Text = "---";
-            // 
             // timerFlag
             // 
             this.timerFlag.Enabled = true;
             this.timerFlag.Interval = 1000;
             this.timerFlag.Tick += new System.EventHandler(this.timerFlag_Tick);
+            // 
+            // btnNacht
+            // 
+            this.btnNacht.Location = new System.Drawing.Point(8, 264);
+            this.btnNacht.Name = "btnNacht";
+            this.btnNacht.Size = new System.Drawing.Size(94, 23);
+            this.btnNacht.TabIndex = 15;
+            this.btnNacht.Text = "Nachtmodus";
+            this.btnNacht.UseVisualStyleBackColor = true;
+            this.btnNacht.Click += new System.EventHandler(this.btnNacht_Click);
             // 
             // CMainWindow
             // 
@@ -348,6 +359,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(409, 329);
+            this.Controls.Add(this.btnNacht);
             this.Controls.Add(this.lblSifa);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.btnSettings);
@@ -402,6 +414,7 @@
         private System.Windows.Forms.Label lblBrh;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timerFlag;
+        private System.Windows.Forms.Button btnNacht;
 
     }
 }
