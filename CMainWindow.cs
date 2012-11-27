@@ -40,7 +40,7 @@ namespace ZusiTCPDemoApp
              * ReceiveEvent<T> is a generic delegate type for you to use. See the Object Browser for details. */
 
             MyTCPConnection = new ZusiTcpConn(
-             "ZusiMeter v0.1",                            // The name of this application (Shows up on the server's list)
+             "ZusiMeter v0.2",                            // The name of this application (Shows up on the server's list)
              // ClientPriority.Low                                 // The priority with which the server should treat you
              ClientPriority.High,                            
              new ReceiveEvent<float>(HandleIncomingData),   // A delegate method for the connection class to call when it receives float data (may be null)

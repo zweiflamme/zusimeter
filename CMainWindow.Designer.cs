@@ -368,7 +368,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "CMainWindow";
-            this.Text = "ZusiMeter - v0.1";
+            this.Text = "ZusiMeter - v0.2";
             this.TopMost = true;
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
