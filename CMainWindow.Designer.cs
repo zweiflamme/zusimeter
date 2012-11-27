@@ -148,7 +148,7 @@
             // btnSettings
             // 
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(8, 231);
+            this.btnSettings.Location = new System.Drawing.Point(8, 291);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(94, 26);
             this.btnSettings.TabIndex = 6;
@@ -344,7 +344,7 @@
             // 
             // btnNacht
             // 
-            this.btnNacht.Location = new System.Drawing.Point(8, 264);
+            this.btnNacht.Location = new System.Drawing.Point(8, 226);
             this.btnNacht.Name = "btnNacht";
             this.btnNacht.Size = new System.Drawing.Size(94, 23);
             this.btnNacht.TabIndex = 15;

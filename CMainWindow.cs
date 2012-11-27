@@ -160,10 +160,16 @@ namespace ZusiTCPDemoApp
             {
                 if (verbunden)
                 {
-                    double geschwindigkeit = dataSet.Value;                   
+                    double geschwindigkeit = dataSet.Value;
+
+                    if (geschwindigkeit > 0.5) hasMoved = true;
+
+                    if (hasMoved == true) pnlRight.Visible = debugging; // Sichtbar wenn debugging ein, ansonsten ausgeblendet
 
                     if (hasMoved == true && geschwindigkeit == 0) //Lok ist zum Stillstand gekommen
-                    {                        
+                    {                
+                        hasMoved = false;
+
                         maxVerz = Convert.ToDouble(tbVerz.Text);
                         //TODO: Scharfes Anhalten wieder überprüfen
                         if (deltaV < -maxVerz) //wenn scharf angehalten wurde
