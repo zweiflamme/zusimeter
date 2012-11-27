@@ -215,15 +215,8 @@ namespace ZusiTCPDemoApp
                         lblFlag.Text = "Schleudern!";
                         lblFlag.Visible = true;
                         timerFlag.Start(); //Nach x Sekunden verschwindet das Label, TODO: Sekunden als Parameter übergeben
-                    }
-                    else
-                    {
-                        //TEST: ist überflüssig?
-                        //lblFlag.Text = "";
-                        //lblFlag.Visible = false;
-                    }
+                    }                    
                 }
-
             }
             else if (dataSet.Id == MyTCPConnection["Strecken-Km"]) // 2645
             {
@@ -346,6 +339,8 @@ namespace ZusiTCPDemoApp
             lblV.ForeColor = Color.WhiteSmoke;
             lblMeter.ForeColor = Color.WhiteSmoke;
             lblBrh.ForeColor = Color.WhiteSmoke;
+            lblBzdruck.ForeColor = Color.WhiteSmoke;
+            lblHlldruck.ForeColor = Color.WhiteSmoke;
 
             tbServer.BackColor = Color.LightGray;
             tbPort.BackColor = Color.LightGray;
@@ -357,6 +352,8 @@ namespace ZusiTCPDemoApp
             lblV.ForeColor = Color.Black;
             lblMeter.ForeColor = Color.Black;
             lblBrh.ForeColor = Color.Black;
+            lblBzdruck.ForeColor = Color.Black;
+            lblHlldruck.ForeColor = Color.Black;
 
             tbServer.BackColor = Color.White;
             tbPort.BackColor = Color.White;
