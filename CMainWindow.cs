@@ -165,10 +165,13 @@ namespace ZusiTCPDemoApp
                     if (hasMoved == true && geschwindigkeit == 0) //Lok ist zum Stillstand gekommen
                     {                        
                         maxVerz = Convert.ToDouble(tbVerz.Text);
+                        //TODO: Scharfes Anhalten wieder überprüfen
                         if (deltaV < -maxVerz) //wenn scharf angehalten wurde
                         {
-                            lblFlag.Visible = true; lblFlag.Text = "scharf angehalten"; lblFlag.BackColor = Color.Orange;
+                            lblFlag.Visible = true; 
+                            lblFlag.Text = "scharf angehalten";                             
                             scharf = true;
+                            timerFlag.Start(); // TODO: Bis zum Beschleunigen oder nach x Sekunden verschwinden lassen
                         }  
                     }
 
@@ -189,7 +192,18 @@ namespace ZusiTCPDemoApp
             {
                 if (verbunden)
                 {
-                    if (dataSet.Value > 0) lblFlag.Text = "Schleudern!";
+                    if (dataSet.Value > 0)
+                    {
+                        lblFlag.Text = "Schleudern!";
+                        lblFlag.Visible = true;
+                        timerFlag.Start(); //Nach x Sekunden verschwindet das Label, TODO: Sekunden als Parameter übergeben
+                    }
+                    else
+                    {
+                        //TEST: ist überflüssig?
+                        //lblFlag.Text = "";
+                        //lblFlag.Visible = false;
+                    }
                 }
 
             }
@@ -276,6 +290,12 @@ namespace ZusiTCPDemoApp
                 pnlDebug.Visible = true;
                 debugging = true;
             }
+        }
+
+        private void timerFlag_Tick(object sender, EventArgs e)
+        {
+            lblFlag.Visible = false;
+            timerFlag.Stop();
         }
     }
 }

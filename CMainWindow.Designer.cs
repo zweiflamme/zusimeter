@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblSifa = new System.Windows.Forms.Label();
             this.lblV = new System.Windows.Forms.Label();
             this.lblMeter = new System.Windows.Forms.Label();
@@ -56,6 +57,7 @@
             this.pnlRight = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lblBrh = new System.Windows.Forms.Label();
+            this.timerFlag = new System.Windows.Forms.Timer(this.components);
             this.pnlData.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
@@ -184,7 +186,7 @@
             // 
             // lblFlag
             // 
-            this.lblFlag.BackColor = System.Drawing.SystemColors.Control;
+            this.lblFlag.BackColor = System.Drawing.Color.Orange;
             this.lblFlag.Location = new System.Drawing.Point(8, 74);
             this.lblFlag.Name = "lblFlag";
             this.lblFlag.Size = new System.Drawing.Size(96, 19);
@@ -318,20 +320,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 77);
+            this.label2.Location = new System.Drawing.Point(65, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(16, 13);
+            this.label2.Size = new System.Drawing.Size(25, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "---";
+            this.label2.Text = "BrH";
             // 
             // lblBrh
             // 
             this.lblBrh.AutoSize = true;
-            this.lblBrh.Location = new System.Drawing.Point(65, 77);
+            this.lblBrh.Location = new System.Drawing.Point(4, 75);
             this.lblBrh.Name = "lblBrh";
-            this.lblBrh.Size = new System.Drawing.Size(25, 13);
+            this.lblBrh.Size = new System.Drawing.Size(16, 13);
             this.lblBrh.TabIndex = 7;
-            this.lblBrh.Text = "BrH";
+            this.lblBrh.Text = "---";
+            // 
+            // timerFlag
+            // 
+            this.timerFlag.Enabled = true;
+            this.timerFlag.Interval = 1000;
+            this.timerFlag.Tick += new System.EventHandler(this.timerFlag_Tick);
             // 
             // CMainWindow
             // 
@@ -393,6 +401,7 @@
         private System.Windows.Forms.Label lblDebugVreached;
         private System.Windows.Forms.Label lblBrh;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Timer timerFlag;
 
     }
 }
