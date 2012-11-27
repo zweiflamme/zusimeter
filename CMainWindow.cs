@@ -40,7 +40,7 @@ namespace ZusiTCPDemoApp
              * ReceiveEvent<T> is a generic delegate type for you to use. See the Object Browser for details. */
 
             MyTCPConnection = new ZusiTcpConn(
-             "ZusiMeter v0.1",                            // The name of this application (Shows up on the server's list)
+             "ZusiMeter v0.2",                            // The name of this application (Shows up on the server's list)
              // ClientPriority.Low                                 // The priority with which the server should treat you
              ClientPriority.High,                            
              new ReceiveEvent<float>(HandleIncomingData),   // A delegate method for the connection class to call when it receives float data (may be null)
@@ -52,6 +52,7 @@ namespace ZusiTCPDemoApp
 
 
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
+            MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
             MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
             MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
@@ -160,10 +161,20 @@ namespace ZusiTCPDemoApp
             {
                 if (verbunden)
                 {
-                    double geschwindigkeit = dataSet.Value;                   
+                    double geschwindigkeit = dataSet.Value;
+
+                    if (geschwindigkeit > 0.5) hasMoved = true;
+
+                    if (hasMoved == true && settingsVisible == false)
+                    {
+                        pnlRight.Visible = false;
+                        //TODO: In eigener Methode unterbringen
+                    }
 
                     if (hasMoved == true && geschwindigkeit == 0) //Lok ist zum Stillstand gekommen
-                    {                        
+                    {                
+                        hasMoved = false;
+
                         maxVerz = Convert.ToDouble(tbVerz.Text);
                         //TODO: Scharfes Anhalten wieder überprüfen
                         if (deltaV < -maxVerz) //wenn scharf angehalten wurde
@@ -184,10 +195,17 @@ namespace ZusiTCPDemoApp
 
                 if (verbunden)
                 {
-                    //TODO: Druck Bremszylinder anzeigen
+                    float bzdruck = dataSet.Value; //TODO: Was kann man damit noch anstellen?                
+                    lblBzdruck.Text = String.Format("{0:0.0}", bzdruck);
                 }
 
             }
+            else if (dataSet.Id == MyTCPConnection["Druck Hauptluftleitung"]) // 2562
+            {
+                float hlldruck = dataSet.Value; //TODO: Was kann man damit noch anstellen?                
+                lblHlldruck.Text = String.Format("{0:0.0}", hlldruck);
+            }
+
             else if (dataSet.Id == MyTCPConnection["LM Schleudern"]) // 2599
             {
                 if (verbunden)
@@ -212,7 +230,7 @@ namespace ZusiTCPDemoApp
                 if (verbunden && dataSet.Value > 0)
                 {
                         streckenmeter = Convert.ToDouble(dataSet.Value);
-                        lblMeter.Text = String.Format("{0:f}", streckenmeter);
+                        lblMeter.Text = String.Format("{0:0.0}", streckenmeter);
                 }
                 else lblMeter.Text = "---";
             }
@@ -255,8 +273,27 @@ namespace ZusiTCPDemoApp
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
+            /* TODO: Je nachdem ob pnlRight ständig sichtbar sein soll ein- oder ausblenden
+            
+            if (pnlRight.Visible == false) //DEBUG  && settingsVisible == false)
+            {
+                // settingsVisible = true; // sorgt für eine ständige Sichtbarkeit
+                pnlRight.Visible = true;
+                btnSettings.Text = "Einstellungen <<<";
+            }
+            if (pnlRight.Visible == true) //DEBUG && settingsVisible == true) //ansonsten ein- und ausblenden
+            {
+                // settingsVisible = false;
+                pnlRight.Visible = false;
+                btnSettings.Text = "Einstellungen >>>";
+            }
+             */
+
+            //DEBUG
+
             pnlRight.Visible = !pnlRight.Visible;
-                        
+            settingsVisible = true; // ständig sichtbar
+                                
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -277,6 +314,8 @@ namespace ZusiTCPDemoApp
         
         //TEST debugging-modus speichern
         public bool debugging = false;
+        // TEST Sichtbarkeit des rechten Panels speichern
+        public bool settingsVisible = false;
 
         private void btnDebugpanel_Click(object sender, EventArgs e)
         {
@@ -296,6 +335,48 @@ namespace ZusiTCPDemoApp
         {
             lblFlag.Visible = false;
             timerFlag.Stop();
+        }
+
+        bool nightmode = false;
+
+        public void setNightmode()
+        {
+
+            BackColor = Color.DarkGray; // Hintergrund der Form
+            lblV.ForeColor = Color.WhiteSmoke;
+            lblMeter.ForeColor = Color.WhiteSmoke;
+            lblBrh.ForeColor = Color.WhiteSmoke;
+
+            tbServer.BackColor = Color.LightGray;
+            tbPort.BackColor = Color.LightGray;
+        }
+
+        public void setDaymode()
+        {
+            BackColor = CMainWindow.DefaultBackColor; // Hintergrund der Form
+            lblV.ForeColor = Color.Black;
+            lblMeter.ForeColor = Color.Black;
+            lblBrh.ForeColor = Color.Black;
+
+            tbServer.BackColor = Color.White;
+            tbPort.BackColor = Color.White;
+        }
+
+        private void btnNacht_Click(object sender, EventArgs e)
+        {
+            if (nightmode == false)
+            {
+                nightmode = true;
+                setNightmode();
+                btnNacht.Text = "Tagmodus";
+            }
+            else
+            {
+                nightmode = false;
+                setDaymode();
+                btnNacht.Text = "Nachtmodus";
+            }
+
         }
     }
 }
