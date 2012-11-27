@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Zusi-Datenausgabe, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>ZusiTCP interface\Zusi-Datenausgabe.dll</HintPath>
+      <HintPath>..\zielbremsen\DLLs\Zusi-Datenausgabe.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

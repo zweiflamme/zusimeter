@@ -10,6 +10,7 @@ using System.Threading; //
 using System.Diagnostics; // für Stoppuhr
 using Zusi_Datenausgabe; //DEBUG: v1.0.0
 
+
 /* ZusiTCPDemoApp
  * This example shows basic usage of Andreas Karg's Zusi TCP interface for .Net.
  * It is published under the GNU General Public License v3.0. Base your own work on it, play around, do what you want. :-)
@@ -32,15 +33,18 @@ namespace ZusiTCPDemoApp
         // Initalize a new stopwatch
         Stopwatch stopwatch = new Stopwatch();
 
+           
+
         public CMainWindow()
         {
             InitializeComponent();
 
+            
             /* When the application window is created, we create our new connection class as well.
              * ReceiveEvent<T> is a generic delegate type for you to use. See the Object Browser for details. */
 
             MyTCPConnection = new ZusiTcpConn(
-             "ZusiMeter v0.2",                            // The name of this application (Shows up on the server's list)
+             "ZusiMeter v0.3",                            // The name of this application (Shows up on the server's list)
              // ClientPriority.Low                                 // The priority with which the server should treat you
              ClientPriority.High,                            
              new ReceiveEvent<float>(HandleIncomingData),   // A delegate method for the connection class to call when it receives float data (may be null)
@@ -375,5 +379,74 @@ namespace ZusiTCPDemoApp
             }
 
         }
+
+        private void CMainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listAnzeige_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+           
+        }
+
+        public void enableLabels(String lblname)
+        {
+            Object label = lblname.ToString();
+
+            
+        }
+
+        private void cbGeschwindigkeit_CheckedChanged(object sender, EventArgs e)
+        {
+            lblV.Visible = cbGeschwindigkeit.Checked;
+            lblkmh.Visible = cbGeschwindigkeit.Checked;
+        }
+
+        private void cbStreckenmeter_CheckedChanged(object sender, EventArgs e)
+        {
+            lblMeter.Visible = cbStreckenmeter.Checked;
+            lblm.Visible = cbStreckenmeter.Checked;
+        }
+
+        private void cbDruckhll_CheckedChanged(object sender, EventArgs e)
+        {
+            lblHlldruck.Visible = cbDruckhll.Checked;
+            lblbarhll.Visible = cbDruckhll.Checked;
+        }
+
+        private void cbDruckbz_CheckedChanged(object sender, EventArgs e)
+        {
+            lblBzdruck.Visible = cbDruckbz.Checked;
+            lblbarbz.Visible = cbDruckbz.Checked;
+        }
+
+        private void cbBrh_CheckedChanged(object sender, EventArgs e)
+        {
+            lblBrh.Visible = cbBrh.Checked;
+            lblbremsh.Visible = cbBrh.Checked;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == false)
+            {
+                pnlData.Controls.Remove(lblBrh);
+                pnlData.Controls.Remove(lblbremsh);
+            }
+            else
+            {
+                pnlData.Controls.Add(lblBrh, 0, 4);
+                pnlData.Controls.Add(lblbremsh, 0, 4);
+            }
+        }
+
+        private void pnlData_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+          
     }
 }
