@@ -126,7 +126,7 @@
             // btnSettings
             // 
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(8, 291);
+            this.btnSettings.Location = new System.Drawing.Point(8, 235);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(103, 26);
             this.btnSettings.TabIndex = 6;
@@ -141,7 +141,7 @@
             this.pnlSettings.Controls.Add(this.grpVerbindung);
             this.pnlSettings.Location = new System.Drawing.Point(3, 3);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(169, 303);
+            this.pnlSettings.Size = new System.Drawing.Size(169, 245);
             this.pnlSettings.TabIndex = 10;
             // 
             // grpVisibledata
@@ -153,7 +153,7 @@
             this.grpVisibledata.Controls.Add(this.cbGeschwindigkeit);
             this.grpVisibledata.Location = new System.Drawing.Point(7, 124);
             this.grpVisibledata.Name = "grpVisibledata";
-            this.grpVisibledata.Size = new System.Drawing.Size(155, 176);
+            this.grpVisibledata.Size = new System.Drawing.Size(155, 121);
             this.grpVisibledata.TabIndex = 13;
             this.grpVisibledata.TabStop = false;
             this.grpVisibledata.Text = "Anzeige";
@@ -274,9 +274,9 @@
             // pnlDebug
             // 
             this.pnlDebug.AutoSize = true;
-            this.pnlDebug.Location = new System.Drawing.Point(229, 2);
+            this.pnlDebug.Location = new System.Drawing.Point(201, 2);
             this.pnlDebug.Name = "pnlDebug";
-            this.pnlDebug.Size = new System.Drawing.Size(75, 306);
+            this.pnlDebug.Size = new System.Drawing.Size(103, 246);
             this.pnlDebug.TabIndex = 12;
             this.pnlDebug.Visible = false;
             // 
@@ -293,7 +293,7 @@
             this.grpDebug.Controls.Add(this.btnFlag);
             this.grpDebug.Location = new System.Drawing.Point(201, 6);
             this.grpDebug.Name = "grpDebug";
-            this.grpDebug.Size = new System.Drawing.Size(103, 299);
+            this.grpDebug.Size = new System.Drawing.Size(103, 242);
             this.grpDebug.TabIndex = 12;
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
@@ -392,7 +392,7 @@
             this.pnlRight.Controls.Add(this.pnlDebug);
             this.pnlRight.Location = new System.Drawing.Point(118, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(307, 311);
+            this.pnlRight.Size = new System.Drawing.Size(307, 251);
             this.pnlRight.TabIndex = 14;
             // 
             // timerFlag
@@ -403,7 +403,7 @@
             // 
             // btnNacht
             // 
-            this.btnNacht.Location = new System.Drawing.Point(8, 232);
+            this.btnNacht.Location = new System.Drawing.Point(8, 190);
             this.btnNacht.Name = "btnNacht";
             this.btnNacht.Size = new System.Drawing.Size(94, 23);
             this.btnNacht.TabIndex = 15;
@@ -500,7 +500,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1017, 329);
+            this.ClientSize = new System.Drawing.Size(433, 267);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.btnNacht);
             this.Controls.Add(this.lblSifa);
