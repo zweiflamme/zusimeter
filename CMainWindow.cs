@@ -43,9 +43,9 @@ namespace ZusiTCPDemoApp
             tabEinstellungen.SelectTab("tabSystem");
 
             //nicht funktionierende Checkboxes deaktivieren
-            cbLmgleiten.Enabled = false;
             cbLmtueren.Enabled = false;
             cbUhrzeit.Enabled = false;
+            cbFahrstufe.Enabled = false;
 
             cbFokuszurueck.Enabled = false;
             
@@ -485,6 +485,41 @@ namespace ZusiTCPDemoApp
 
         private void pnlData_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void cbLmsifa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLmsifa.Checked == false)
+            {
+                pnlLeft.Controls.Remove(lblSifa);                
+            }
+            else
+            {
+                pnlLeft.Controls.Add(lblSifa);           
+            }
+        }
+
+        private void cbLmschleudern_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLmschleudern.Checked == false)
+            {
+                pnlLeft.Controls.Remove(lblFlag);
+               
+            }
+            else
+            {
+                pnlLeft.Controls.Add(lblFlag);
+                ShowFlagtest();
+                lblFlag.Visible = true;                
+            }
+        }
+
+        public void ShowFlagtest()
+        {
+            lblFlag.Visible = true;
+            lblFlag.Text = "TEST";
+            timerFlag.Start(); //Zeigt für eine Sekunde ein Testflag
 
         }
 

@@ -75,13 +75,12 @@
             this.pnlData = new System.Windows.Forms.TableLayoutPanel();
             this.cbLmtueren = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
-            this.cbLmgleiten = new System.Windows.Forms.CheckBox();
             this.cbUhrzeit = new System.Windows.Forms.CheckBox();
             this.cbFahrstufe = new System.Windows.Forms.CheckBox();
             this.cbFokuszurueck = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -176,9 +175,12 @@
             // tabAnzeigen
             // 
             this.tabAnzeigen.BackColor = System.Drawing.SystemColors.Control;
+            this.tabAnzeigen.Controls.Add(this.label4);
+            this.tabAnzeigen.Controls.Add(this.cbBrh);
             this.tabAnzeigen.Controls.Add(this.cbFahrstufe);
+            this.tabAnzeigen.Controls.Add(this.cbDruckbz);
             this.tabAnzeigen.Controls.Add(this.cbUhrzeit);
-            this.tabAnzeigen.Controls.Add(this.cbLmgleiten);
+            this.tabAnzeigen.Controls.Add(this.cbDruckhll);
             this.tabAnzeigen.Controls.Add(this.cbLmschleudern);
             this.tabAnzeigen.Controls.Add(this.cbLmtueren);
             this.tabAnzeigen.Controls.Add(this.cbLmsifa);
@@ -195,12 +197,15 @@
             // cbLmsifa
             // 
             this.cbLmsifa.AutoSize = true;
+            this.cbLmsifa.Checked = true;
+            this.cbLmsifa.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbLmsifa.Location = new System.Drawing.Point(120, 30);
             this.cbLmsifa.Name = "cbLmsifa";
             this.cbLmsifa.Size = new System.Drawing.Size(44, 17);
             this.cbLmsifa.TabIndex = 2;
             this.cbLmsifa.Text = "Sifa";
             this.cbLmsifa.UseVisualStyleBackColor = true;
+            this.cbLmsifa.CheckedChanged += new System.EventHandler(this.cbLmsifa_CheckedChanged);
             // 
             // label1
             // 
@@ -314,7 +319,7 @@
             this.cbBrh.AutoSize = true;
             this.cbBrh.Checked = true;
             this.cbBrh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBrh.Location = new System.Drawing.Point(621, 133);
+            this.cbBrh.Location = new System.Drawing.Point(10, 99);
             this.cbBrh.Name = "cbBrh";
             this.cbBrh.Size = new System.Drawing.Size(107, 17);
             this.cbBrh.TabIndex = 4;
@@ -327,7 +332,7 @@
             this.cbDruckbz.AutoSize = true;
             this.cbDruckbz.Checked = true;
             this.cbDruckbz.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckbz.Location = new System.Drawing.Point(621, 115);
+            this.cbDruckbz.Location = new System.Drawing.Point(206, 99);
             this.cbDruckbz.Name = "cbDruckbz";
             this.cbDruckbz.Size = new System.Drawing.Size(122, 17);
             this.cbDruckbz.TabIndex = 3;
@@ -340,7 +345,7 @@
             this.cbDruckhll.AutoSize = true;
             this.cbDruckhll.Checked = true;
             this.cbDruckhll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckhll.Location = new System.Drawing.Point(621, 100);
+            this.cbDruckhll.Location = new System.Drawing.Point(120, 99);
             this.cbDruckhll.Name = "cbDruckhll";
             this.cbDruckhll.Size = new System.Drawing.Size(70, 17);
             this.cbDruckhll.TabIndex = 2;
@@ -571,22 +576,15 @@
             // cbLmschleudern
             // 
             this.cbLmschleudern.AutoSize = true;
+            this.cbLmschleudern.Checked = true;
+            this.cbLmschleudern.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbLmschleudern.Location = new System.Drawing.Point(206, 30);
             this.cbLmschleudern.Name = "cbLmschleudern";
-            this.cbLmschleudern.Size = new System.Drawing.Size(98, 17);
+            this.cbLmschleudern.Size = new System.Drawing.Size(142, 17);
             this.cbLmschleudern.TabIndex = 4;
-            this.cbLmschleudern.Text = "LM Schleudern";
+            this.cbLmschleudern.Text = "LM Schleudern / Gleiten";
             this.cbLmschleudern.UseVisualStyleBackColor = true;
-            // 
-            // cbLmgleiten
-            // 
-            this.cbLmgleiten.AutoSize = true;
-            this.cbLmgleiten.Location = new System.Drawing.Point(206, 47);
-            this.cbLmgleiten.Name = "cbLmgleiten";
-            this.cbLmgleiten.Size = new System.Drawing.Size(77, 17);
-            this.cbLmgleiten.TabIndex = 5;
-            this.cbLmgleiten.Text = "LM Gleiten";
-            this.cbLmgleiten.UseVisualStyleBackColor = true;
+            this.cbLmschleudern.CheckedChanged += new System.EventHandler(this.cbLmschleudern_CheckedChanged);
             // 
             // cbUhrzeit
             // 
@@ -628,21 +626,10 @@
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Visible = false;
             // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.DarkGray;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Location = new System.Drawing.Point(3, 7);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 51);
-            this.label3.TabIndex = 0;
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // pnlLeft
             // 
             this.pnlLeft.AutoSize = true;
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlLeft.Controls.Add(this.label3);
             this.pnlLeft.Controls.Add(this.lblFlag);
             this.pnlLeft.Controls.Add(this.label2);
             this.pnlLeft.Controls.Add(this.btnSettings);
@@ -654,6 +641,15 @@
             this.pnlLeft.Size = new System.Drawing.Size(102, 381);
             this.pnlLeft.TabIndex = 17;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 83);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Bremsen";
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -662,9 +658,6 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1043, 402);
             this.Controls.Add(this.pnlLeft);
-            this.Controls.Add(this.cbBrh);
-            this.Controls.Add(this.cbDruckbz);
-            this.Controls.Add(this.cbDruckhll);
             this.Controls.Add(this.pnlRight);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
@@ -739,15 +732,14 @@
         private System.Windows.Forms.TabPage tabSystem;
         private System.Windows.Forms.CheckBox cbLmsifa;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox cbLmgleiten;
         private System.Windows.Forms.CheckBox cbLmschleudern;
         private System.Windows.Forms.CheckBox cbLmtueren;
         private System.Windows.Forms.CheckBox cbFahrstufe;
         private System.Windows.Forms.CheckBox cbUhrzeit;
         private System.Windows.Forms.CheckBox cbFokuszurueck;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel pnlLeft;
+        private System.Windows.Forms.Label label4;
 
     }
 }
