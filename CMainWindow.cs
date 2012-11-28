@@ -72,6 +72,8 @@ namespace ZusiTCPDemoApp
             MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
             MyTCPConnection.RequestData(2596); // "LM Sifa "
+            MyTCPConnection.RequestData(2576); // "Fahrstufe"
+            MyTCPConnection.RequestData(2697); // "LM Türen"
         }
 
        
@@ -154,9 +156,9 @@ namespace ZusiTCPDemoApp
         //TODO: TEST: Setting a maximum reached speed vReached
         double vReached = 0;
 
-        
 
-        //TODO: Uhrzeit verwenden
+
+//###HANDLE INCOMING DATA###//
         private void HandleIncomingData(DataSet<float> dataSet)
         {
             if (dataSet.Id == MyTCPConnection["Bremshundertstel"]) // 2654
@@ -253,7 +255,21 @@ namespace ZusiTCPDemoApp
                     lblSifa.BackColor = Color.DarkGray;
                 }
             }
+            else if (dataSet.Id == MyTCPConnection["Fahrstufe"]) // 2576
+            {
+                if (Convert.ToBoolean(dataSet.Value))
+                    lblFahrstufe.Text = String.Format("{0}", dataSet.Value);
+                else
+                    lblFahrstufe.Text = "--";
+            }            
+            else if (dataSet.Id == MyTCPConnection["LM Türen"])
+            {
+
+            }
+
         }
+
+//###HANDLE INCOMING DATA ENDE###//
 
         public bool vMaxErreicht = false;
 
@@ -412,13 +428,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbGeschwindigkeit.Checked == false)
             {
-                pnlData.Controls.Remove(lblV);
-                pnlData.Controls.Remove(lblkmh);
+                pnlData1.Controls.Remove(lblV);
+                pnlData1.Controls.Remove(lblkmh);
             }
             else
             {
-                pnlData.Controls.Add(lblV, 0, 0);
-                pnlData.Controls.Add(lblkmh, 1, 0);
+                pnlData1.Controls.Add(lblV, 0, 0);
+                pnlData1.Controls.Add(lblkmh, 1, 0);
             }
         }
 
@@ -426,13 +442,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbStreckenmeter.Checked == false)
             {
-                pnlData.Controls.Remove(lblMeter);
-                pnlData.Controls.Remove(lblm);
+                pnlData1.Controls.Remove(lblMeter);
+                pnlData1.Controls.Remove(lblm);
             }
             else
             {
-                pnlData.Controls.Add(lblMeter, 0, 1);
-                pnlData.Controls.Add(lblm, 1, 1);
+                pnlData1.Controls.Add(lblMeter, 0, 1);
+                pnlData1.Controls.Add(lblm, 1, 1);
             }
         }
 
@@ -440,13 +456,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbDruckhll.Checked == false)
             {
-                pnlData.Controls.Remove(lblHlldruck);
-                pnlData.Controls.Remove(lblbarhll);
+                pnlData2.Controls.Remove(lblHlldruck);
+                pnlData2.Controls.Remove(lblbarhll);
             }
             else
             {
-                pnlData.Controls.Add(lblHlldruck, 0, 2);
-                pnlData.Controls.Add(lblbarhll, 1, 2);
+                pnlData2.Controls.Add(lblHlldruck, 0, 1);
+                pnlData2.Controls.Add(lblbarhll, 1, 1);
             }
         }
 
@@ -454,13 +470,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbDruckbz.Checked == false)
             {
-                pnlData.Controls.Remove(lblBzdruck);
-                pnlData.Controls.Remove(lblbarbz);
+                pnlData2.Controls.Remove(lblBzdruck);
+                pnlData2.Controls.Remove(lblbarbz);
             }
             else
             {
-                pnlData.Controls.Add(lblBzdruck, 0, 3);
-                pnlData.Controls.Add(lblbarbz, 1, 3);
+                pnlData2.Controls.Add(lblBzdruck, 0, 2);
+                pnlData2.Controls.Add(lblbarbz, 1, 2);
             }
         }
 
@@ -468,13 +484,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbBrh.Checked == false)
             {
-                pnlData.Controls.Remove(lblBrh);
-                pnlData.Controls.Remove(lblbremsh);
+                pnlData2.Controls.Remove(lblBrh);
+                pnlData2.Controls.Remove(lblbremsh);
             }
             else
             {
-                pnlData.Controls.Add(lblBrh, 0, 4);
-                pnlData.Controls.Add(lblbremsh, 1, 4);
+                pnlData2.Controls.Add(lblBrh, 0, 0);
+                pnlData2.Controls.Add(lblbremsh, 1, 0);
             }
         }
 
@@ -521,6 +537,32 @@ namespace ZusiTCPDemoApp
             lblFlag.Text = "TEST";
             timerFlag.Start(); //Zeigt für eine Sekunde ein Testflag
 
+        }
+
+        private void cbGrunddaten_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbGrunddaten.Checked == false)
+            {
+                pnlLeft.Controls.Remove(pnlData1);
+
+            }
+            else
+            {
+                pnlLeft.Controls.Add(pnlData1);
+            }
+        }
+
+        private void cbBremsen_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbGrunddaten.Checked == false)
+            {
+                pnlLeft.Controls.Remove(pnlData2);
+
+            }
+            else
+            {
+                pnlLeft.Controls.Add(pnlData2);
+            }
         }
 
           
