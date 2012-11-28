@@ -41,6 +41,13 @@ namespace ZusiTCPDemoApp
 
             //System-Tab anzeigen damit ggf. eine Verbindung zum TCP-Server aufgebaut werden kann
             tabEinstellungen.SelectTab("tabSystem");
+
+            //nicht funktionierende Checkboxes deaktivieren
+            cbLmgleiten.Enabled = false;
+            cbLmtueren.Enabled = false;
+            cbUhrzeit.Enabled = false;
+
+            cbFokuszurueck.Enabled = false;
             
             /* When the application window is created, we create our new connection class as well.
              * ReceiveEvent<T> is a generic delegate type for you to use. See the Object Browser for details. */
@@ -73,9 +80,7 @@ namespace ZusiTCPDemoApp
         {
             lblDebugBremsen.Text = "(gebremst?)";
             lblDebugScharf.Text = "(scharf?)";
-            lblDebugSchleudern.Text = "(geschleudert?)";
-            lblDebugVreached.Text = "(vReached)";
-
+            lblDebugSchleudern.Text = "(geschleudert?)";            
         }
 
         public void ResetGlobals() // Resetting all global variables
