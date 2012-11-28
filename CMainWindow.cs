@@ -413,11 +413,23 @@ namespace ZusiTCPDemoApp
         {
 
             BackColor = Color.DarkGray; // Hintergrund der Form
-            lblV.ForeColor = Color.WhiteSmoke;
+
+            //TEST
+            /*lblV.ForeColor = Color.WhiteSmoke;
             lblMeter.ForeColor = Color.WhiteSmoke;
             lblBrh.ForeColor = Color.WhiteSmoke;
             lblBzdruck.ForeColor = Color.WhiteSmoke;
             lblHlldruck.ForeColor = Color.WhiteSmoke;
+             */
+
+            foreach (Label label in pnlData1.Controls)
+            {
+                label.ForeColor = Color.WhiteSmoke;
+            }
+            foreach (Label label in pnlData2.Controls)
+            {
+                label.ForeColor = Color.WhiteSmoke;
+            }
 
             tbServer.BackColor = Color.LightGray;
             tbPort.BackColor = Color.LightGray;
@@ -426,11 +438,22 @@ namespace ZusiTCPDemoApp
         public void setDaymode()
         {
             BackColor = CMainWindow.DefaultBackColor; // Hintergrund der Form
-            lblV.ForeColor = Color.Black;
+            
+            //TEST
+            /*lblV.ForeColor = Color.Black;
             lblMeter.ForeColor = Color.Black;
             lblBrh.ForeColor = Color.Black;
             lblBzdruck.ForeColor = Color.Black;
-            lblHlldruck.ForeColor = Color.Black;
+            lblHlldruck.ForeColor = Color.Black;*/
+
+            foreach (Label label in pnlData1.Controls)
+            {
+                label.ForeColor = Color.Black;
+            }
+            foreach (Label label in pnlData2.Controls)
+            {
+                label.ForeColor = Color.Black;
+            }
 
             tbServer.BackColor = Color.White;
             tbPort.BackColor = Color.White;
@@ -592,23 +615,42 @@ namespace ZusiTCPDemoApp
             {
                 pnlLeft.Controls.Remove(pnlData1);
 
+                foreach (CheckBox cbox in pnlGrunddaten.Controls)
+                {
+                    cbox.Checked = false;
+                }
+
             }
             else
             {
                 pnlLeft.Controls.Add(pnlData1);
+                foreach (CheckBox cbox in pnlGrunddaten.Controls)
+                {
+                    cbox.Checked = true;
+                }
+                //TODO: Wiederherstellen der checkboxes?
             }
         }
 
         private void cbBremsen_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbGrunddaten.Checked == false)
+            if (cbBremsen.Checked == false)
             {
-                pnlLeft.Controls.Remove(pnlData2);
+                pnlLeft.Controls.Remove(pnlData2);                
+                foreach (CheckBox cbox in pnlBremsen.Controls)
+                {
+                    cbox.Checked = false;
+                }
 
             }
             else
             {
                 pnlLeft.Controls.Add(pnlData2);
+                foreach (CheckBox cbox in pnlBremsen.Controls)
+                {
+                    cbox.Checked = true;
+                }
+                //TODO: Wiederherstellen der checkboxes?
             }
         }
 

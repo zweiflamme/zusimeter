@@ -91,6 +91,8 @@
             this.pnlData2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pnlGrunddaten = new System.Windows.Forms.Panel();
+            this.pnlBremsen = new System.Windows.Forms.Panel();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -103,6 +105,8 @@
             this.pnlLeft.SuspendLayout();
             this.pnlData2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.pnlGrunddaten.SuspendLayout();
+            this.pnlBremsen.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -158,7 +162,7 @@
             // btnSettings
             // 
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(3, 352);
+            this.btnSettings.Location = new System.Drawing.Point(6, 257);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(94, 26);
             this.btnSettings.TabIndex = 6;
@@ -190,18 +194,8 @@
             // tabAnzeigen
             // 
             this.tabAnzeigen.BackColor = System.Drawing.SystemColors.Control;
-            this.tabAnzeigen.Controls.Add(this.cbBremsen);
-            this.tabAnzeigen.Controls.Add(this.cbGrunddaten);
-            this.tabAnzeigen.Controls.Add(this.cbBrh);
-            this.tabAnzeigen.Controls.Add(this.cbFahrstufe);
-            this.tabAnzeigen.Controls.Add(this.cbDruckbz);
-            this.tabAnzeigen.Controls.Add(this.cbUhrzeit);
-            this.tabAnzeigen.Controls.Add(this.cbDruckhll);
-            this.tabAnzeigen.Controls.Add(this.cbLmschleudern);
-            this.tabAnzeigen.Controls.Add(this.cbLmtueren);
-            this.tabAnzeigen.Controls.Add(this.cbLmsifa);
-            this.tabAnzeigen.Controls.Add(this.cbGeschwindigkeit);
-            this.tabAnzeigen.Controls.Add(this.cbStreckenmeter);
+            this.tabAnzeigen.Controls.Add(this.pnlBremsen);
+            this.tabAnzeigen.Controls.Add(this.pnlGrunddaten);
             this.tabAnzeigen.Location = new System.Drawing.Point(4, 22);
             this.tabAnzeigen.Name = "tabAnzeigen";
             this.tabAnzeigen.Padding = new System.Windows.Forms.Padding(3);
@@ -218,7 +212,7 @@
             this.cbBremsen.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
             this.cbBremsen.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.cbBremsen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbBremsen.Location = new System.Drawing.Point(10, 132);
+            this.cbBremsen.Location = new System.Drawing.Point(3, 3);
             this.cbBremsen.Name = "cbBremsen";
             this.cbBremsen.Size = new System.Drawing.Size(58, 23);
             this.cbBremsen.TabIndex = 9;
@@ -235,7 +229,7 @@
             this.cbGrunddaten.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
             this.cbGrunddaten.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.cbGrunddaten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbGrunddaten.Location = new System.Drawing.Point(10, 7);
+            this.cbGrunddaten.Location = new System.Drawing.Point(3, 3);
             this.cbGrunddaten.Name = "cbGrunddaten";
             this.cbGrunddaten.Size = new System.Drawing.Size(73, 23);
             this.cbGrunddaten.TabIndex = 8;
@@ -248,7 +242,7 @@
             this.cbBrh.AutoSize = true;
             this.cbBrh.Checked = true;
             this.cbBrh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBrh.Location = new System.Drawing.Point(10, 159);
+            this.cbBrh.Location = new System.Drawing.Point(3, 30);
             this.cbBrh.Name = "cbBrh";
             this.cbBrh.Size = new System.Drawing.Size(107, 17);
             this.cbBrh.TabIndex = 4;
@@ -261,7 +255,7 @@
             this.cbFahrstufe.AutoSize = true;
             this.cbFahrstufe.Checked = true;
             this.cbFahrstufe.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbFahrstufe.Location = new System.Drawing.Point(10, 69);
+            this.cbFahrstufe.Location = new System.Drawing.Point(3, 65);
             this.cbFahrstufe.Name = "cbFahrstufe";
             this.cbFahrstufe.Size = new System.Drawing.Size(70, 17);
             this.cbFahrstufe.TabIndex = 7;
@@ -274,7 +268,7 @@
             this.cbDruckbz.AutoSize = true;
             this.cbDruckbz.Checked = true;
             this.cbDruckbz.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckbz.Location = new System.Drawing.Point(10, 176);
+            this.cbDruckbz.Location = new System.Drawing.Point(3, 47);
             this.cbDruckbz.Name = "cbDruckbz";
             this.cbDruckbz.Size = new System.Drawing.Size(122, 17);
             this.cbDruckbz.TabIndex = 3;
@@ -286,7 +280,7 @@
             // 
             this.cbUhrzeit.AutoSize = true;
             this.cbUhrzeit.Enabled = false;
-            this.cbUhrzeit.Location = new System.Drawing.Point(120, 69);
+            this.cbUhrzeit.Location = new System.Drawing.Point(113, 65);
             this.cbUhrzeit.Name = "cbUhrzeit";
             this.cbUhrzeit.Size = new System.Drawing.Size(59, 17);
             this.cbUhrzeit.TabIndex = 6;
@@ -298,7 +292,7 @@
             this.cbDruckhll.AutoSize = true;
             this.cbDruckhll.Checked = true;
             this.cbDruckhll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckhll.Location = new System.Drawing.Point(120, 159);
+            this.cbDruckhll.Location = new System.Drawing.Point(113, 30);
             this.cbDruckhll.Name = "cbDruckhll";
             this.cbDruckhll.Size = new System.Drawing.Size(70, 17);
             this.cbDruckhll.TabIndex = 2;
@@ -311,7 +305,7 @@
             this.cbLmschleudern.AutoSize = true;
             this.cbLmschleudern.Checked = true;
             this.cbLmschleudern.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLmschleudern.Location = new System.Drawing.Point(10, 86);
+            this.cbLmschleudern.Location = new System.Drawing.Point(3, 82);
             this.cbLmschleudern.Name = "cbLmschleudern";
             this.cbLmschleudern.Size = new System.Drawing.Size(142, 17);
             this.cbLmschleudern.TabIndex = 4;
@@ -324,7 +318,7 @@
             this.cbLmtueren.AutoSize = true;
             this.cbLmtueren.Checked = true;
             this.cbLmtueren.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLmtueren.Location = new System.Drawing.Point(120, 53);
+            this.cbLmtueren.Location = new System.Drawing.Point(113, 49);
             this.cbLmtueren.Name = "cbLmtueren";
             this.cbLmtueren.Size = new System.Drawing.Size(54, 17);
             this.cbLmtueren.TabIndex = 3;
@@ -337,7 +331,7 @@
             this.cbLmsifa.AutoSize = true;
             this.cbLmsifa.Checked = true;
             this.cbLmsifa.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLmsifa.Location = new System.Drawing.Point(120, 36);
+            this.cbLmsifa.Location = new System.Drawing.Point(113, 32);
             this.cbLmsifa.Name = "cbLmsifa";
             this.cbLmsifa.Size = new System.Drawing.Size(44, 17);
             this.cbLmsifa.TabIndex = 2;
@@ -350,7 +344,7 @@
             this.cbGeschwindigkeit.AutoSize = true;
             this.cbGeschwindigkeit.Checked = true;
             this.cbGeschwindigkeit.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbGeschwindigkeit.Location = new System.Drawing.Point(10, 36);
+            this.cbGeschwindigkeit.Location = new System.Drawing.Point(3, 32);
             this.cbGeschwindigkeit.Name = "cbGeschwindigkeit";
             this.cbGeschwindigkeit.Size = new System.Drawing.Size(104, 17);
             this.cbGeschwindigkeit.TabIndex = 0;
@@ -363,7 +357,7 @@
             this.cbStreckenmeter.AutoSize = true;
             this.cbStreckenmeter.Checked = true;
             this.cbStreckenmeter.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbStreckenmeter.Location = new System.Drawing.Point(10, 53);
+            this.cbStreckenmeter.Location = new System.Drawing.Point(3, 49);
             this.cbStreckenmeter.Name = "cbStreckenmeter";
             this.cbStreckenmeter.Size = new System.Drawing.Size(95, 17);
             this.cbStreckenmeter.TabIndex = 1;
@@ -585,12 +579,13 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.AutoSize = true;
             this.pnlRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlRight.Controls.Add(this.pnlSettings);
             this.pnlRight.Controls.Add(this.pnlDebug);
             this.pnlRight.Location = new System.Drawing.Point(160, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(367, 383);
+            this.pnlRight.Size = new System.Drawing.Size(364, 381);
             this.pnlRight.TabIndex = 14;
             this.pnlRight.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRight_Paint);
             // 
@@ -602,7 +597,7 @@
             // 
             // btnNacht
             // 
-            this.btnNacht.Location = new System.Drawing.Point(3, 323);
+            this.btnNacht.Location = new System.Drawing.Point(3, 228);
             this.btnNacht.Name = "btnNacht";
             this.btnNacht.Size = new System.Drawing.Size(94, 23);
             this.btnNacht.TabIndex = 15;
@@ -760,7 +755,7 @@
             this.pnlLeft.Controls.Add(this.btnNacht);
             this.pnlLeft.Location = new System.Drawing.Point(2, 13);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(129, 381);
+            this.pnlLeft.Size = new System.Drawing.Size(129, 286);
             this.pnlLeft.TabIndex = 17;
             // 
             // pnlData2
@@ -791,7 +786,7 @@
             this.lblVerbstatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 411);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(533, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(532, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 18;
             this.statusStrip1.Text = "Status";
@@ -802,12 +797,39 @@
             this.lblVerbstatus.Size = new System.Drawing.Size(52, 17);
             this.lblVerbstatus.Text = "getrennt";
             // 
+            // pnlGrunddaten
+            // 
+            this.pnlGrunddaten.Controls.Add(this.cbGrunddaten);
+            this.pnlGrunddaten.Controls.Add(this.cbStreckenmeter);
+            this.pnlGrunddaten.Controls.Add(this.cbGeschwindigkeit);
+            this.pnlGrunddaten.Controls.Add(this.cbFahrstufe);
+            this.pnlGrunddaten.Controls.Add(this.cbLmsifa);
+            this.pnlGrunddaten.Controls.Add(this.cbLmtueren);
+            this.pnlGrunddaten.Controls.Add(this.cbUhrzeit);
+            this.pnlGrunddaten.Controls.Add(this.cbLmschleudern);
+            this.pnlGrunddaten.Location = new System.Drawing.Point(3, 3);
+            this.pnlGrunddaten.Name = "pnlGrunddaten";
+            this.pnlGrunddaten.Size = new System.Drawing.Size(183, 98);
+            this.pnlGrunddaten.TabIndex = 19;
+            // 
+            // pnlBremsen
+            // 
+            this.pnlBremsen.Controls.Add(this.cbBremsen);
+            this.pnlBremsen.Controls.Add(this.cbDruckhll);
+            this.pnlBremsen.Controls.Add(this.cbBrh);
+            this.pnlBremsen.Controls.Add(this.cbDruckbz);
+            this.pnlBremsen.Location = new System.Drawing.Point(3, 111);
+            this.pnlBremsen.Name = "pnlBremsen";
+            this.pnlBremsen.Size = new System.Drawing.Size(183, 93);
+            this.pnlBremsen.TabIndex = 19;
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(533, 433);
+            this.ClientSize = new System.Drawing.Size(532, 433);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlRight);
@@ -820,7 +842,6 @@
             this.pnlSettings.ResumeLayout(false);
             this.tabEinstellungen.ResumeLayout(false);
             this.tabAnzeigen.ResumeLayout(false);
-            this.tabAnzeigen.PerformLayout();
             this.tabSystem.ResumeLayout(false);
             this.tabSystem.PerformLayout();
             this.grpVerbindung.ResumeLayout(false);
@@ -838,6 +859,10 @@
             this.pnlData2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.pnlGrunddaten.ResumeLayout(false);
+            this.pnlGrunddaten.PerformLayout();
+            this.pnlBremsen.ResumeLayout(false);
+            this.pnlBremsen.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -906,6 +931,8 @@
         private System.Windows.Forms.Label lblDebugtuerbool;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblVerbstatus;
+        private System.Windows.Forms.Panel pnlBremsen;
+        private System.Windows.Forms.Panel pnlGrunddaten;
 
     }
 }
