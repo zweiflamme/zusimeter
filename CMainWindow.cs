@@ -304,7 +304,7 @@ namespace ZusiTCPDemoApp
             //TEST
             lblFlag.Visible = !lblFlag.Visible;
             lblFlag.BackColor = Color.Orange;
-            lblFlag.Text = "TEST";
+            lblFlag.Text = "TEST!";
         }
 
        
