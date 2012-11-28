@@ -51,7 +51,7 @@ namespace ZusiTCPDemoApp
              * ReceiveEvent<T> is a generic delegate type for you to use. See the Object Browser for details. */
 
             MyTCPConnection = new ZusiTcpConn(
-             "ZusiMeter v0.3",                            // The name of this application (Shows up on the server's list)
+             "ZusiMeter v0.4",                            // The name of this application (Shows up on the server's list)
              // ClientPriority.Low                                 // The priority with which the server should treat you
              ClientPriority.High,                            
              new ReceiveEvent<float>(HandleIncomingData),   // A delegate method for the connection class to call when it receives float data (may be null)
@@ -176,9 +176,9 @@ namespace ZusiTCPDemoApp
                 {
                     double geschwindigkeit = dataSet.Value;
 
-                    if (geschwindigkeit > 0.5) hasMoved = true;
+                    if (geschwindigkeit > 0.1) hasMoved = true;
 
-                    if (hasMoved == true && settingsVisible == false)
+                    if (hasMoved == true && settingsVisible == false && debugging == false)
                     {
                         pnlRight.Visible = false;
                         //TODO: In eigener Methode unterbringen
@@ -199,7 +199,7 @@ namespace ZusiTCPDemoApp
                         }  
                     }
 
-                    lblV.Text = String.Format("{0:f}", dataSet.Value); //Geschwindigkeit anzeigen
+                    lblV.Text = String.Format("{0:0.0}", dataSet.Value); //Geschwindigkeit anzeigen
 
                 }
             }
@@ -297,8 +297,6 @@ namespace ZusiTCPDemoApp
                 }
                 else if (tuerwert > 5E-45 && tuerwert < 7E-45) //Schließvorgang
                 {
-                    lblFlag.Visible = false;
-                    lblFlag.Text = "";
                     lblTueren.Text = "schließen";
                 }
                 else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //Fahrgäste i.O.
@@ -322,19 +320,24 @@ namespace ZusiTCPDemoApp
         {
             if (statusNeu == "Getrennt")
             {
-                btnConnect.Text = "Verbinden";               
+                btnConnect.Text = "Verbinden";
+                lblVerbstatus.Text = "Getrennt";
              
             }
             else if (statusNeu == "Warte")
             {
+
+                //TODO: Anzeigedaten anzeigen
                 btnConnect.Text = "Trennen";
                 pnlRight.Visible = true;
                 tabEinstellungen.SelectTab("tabAnzeigen");
+                lblVerbstatus.Text = "Warte auf Zusi";
                 
             }
             else if (statusNeu == "Verbunden")
             {          
                 verbunden = true;
+                lblVerbstatus.Text = "Verbunden mit Zusi";
             }
         }
 
@@ -620,7 +623,28 @@ namespace ZusiTCPDemoApp
             {
                 pnlData1.Controls.Add(lblTueren, 0, 3);
                 pnlData1.Controls.Add(lbltuer, 1, 3);
+                ShowFlagtest();
+                lblFlag.Visible = true; 
             }
+        }
+
+        private void cbFahrstufe_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFahrstufe.Checked == false)
+            {
+                pnlData1.Controls.Remove(lblFahrstufe);
+                pnlData1.Controls.Remove(lblfahrst);
+            }
+            else
+            {
+                pnlData1.Controls.Add(lblFahrstufe, 0, 2);
+                pnlData1.Controls.Add(lblfahrst, 1, 2);
+            }
+        }
+
+        private void pnlRight_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
           

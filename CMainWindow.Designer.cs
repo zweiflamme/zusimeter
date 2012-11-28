@@ -39,6 +39,8 @@
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.tabEinstellungen = new System.Windows.Forms.TabControl();
             this.tabAnzeigen = new System.Windows.Forms.TabPage();
+            this.cbBremsen = new System.Windows.Forms.CheckBox();
+            this.cbGrunddaten = new System.Windows.Forms.CheckBox();
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbFahrstufe = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
@@ -60,6 +62,9 @@
             this.lblFlag = new System.Windows.Forms.Label();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
+            this.lblDebugtuerbool = new System.Windows.Forms.Label();
+            this.lblDebugtueren = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblDebugSchleudern = new System.Windows.Forms.Label();
             this.lblDebugBremsen = new System.Windows.Forms.Label();
             this.lblDebugScharf = new System.Windows.Forms.Label();
@@ -77,18 +82,15 @@
             this.lblkmh = new System.Windows.Forms.Label();
             this.lblV = new System.Windows.Forms.Label();
             this.pnlData1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbltuer = new System.Windows.Forms.Label();
+            this.lblfahrst = new System.Windows.Forms.Label();
+            this.lblFahrstufe = new System.Windows.Forms.Label();
+            this.lblTueren = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlData2 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblFahrstufe = new System.Windows.Forms.Label();
-            this.lblfahrst = new System.Windows.Forms.Label();
-            this.cbGrunddaten = new System.Windows.Forms.CheckBox();
-            this.cbBremsen = new System.Windows.Forms.CheckBox();
-            this.lblTueren = new System.Windows.Forms.Label();
-            this.lbltuer = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblDebugtueren = new System.Windows.Forms.Label();
-            this.lblDebugtuerbool = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -100,6 +102,7 @@
             this.pnlData1.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.pnlData2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -108,14 +111,15 @@
             this.lblSifa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSifa.Location = new System.Drawing.Point(3, 7);
             this.lblSifa.Name = "lblSifa";
-            this.lblSifa.Size = new System.Drawing.Size(96, 51);
+            this.lblSifa.Size = new System.Drawing.Size(114, 51);
             this.lblSifa.TabIndex = 0;
             this.lblSifa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblbarbz
             // 
             this.lblbarbz.AutoSize = true;
-            this.lblbarbz.Location = new System.Drawing.Point(60, 30);
+            this.lblbarbz.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblbarbz.Location = new System.Drawing.Point(34, 26);
             this.lblbarbz.Name = "lblbarbz";
             this.lblbarbz.Size = new System.Drawing.Size(37, 13);
             this.lblbarbz.TabIndex = 11;
@@ -124,16 +128,18 @@
             // lblBzdruck
             // 
             this.lblBzdruck.AutoSize = true;
-            this.lblBzdruck.Location = new System.Drawing.Point(3, 30);
+            this.lblBzdruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblBzdruck.Location = new System.Drawing.Point(3, 26);
             this.lblBzdruck.Name = "lblBzdruck";
-            this.lblBzdruck.Size = new System.Drawing.Size(16, 13);
+            this.lblBzdruck.Size = new System.Drawing.Size(25, 13);
             this.lblBzdruck.TabIndex = 10;
-            this.lblBzdruck.Text = "---";
+            this.lblBzdruck.Text = "8,8";
             // 
             // lblbarhll
             // 
             this.lblbarhll.AutoSize = true;
-            this.lblbarhll.Location = new System.Drawing.Point(60, 15);
+            this.lblbarhll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblbarhll.Location = new System.Drawing.Point(34, 13);
             this.lblbarhll.Name = "lblbarhll";
             this.lblbarhll.Size = new System.Drawing.Size(37, 13);
             this.lblbarhll.TabIndex = 9;
@@ -142,11 +148,12 @@
             // lblHlldruck
             // 
             this.lblHlldruck.AutoSize = true;
-            this.lblHlldruck.Location = new System.Drawing.Point(3, 15);
+            this.lblHlldruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblHlldruck.Location = new System.Drawing.Point(3, 13);
             this.lblHlldruck.Name = "lblHlldruck";
-            this.lblHlldruck.Size = new System.Drawing.Size(16, 13);
+            this.lblHlldruck.Size = new System.Drawing.Size(25, 13);
             this.lblHlldruck.TabIndex = 8;
-            this.lblHlldruck.Text = "---";
+            this.lblHlldruck.Text = "8,8";
             // 
             // btnSettings
             // 
@@ -161,12 +168,11 @@
             // 
             // pnlSettings
             // 
-            this.pnlSettings.AutoSize = true;
             this.pnlSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSettings.Controls.Add(this.tabEinstellungen);
-            this.pnlSettings.Location = new System.Drawing.Point(3, 3);
+            this.pnlSettings.Location = new System.Drawing.Point(3, 1);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(225, 377);
+            this.pnlSettings.Size = new System.Drawing.Size(214, 377);
             this.pnlSettings.TabIndex = 10;
             // 
             // tabEinstellungen
@@ -174,7 +180,7 @@
             this.tabEinstellungen.Controls.Add(this.tabAnzeigen);
             this.tabEinstellungen.Controls.Add(this.tabDarstellung);
             this.tabEinstellungen.Controls.Add(this.tabSystem);
-            this.tabEinstellungen.Location = new System.Drawing.Point(13, 4);
+            this.tabEinstellungen.Location = new System.Drawing.Point(3, 2);
             this.tabEinstellungen.Name = "tabEinstellungen";
             this.tabEinstellungen.SelectedIndex = 0;
             this.tabEinstellungen.Size = new System.Drawing.Size(209, 370);
@@ -203,6 +209,40 @@
             this.tabAnzeigen.TabIndex = 0;
             this.tabAnzeigen.Text = "Anzeigen";
             // 
+            // cbBremsen
+            // 
+            this.cbBremsen.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbBremsen.AutoSize = true;
+            this.cbBremsen.Checked = true;
+            this.cbBremsen.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBremsen.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbBremsen.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbBremsen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbBremsen.Location = new System.Drawing.Point(10, 132);
+            this.cbBremsen.Name = "cbBremsen";
+            this.cbBremsen.Size = new System.Drawing.Size(58, 23);
+            this.cbBremsen.TabIndex = 9;
+            this.cbBremsen.Text = "Bremsen";
+            this.cbBremsen.UseVisualStyleBackColor = true;
+            this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
+            // 
+            // cbGrunddaten
+            // 
+            this.cbGrunddaten.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbGrunddaten.AutoSize = true;
+            this.cbGrunddaten.Checked = true;
+            this.cbGrunddaten.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbGrunddaten.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbGrunddaten.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbGrunddaten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbGrunddaten.Location = new System.Drawing.Point(10, 7);
+            this.cbGrunddaten.Name = "cbGrunddaten";
+            this.cbGrunddaten.Size = new System.Drawing.Size(73, 23);
+            this.cbGrunddaten.TabIndex = 8;
+            this.cbGrunddaten.Text = "Grunddaten";
+            this.cbGrunddaten.UseVisualStyleBackColor = true;
+            this.cbGrunddaten.CheckedChanged += new System.EventHandler(this.cbGrunddaten_CheckedChanged);
+            // 
             // cbBrh
             // 
             this.cbBrh.AutoSize = true;
@@ -227,6 +267,7 @@
             this.cbFahrstufe.TabIndex = 7;
             this.cbFahrstufe.Text = "Fahrstufe";
             this.cbFahrstufe.UseVisualStyleBackColor = true;
+            this.cbFahrstufe.CheckedChanged += new System.EventHandler(this.cbFahrstufe_CheckedChanged);
             // 
             // cbDruckbz
             // 
@@ -285,9 +326,9 @@
             this.cbLmtueren.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbLmtueren.Location = new System.Drawing.Point(120, 53);
             this.cbLmtueren.Name = "cbLmtueren";
-            this.cbLmtueren.Size = new System.Drawing.Size(72, 17);
+            this.cbLmtueren.Size = new System.Drawing.Size(54, 17);
             this.cbLmtueren.TabIndex = 3;
-            this.cbLmtueren.Text = "LM Türen";
+            this.cbLmtueren.Text = "Türen";
             this.cbLmtueren.UseVisualStyleBackColor = true;
             this.cbLmtueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
             // 
@@ -336,7 +377,7 @@
             this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
             this.tabDarstellung.Name = "tabDarstellung";
             this.tabDarstellung.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDarstellung.Size = new System.Drawing.Size(355, 344);
+            this.tabDarstellung.Size = new System.Drawing.Size(201, 344);
             this.tabDarstellung.TabIndex = 1;
             this.tabDarstellung.Text = "Darstellung";
             // 
@@ -348,7 +389,7 @@
             this.tabSystem.Controls.Add(this.btnDebugpanel);
             this.tabSystem.Location = new System.Drawing.Point(4, 22);
             this.tabSystem.Name = "tabSystem";
-            this.tabSystem.Size = new System.Drawing.Size(355, 344);
+            this.tabSystem.Size = new System.Drawing.Size(201, 344);
             this.tabSystem.TabIndex = 2;
             this.tabSystem.Text = "System";
             // 
@@ -417,7 +458,7 @@
             this.lblFlag.BackColor = System.Drawing.Color.Orange;
             this.lblFlag.Location = new System.Drawing.Point(3, 62);
             this.lblFlag.Name = "lblFlag";
-            this.lblFlag.Size = new System.Drawing.Size(96, 19);
+            this.lblFlag.Size = new System.Drawing.Size(114, 19);
             this.lblFlag.TabIndex = 11;
             this.lblFlag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblFlag.Visible = false;
@@ -426,7 +467,7 @@
             // 
             this.pnlDebug.AutoSize = true;
             this.pnlDebug.Controls.Add(this.grpDebug);
-            this.pnlDebug.Location = new System.Drawing.Point(234, 3);
+            this.pnlDebug.Location = new System.Drawing.Point(223, 3);
             this.pnlDebug.Name = "pnlDebug";
             this.pnlDebug.Size = new System.Drawing.Size(138, 248);
             this.pnlDebug.TabIndex = 12;
@@ -451,6 +492,33 @@
             this.grpDebug.TabIndex = 12;
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
+            // 
+            // lblDebugtuerbool
+            // 
+            this.lblDebugtuerbool.AutoSize = true;
+            this.lblDebugtuerbool.Location = new System.Drawing.Point(50, 120);
+            this.lblDebugtuerbool.Name = "lblDebugtuerbool";
+            this.lblDebugtuerbool.Size = new System.Drawing.Size(37, 13);
+            this.lblDebugtuerbool.TabIndex = 29;
+            this.lblDebugtuerbool.Text = "(türen)";
+            // 
+            // lblDebugtueren
+            // 
+            this.lblDebugtueren.AutoSize = true;
+            this.lblDebugtueren.Location = new System.Drawing.Point(48, 107);
+            this.lblDebugtueren.Name = "lblDebugtueren";
+            this.lblDebugtueren.Size = new System.Drawing.Size(37, 13);
+            this.lblDebugtueren.TabIndex = 28;
+            this.lblDebugtueren.Text = "(türen)";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 107);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Türen";
             // 
             // lblDebugSchleudern
             // 
@@ -517,14 +585,14 @@
             // 
             // pnlRight
             // 
-            this.pnlRight.AutoSize = true;
             this.pnlRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlRight.Controls.Add(this.pnlSettings);
             this.pnlRight.Controls.Add(this.pnlDebug);
-            this.pnlRight.Location = new System.Drawing.Point(112, 13);
+            this.pnlRight.Location = new System.Drawing.Point(160, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(375, 383);
+            this.pnlRight.Size = new System.Drawing.Size(367, 383);
             this.pnlRight.TabIndex = 14;
+            this.pnlRight.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRight_Paint);
             // 
             // timerFlag
             // 
@@ -544,70 +612,72 @@
             // 
             // lblm
             // 
-            this.lblm.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblm.AutoSize = true;
-            this.lblm.Location = new System.Drawing.Point(60, 29);
+            this.lblm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblm.Location = new System.Drawing.Point(69, 24);
             this.lblm.Name = "lblm";
-            this.lblm.Size = new System.Drawing.Size(15, 13);
+            this.lblm.Size = new System.Drawing.Size(51, 13);
             this.lblm.TabIndex = 5;
             this.lblm.Text = "m";
             // 
             // lblBrh
             // 
             this.lblBrh.AutoSize = true;
+            this.lblBrh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblBrh.Location = new System.Drawing.Point(3, 0);
             this.lblBrh.Name = "lblBrh";
-            this.lblBrh.Size = new System.Drawing.Size(16, 13);
+            this.lblBrh.Size = new System.Drawing.Size(25, 13);
             this.lblBrh.TabIndex = 7;
-            this.lblBrh.Text = "---";
+            this.lblBrh.Text = "888";
             // 
             // lblbremsh
             // 
             this.lblbremsh.AutoSize = true;
-            this.lblbremsh.Location = new System.Drawing.Point(60, 0);
+            this.lblbremsh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblbremsh.Location = new System.Drawing.Point(34, 0);
             this.lblbremsh.Name = "lblbremsh";
-            this.lblbremsh.Size = new System.Drawing.Size(25, 13);
+            this.lblbremsh.Size = new System.Drawing.Size(37, 13);
             this.lblbremsh.TabIndex = 6;
             this.lblbremsh.Text = "BrH";
             // 
             // lblMeter
             // 
-            this.lblMeter.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMeter.AutoSize = true;
-            this.lblMeter.Location = new System.Drawing.Point(38, 29);
+            this.lblMeter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMeter.Location = new System.Drawing.Point(3, 24);
             this.lblMeter.Name = "lblMeter";
-            this.lblMeter.Size = new System.Drawing.Size(16, 13);
+            this.lblMeter.Size = new System.Drawing.Size(60, 13);
             this.lblMeter.TabIndex = 3;
-            this.lblMeter.Text = "---";
+            this.lblMeter.Text = "888888,88";
             // 
             // lblkmh
             // 
-            this.lblkmh.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblkmh.AutoSize = true;
-            this.lblkmh.Location = new System.Drawing.Point(60, 5);
+            this.lblkmh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblkmh.Location = new System.Drawing.Point(69, 0);
             this.lblkmh.Name = "lblkmh";
-            this.lblkmh.Size = new System.Drawing.Size(32, 13);
+            this.lblkmh.Size = new System.Drawing.Size(51, 24);
             this.lblkmh.TabIndex = 4;
             this.lblkmh.Text = "km/h";
             // 
             // lblV
             // 
-            this.lblV.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblV.AutoSize = true;
+            this.lblV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblV.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblV.Location = new System.Drawing.Point(23, 0);
+            this.lblV.Location = new System.Drawing.Point(3, 0);
             this.lblV.Name = "lblV";
-            this.lblV.Size = new System.Drawing.Size(31, 24);
+            this.lblV.Size = new System.Drawing.Size(60, 24);
             this.lblV.TabIndex = 1;
-            this.lblV.Text = "---";
+            this.lblV.Text = "888,8";
             // 
             // pnlData1
             // 
             this.pnlData1.AutoSize = true;
             this.pnlData1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlData1.ColumnCount = 2;
-            this.pnlData1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.pnlData1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlData1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlData1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.pnlData1.Controls.Add(this.lbltuer, 1, 3);
             this.pnlData1.Controls.Add(this.lblfahrst, 1, 2);
             this.pnlData1.Controls.Add(this.lblFahrstufe, 0, 2);
@@ -616,16 +686,56 @@
             this.pnlData1.Controls.Add(this.lblMeter, 0, 1);
             this.pnlData1.Controls.Add(this.lblm, 1, 1);
             this.pnlData1.Controls.Add(this.lblTueren, 0, 3);
-            this.pnlData1.Location = new System.Drawing.Point(3, 85);
+            this.pnlData1.Location = new System.Drawing.Point(3, 94);
             this.pnlData1.Name = "pnlData1";
             this.pnlData1.RowCount = 4;
-            this.pnlData1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.pnlData1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.pnlData1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.pnlData1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.pnlData1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlData1.Size = new System.Drawing.Size(114, 96);
+            this.pnlData1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlData1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlData1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlData1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlData1.Size = new System.Drawing.Size(123, 63);
             this.pnlData1.TabIndex = 16;
+            // 
+            // lbltuer
+            // 
+            this.lbltuer.AutoSize = true;
+            this.lbltuer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbltuer.Location = new System.Drawing.Point(69, 50);
+            this.lbltuer.Name = "lbltuer";
+            this.lbltuer.Size = new System.Drawing.Size(51, 13);
+            this.lbltuer.TabIndex = 18;
+            this.lbltuer.Text = "Türen";
+            // 
+            // lblfahrst
+            // 
+            this.lblfahrst.AutoSize = true;
+            this.lblfahrst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblfahrst.Location = new System.Drawing.Point(69, 37);
+            this.lblfahrst.Name = "lblfahrst";
+            this.lblfahrst.Size = new System.Drawing.Size(51, 13);
+            this.lblfahrst.TabIndex = 7;
+            this.lblfahrst.Text = "Fahrstufe";
+            // 
+            // lblFahrstufe
+            // 
+            this.lblFahrstufe.AutoSize = true;
+            this.lblFahrstufe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblFahrstufe.Location = new System.Drawing.Point(3, 37);
+            this.lblFahrstufe.Name = "lblFahrstufe";
+            this.lblFahrstufe.Size = new System.Drawing.Size(60, 13);
+            this.lblFahrstufe.TabIndex = 6;
+            this.lblFahrstufe.Text = "88";
+            // 
+            // lblTueren
+            // 
+            this.lblTueren.AutoSize = true;
+            this.lblTueren.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTueren.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTueren.Location = new System.Drawing.Point(3, 50);
+            this.lblTueren.Name = "lblTueren";
+            this.lblTueren.Size = new System.Drawing.Size(60, 13);
+            this.lblTueren.TabIndex = 8;
+            this.lblTueren.Text = "########";
             // 
             // label2
             // 
@@ -642,155 +752,69 @@
             this.pnlLeft.AutoSize = true;
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLeft.Controls.Add(this.pnlData2);
+            this.pnlLeft.Controls.Add(this.pnlData1);
             this.pnlLeft.Controls.Add(this.lblFlag);
             this.pnlLeft.Controls.Add(this.label2);
             this.pnlLeft.Controls.Add(this.btnSettings);
-            this.pnlLeft.Controls.Add(this.pnlData1);
             this.pnlLeft.Controls.Add(this.lblSifa);
             this.pnlLeft.Controls.Add(this.btnNacht);
             this.pnlLeft.Location = new System.Drawing.Point(2, 13);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(120, 381);
+            this.pnlLeft.Size = new System.Drawing.Size(129, 381);
             this.pnlLeft.TabIndex = 17;
             // 
             // pnlData2
             // 
+            this.pnlData2.AutoSize = true;
             this.pnlData2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlData2.ColumnCount = 2;
-            this.pnlData2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.pnlData2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlData2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlData2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.pnlData2.Controls.Add(this.lblBrh, 0, 0);
             this.pnlData2.Controls.Add(this.lblbarbz, 1, 2);
             this.pnlData2.Controls.Add(this.lblbremsh, 1, 0);
             this.pnlData2.Controls.Add(this.lblHlldruck, 0, 1);
             this.pnlData2.Controls.Add(this.lblbarhll, 1, 1);
             this.pnlData2.Controls.Add(this.lblBzdruck, 0, 2);
-            this.pnlData2.Location = new System.Drawing.Point(3, 202);
+            this.pnlData2.Location = new System.Drawing.Point(3, 168);
             this.pnlData2.Name = "pnlData2";
-            this.pnlData2.RowCount = 5;
-            this.pnlData2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.pnlData2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.pnlData2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.pnlData2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.pnlData2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.pnlData2.Size = new System.Drawing.Size(114, 76);
+            this.pnlData2.RowCount = 3;
+            this.pnlData2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlData2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlData2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlData2.Size = new System.Drawing.Size(74, 39);
             this.pnlData2.TabIndex = 17;
             // 
-            // lblFahrstufe
+            // statusStrip1
             // 
-            this.lblFahrstufe.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblFahrstufe.AutoSize = true;
-            this.lblFahrstufe.Location = new System.Drawing.Point(41, 53);
-            this.lblFahrstufe.Name = "lblFahrstufe";
-            this.lblFahrstufe.Size = new System.Drawing.Size(13, 13);
-            this.lblFahrstufe.TabIndex = 6;
-            this.lblFahrstufe.Text = "--";
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblVerbstatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 411);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(533, 22);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 18;
+            this.statusStrip1.Text = "Status";
             // 
-            // lblfahrst
+            // lblVerbstatus
             // 
-            this.lblfahrst.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblfahrst.AutoSize = true;
-            this.lblfahrst.Location = new System.Drawing.Point(60, 53);
-            this.lblfahrst.Name = "lblfahrst";
-            this.lblfahrst.Size = new System.Drawing.Size(51, 13);
-            this.lblfahrst.TabIndex = 7;
-            this.lblfahrst.Text = "Fahrstufe";
-            // 
-            // cbGrunddaten
-            // 
-            this.cbGrunddaten.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbGrunddaten.AutoSize = true;
-            this.cbGrunddaten.Checked = true;
-            this.cbGrunddaten.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbGrunddaten.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbGrunddaten.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbGrunddaten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbGrunddaten.Location = new System.Drawing.Point(10, 7);
-            this.cbGrunddaten.Name = "cbGrunddaten";
-            this.cbGrunddaten.Size = new System.Drawing.Size(73, 23);
-            this.cbGrunddaten.TabIndex = 8;
-            this.cbGrunddaten.Text = "Grunddaten";
-            this.cbGrunddaten.UseVisualStyleBackColor = true;
-            this.cbGrunddaten.CheckedChanged += new System.EventHandler(this.cbGrunddaten_CheckedChanged);
-            // 
-            // cbBremsen
-            // 
-            this.cbBremsen.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbBremsen.AutoSize = true;
-            this.cbBremsen.Checked = true;
-            this.cbBremsen.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBremsen.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbBremsen.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbBremsen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbBremsen.Location = new System.Drawing.Point(10, 132);
-            this.cbBremsen.Name = "cbBremsen";
-            this.cbBremsen.Size = new System.Drawing.Size(58, 23);
-            this.cbBremsen.TabIndex = 9;
-            this.cbBremsen.Text = "Bremsen";
-            this.cbBremsen.UseVisualStyleBackColor = true;
-            this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
-            // 
-            // lblTueren
-            // 
-            this.lblTueren.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblTueren.AutoSize = true;
-            this.lblTueren.Location = new System.Drawing.Point(22, 77);
-            this.lblTueren.Name = "lblTueren";
-            this.lblTueren.Size = new System.Drawing.Size(13, 13);
-            this.lblTueren.TabIndex = 8;
-            this.lblTueren.Text = "--";
-            this.lblTueren.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lbltuer
-            // 
-            this.lbltuer.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbltuer.AutoSize = true;
-            this.lbltuer.Location = new System.Drawing.Point(60, 77);
-            this.lbltuer.Name = "lbltuer";
-            this.lbltuer.Size = new System.Drawing.Size(35, 13);
-            this.lbltuer.TabIndex = 18;
-            this.lbltuer.Text = "Türen";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Türen";
-            // 
-            // lblDebugtueren
-            // 
-            this.lblDebugtueren.AutoSize = true;
-            this.lblDebugtueren.Location = new System.Drawing.Point(48, 107);
-            this.lblDebugtueren.Name = "lblDebugtueren";
-            this.lblDebugtueren.Size = new System.Drawing.Size(37, 13);
-            this.lblDebugtueren.TabIndex = 28;
-            this.lblDebugtueren.Text = "(türen)";
-            // 
-            // lblDebugtuerbool
-            // 
-            this.lblDebugtuerbool.AutoSize = true;
-            this.lblDebugtuerbool.Location = new System.Drawing.Point(50, 120);
-            this.lblDebugtuerbool.Name = "lblDebugtuerbool";
-            this.lblDebugtuerbool.Size = new System.Drawing.Size(37, 13);
-            this.lblDebugtuerbool.TabIndex = 29;
-            this.lblDebugtuerbool.Text = "(türen)";
+            this.lblVerbstatus.Name = "lblVerbstatus";
+            this.lblVerbstatus.Size = new System.Drawing.Size(52, 17);
+            this.lblVerbstatus.Text = "getrennt";
             // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1043, 402);
+            this.ClientSize = new System.Drawing.Size(533, 433);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlRight);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.Name = "CMainWindow";
-            this.Text = "ZusiMeter - v0.3";
+            this.Text = "ZusiMeter - v0.4";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.CMainWindow_Load);
             this.pnlSettings.ResumeLayout(false);
@@ -812,6 +836,8 @@
             this.pnlLeft.PerformLayout();
             this.pnlData2.ResumeLayout(false);
             this.pnlData2.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -878,6 +904,8 @@
         private System.Windows.Forms.Label lblDebugtueren;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDebugtuerbool;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblVerbstatus;
 
     }
 }
