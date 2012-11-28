@@ -43,9 +43,7 @@ namespace ZusiTCPDemoApp
             tabEinstellungen.SelectTab("tabSystem");
 
             //nicht funktionierende Checkboxes deaktivieren
-            cbLmtueren.Enabled = false;
-            cbUhrzeit.Enabled = false;
-            cbFahrstufe.Enabled = false;
+            //TODO
 
             cbFokuszurueck.Enabled = false;
             
@@ -73,7 +71,7 @@ namespace ZusiTCPDemoApp
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
             MyTCPConnection.RequestData(2596); // "LM Sifa "
             MyTCPConnection.RequestData(2576); // "Fahrstufe"
-            MyTCPConnection.RequestData(2697); // "LM Türen"
+            MyTCPConnection.RequestData(2646); // "Türen"
         }
 
        
@@ -262,9 +260,55 @@ namespace ZusiTCPDemoApp
                 else
                     lblFahrstufe.Text = "--";
             }            
-            else if (dataSet.Id == MyTCPConnection["LM Türen"])
+            else if (dataSet.Id == MyTCPConnection["Türen"])
             {
 
+                //TODO
+
+                //INFO:
+                //Türstatus
+                //größer als 9: geschlossen
+                //größer als 7: schließen
+                //größer als 5: schließen(?)
+                //größer als 4: Fahrgäste i.O.
+                //größer als 1, kleiner als 5: TODO
+
+                //DEBUG
+                double tuerwert = dataSet.Value;
+                lblDebugtueren.Text = tuerwert.ToString();
+
+                //TEST
+                //if (tuerwert > 9E-45) lblDebugtuerbool.Text = "größer 9E-45";
+                //else if (tuerwert < 9E-45) lblDebugtuerbool.Text = "kleiner 9E-45";
+                //else lblDebugtuerbool.Text = "anderer Wert";
+
+                
+                if (tuerwert > 7E-45 && cbLmtueren.Checked) // geschlossen
+                {
+                    lblFlag.Visible = false;
+                    lblFlag.Text = "";
+                    lblTueren.Text = "zu";
+                }
+                else if (tuerwert < 2E-45 && tuerwert > 0 && cbLmtueren.Checked) //geöffnet
+                {
+                    lblFlag.Visible = true;
+                    lblFlag.Text = "Türen geöffnet";
+                    lblTueren.Text = "offen";
+                }
+                else if (tuerwert > 5E-45 && tuerwert < 7E-45) //Schließvorgang
+                {
+                    lblFlag.Visible = false;
+                    lblFlag.Text = "";
+                    lblTueren.Text = "schließen";
+                }
+                else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //Fahrgäste i.O.
+                {
+                    lblTueren.Text = "Fahrgäste i.O.";
+                }
+                else if (tuerwert == 0)  //Türfreigabe erfolgt
+                {
+                    lblTueren.Text = "freigegeben";
+                }
             }
 
         }
@@ -562,6 +606,20 @@ namespace ZusiTCPDemoApp
             else
             {
                 pnlLeft.Controls.Add(pnlData2);
+            }
+        }
+
+        private void cbLmtueren_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLmtueren.Checked == false)
+            {
+                pnlData1.Controls.Remove(lblTueren);
+                pnlData1.Controls.Remove(lbltuer);
+            }
+            else
+            {
+                pnlData1.Controls.Add(lblTueren, 0, 3);
+                pnlData1.Controls.Add(lbltuer, 1, 3);
             }
         }
 
