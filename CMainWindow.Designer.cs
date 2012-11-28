@@ -37,16 +37,21 @@
             this.lblHlldruck = new System.Windows.Forms.Label();
             this.btnSettings = new System.Windows.Forms.Button();
             this.pnlSettings = new System.Windows.Forms.Panel();
+            this.tabEinstellungen = new System.Windows.Forms.TabControl();
+            this.tabAnzeigen = new System.Windows.Forms.TabPage();
             this.grpVisibledata = new System.Windows.Forms.GroupBox();
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
             this.cbDruckhll = new System.Windows.Forms.CheckBox();
             this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
             this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
+            this.tabDarstellung = new System.Windows.Forms.TabPage();
+            this.tabSystem = new System.Windows.Forms.TabPage();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
             this.tbServer = new System.Windows.Forms.TextBox();
             this.tbPort = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
+            this.btnDebugpanel = new System.Windows.Forms.Button();
             this.lblFlag = new System.Windows.Forms.Label();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
@@ -58,7 +63,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.tbVerz = new System.Windows.Forms.TextBox();
             this.btnFlag = new System.Windows.Forms.Button();
-            this.btnDebugpanel = new System.Windows.Forms.Button();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.timerFlag = new System.Windows.Forms.Timer(this.components);
             this.btnNacht = new System.Windows.Forms.Button();
@@ -70,7 +74,10 @@
             this.lblV = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSettings.SuspendLayout();
+            this.tabEinstellungen.SuspendLayout();
+            this.tabAnzeigen.SuspendLayout();
             this.grpVisibledata.SuspendLayout();
+            this.tabSystem.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
             this.pnlDebug.SuspendLayout();
             this.grpDebug.SuspendLayout();
@@ -138,12 +145,33 @@
             // pnlSettings
             // 
             this.pnlSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlSettings.Controls.Add(this.grpVisibledata);
-            this.pnlSettings.Controls.Add(this.grpVerbindung);
+            this.pnlSettings.Controls.Add(this.tabEinstellungen);
             this.pnlSettings.Location = new System.Drawing.Point(3, 3);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(169, 245);
+            this.pnlSettings.Size = new System.Drawing.Size(211, 248);
             this.pnlSettings.TabIndex = 10;
+            // 
+            // tabEinstellungen
+            // 
+            this.tabEinstellungen.Controls.Add(this.tabAnzeigen);
+            this.tabEinstellungen.Controls.Add(this.tabDarstellung);
+            this.tabEinstellungen.Controls.Add(this.tabSystem);
+            this.tabEinstellungen.Location = new System.Drawing.Point(4, 4);
+            this.tabEinstellungen.Name = "tabEinstellungen";
+            this.tabEinstellungen.SelectedIndex = 0;
+            this.tabEinstellungen.Size = new System.Drawing.Size(203, 244);
+            this.tabEinstellungen.TabIndex = 0;
+            // 
+            // tabAnzeigen
+            // 
+            this.tabAnzeigen.BackColor = System.Drawing.SystemColors.Control;
+            this.tabAnzeigen.Controls.Add(this.grpVisibledata);
+            this.tabAnzeigen.Location = new System.Drawing.Point(4, 22);
+            this.tabAnzeigen.Name = "tabAnzeigen";
+            this.tabAnzeigen.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAnzeigen.Size = new System.Drawing.Size(195, 218);
+            this.tabAnzeigen.TabIndex = 0;
+            this.tabAnzeigen.Text = "Anzeigen";
             // 
             // grpVisibledata
             // 
@@ -152,7 +180,7 @@
             this.grpVisibledata.Controls.Add(this.cbDruckhll);
             this.grpVisibledata.Controls.Add(this.cbStreckenmeter);
             this.grpVisibledata.Controls.Add(this.cbGeschwindigkeit);
-            this.grpVisibledata.Location = new System.Drawing.Point(7, 124);
+            this.grpVisibledata.Location = new System.Drawing.Point(6, 6);
             this.grpVisibledata.Name = "grpVisibledata";
             this.grpVisibledata.Size = new System.Drawing.Size(155, 121);
             this.grpVisibledata.TabIndex = 13;
@@ -224,12 +252,33 @@
             this.cbGeschwindigkeit.UseVisualStyleBackColor = true;
             this.cbGeschwindigkeit.CheckedChanged += new System.EventHandler(this.cbGeschwindigkeit_CheckedChanged);
             // 
+            // tabDarstellung
+            // 
+            this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
+            this.tabDarstellung.Name = "tabDarstellung";
+            this.tabDarstellung.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDarstellung.Size = new System.Drawing.Size(304, 338);
+            this.tabDarstellung.TabIndex = 1;
+            this.tabDarstellung.Text = "Darstellung";
+            // 
+            // tabSystem
+            // 
+            this.tabSystem.BackColor = System.Drawing.SystemColors.Control;
+            this.tabSystem.Controls.Add(this.grpVerbindung);
+            this.tabSystem.Controls.Add(this.btnDebugpanel);
+            this.tabSystem.Location = new System.Drawing.Point(4, 22);
+            this.tabSystem.Name = "tabSystem";
+            this.tabSystem.Size = new System.Drawing.Size(195, 218);
+            this.tabSystem.TabIndex = 2;
+            this.tabSystem.Text = "System";
+            // 
             // grpVerbindung
             // 
             this.grpVerbindung.Controls.Add(this.tbServer);
             this.grpVerbindung.Controls.Add(this.tbPort);
             this.grpVerbindung.Controls.Add(this.btnConnect);
-            this.grpVerbindung.Location = new System.Drawing.Point(7, 3);
+            this.grpVerbindung.Location = new System.Drawing.Point(3, 4);
             this.grpVerbindung.Name = "grpVerbindung";
             this.grpVerbindung.Size = new System.Drawing.Size(121, 114);
             this.grpVerbindung.TabIndex = 12;
@@ -262,6 +311,18 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
+            // btnDebugpanel
+            // 
+            this.btnDebugpanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Salmon;
+            this.btnDebugpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDebugpanel.Location = new System.Drawing.Point(130, 4);
+            this.btnDebugpanel.Name = "btnDebugpanel";
+            this.btnDebugpanel.Size = new System.Drawing.Size(58, 29);
+            this.btnDebugpanel.TabIndex = 13;
+            this.btnDebugpanel.Text = "DEBUG";
+            this.btnDebugpanel.UseVisualStyleBackColor = true;
+            this.btnDebugpanel.Click += new System.EventHandler(this.btnDebugpanel_Click);
+            // 
             // lblFlag
             // 
             this.lblFlag.BackColor = System.Drawing.Color.Orange;
@@ -276,7 +337,7 @@
             // 
             this.pnlDebug.AutoSize = true;
             this.pnlDebug.Controls.Add(this.grpDebug);
-            this.pnlDebug.Location = new System.Drawing.Point(201, 2);
+            this.pnlDebug.Location = new System.Drawing.Point(220, 3);
             this.pnlDebug.Name = "pnlDebug";
             this.pnlDebug.Size = new System.Drawing.Size(106, 248);
             this.pnlDebug.TabIndex = 12;
@@ -372,28 +433,15 @@
             this.btnFlag.UseVisualStyleBackColor = true;
             this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
             // 
-            // btnDebugpanel
-            // 
-            this.btnDebugpanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Salmon;
-            this.btnDebugpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDebugpanel.Location = new System.Drawing.Point(178, 119);
-            this.btnDebugpanel.Name = "btnDebugpanel";
-            this.btnDebugpanel.Size = new System.Drawing.Size(17, 81);
-            this.btnDebugpanel.TabIndex = 13;
-            this.btnDebugpanel.Text = "DEBUG";
-            this.btnDebugpanel.UseVisualStyleBackColor = true;
-            this.btnDebugpanel.Click += new System.EventHandler(this.btnDebugpanel_Click);
-            // 
             // pnlRight
             // 
             this.pnlRight.AutoSize = true;
             this.pnlRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlRight.Controls.Add(this.pnlSettings);
-            this.pnlRight.Controls.Add(this.btnDebugpanel);
             this.pnlRight.Controls.Add(this.pnlDebug);
             this.pnlRight.Location = new System.Drawing.Point(118, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(310, 253);
+            this.pnlRight.Size = new System.Drawing.Size(329, 254);
             this.pnlRight.TabIndex = 14;
             // 
             // timerFlag
@@ -501,7 +549,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(641, 402);
+            this.ClientSize = new System.Drawing.Size(1043, 402);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.btnNacht);
             this.Controls.Add(this.lblSifa);
@@ -515,8 +563,11 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.CMainWindow_Load);
             this.pnlSettings.ResumeLayout(false);
+            this.tabEinstellungen.ResumeLayout(false);
+            this.tabAnzeigen.ResumeLayout(false);
             this.grpVisibledata.ResumeLayout(false);
             this.grpVisibledata.PerformLayout();
+            this.tabSystem.ResumeLayout(false);
             this.grpVerbindung.ResumeLayout(false);
             this.grpVerbindung.PerformLayout();
             this.pnlDebug.ResumeLayout(false);
@@ -572,6 +623,10 @@
         private System.Windows.Forms.Label lblkmh;
         private System.Windows.Forms.Label lblV;
         private System.Windows.Forms.TableLayoutPanel pnlData;
+        private System.Windows.Forms.TabControl tabEinstellungen;
+        private System.Windows.Forms.TabPage tabAnzeigen;
+        private System.Windows.Forms.TabPage tabDarstellung;
+        private System.Windows.Forms.TabPage tabSystem;
 
     }
 }
