@@ -315,8 +315,8 @@ namespace ZusiTCPDemoApp
         public bool settingsVisible = false;
 
         private void btnDebugpanel_Click(object sender, EventArgs e)
-        {
-            if (debugging == true)
+        {           
+            if(debugging == true)
             {
                 pnlDebug.Visible = false;
                 debugging = false;

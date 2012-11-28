@@ -72,6 +72,7 @@
             this.pnlSettings.SuspendLayout();
             this.grpVisibledata.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
+            this.pnlDebug.SuspendLayout();
             this.grpDebug.SuspendLayout();
             this.pnlRight.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -274,9 +275,10 @@
             // pnlDebug
             // 
             this.pnlDebug.AutoSize = true;
+            this.pnlDebug.Controls.Add(this.grpDebug);
             this.pnlDebug.Location = new System.Drawing.Point(201, 2);
             this.pnlDebug.Name = "pnlDebug";
-            this.pnlDebug.Size = new System.Drawing.Size(103, 246);
+            this.pnlDebug.Size = new System.Drawing.Size(106, 248);
             this.pnlDebug.TabIndex = 12;
             this.pnlDebug.Visible = false;
             // 
@@ -291,9 +293,9 @@
             this.grpDebug.Controls.Add(this.label12);
             this.grpDebug.Controls.Add(this.tbVerz);
             this.grpDebug.Controls.Add(this.btnFlag);
-            this.grpDebug.Location = new System.Drawing.Point(201, 6);
+            this.grpDebug.Location = new System.Drawing.Point(3, 3);
             this.grpDebug.Name = "grpDebug";
-            this.grpDebug.Size = new System.Drawing.Size(103, 242);
+            this.grpDebug.Size = new System.Drawing.Size(100, 242);
             this.grpDebug.TabIndex = 12;
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
@@ -386,13 +388,12 @@
             // 
             this.pnlRight.AutoSize = true;
             this.pnlRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlRight.Controls.Add(this.grpDebug);
             this.pnlRight.Controls.Add(this.pnlSettings);
             this.pnlRight.Controls.Add(this.btnDebugpanel);
             this.pnlRight.Controls.Add(this.pnlDebug);
             this.pnlRight.Location = new System.Drawing.Point(118, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(307, 251);
+            this.pnlRight.Size = new System.Drawing.Size(310, 253);
             this.pnlRight.TabIndex = 14;
             // 
             // timerFlag
@@ -500,7 +501,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(433, 267);
+            this.ClientSize = new System.Drawing.Size(641, 402);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.btnNacht);
             this.Controls.Add(this.lblSifa);
@@ -518,6 +519,7 @@
             this.grpVisibledata.PerformLayout();
             this.grpVerbindung.ResumeLayout(false);
             this.grpVerbindung.PerformLayout();
+            this.pnlDebug.ResumeLayout(false);
             this.grpDebug.ResumeLayout(false);
             this.grpDebug.PerformLayout();
             this.pnlRight.ResumeLayout(false);
