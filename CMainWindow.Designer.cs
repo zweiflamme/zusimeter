@@ -55,6 +55,10 @@
             this.cbUhrzeit = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rbDarstMeter = new System.Windows.Forms.RadioButton();
+            this.rbDarstKm = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabSystem = new System.Windows.Forms.TabPage();
             this.cbFokuszurueck = new System.Windows.Forms.CheckBox();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
@@ -93,16 +97,14 @@
             this.pnlData2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.rbDarstMeter = new System.Windows.Forms.RadioButton();
-            this.rbDarstKm = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbTopmost = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
             this.pnlBremsen.SuspendLayout();
             this.pnlGrunddaten.SuspendLayout();
             this.tabDarstellung.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tabSystem.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
             this.pnlDebug.SuspendLayout();
@@ -112,7 +114,6 @@
             this.pnlLeft.SuspendLayout();
             this.pnlData2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -422,15 +423,58 @@
             this.tabDarstellung.TabIndex = 1;
             this.tabDarstellung.Text = "Darstellung";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.rbDarstMeter);
+            this.panel1.Controls.Add(this.rbDarstKm);
+            this.panel1.Location = new System.Drawing.Point(7, 22);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(131, 23);
+            this.panel1.TabIndex = 3;
+            // 
+            // rbDarstMeter
+            // 
+            this.rbDarstMeter.AutoSize = true;
+            this.rbDarstMeter.Location = new System.Drawing.Point(3, 0);
+            this.rbDarstMeter.Name = "rbDarstMeter";
+            this.rbDarstMeter.Size = new System.Drawing.Size(52, 17);
+            this.rbDarstMeter.TabIndex = 1;
+            this.rbDarstMeter.Text = "Meter";
+            this.rbDarstMeter.UseVisualStyleBackColor = true;
+            this.rbDarstMeter.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
+            // 
+            // rbDarstKm
+            // 
+            this.rbDarstKm.AutoSize = true;
+            this.rbDarstKm.Checked = true;
+            this.rbDarstKm.Location = new System.Drawing.Point(61, 0);
+            this.rbDarstKm.Name = "rbDarstKm";
+            this.rbDarstKm.Size = new System.Drawing.Size(68, 17);
+            this.rbDarstKm.TabIndex = 2;
+            this.rbDarstKm.TabStop = true;
+            this.rbDarstKm.Text = "Kilometer";
+            this.rbDarstKm.UseVisualStyleBackColor = true;
+            this.rbDarstKm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Streckenmeter";
+            // 
             // tabSystem
             // 
             this.tabSystem.BackColor = System.Drawing.SystemColors.Control;
+            this.tabSystem.Controls.Add(this.cbTopmost);
             this.tabSystem.Controls.Add(this.cbFokuszurueck);
             this.tabSystem.Controls.Add(this.grpVerbindung);
             this.tabSystem.Controls.Add(this.btnDebugpanel);
             this.tabSystem.Location = new System.Drawing.Point(4, 22);
             this.tabSystem.Name = "tabSystem";
-            this.tabSystem.Size = new System.Drawing.Size(201, 344);
+            this.tabSystem.Size = new System.Drawing.Size(201, 200);
             this.tabSystem.TabIndex = 2;
             this.tabSystem.Text = "System";
             // 
@@ -838,47 +882,18 @@
             this.lblVerbstatus.Size = new System.Drawing.Size(52, 18);
             this.lblVerbstatus.Text = "getrennt";
             // 
-            // label2
+            // cbTopmost
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Streckenmeter";
-            // 
-            // rbDarstMeter
-            // 
-            this.rbDarstMeter.AutoSize = true;
-            this.rbDarstMeter.Location = new System.Drawing.Point(3, 0);
-            this.rbDarstMeter.Name = "rbDarstMeter";
-            this.rbDarstMeter.Size = new System.Drawing.Size(52, 17);
-            this.rbDarstMeter.TabIndex = 1;
-            this.rbDarstMeter.Text = "Meter";
-            this.rbDarstMeter.UseVisualStyleBackColor = true;
-            this.rbDarstMeter.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
-            // 
-            // rbDarstKm
-            // 
-            this.rbDarstKm.AutoSize = true;
-            this.rbDarstKm.Checked = true;
-            this.rbDarstKm.Location = new System.Drawing.Point(61, 0);
-            this.rbDarstKm.Name = "rbDarstKm";
-            this.rbDarstKm.Size = new System.Drawing.Size(68, 17);
-            this.rbDarstKm.TabIndex = 2;
-            this.rbDarstKm.TabStop = true;
-            this.rbDarstKm.Text = "Kilometer";
-            this.rbDarstKm.UseVisualStyleBackColor = true;
-            this.rbDarstKm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.rbDarstMeter);
-            this.panel1.Controls.Add(this.rbDarstKm);
-            this.panel1.Location = new System.Drawing.Point(7, 22);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(131, 23);
-            this.panel1.TabIndex = 3;
+            this.cbTopmost.AutoSize = true;
+            this.cbTopmost.Checked = true;
+            this.cbTopmost.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTopmost.Location = new System.Drawing.Point(10, 130);
+            this.cbTopmost.Name = "cbTopmost";
+            this.cbTopmost.Size = new System.Drawing.Size(128, 17);
+            this.cbTopmost.TabIndex = 15;
+            this.cbTopmost.Text = "Immer im Vordergrund";
+            this.cbTopmost.UseVisualStyleBackColor = true;
+            this.cbTopmost.CheckedChanged += new System.EventHandler(this.cbTopmost_CheckedChanged);
             // 
             // CMainWindow
             // 
@@ -906,6 +921,8 @@
             this.pnlGrunddaten.PerformLayout();
             this.tabDarstellung.ResumeLayout(false);
             this.tabDarstellung.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tabSystem.ResumeLayout(false);
             this.tabSystem.PerformLayout();
             this.grpVerbindung.ResumeLayout(false);
@@ -923,8 +940,6 @@
             this.pnlData2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -999,6 +1014,7 @@
         private System.Windows.Forms.RadioButton rbDarstMeter;
         private System.Windows.Forms.RadioButton rbDarstKm;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox cbTopmost;
 
     }
 }

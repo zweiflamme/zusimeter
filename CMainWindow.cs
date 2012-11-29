@@ -777,6 +777,14 @@ namespace ZusiTCPDemoApp
             lblm.Text = "m";
         }
 
+        private void cbTopmost_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTopmost.Checked == true)
+                this.TopMost = true;
+            else
+                this.TopMost = false;
+        }
+
           
     }
 }
