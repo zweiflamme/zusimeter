@@ -33,11 +33,27 @@ namespace ZusiTCPDemoApp
         // Initalize a new stopwatch
         Stopwatch stopwatch = new Stopwatch();
 
+        //TODO: Mit Preferences laden
+        //Initialisieren der default-Farben für Tag- und Nachtmodus
+        Color labeldaycolor = Color.Black;
+        Color paneldaycolor = Color.FromName("Control");
+        Color buttondaycolor = Color.FromName("Control");
+        Color formdaycolor = Color.FromName("Control");
+        Color textboxdaycolor = Color.FromName("Window");
+
+        Color labelnightcolor = Color.WhiteSmoke;
+        Color panelnightcolor = Color.FromName("ControlDark");
+        Color buttonnightcolor = Color.FromName("ControlDark");
+        Color formnightcolor = Color.FromName("ControlDark");
+        Color textboxnightcolor = Color.LightGray;
+
            
 
         public CMainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();          
+
+            
 
             //System-Tab anzeigen damit ggf. eine Verbindung zum TCP-Server aufgebaut werden kann
             tabEinstellungen.SelectTab("tabSystem");
@@ -425,27 +441,21 @@ namespace ZusiTCPDemoApp
         public void setNightmode()
         {
 
-            BackColor = Color.DarkGray; // Hintergrund der Form
+            BackColor = formnightcolor; // Hintergrund der Form
 
-            //TEST
-            /*lblV.ForeColor = Color.WhiteSmoke;
-            lblMeter.ForeColor = Color.WhiteSmoke;
-            lblBrh.ForeColor = Color.WhiteSmoke;
-            lblBzdruck.ForeColor = Color.WhiteSmoke;
-            lblHlldruck.ForeColor = Color.WhiteSmoke;
-             */
-
+            
             foreach (Label label in pnlData1.Controls)
             {
-                label.ForeColor = Color.WhiteSmoke;
+                label.ForeColor = labelnightcolor;
             }
             foreach (Label label in pnlData2.Controls)
             {
-                label.ForeColor = Color.WhiteSmoke;
+                label.ForeColor = labelnightcolor;
             }
+            
 
-            tbServer.BackColor = Color.LightGray;
-            tbPort.BackColor = Color.LightGray;
+            tbServer.BackColor = textboxnightcolor;
+            tbPort.BackColor = textboxnightcolor;
         }
 
         public void setDaymode()
@@ -695,7 +705,8 @@ namespace ZusiTCPDemoApp
                 cbFahrstufenschalter.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
 
                 pnlData1.Controls.Add(lblFahrstufe, 0, 2);
-                pnlData1.Controls.Add(lblfahrst, 1, 2);                
+                pnlData1.Controls.Add(lblfahrst, 1, 2);
+                lblfahrst.Text = "Fahrstufe";
             }
         }
 
@@ -716,7 +727,8 @@ namespace ZusiTCPDemoApp
                 cbFahrstufe.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
 
                 pnlData1.Controls.Add(lblFahrstufe, 0, 2);
-                pnlData1.Controls.Add(lblfahrst, 1, 2);                
+                pnlData1.Controls.Add(lblfahrst, 1, 2);
+                lblfahrst.Text = "Fahrschalter";
             }
         }
 

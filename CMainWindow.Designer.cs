@@ -45,6 +45,7 @@
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
+            this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.cbGrunddaten = new System.Windows.Forms.CheckBox();
             this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
             this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
@@ -90,11 +91,10 @@
             this.lblTueren = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlData2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -288,6 +288,17 @@
             this.pnlGrunddaten.Size = new System.Drawing.Size(183, 142);
             this.pnlGrunddaten.TabIndex = 19;
             // 
+            // cbFahrstufenschalter
+            // 
+            this.cbFahrstufenschalter.AutoSize = true;
+            this.cbFahrstufenschalter.Location = new System.Drawing.Point(3, 81);
+            this.cbFahrstufenschalter.Name = "cbFahrstufenschalter";
+            this.cbFahrstufenschalter.Size = new System.Drawing.Size(84, 17);
+            this.cbFahrstufenschalter.TabIndex = 9;
+            this.cbFahrstufenschalter.Text = "Fahrschalter";
+            this.cbFahrstufenschalter.UseVisualStyleBackColor = true;
+            this.cbFahrstufenschalter.CheckedChanged += new System.EventHandler(this.cbFahrstufenschalter_CheckedChanged);
+            // 
             // cbGrunddaten
             // 
             this.cbGrunddaten.Appearance = System.Windows.Forms.Appearance.Button;
@@ -334,6 +345,8 @@
             // cbFahrstufe
             // 
             this.cbFahrstufe.AutoSize = true;
+            this.cbFahrstufe.Checked = true;
+            this.cbFahrstufe.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbFahrstufe.Location = new System.Drawing.Point(3, 65);
             this.cbFahrstufe.Name = "cbFahrstufe";
             this.cbFahrstufe.Size = new System.Drawing.Size(70, 17);
@@ -786,6 +799,20 @@
             this.pnlLeft.Size = new System.Drawing.Size(129, 381);
             this.pnlLeft.TabIndex = 17;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 218);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(78, 56);
+            this.tableLayoutPanel1.TabIndex = 18;
+            // 
             // pnlData2
             // 
             this.pnlData2.AutoSize = true;
@@ -825,39 +852,13 @@
             this.lblVerbstatus.Size = new System.Drawing.Size(52, 17);
             this.lblVerbstatus.Text = "getrennt";
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 218);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(78, 56);
-            this.tableLayoutPanel1.TabIndex = 18;
-            // 
-            // cbFahrstufenschalter
-            // 
-            this.cbFahrstufenschalter.AutoSize = true;
-            this.cbFahrstufenschalter.Checked = true;
-            this.cbFahrstufenschalter.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbFahrstufenschalter.Location = new System.Drawing.Point(3, 81);
-            this.cbFahrstufenschalter.Name = "cbFahrstufenschalter";
-            this.cbFahrstufenschalter.Size = new System.Drawing.Size(113, 17);
-            this.cbFahrstufenschalter.TabIndex = 9;
-            this.cbFahrstufenschalter.Text = "Fahrstufenschalter";
-            this.cbFahrstufenschalter.UseVisualStyleBackColor = true;
-            this.cbFahrstufenschalter.CheckedChanged += new System.EventHandler(this.cbFahrstufenschalter_CheckedChanged);
-            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(532, 433);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pnlLeft);
