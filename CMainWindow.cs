@@ -57,6 +57,9 @@ namespace ZusiTCPDemoApp
         double labelflagdefaultwidth = 114;
         double labelflagdefaultheight = 19;
 
+        //default-Wert für Neutralstellung Fahrschalter (für Kombihebel) TODO: Bessere Lösung?
+        int fahrschalterneutral = 0;
+
            
 
         public CMainWindow()
@@ -342,7 +345,10 @@ namespace ZusiTCPDemoApp
             else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"] && cbFahrstufenschalter.Checked == true) //ENTWEDER SCHALTER ODER FAHRSTUFE
             {
                 if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: ist das sinnvoll? wieviele Fahrstufen gibt es maximal?
-                    lblFahrstufe.Text = String.Format("{0}", dataSet.Value);
+                {
+                    double fahrschalter = dataSet.Value - fahrschalterneutral;
+                    lblFahrstufe.Text = String.Format("{0}", fahrschalter);
+                }
                 else
                     lblFahrstufe.Text = "--";
             }
@@ -814,6 +820,12 @@ namespace ZusiTCPDemoApp
                 lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * faktor);
             }
         }
+
+        private void cbFahrschneutral_ValueChanged(object sender, EventArgs e)
+        {
+            fahrschalterneutral = Convert.ToInt32(cbFahrschneutral.Value);
+        }
+        
 
           
     }

@@ -100,6 +100,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbTopmost = new System.Windows.Forms.CheckBox();
             this.cbFokuszurueck = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbFahrschneutral = new System.Windows.Forms.NumericUpDown();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -117,6 +119,7 @@
             this.pnlData2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbFahrschneutral)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -417,6 +420,8 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.cbFahrschneutral);
+            this.tabDarstellung.Controls.Add(this.label4);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
             this.tabDarstellung.Controls.Add(this.cbFokuszurueck);
             this.tabDarstellung.Controls.Add(this.label3);
@@ -922,6 +927,7 @@
             this.cbTopmost.TabIndex = 17;
             this.cbTopmost.Text = "Immer im Vordergrund";
             this.cbTopmost.UseVisualStyleBackColor = true;
+            this.cbTopmost.CheckedChanged += new System.EventHandler(this.cbTopmost_CheckedChanged);
             // 
             // cbFokuszurueck
             // 
@@ -932,6 +938,30 @@
             this.cbFokuszurueck.TabIndex = 16;
             this.cbFokuszurueck.Text = "Fokus nach Klick zurück an Zusi";
             this.cbFokuszurueck.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 93);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(138, 13);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Neutralstellung Fahrschalter";
+            // 
+            // cbFahrschneutral
+            // 
+            this.cbFahrschneutral.Location = new System.Drawing.Point(151, 86);
+            this.cbFahrschneutral.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.cbFahrschneutral.Name = "cbFahrschneutral";
+            this.cbFahrschneutral.ReadOnly = true;
+            this.cbFahrschneutral.Size = new System.Drawing.Size(29, 20);
+            this.cbFahrschneutral.TabIndex = 19;
+            this.cbFahrschneutral.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.cbFahrschneutral.ValueChanged += new System.EventHandler(this.cbFahrschneutral_ValueChanged);
             // 
             // CMainWindow
             // 
@@ -978,6 +1008,7 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbFahrschneutral)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1055,6 +1086,8 @@
         private System.Windows.Forms.NumericUpDown numSifagroesse;
         private System.Windows.Forms.CheckBox cbTopmost;
         private System.Windows.Forms.CheckBox cbFokuszurueck;
+        private System.Windows.Forms.NumericUpDown cbFahrschneutral;
+        private System.Windows.Forms.Label label4;
 
     }
 }
