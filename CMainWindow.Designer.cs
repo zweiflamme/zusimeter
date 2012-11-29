@@ -55,6 +55,11 @@
             this.cbUhrzeit = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbTopmost = new System.Windows.Forms.CheckBox();
+            this.cbFokuszurueck = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rbDarstMeter = new System.Windows.Forms.RadioButton();
             this.rbDarstKm = new System.Windows.Forms.RadioButton();
@@ -96,18 +101,15 @@
             this.pnlData2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbTopmost = new System.Windows.Forms.CheckBox();
-            this.cbFokuszurueck = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.cbFahrschneutral = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
             this.pnlBremsen.SuspendLayout();
             this.pnlGrunddaten.SuspendLayout();
             this.tabDarstellung.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabSystem.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
@@ -118,7 +120,6 @@
             this.pnlLeft.SuspendLayout();
             this.pnlData2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbFahrschneutral)).BeginInit();
             this.SuspendLayout();
             // 
@@ -286,6 +287,8 @@
             // 
             // pnlGrunddaten
             // 
+            this.pnlGrunddaten.Controls.Add(this.label5);
+            this.pnlGrunddaten.Controls.Add(this.cbFahrschneutral);
             this.pnlGrunddaten.Controls.Add(this.cbFahrstufenschalter);
             this.pnlGrunddaten.Controls.Add(this.cbGrunddaten);
             this.pnlGrunddaten.Controls.Add(this.cbStreckenmeter);
@@ -420,7 +423,6 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
-            this.tabDarstellung.Controls.Add(this.cbFahrschneutral);
             this.tabDarstellung.Controls.Add(this.label4);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
             this.tabDarstellung.Controls.Add(this.cbFokuszurueck);
@@ -434,6 +436,74 @@
             this.tabDarstellung.Size = new System.Drawing.Size(201, 200);
             this.tabDarstellung.TabIndex = 1;
             this.tabDarstellung.Text = "Darstellung";
+            // 
+            // label4
+            // 
+            this.label4.AutoEllipsis = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label4.Location = new System.Drawing.Point(4, 88);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(144, 26);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Neutralstellung Fahrschalter siehe Anzeigen";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // cbTopmost
+            // 
+            this.cbTopmost.AutoSize = true;
+            this.cbTopmost.Checked = true;
+            this.cbTopmost.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTopmost.Location = new System.Drawing.Point(3, 158);
+            this.cbTopmost.Name = "cbTopmost";
+            this.cbTopmost.Size = new System.Drawing.Size(128, 17);
+            this.cbTopmost.TabIndex = 17;
+            this.cbTopmost.Text = "Immer im Vordergrund";
+            this.cbTopmost.UseVisualStyleBackColor = true;
+            this.cbTopmost.CheckedChanged += new System.EventHandler(this.cbTopmost_CheckedChanged);
+            // 
+            // cbFokuszurueck
+            // 
+            this.cbFokuszurueck.AutoSize = true;
+            this.cbFokuszurueck.Location = new System.Drawing.Point(3, 176);
+            this.cbFokuszurueck.Name = "cbFokuszurueck";
+            this.cbFokuszurueck.Size = new System.Drawing.Size(181, 17);
+            this.cbFokuszurueck.TabIndex = 16;
+            this.cbFokuszurueck.Text = "Fokus nach Klick zurück an Zusi";
+            this.cbFokuszurueck.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Größe Sifa";
+            // 
+            // numSifagroesse
+            // 
+            this.numSifagroesse.Location = new System.Drawing.Point(68, 53);
+            this.numSifagroesse.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numSifagroesse.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numSifagroesse.Name = "numSifagroesse";
+            this.numSifagroesse.ReadOnly = true;
+            this.numSifagroesse.Size = new System.Drawing.Size(29, 20);
+            this.numSifagroesse.TabIndex = 4;
+            this.numSifagroesse.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numSifagroesse.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numSifagroesse.ValueChanged += new System.EventHandler(this.numSifagroesse_ValueChanged);
             // 
             // panel1
             // 
@@ -882,75 +952,9 @@
             this.lblVerbstatus.Size = new System.Drawing.Size(52, 18);
             this.lblVerbstatus.Text = "getrennt";
             // 
-            // numSifagroesse
-            // 
-            this.numSifagroesse.Location = new System.Drawing.Point(68, 53);
-            this.numSifagroesse.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.numSifagroesse.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numSifagroesse.Name = "numSifagroesse";
-            this.numSifagroesse.ReadOnly = true;
-            this.numSifagroesse.Size = new System.Drawing.Size(29, 20);
-            this.numSifagroesse.TabIndex = 4;
-            this.numSifagroesse.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.numSifagroesse.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.numSifagroesse.ValueChanged += new System.EventHandler(this.numSifagroesse_ValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Größe Sifa";
-            // 
-            // cbTopmost
-            // 
-            this.cbTopmost.AutoSize = true;
-            this.cbTopmost.Checked = true;
-            this.cbTopmost.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTopmost.Location = new System.Drawing.Point(3, 158);
-            this.cbTopmost.Name = "cbTopmost";
-            this.cbTopmost.Size = new System.Drawing.Size(128, 17);
-            this.cbTopmost.TabIndex = 17;
-            this.cbTopmost.Text = "Immer im Vordergrund";
-            this.cbTopmost.UseVisualStyleBackColor = true;
-            this.cbTopmost.CheckedChanged += new System.EventHandler(this.cbTopmost_CheckedChanged);
-            // 
-            // cbFokuszurueck
-            // 
-            this.cbFokuszurueck.AutoSize = true;
-            this.cbFokuszurueck.Location = new System.Drawing.Point(3, 176);
-            this.cbFokuszurueck.Name = "cbFokuszurueck";
-            this.cbFokuszurueck.Size = new System.Drawing.Size(181, 17);
-            this.cbFokuszurueck.TabIndex = 16;
-            this.cbFokuszurueck.Text = "Fokus nach Klick zurück an Zusi";
-            this.cbFokuszurueck.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 93);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(138, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Neutralstellung Fahrschalter";
-            // 
             // cbFahrschneutral
             // 
-            this.cbFahrschneutral.Location = new System.Drawing.Point(151, 86);
+            this.cbFahrschneutral.Location = new System.Drawing.Point(130, 80);
             this.cbFahrschneutral.Maximum = new decimal(new int[] {
             15,
             0,
@@ -958,10 +962,18 @@
             0});
             this.cbFahrschneutral.Name = "cbFahrschneutral";
             this.cbFahrschneutral.ReadOnly = true;
-            this.cbFahrschneutral.Size = new System.Drawing.Size(29, 20);
-            this.cbFahrschneutral.TabIndex = 19;
+            this.cbFahrschneutral.Size = new System.Drawing.Size(33, 20);
+            this.cbFahrschneutral.TabIndex = 20;
             this.cbFahrschneutral.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.cbFahrschneutral.ValueChanged += new System.EventHandler(this.cbFahrschneutral_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(80, 82);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "(neutral:)";
             // 
             // CMainWindow
             // 
@@ -989,6 +1001,7 @@
             this.pnlGrunddaten.PerformLayout();
             this.tabDarstellung.ResumeLayout(false);
             this.tabDarstellung.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabSystem.ResumeLayout(false);
@@ -1007,7 +1020,6 @@
             this.pnlData2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbFahrschneutral)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1086,8 +1098,9 @@
         private System.Windows.Forms.NumericUpDown numSifagroesse;
         private System.Windows.Forms.CheckBox cbTopmost;
         private System.Windows.Forms.CheckBox cbFokuszurueck;
-        private System.Windows.Forms.NumericUpDown cbFahrschneutral;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown cbFahrschneutral;
 
     }
 }
