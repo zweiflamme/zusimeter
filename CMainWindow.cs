@@ -71,7 +71,11 @@ namespace ZusiTCPDemoApp
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
             MyTCPConnection.RequestData(2596); // "LM Sifa "
             MyTCPConnection.RequestData(2576); // "Fahrstufe"
+            MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
             MyTCPConnection.RequestData(2646); // "Türen"
+            //TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
+            
+
         }
 
        
@@ -253,9 +257,9 @@ namespace ZusiTCPDemoApp
                     lblSifa.BackColor = Color.DarkGray;
                 }
             }
-            else if (dataSet.Id == MyTCPConnection["Fahrstufe"]) // 2576
+            else if (dataSet.Id == MyTCPConnection["Fahrstufe"] && cbFahrstufe.Checked == true) // 2576 ) //ENTWEDER SCHALTER ODER FAHRSTUFE
             {
-                if (Convert.ToBoolean(dataSet.Value))
+                if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: ist das sinnvoll? wieviele Fahrstufen gibt es maximal?
                     lblFahrstufe.Text = String.Format("{0}", dataSet.Value);
                 else
                     lblFahrstufe.Text = "--";
@@ -307,10 +311,19 @@ namespace ZusiTCPDemoApp
                 {
                     lblTueren.Text = "freigegeben";
                 }
+                
+            }
+            else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"] && cbFahrstufenschalter.Checked == true) //ENTWEDER SCHALTER ODER FAHRSTUFE
+            {
+                if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: ist das sinnvoll? wieviele Fahrstufen gibt es maximal?
+                    lblFahrstufe.Text = String.Format("{0}", dataSet.Value);
+                else
+                    lblFahrstufe.Text = "--";
             }
 
-        }
+           
 
+        }
 //###HANDLE INCOMING DATA ENDE###//
 
         public bool vMaxErreicht = false;
@@ -677,16 +690,34 @@ namespace ZusiTCPDemoApp
                 pnlData1.Controls.Remove(lblFahrstufe);
                 pnlData1.Controls.Remove(lblfahrst);
             }
-            else
+            else if (cbFahrstufe.Checked)// wenn cbFahrstufe gecheckt
             {
+                cbFahrstufenschalter.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
+
                 pnlData1.Controls.Add(lblFahrstufe, 0, 2);
-                pnlData1.Controls.Add(lblfahrst, 1, 2);
+                pnlData1.Controls.Add(lblfahrst, 1, 2);                
             }
         }
 
         private void pnlRight_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void cbFahrstufenschalter_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFahrstufenschalter.Checked == false && cbFahrstufe.Checked == false)
+            {
+                pnlData1.Controls.Remove(lblFahrstufe);
+                pnlData1.Controls.Remove(lblfahrst);
+            }
+            else if(cbFahrstufenschalter.Checked) // wenn cbFahrstufenschalter gecheckt
+            {
+                cbFahrstufe.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
+
+                pnlData1.Controls.Add(lblFahrstufe, 0, 2);
+                pnlData1.Controls.Add(lblfahrst, 1, 2);                
+            }
         }
 
           
