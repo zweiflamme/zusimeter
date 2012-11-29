@@ -93,11 +93,16 @@
             this.pnlData2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.rbDarstMeter = new System.Windows.Forms.RadioButton();
+            this.rbDarstKm = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
             this.pnlBremsen.SuspendLayout();
             this.pnlGrunddaten.SuspendLayout();
+            this.tabDarstellung.SuspendLayout();
             this.tabSystem.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
             this.pnlDebug.SuspendLayout();
@@ -107,6 +112,7 @@
             this.pnlLeft.SuspendLayout();
             this.pnlData2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -407,10 +413,12 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.panel1);
+            this.tabDarstellung.Controls.Add(this.label2);
             this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
             this.tabDarstellung.Name = "tabDarstellung";
             this.tabDarstellung.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDarstellung.Size = new System.Drawing.Size(201, 344);
+            this.tabDarstellung.Size = new System.Drawing.Size(201, 200);
             this.tabDarstellung.TabIndex = 1;
             this.tabDarstellung.Text = "Darstellung";
             // 
@@ -653,7 +661,7 @@
             this.lblm.Name = "lblm";
             this.lblm.Size = new System.Drawing.Size(51, 13);
             this.lblm.TabIndex = 5;
-            this.lblm.Text = "m";
+            this.lblm.Text = "km";
             // 
             // lblBrh
             // 
@@ -827,8 +835,50 @@
             // lblVerbstatus
             // 
             this.lblVerbstatus.Name = "lblVerbstatus";
-            this.lblVerbstatus.Size = new System.Drawing.Size(52, 17);
+            this.lblVerbstatus.Size = new System.Drawing.Size(52, 18);
             this.lblVerbstatus.Text = "getrennt";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Streckenmeter";
+            // 
+            // rbDarstMeter
+            // 
+            this.rbDarstMeter.AutoSize = true;
+            this.rbDarstMeter.Location = new System.Drawing.Point(3, 0);
+            this.rbDarstMeter.Name = "rbDarstMeter";
+            this.rbDarstMeter.Size = new System.Drawing.Size(52, 17);
+            this.rbDarstMeter.TabIndex = 1;
+            this.rbDarstMeter.Text = "Meter";
+            this.rbDarstMeter.UseVisualStyleBackColor = true;
+            this.rbDarstMeter.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
+            // 
+            // rbDarstKm
+            // 
+            this.rbDarstKm.AutoSize = true;
+            this.rbDarstKm.Checked = true;
+            this.rbDarstKm.Location = new System.Drawing.Point(61, 0);
+            this.rbDarstKm.Name = "rbDarstKm";
+            this.rbDarstKm.Size = new System.Drawing.Size(68, 17);
+            this.rbDarstKm.TabIndex = 2;
+            this.rbDarstKm.TabStop = true;
+            this.rbDarstKm.Text = "Kilometer";
+            this.rbDarstKm.UseVisualStyleBackColor = true;
+            this.rbDarstKm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.rbDarstMeter);
+            this.panel1.Controls.Add(this.rbDarstKm);
+            this.panel1.Location = new System.Drawing.Point(7, 22);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(131, 23);
+            this.panel1.TabIndex = 3;
             // 
             // CMainWindow
             // 
@@ -854,6 +904,8 @@
             this.pnlBremsen.PerformLayout();
             this.pnlGrunddaten.ResumeLayout(false);
             this.pnlGrunddaten.PerformLayout();
+            this.tabDarstellung.ResumeLayout(false);
+            this.tabDarstellung.PerformLayout();
             this.tabSystem.ResumeLayout(false);
             this.tabSystem.PerformLayout();
             this.grpVerbindung.ResumeLayout(false);
@@ -871,6 +923,8 @@
             this.pnlData2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -941,6 +995,10 @@
         private System.Windows.Forms.CheckBox cbFahrstufenschalter;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblVerbstatus;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rbDarstMeter;
+        private System.Windows.Forms.RadioButton rbDarstKm;
+        private System.Windows.Forms.Label label2;
 
     }
 }

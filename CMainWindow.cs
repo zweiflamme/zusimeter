@@ -47,6 +47,10 @@ namespace ZusiTCPDemoApp
         Color formnightcolor = Color.FromName("ControlDark");
         Color textboxnightcolor = Color.LightGray;
 
+        //Streckenmeter: Anzeige in Metern oder Kilometern?
+        //1000: streckenmeter:1000 = Darstellung in km , 1 = Darstellung in Metern
+        int StreckenmeterDarstfaktor = 1000;
+
            
 
         public CMainWindow()
@@ -256,7 +260,7 @@ namespace ZusiTCPDemoApp
                 if (verbunden && dataSet.Value > 0)
                 {
                         streckenmeter = Convert.ToDouble(dataSet.Value);
-                        lblMeter.Text = String.Format("{0:0.0}", streckenmeter);
+                        lblMeter.Text = String.Format("{0:0.0}", streckenmeter / StreckenmeterDarstfaktor); //Streckenmeter-Darstellungsfaktor
                 }
                 else lblMeter.Text = "---";
             }
@@ -442,8 +446,9 @@ namespace ZusiTCPDemoApp
         {
 
             BackColor = formnightcolor; // Hintergrund der Form
+            statusStrip1.BackColor = formnightcolor;
 
-            
+            ///Labels
             foreach (Label label in pnlData1.Controls)
             {
                 label.ForeColor = labelnightcolor;
@@ -452,34 +457,62 @@ namespace ZusiTCPDemoApp
             {
                 label.ForeColor = labelnightcolor;
             }
+            /*foreach (Label label in tabAnzeigen.Controls)
+            {
+                label.ForeColor = labelnightcolor;
+            }
+            foreach (Label label in tabDarstellung.Controls)
+            {
+                label.ForeColor = labelnightcolor;
+            }
+            foreach (Label label in tabSystem.Controls)
+            {
+                label.ForeColor = labelnightcolor;
+            }*/
+
+            //Textboxes
+            /*foreach (TextBox tb in tabSystem.Controls)
+            {
+                tb.BackColor = textboxnightcolor;
+            }
+            */
+            tbPort.BackColor = textboxnightcolor;
+            tbServer.BackColor = textboxnightcolor;
+            tbVerz.BackColor = textboxnightcolor;
             
 
-            tbServer.BackColor = textboxnightcolor;
-            tbPort.BackColor = textboxnightcolor;
+            //Panels
+            foreach (TabPage tab in tabEinstellungen.Controls)
+            {
+                tab.BackColor = panelnightcolor;
+            }
+            
         }
 
         public void setDaymode()
         {
-            BackColor = CMainWindow.DefaultBackColor; // Hintergrund der Form
+            BackColor = formdaycolor; // Hintergrund der Form
+            statusStrip1.BackColor = formdaycolor;
             
-            //TEST
-            /*lblV.ForeColor = Color.Black;
-            lblMeter.ForeColor = Color.Black;
-            lblBrh.ForeColor = Color.Black;
-            lblBzdruck.ForeColor = Color.Black;
-            lblHlldruck.ForeColor = Color.Black;*/
-
+            
             foreach (Label label in pnlData1.Controls)
             {
-                label.ForeColor = Color.Black;
+                label.ForeColor = labeldaycolor;
             }
             foreach (Label label in pnlData2.Controls)
             {
-                label.ForeColor = Color.Black;
+                label.ForeColor = labeldaycolor;
             }
 
-            tbServer.BackColor = Color.White;
-            tbPort.BackColor = Color.White;
+            tbServer.BackColor = textboxdaycolor;
+            tbPort.BackColor = textboxdaycolor;
+            tbVerz.BackColor = textboxdaycolor;
+
+            //Panels
+            foreach (TabPage tab in tabEinstellungen.Controls)
+            {
+                tab.BackColor = paneldaycolor;
+            }
         }
 
         private void btnNacht_Click(object sender, EventArgs e)
@@ -730,6 +763,18 @@ namespace ZusiTCPDemoApp
                 pnlData1.Controls.Add(lblfahrst, 1, 2);
                 lblfahrst.Text = "Fahrschalter";
             }
+        }
+
+        private void rbDarstKm_CheckedChanged(object sender, EventArgs e)
+        {
+            StreckenmeterDarstfaktor = 1000;
+            lblm.Text = "km";
+        }
+
+        private void rbDarstMeter_CheckedChanged(object sender, EventArgs e)
+        {
+            StreckenmeterDarstfaktor = 1;
+            lblm.Text = "m";
         }
 
           
