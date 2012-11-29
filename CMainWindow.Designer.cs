@@ -60,7 +60,6 @@
             this.rbDarstKm = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.tabSystem = new System.Windows.Forms.TabPage();
-            this.cbFokuszurueck = new System.Windows.Forms.CheckBox();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
             this.tbServer = new System.Windows.Forms.TextBox();
             this.tbPort = new System.Windows.Forms.TextBox();
@@ -97,9 +96,10 @@
             this.pnlData2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cbTopmost = new System.Windows.Forms.CheckBox();
             this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.cbTopmost = new System.Windows.Forms.CheckBox();
+            this.cbFokuszurueck = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -417,6 +417,8 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.cbTopmost);
+            this.tabDarstellung.Controls.Add(this.cbFokuszurueck);
             this.tabDarstellung.Controls.Add(this.label3);
             this.tabDarstellung.Controls.Add(this.numSifagroesse);
             this.tabDarstellung.Controls.Add(this.panel1);
@@ -473,8 +475,6 @@
             // tabSystem
             // 
             this.tabSystem.BackColor = System.Drawing.SystemColors.Control;
-            this.tabSystem.Controls.Add(this.cbTopmost);
-            this.tabSystem.Controls.Add(this.cbFokuszurueck);
             this.tabSystem.Controls.Add(this.grpVerbindung);
             this.tabSystem.Controls.Add(this.btnDebugpanel);
             this.tabSystem.Location = new System.Drawing.Point(4, 22);
@@ -482,16 +482,6 @@
             this.tabSystem.Size = new System.Drawing.Size(201, 200);
             this.tabSystem.TabIndex = 2;
             this.tabSystem.Text = "System";
-            // 
-            // cbFokuszurueck
-            // 
-            this.cbFokuszurueck.AutoSize = true;
-            this.cbFokuszurueck.Location = new System.Drawing.Point(10, 148);
-            this.cbFokuszurueck.Name = "cbFokuszurueck";
-            this.cbFokuszurueck.Size = new System.Drawing.Size(181, 17);
-            this.cbFokuszurueck.TabIndex = 14;
-            this.cbFokuszurueck.Text = "Fokus nach Klick zurück an Zusi";
-            this.cbFokuszurueck.UseVisualStyleBackColor = true;
             // 
             // grpVerbindung
             // 
@@ -887,19 +877,6 @@
             this.lblVerbstatus.Size = new System.Drawing.Size(52, 18);
             this.lblVerbstatus.Text = "getrennt";
             // 
-            // cbTopmost
-            // 
-            this.cbTopmost.AutoSize = true;
-            this.cbTopmost.Checked = true;
-            this.cbTopmost.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTopmost.Location = new System.Drawing.Point(10, 130);
-            this.cbTopmost.Name = "cbTopmost";
-            this.cbTopmost.Size = new System.Drawing.Size(128, 17);
-            this.cbTopmost.TabIndex = 15;
-            this.cbTopmost.Text = "Immer im Vordergrund";
-            this.cbTopmost.UseVisualStyleBackColor = true;
-            this.cbTopmost.CheckedChanged += new System.EventHandler(this.cbTopmost_CheckedChanged);
-            // 
             // numSifagroesse
             // 
             this.numSifagroesse.Location = new System.Drawing.Point(68, 53);
@@ -919,7 +896,7 @@
             this.numSifagroesse.TabIndex = 4;
             this.numSifagroesse.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             this.numSifagroesse.Value = new decimal(new int[] {
-            3,
+            2,
             0,
             0,
             0});
@@ -933,6 +910,28 @@
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Größe Sifa";
+            // 
+            // cbTopmost
+            // 
+            this.cbTopmost.AutoSize = true;
+            this.cbTopmost.Checked = true;
+            this.cbTopmost.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTopmost.Location = new System.Drawing.Point(3, 158);
+            this.cbTopmost.Name = "cbTopmost";
+            this.cbTopmost.Size = new System.Drawing.Size(128, 17);
+            this.cbTopmost.TabIndex = 17;
+            this.cbTopmost.Text = "Immer im Vordergrund";
+            this.cbTopmost.UseVisualStyleBackColor = true;
+            // 
+            // cbFokuszurueck
+            // 
+            this.cbFokuszurueck.AutoSize = true;
+            this.cbFokuszurueck.Location = new System.Drawing.Point(3, 176);
+            this.cbFokuszurueck.Name = "cbFokuszurueck";
+            this.cbFokuszurueck.Size = new System.Drawing.Size(181, 17);
+            this.cbFokuszurueck.TabIndex = 16;
+            this.cbFokuszurueck.Text = "Fokus nach Klick zurück an Zusi";
+            this.cbFokuszurueck.UseVisualStyleBackColor = true;
             // 
             // CMainWindow
             // 
@@ -963,7 +962,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabSystem.ResumeLayout(false);
-            this.tabSystem.PerformLayout();
             this.grpVerbindung.ResumeLayout(false);
             this.grpVerbindung.PerformLayout();
             this.pnlDebug.ResumeLayout(false);
@@ -1033,7 +1031,6 @@
         private System.Windows.Forms.CheckBox cbLmtueren;
         private System.Windows.Forms.CheckBox cbFahrstufe;
         private System.Windows.Forms.CheckBox cbUhrzeit;
-        private System.Windows.Forms.CheckBox cbFokuszurueck;
         private System.Windows.Forms.Panel pnlLeft;
         private System.Windows.Forms.TableLayoutPanel pnlData2;
         private System.Windows.Forms.Label lblfahrst;
@@ -1054,9 +1051,10 @@
         private System.Windows.Forms.RadioButton rbDarstMeter;
         private System.Windows.Forms.RadioButton rbDarstKm;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox cbTopmost;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numSifagroesse;
+        private System.Windows.Forms.CheckBox cbTopmost;
+        private System.Windows.Forms.CheckBox cbFokuszurueck;
 
     }
 }

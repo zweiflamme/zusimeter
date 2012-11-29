@@ -416,7 +416,7 @@ namespace ZusiTCPDemoApp
             //TEST
             lblFlag.Visible = !lblFlag.Visible;
             lblFlag.BackColor = Color.Orange;
-            lblFlag.Text = "TEST!";
+            lblFlag.Text = "####TEST####";
         }
 
        
@@ -794,21 +794,24 @@ namespace ZusiTCPDemoApp
         {
             if (numSifagroesse.Value == 3)
             {
-                lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth);
-                lblSifa.Height = Convert.ToInt32(labelsifadefaultheight);
-                lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth);
+                double faktor = 1.2;
+                lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * faktor);
+                lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * faktor);
+                lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * faktor);
             }
             else if (numSifagroesse.Value == 2)
             {
-                lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * 0.8);
-                lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * 0.8);
-                lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * 0.8);
+                double faktor = 1.0;
+                lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * faktor);
+                lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * faktor);
+                lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * faktor);
             }
             else if (numSifagroesse.Value == 1)
             {
-                lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * 0.6);
-                lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * 0.6);
-                lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth *0.6);
+                double faktor = 0.8;
+                lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * faktor);
+                lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * faktor);
+                lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * faktor);
             }
         }
 
