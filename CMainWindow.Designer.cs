@@ -98,6 +98,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.cbTopmost = new System.Windows.Forms.CheckBox();
+            this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -114,6 +116,7 @@
             this.pnlLeft.SuspendLayout();
             this.pnlData2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -414,6 +417,8 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.label3);
+            this.tabDarstellung.Controls.Add(this.numSifagroesse);
             this.tabDarstellung.Controls.Add(this.panel1);
             this.tabDarstellung.Controls.Add(this.label2);
             this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
@@ -895,6 +900,40 @@
             this.cbTopmost.UseVisualStyleBackColor = true;
             this.cbTopmost.CheckedChanged += new System.EventHandler(this.cbTopmost_CheckedChanged);
             // 
+            // numSifagroesse
+            // 
+            this.numSifagroesse.Location = new System.Drawing.Point(68, 53);
+            this.numSifagroesse.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numSifagroesse.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numSifagroesse.Name = "numSifagroesse";
+            this.numSifagroesse.ReadOnly = true;
+            this.numSifagroesse.Size = new System.Drawing.Size(29, 20);
+            this.numSifagroesse.TabIndex = 4;
+            this.numSifagroesse.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numSifagroesse.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numSifagroesse.ValueChanged += new System.EventHandler(this.numSifagroesse_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Größe Sifa";
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -940,6 +979,7 @@
             this.pnlData2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1015,6 +1055,8 @@
         private System.Windows.Forms.RadioButton rbDarstKm;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbTopmost;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numSifagroesse;
 
     }
 }

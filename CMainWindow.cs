@@ -51,6 +51,12 @@ namespace ZusiTCPDemoApp
         //1000: streckenmeter:1000 = Darstellung in km , 1 = Darstellung in Metern
         int StreckenmeterDarstfaktor = 1000;
 
+        //default-Werte für anpassbare Elemente
+        double labelsifadefaultwidth = 114;
+        double labelsifadefaultheight = 51;
+        double labelflagdefaultwidth = 114;
+        double labelflagdefaultheight = 19;
+
            
 
         public CMainWindow()
@@ -673,7 +679,8 @@ namespace ZusiTCPDemoApp
 
                 foreach (CheckBox cbox in pnlGrunddaten.Controls)
                 {
-                    cbox.Checked = false;
+                    cbox.Enabled = false;
+                    cbGrunddaten.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
                 }
 
             }
@@ -682,9 +689,8 @@ namespace ZusiTCPDemoApp
                 pnlLeft.Controls.Add(pnlData1);
                 foreach (CheckBox cbox in pnlGrunddaten.Controls)
                 {
-                    cbox.Checked = true;
-                }
-                //TODO: Wiederherstellen der checkboxes?
+                    cbox.Enabled = true;                   
+                }                
             }
         }
 
@@ -695,18 +701,17 @@ namespace ZusiTCPDemoApp
                 pnlLeft.Controls.Remove(pnlData2);                
                 foreach (CheckBox cbox in pnlBremsen.Controls)
                 {
-                    cbox.Checked = false;
-                }
-
+                    cbox.Enabled = false;
+                    cbBremsen.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
+                }               
             }
             else
             {
                 pnlLeft.Controls.Add(pnlData2);
                 foreach (CheckBox cbox in pnlBremsen.Controls)
                 {
-                    cbox.Checked = true;
-                }
-                //TODO: Wiederherstellen der checkboxes?
+                    cbox.Enabled = true;
+                }                
             }
         }
 
@@ -783,6 +788,28 @@ namespace ZusiTCPDemoApp
                 this.TopMost = true;
             else
                 this.TopMost = false;
+        }
+
+        private void numSifagroesse_ValueChanged(object sender, EventArgs e)
+        {
+            if (numSifagroesse.Value == 3)
+            {
+                lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth);
+                lblSifa.Height = Convert.ToInt32(labelsifadefaultheight);
+                lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth);
+            }
+            else if (numSifagroesse.Value == 2)
+            {
+                lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * 0.8);
+                lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * 0.8);
+                lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * 0.8);
+            }
+            else if (numSifagroesse.Value == 1)
+            {
+                lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * 0.6);
+                lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * 0.6);
+                lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth *0.6);
+            }
         }
 
           
