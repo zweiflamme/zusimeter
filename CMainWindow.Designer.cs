@@ -89,9 +89,7 @@
             this.lblfahrst = new System.Windows.Forms.Label();
             this.lblFahrstufe = new System.Windows.Forms.Label();
             this.lblTueren = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlData2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -115,7 +113,7 @@
             // 
             this.lblSifa.BackColor = System.Drawing.Color.DarkGray;
             this.lblSifa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblSifa.Location = new System.Drawing.Point(3, 7);
+            this.lblSifa.Location = new System.Drawing.Point(6, 7);
             this.lblSifa.Name = "lblSifa";
             this.lblSifa.Size = new System.Drawing.Size(114, 51);
             this.lblSifa.TabIndex = 0;
@@ -164,7 +162,7 @@
             // btnSettings
             // 
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(3, 343);
+            this.btnSettings.Location = new System.Drawing.Point(3, 247);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(94, 26);
             this.btnSettings.TabIndex = 6;
@@ -174,11 +172,12 @@
             // 
             // pnlSettings
             // 
+            this.pnlSettings.AutoSize = true;
             this.pnlSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSettings.Controls.Add(this.tabEinstellungen);
             this.pnlSettings.Location = new System.Drawing.Point(3, 1);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(214, 377);
+            this.pnlSettings.Size = new System.Drawing.Size(215, 231);
             this.pnlSettings.TabIndex = 10;
             // 
             // tabEinstellungen
@@ -189,7 +188,7 @@
             this.tabEinstellungen.Location = new System.Drawing.Point(3, 2);
             this.tabEinstellungen.Name = "tabEinstellungen";
             this.tabEinstellungen.SelectedIndex = 0;
-            this.tabEinstellungen.Size = new System.Drawing.Size(209, 370);
+            this.tabEinstellungen.Size = new System.Drawing.Size(209, 226);
             this.tabEinstellungen.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabEinstellungen.TabIndex = 0;
             // 
@@ -201,7 +200,7 @@
             this.tabAnzeigen.Location = new System.Drawing.Point(4, 22);
             this.tabAnzeigen.Name = "tabAnzeigen";
             this.tabAnzeigen.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAnzeigen.Size = new System.Drawing.Size(201, 344);
+            this.tabAnzeigen.Size = new System.Drawing.Size(201, 200);
             this.tabAnzeigen.TabIndex = 0;
             this.tabAnzeigen.Text = "Anzeigen";
             // 
@@ -211,9 +210,9 @@
             this.pnlBremsen.Controls.Add(this.cbDruckhll);
             this.pnlBremsen.Controls.Add(this.cbBrh);
             this.pnlBremsen.Controls.Add(this.cbDruckbz);
-            this.pnlBremsen.Location = new System.Drawing.Point(3, 169);
+            this.pnlBremsen.Location = new System.Drawing.Point(3, 123);
             this.pnlBremsen.Name = "pnlBremsen";
-            this.pnlBremsen.Size = new System.Drawing.Size(183, 93);
+            this.pnlBremsen.Size = new System.Drawing.Size(183, 67);
             this.pnlBremsen.TabIndex = 19;
             // 
             // cbBremsen
@@ -285,7 +284,7 @@
             this.pnlGrunddaten.Controls.Add(this.cbLmschleudern);
             this.pnlGrunddaten.Location = new System.Drawing.Point(3, 3);
             this.pnlGrunddaten.Name = "pnlGrunddaten";
-            this.pnlGrunddaten.Size = new System.Drawing.Size(183, 142);
+            this.pnlGrunddaten.Size = new System.Drawing.Size(183, 116);
             this.pnlGrunddaten.TabIndex = 19;
             // 
             // cbFahrstufenschalter
@@ -490,7 +489,7 @@
             // lblFlag
             // 
             this.lblFlag.BackColor = System.Drawing.Color.Orange;
-            this.lblFlag.Location = new System.Drawing.Point(3, 62);
+            this.lblFlag.Location = new System.Drawing.Point(6, 62);
             this.lblFlag.Name = "lblFlag";
             this.lblFlag.Size = new System.Drawing.Size(114, 19);
             this.lblFlag.TabIndex = 11;
@@ -500,6 +499,7 @@
             // pnlDebug
             // 
             this.pnlDebug.AutoSize = true;
+            this.pnlDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlDebug.Controls.Add(this.grpDebug);
             this.pnlDebug.Location = new System.Drawing.Point(223, 3);
             this.pnlDebug.Name = "pnlDebug";
@@ -623,9 +623,9 @@
             this.pnlRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlRight.Controls.Add(this.pnlSettings);
             this.pnlRight.Controls.Add(this.pnlDebug);
-            this.pnlRight.Location = new System.Drawing.Point(160, 13);
+            this.pnlRight.Location = new System.Drawing.Point(149, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(364, 381);
+            this.pnlRight.Size = new System.Drawing.Size(364, 254);
             this.pnlRight.TabIndex = 14;
             this.pnlRight.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRight_Paint);
             // 
@@ -637,7 +637,7 @@
             // 
             // btnNacht
             // 
-            this.btnNacht.Location = new System.Drawing.Point(3, 314);
+            this.btnNacht.Location = new System.Drawing.Point(3, 218);
             this.btnNacht.Name = "btnNacht";
             this.btnNacht.Size = new System.Drawing.Size(94, 23);
             this.btnNacht.TabIndex = 15;
@@ -773,45 +773,20 @@
             this.lblTueren.TabIndex = 8;
             this.lblTueren.Text = "########";
             // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Orange;
-            this.label2.Location = new System.Drawing.Point(3, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 19);
-            this.label2.TabIndex = 11;
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Visible = false;
-            // 
             // pnlLeft
             // 
+            this.pnlLeft.AutoSize = true;
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlLeft.Controls.Add(this.tableLayoutPanel1);
             this.pnlLeft.Controls.Add(this.pnlData2);
             this.pnlLeft.Controls.Add(this.pnlData1);
             this.pnlLeft.Controls.Add(this.lblFlag);
-            this.pnlLeft.Controls.Add(this.label2);
             this.pnlLeft.Controls.Add(this.btnSettings);
             this.pnlLeft.Controls.Add(this.lblSifa);
             this.pnlLeft.Controls.Add(this.btnNacht);
             this.pnlLeft.Location = new System.Drawing.Point(2, 13);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(129, 381);
+            this.pnlLeft.Size = new System.Drawing.Size(129, 276);
             this.pnlLeft.TabIndex = 17;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 218);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(78, 56);
-            this.tableLayoutPanel1.TabIndex = 18;
             // 
             // pnlData2
             // 
@@ -837,14 +812,17 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.AutoSize = false;
+            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblVerbstatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 411);
+            this.statusStrip1.Location = new System.Drawing.Point(2, 319);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(532, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(129, 23);
             this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.Stretch = false;
             this.statusStrip1.TabIndex = 18;
-            this.statusStrip1.Text = "Status";
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // lblVerbstatus
             // 
@@ -859,11 +837,11 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(532, 433);
+            this.ClientSize = new System.Drawing.Size(522, 342);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlRight);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "CMainWindow";
             this.Text = "ZusiMeter - v0.4";
@@ -947,7 +925,6 @@
         private System.Windows.Forms.CheckBox cbFahrstufe;
         private System.Windows.Forms.CheckBox cbUhrzeit;
         private System.Windows.Forms.CheckBox cbFokuszurueck;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnlLeft;
         private System.Windows.Forms.TableLayoutPanel pnlData2;
         private System.Windows.Forms.Label lblfahrst;
@@ -959,12 +936,11 @@
         private System.Windows.Forms.Label lblDebugtueren;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDebugtuerbool;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel lblVerbstatus;
         private System.Windows.Forms.Panel pnlBremsen;
         private System.Windows.Forms.Panel pnlGrunddaten;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.CheckBox cbFahrstufenschalter;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblVerbstatus;
 
     }
 }
