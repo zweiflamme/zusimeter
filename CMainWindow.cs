@@ -683,20 +683,35 @@ namespace ZusiTCPDemoApp
             {
                 pnlLeft.Controls.Remove(pnlData1);
 
+                //DEBUG: Nicht-Checkboxes entfernen! Bessere Lösung finden!
+                pnlGrunddaten.Controls.Remove(label5);
+                pnlGrunddaten.Controls.Remove(label6);
+                pnlGrunddaten.Controls.Remove(numFahrschneutral);
+
+
+
                 foreach (CheckBox cbox in pnlGrunddaten.Controls)
                 {
-                    cbox.Enabled = false;
-                    cbGrunddaten.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
+                    cbox.Enabled = false;                    
                 }
+
+                cbGrunddaten.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
 
             }
             else
             {
                 pnlLeft.Controls.Add(pnlData1);
+                
                 foreach (CheckBox cbox in pnlGrunddaten.Controls)
                 {
                     cbox.Enabled = true;                   
-                }                
+                }
+
+                //DEBUG: Nicht-Checkboxes wieder hinzufügen! Bessere Lösung finden!
+                pnlGrunddaten.Controls.Add(label5);
+                pnlGrunddaten.Controls.Add(label6);
+                pnlGrunddaten.Controls.Add(numFahrschneutral);
+
             }
         }
 
@@ -707,9 +722,10 @@ namespace ZusiTCPDemoApp
                 pnlLeft.Controls.Remove(pnlData2);                
                 foreach (CheckBox cbox in pnlBremsen.Controls)
                 {
-                    cbox.Enabled = false;
-                    cbBremsen.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
-                }               
+                    cbox.Enabled = false;                    
+                }
+
+                cbBremsen.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
             }
             else
             {
@@ -823,12 +839,48 @@ namespace ZusiTCPDemoApp
 
         private void cbFahrschneutral_ValueChanged(object sender, EventArgs e)
         {
-            fahrschalterneutral = Convert.ToInt32(cbFahrschneutral.Value);
+            fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pnlSettings_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        int anzSeite = 1; //Seite die im Tab Anzeigen angezeigt wird
+        int anzMaxseiten = 3; //Momentane Anzahl an Seitem im Tab Anzeigen
+
+        private void btnAnzvor_Click(object sender, EventArgs e)
+        {
+
+            btnAnzzurueck.Enabled = true;
+
+            if (anzSeite < anzMaxseiten)
+            {
+                anzSeite++;
+                lblAnzseite.Text = String.Format("{0} / {1}", anzSeite, anzMaxseiten);
+            }
+            if (anzSeite == anzMaxseiten) //wenn jetzt die letzte Seite angezeigt wird btn ausgrauen
+               btnAnzvor.Enabled = false;
+               
+        }
+
+        private void btnAnzzurueck_Click(object sender, EventArgs e)
+        {
+            btnAnzvor.Enabled = true;
+
+            if (anzSeite > 1)
+            {
+                anzSeite--;
+                lblAnzseite.Text = String.Format("{0} / {1}", anzSeite, anzMaxseiten);
+            }
+            if (anzSeite <= 1) //wenn jetzt die erste Seite angezeigt wird btn ausgrauen
+                btnAnzzurueck.Enabled = false;
         }
         
 
