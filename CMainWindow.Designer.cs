@@ -106,7 +106,20 @@
             this.btnAnzvor = new System.Windows.Forms.Button();
             this.lblAnzseite = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.pnlSchalterst = new System.Windows.Forms.Panel();
+            this.cbSchalterst = new System.Windows.Forms.CheckBox();
+            this.cbFbv = new System.Windows.Forms.CheckBox();
+            this.cbDynbremse = new System.Windows.Forms.CheckBox();
+            this.cbZusbremse = new System.Windows.Forms.CheckBox();
+            this.pnlSeite1 = new System.Windows.Forms.Panel();
+            this.cbDruckhlb = new System.Windows.Forms.CheckBox();
+            this.cbDruckhbl = new System.Windows.Forms.CheckBox();
+            this.cbHauptsch = new System.Windows.Forms.CheckBox();
+            this.cbSchleuderschutz = new System.Windows.Forms.CheckBox();
+            this.cbFahrtrichtg = new System.Windows.Forms.CheckBox();
+            this.cbMotorsch = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -125,6 +138,8 @@
             this.pnlLeft.SuspendLayout();
             this.pnlData2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.pnlSchalterst.SuspendLayout();
+            this.pnlSeite1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -190,12 +205,11 @@
             // 
             // pnlSettings
             // 
-            this.pnlSettings.AutoSize = true;
             this.pnlSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSettings.Controls.Add(this.tabEinstellungen);
             this.pnlSettings.Location = new System.Drawing.Point(3, 1);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(215, 319);
+            this.pnlSettings.Size = new System.Drawing.Size(422, 328);
             this.pnlSettings.TabIndex = 10;
             this.pnlSettings.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSettings_Paint);
             // 
@@ -207,34 +221,38 @@
             this.tabEinstellungen.Location = new System.Drawing.Point(3, 2);
             this.tabEinstellungen.Name = "tabEinstellungen";
             this.tabEinstellungen.SelectedIndex = 0;
-            this.tabEinstellungen.Size = new System.Drawing.Size(209, 314);
+            this.tabEinstellungen.Size = new System.Drawing.Size(415, 323);
             this.tabEinstellungen.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabEinstellungen.TabIndex = 0;
             // 
             // tabAnzeigen
             // 
             this.tabAnzeigen.BackColor = System.Drawing.SystemColors.Control;
+            this.tabAnzeigen.Controls.Add(this.pnlSeite1);
             this.tabAnzeigen.Controls.Add(this.lblAnzseite);
             this.tabAnzeigen.Controls.Add(this.btnAnzvor);
             this.tabAnzeigen.Controls.Add(this.btnAnzzurueck);
-            this.tabAnzeigen.Controls.Add(this.pnlBremsen);
-            this.tabAnzeigen.Controls.Add(this.pnlGrunddaten);
             this.tabAnzeigen.Location = new System.Drawing.Point(4, 22);
             this.tabAnzeigen.Name = "tabAnzeigen";
             this.tabAnzeigen.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAnzeigen.Size = new System.Drawing.Size(201, 288);
+            this.tabAnzeigen.Size = new System.Drawing.Size(407, 297);
             this.tabAnzeigen.TabIndex = 0;
             this.tabAnzeigen.Text = "Anzeigen";
             // 
             // pnlBremsen
             // 
+            this.pnlBremsen.Controls.Add(this.cbZusbremse);
+            this.pnlBremsen.Controls.Add(this.cbDruckhbl);
+            this.pnlBremsen.Controls.Add(this.cbDynbremse);
+            this.pnlBremsen.Controls.Add(this.cbDruckhlb);
+            this.pnlBremsen.Controls.Add(this.cbFbv);
             this.pnlBremsen.Controls.Add(this.cbBremsen);
             this.pnlBremsen.Controls.Add(this.cbDruckhll);
             this.pnlBremsen.Controls.Add(this.cbBrh);
             this.pnlBremsen.Controls.Add(this.cbDruckbz);
-            this.pnlBremsen.Location = new System.Drawing.Point(3, 149);
+            this.pnlBremsen.Location = new System.Drawing.Point(3, 117);
             this.pnlBremsen.Name = "pnlBremsen";
-            this.pnlBremsen.Size = new System.Drawing.Size(183, 101);
+            this.pnlBremsen.Size = new System.Drawing.Size(205, 128);
             this.pnlBremsen.TabIndex = 19;
             // 
             // cbBremsen
@@ -259,7 +277,7 @@
             this.cbDruckhll.AutoSize = true;
             this.cbDruckhll.Checked = true;
             this.cbDruckhll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckhll.Location = new System.Drawing.Point(113, 30);
+            this.cbDruckhll.Location = new System.Drawing.Point(3, 48);
             this.cbDruckhll.Name = "cbDruckhll";
             this.cbDruckhll.Size = new System.Drawing.Size(70, 17);
             this.cbDruckhll.TabIndex = 2;
@@ -285,7 +303,7 @@
             this.cbDruckbz.AutoSize = true;
             this.cbDruckbz.Checked = true;
             this.cbDruckbz.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckbz.Location = new System.Drawing.Point(3, 47);
+            this.cbDruckbz.Location = new System.Drawing.Point(3, 68);
             this.cbDruckbz.Name = "cbDruckbz";
             this.cbDruckbz.Size = new System.Drawing.Size(122, 17);
             this.cbDruckbz.TabIndex = 3;
@@ -295,10 +313,6 @@
             // 
             // pnlGrunddaten
             // 
-            this.pnlGrunddaten.Controls.Add(this.label6);
-            this.pnlGrunddaten.Controls.Add(this.label5);
-            this.pnlGrunddaten.Controls.Add(this.numFahrschneutral);
-            this.pnlGrunddaten.Controls.Add(this.cbFahrstufenschalter);
             this.pnlGrunddaten.Controls.Add(this.cbGrunddaten);
             this.pnlGrunddaten.Controls.Add(this.cbStreckenmeter);
             this.pnlGrunddaten.Controls.Add(this.cbGeschwindigkeit);
@@ -309,13 +323,13 @@
             this.pnlGrunddaten.Controls.Add(this.cbLmschleudern);
             this.pnlGrunddaten.Location = new System.Drawing.Point(3, 3);
             this.pnlGrunddaten.Name = "pnlGrunddaten";
-            this.pnlGrunddaten.Size = new System.Drawing.Size(183, 140);
+            this.pnlGrunddaten.Size = new System.Drawing.Size(205, 108);
             this.pnlGrunddaten.TabIndex = 19;
             // 
             // numFahrschneutral
             // 
             this.numFahrschneutral.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numFahrschneutral.Location = new System.Drawing.Point(88, 93);
+            this.numFahrschneutral.Location = new System.Drawing.Point(145, 35);
             this.numFahrschneutral.Maximum = new decimal(new int[] {
             15,
             0,
@@ -330,7 +344,7 @@
             // cbFahrstufenschalter
             // 
             this.cbFahrstufenschalter.AutoSize = true;
-            this.cbFahrstufenschalter.Location = new System.Drawing.Point(3, 84);
+            this.cbFahrstufenschalter.Location = new System.Drawing.Point(6, 40);
             this.cbFahrstufenschalter.Name = "cbFahrstufenschalter";
             this.cbFahrstufenschalter.Size = new System.Drawing.Size(84, 17);
             this.cbFahrstufenschalter.TabIndex = 9;
@@ -436,7 +450,7 @@
             this.cbLmschleudern.AutoSize = true;
             this.cbLmschleudern.Checked = true;
             this.cbLmschleudern.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLmschleudern.Location = new System.Drawing.Point(3, 118);
+            this.cbLmschleudern.Location = new System.Drawing.Point(3, 83);
             this.cbLmschleudern.Name = "cbLmschleudern";
             this.cbLmschleudern.Size = new System.Drawing.Size(142, 17);
             this.cbLmschleudern.TabIndex = 4;
@@ -647,9 +661,9 @@
             this.pnlDebug.AutoSize = true;
             this.pnlDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlDebug.Controls.Add(this.grpDebug);
-            this.pnlDebug.Location = new System.Drawing.Point(223, 3);
+            this.pnlDebug.Location = new System.Drawing.Point(448, 6);
             this.pnlDebug.Name = "pnlDebug";
-            this.pnlDebug.Size = new System.Drawing.Size(138, 248);
+            this.pnlDebug.Size = new System.Drawing.Size(149, 249);
             this.pnlDebug.TabIndex = 12;
             this.pnlDebug.Visible = false;
             // 
@@ -666,7 +680,7 @@
             this.grpDebug.Controls.Add(this.label12);
             this.grpDebug.Controls.Add(this.tbVerz);
             this.grpDebug.Controls.Add(this.btnFlag);
-            this.grpDebug.Location = new System.Drawing.Point(3, 3);
+            this.grpDebug.Location = new System.Drawing.Point(14, 4);
             this.grpDebug.Name = "grpDebug";
             this.grpDebug.Size = new System.Drawing.Size(132, 242);
             this.grpDebug.TabIndex = 12;
@@ -765,12 +779,13 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.AutoSize = true;
             this.pnlRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlRight.Controls.Add(this.pnlSettings);
             this.pnlRight.Controls.Add(this.pnlDebug);
             this.pnlRight.Location = new System.Drawing.Point(149, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(364, 329);
+            this.pnlRight.Size = new System.Drawing.Size(600, 332);
             this.pnlRight.TabIndex = 14;
             this.pnlRight.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRight_Paint);
             // 
@@ -979,7 +994,7 @@
             // 
             this.btnAnzzurueck.Enabled = false;
             this.btnAnzzurueck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnzzurueck.Location = new System.Drawing.Point(96, 257);
+            this.btnAnzzurueck.Location = new System.Drawing.Point(3, 265);
             this.btnAnzzurueck.Name = "btnAnzzurueck";
             this.btnAnzzurueck.Size = new System.Drawing.Size(30, 26);
             this.btnAnzzurueck.TabIndex = 18;
@@ -990,7 +1005,7 @@
             // btnAnzvor
             // 
             this.btnAnzvor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnzvor.Location = new System.Drawing.Point(158, 257);
+            this.btnAnzvor.Location = new System.Drawing.Point(65, 265);
             this.btnAnzvor.Name = "btnAnzvor";
             this.btnAnzvor.Size = new System.Drawing.Size(30, 26);
             this.btnAnzvor.TabIndex = 20;
@@ -1001,31 +1016,188 @@
             // lblAnzseite
             // 
             this.lblAnzseite.AutoSize = true;
-            this.lblAnzseite.Location = new System.Drawing.Point(127, 264);
+            this.lblAnzseite.Location = new System.Drawing.Point(34, 272);
             this.lblAnzseite.Name = "lblAnzseite";
             this.lblAnzseite.Size = new System.Drawing.Size(30, 13);
             this.lblAnzseite.TabIndex = 21;
-            this.lblAnzseite.Text = "1 / 3";
+            this.lblAnzseite.Text = "1 / 2";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 98);
+            this.label5.Location = new System.Drawing.Point(86, 40);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 21;
-            this.label5.Text = "(neutral bei";
+            this.label5.Text = "neutral bei";
             // 
-            // label6
+            // pnlSchalterst
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(123, 97);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(10, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = ")";
+            this.pnlSchalterst.Controls.Add(this.checkBox2);
+            this.pnlSchalterst.Controls.Add(this.checkBox1);
+            this.pnlSchalterst.Controls.Add(this.cbMotorsch);
+            this.pnlSchalterst.Controls.Add(this.cbFahrtrichtg);
+            this.pnlSchalterst.Controls.Add(this.cbSchleuderschutz);
+            this.pnlSchalterst.Controls.Add(this.cbHauptsch);
+            this.pnlSchalterst.Controls.Add(this.cbSchalterst);
+            this.pnlSchalterst.Controls.Add(this.numFahrschneutral);
+            this.pnlSchalterst.Controls.Add(this.label5);
+            this.pnlSchalterst.Controls.Add(this.cbFahrstufenschalter);
+            this.pnlSchalterst.Location = new System.Drawing.Point(214, 3);
+            this.pnlSchalterst.Name = "pnlSchalterst";
+            this.pnlSchalterst.Size = new System.Drawing.Size(183, 154);
+            this.pnlSchalterst.TabIndex = 23;
+            // 
+            // cbSchalterst
+            // 
+            this.cbSchalterst.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbSchalterst.AutoSize = true;
+            this.cbSchalterst.Checked = true;
+            this.cbSchalterst.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSchalterst.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbSchalterst.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbSchalterst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbSchalterst.Location = new System.Drawing.Point(3, 3);
+            this.cbSchalterst.Name = "cbSchalterst";
+            this.cbSchalterst.Size = new System.Drawing.Size(104, 23);
+            this.cbSchalterst.TabIndex = 8;
+            this.cbSchalterst.Text = "Schalterstellungen";
+            this.cbSchalterst.UseVisualStyleBackColor = true;
+            this.cbSchalterst.CheckedChanged += new System.EventHandler(this.cbSchalterst_CheckedChanged);
+            // 
+            // cbFbv
+            // 
+            this.cbFbv.AutoSize = true;
+            this.cbFbv.Enabled = false;
+            this.cbFbv.Location = new System.Drawing.Point(3, 87);
+            this.cbFbv.Name = "cbFbv";
+            this.cbFbv.Size = new System.Drawing.Size(109, 17);
+            this.cbFbv.TabIndex = 23;
+            this.cbFbv.Text = "Führerbremsventil";
+            this.cbFbv.UseVisualStyleBackColor = true;
+            // 
+            // cbDynbremse
+            // 
+            this.cbDynbremse.AutoSize = true;
+            this.cbDynbremse.Enabled = false;
+            this.cbDynbremse.Location = new System.Drawing.Point(113, 87);
+            this.cbDynbremse.Name = "cbDynbremse";
+            this.cbDynbremse.Size = new System.Drawing.Size(86, 17);
+            this.cbDynbremse.TabIndex = 24;
+            this.cbDynbremse.Text = "Dyn. Bremse";
+            this.cbDynbremse.UseVisualStyleBackColor = true;
+            // 
+            // cbZusbremse
+            // 
+            this.cbZusbremse.AutoSize = true;
+            this.cbZusbremse.Enabled = false;
+            this.cbZusbremse.Location = new System.Drawing.Point(3, 108);
+            this.cbZusbremse.Name = "cbZusbremse";
+            this.cbZusbremse.Size = new System.Drawing.Size(92, 17);
+            this.cbZusbremse.TabIndex = 25;
+            this.cbZusbremse.Text = "Zusatzbremse";
+            this.cbZusbremse.UseVisualStyleBackColor = true;
+            // 
+            // pnlSeite1
+            // 
+            this.pnlSeite1.Controls.Add(this.pnlSchalterst);
+            this.pnlSeite1.Controls.Add(this.pnlGrunddaten);
+            this.pnlSeite1.Controls.Add(this.pnlBremsen);
+            this.pnlSeite1.Location = new System.Drawing.Point(3, 3);
+            this.pnlSeite1.Name = "pnlSeite1";
+            this.pnlSeite1.Size = new System.Drawing.Size(402, 248);
+            this.pnlSeite1.TabIndex = 25;
+            // 
+            // cbDruckhlb
+            // 
+            this.cbDruckhlb.AutoSize = true;
+            this.cbDruckhlb.Checked = true;
+            this.cbDruckhlb.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDruckhlb.Location = new System.Drawing.Point(106, 48);
+            this.cbDruckhlb.Name = "cbDruckhlb";
+            this.cbDruckhlb.Size = new System.Drawing.Size(79, 17);
+            this.cbDruckhlb.TabIndex = 10;
+            this.cbDruckhlb.Text = "Druck HLB";
+            this.cbDruckhlb.UseVisualStyleBackColor = true;
+            // 
+            // cbDruckhbl
+            // 
+            this.cbDruckhbl.AutoSize = true;
+            this.cbDruckhbl.Checked = true;
+            this.cbDruckhbl.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDruckhbl.Location = new System.Drawing.Point(106, 30);
+            this.cbDruckhbl.Name = "cbDruckhbl";
+            this.cbDruckhbl.Size = new System.Drawing.Size(79, 17);
+            this.cbDruckhbl.TabIndex = 11;
+            this.cbDruckhbl.Text = "Druck HBL";
+            this.cbDruckhbl.UseVisualStyleBackColor = true;
+            // 
+            // cbHauptsch
+            // 
+            this.cbHauptsch.AutoSize = true;
+            this.cbHauptsch.Enabled = false;
+            this.cbHauptsch.Location = new System.Drawing.Point(6, 64);
+            this.cbHauptsch.Name = "cbHauptsch";
+            this.cbHauptsch.Size = new System.Drawing.Size(92, 17);
+            this.cbHauptsch.TabIndex = 22;
+            this.cbHauptsch.Text = "Hauptschalter";
+            this.cbHauptsch.UseVisualStyleBackColor = true;
+            // 
+            // cbSchleuderschutz
+            // 
+            this.cbSchleuderschutz.AutoSize = true;
+            this.cbSchleuderschutz.Enabled = false;
+            this.cbSchleuderschutz.Location = new System.Drawing.Point(6, 107);
+            this.cbSchleuderschutz.Name = "cbSchleuderschutz";
+            this.cbSchleuderschutz.Size = new System.Drawing.Size(105, 17);
+            this.cbSchleuderschutz.TabIndex = 23;
+            this.cbSchleuderschutz.Text = "Schleuderschutz";
+            this.cbSchleuderschutz.UseVisualStyleBackColor = true;
+            // 
+            // cbFahrtrichtg
+            // 
+            this.cbFahrtrichtg.AutoSize = true;
+            this.cbFahrtrichtg.Enabled = false;
+            this.cbFahrtrichtg.Location = new System.Drawing.Point(6, 84);
+            this.cbFahrtrichtg.Name = "cbFahrtrichtg";
+            this.cbFahrtrichtg.Size = new System.Drawing.Size(124, 17);
+            this.cbFahrtrichtg.TabIndex = 24;
+            this.cbFahrtrichtg.Text = "Fahrtrichtungs-Hebel";
+            this.cbFahrtrichtg.UseVisualStyleBackColor = true;
+            // 
+            // cbMotorsch
+            // 
+            this.cbMotorsch.AutoSize = true;
+            this.cbMotorsch.Enabled = false;
+            this.cbMotorsch.Location = new System.Drawing.Point(104, 64);
+            this.cbMotorsch.Name = "cbMotorsch";
+            this.cbMotorsch.Size = new System.Drawing.Size(53, 17);
+            this.cbMotorsch.TabIndex = 25;
+            this.cbMotorsch.Text = "Motor";
+            this.cbMotorsch.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(6, 129);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(63, 17);
+            this.checkBox1.TabIndex = 26;
+            this.checkBox1.Text = "Sanden";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Location = new System.Drawing.Point(75, 129);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(53, 17);
+            this.checkBox2.TabIndex = 27;
+            this.checkBox2.Text = "Lüfter";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // CMainWindow
             // 
@@ -1034,7 +1206,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(522, 342);
+            this.ClientSize = new System.Drawing.Size(1008, 458);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlRight);
@@ -1074,6 +1246,9 @@
             this.pnlData2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.pnlSchalterst.ResumeLayout(false);
+            this.pnlSchalterst.PerformLayout();
+            this.pnlSeite1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1156,8 +1331,21 @@
         private System.Windows.Forms.Label lblAnzseite;
         private System.Windows.Forms.Button btnAnzvor;
         private System.Windows.Forms.Button btnAnzzurueck;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel pnlSchalterst;
+        private System.Windows.Forms.CheckBox cbZusbremse;
+        private System.Windows.Forms.CheckBox cbDynbremse;
+        private System.Windows.Forms.CheckBox cbFbv;
+        private System.Windows.Forms.CheckBox cbSchalterst;
+        private System.Windows.Forms.Panel pnlSeite1;
+        private System.Windows.Forms.CheckBox cbDruckhbl;
+        private System.Windows.Forms.CheckBox cbDruckhlb;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbMotorsch;
+        private System.Windows.Forms.CheckBox cbFahrtrichtg;
+        private System.Windows.Forms.CheckBox cbSchleuderschutz;
+        private System.Windows.Forms.CheckBox cbHauptsch;
 
     }
 }

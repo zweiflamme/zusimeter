@@ -59,14 +59,18 @@ namespace ZusiTCPDemoApp
 
         //default-Wert für Neutralstellung Fahrschalter (für Kombihebel) TODO: Bessere Lösung?
         int fahrschalterneutral = 0;
-
            
 
         public CMainWindow()
         {
-            InitializeComponent();          
+            InitializeComponent();
+
+            //DEBUG TODO
+            //pnlSeite2.Visible = false;
+            //CMainWindow.ActiveForm.Controls.Remove(pnlSeite2);
 
             
+           
 
             //System-Tab anzeigen damit ggf. eine Verbindung zum TCP-Server aufgebaut werden kann
             tabEinstellungen.SelectTab("tabSystem");
@@ -681,14 +685,7 @@ namespace ZusiTCPDemoApp
         {
             if (cbGrunddaten.Checked == false)
             {
-                pnlLeft.Controls.Remove(pnlData1);
-
-                //DEBUG: Nicht-Checkboxes entfernen! Bessere Lösung finden!
-                pnlGrunddaten.Controls.Remove(label5);
-                pnlGrunddaten.Controls.Remove(label6);
-                pnlGrunddaten.Controls.Remove(numFahrschneutral);
-
-
+                pnlLeft.Controls.Remove(pnlData1);                
 
                 foreach (CheckBox cbox in pnlGrunddaten.Controls)
                 {
@@ -705,12 +702,7 @@ namespace ZusiTCPDemoApp
                 foreach (CheckBox cbox in pnlGrunddaten.Controls)
                 {
                     cbox.Enabled = true;                   
-                }
-
-                //DEBUG: Nicht-Checkboxes wieder hinzufügen! Bessere Lösung finden!
-                pnlGrunddaten.Controls.Add(label5);
-                pnlGrunddaten.Controls.Add(label6);
-                pnlGrunddaten.Controls.Add(numFahrschneutral);
+                }           
 
             }
         }
@@ -853,20 +845,30 @@ namespace ZusiTCPDemoApp
         }
 
         int anzSeite = 1; //Seite die im Tab Anzeigen angezeigt wird
-        int anzMaxseiten = 3; //Momentane Anzahl an Seitem im Tab Anzeigen
+        int anzMaxseiten = 2; //Momentane Anzahl an Seitem im Tab Anzeigen
 
         private void btnAnzvor_Click(object sender, EventArgs e)
         {
 
             btnAnzzurueck.Enabled = true;
+            
 
             if (anzSeite < anzMaxseiten)
             {
                 anzSeite++;
                 lblAnzseite.Text = String.Format("{0} / {1}", anzSeite, anzMaxseiten);
+                
             }
             if (anzSeite == anzMaxseiten) //wenn jetzt die letzte Seite angezeigt wird btn ausgrauen
                btnAnzvor.Enabled = false;
+
+            if (anzSeite == 2)
+            {
+                //Panel für Seite 2 zum Panel Anzeigen hinzufügen, Seite 1 entfernen
+                //TODO pnlSeite2.Location = new Point(0, 0);
+                tabAnzeigen.Controls.Remove(pnlSeite1);
+                //TODO tabAnzeigen.Controls.Add(pnlSeite2);
+            }
                
         }
 
@@ -881,6 +883,47 @@ namespace ZusiTCPDemoApp
             }
             if (anzSeite <= 1) //wenn jetzt die erste Seite angezeigt wird btn ausgrauen
                 btnAnzzurueck.Enabled = false;
+
+            if (anzSeite == 1)
+            {
+                //Panel für Seite 1 zum Panel Anzeigen hinzufügen, Seite 2 entfernen
+                pnlSeite1.Location = new Point(0, 0);
+                //TODO tabAnzeigen.Controls.Remove(pnlSeite2);
+                tabAnzeigen.Controls.Add(pnlSeite1);
+            }
+        }
+
+        private void cbSchalterst_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbSchalterst.Checked == false)
+            {
+                // pnlLeft.Controls.Remove(pnlData1); //pnlSchalter
+
+                //DEBUG: Nicht-Checkboxes entfernen! Bessere Lösung finden!
+                pnlSchalterst.Controls.Remove(label5);
+                pnlSchalterst.Controls.Remove(numFahrschneutral);
+
+                foreach (CheckBox cbox in pnlSchalterst.Controls)
+                {
+                    cbox.Enabled = false;
+                }
+                cbSchalterst.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
+
+            }
+            else
+            {
+                //pnlLeft.Controls.Add(pnlData1); //pnlSchalter
+
+                foreach (CheckBox cbox in pnlSchalterst.Controls)
+                {
+                    cbox.Enabled = true;
+                }
+                //DEBUG: Nicht-Checkboxes wieder hinzufügen! Bessere Lösung finden!
+                pnlSchalterst.Controls.Add(label5);
+                pnlSchalterst.Controls.Add(numFahrschneutral);
+
+            }
+
         }
         
 
