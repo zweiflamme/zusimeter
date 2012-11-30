@@ -77,8 +77,10 @@ namespace ZusiTCPDemoApp
 
             //nicht funktionierende Checkboxes deaktivieren
             //TODO
-
             cbFokuszurueck.Enabled = false;
+
+            
+
             
             /* When the application window is created, we create our new connection class as well.
              * ReceiveEvent<T> is a generic delegate type for you to use. See the Object Browser for details. */
@@ -907,10 +909,11 @@ namespace ZusiTCPDemoApp
                 pnlSchalterst.Controls.Remove(label5);
                 pnlSchalterst.Controls.Remove(numFahrschneutral);
 
-                foreach (CheckBox cbox in pnlSchalterst.Controls)
+               //TODO foreach (CheckBox cbox in pnlSchalterst.Controls)
                 {
-                    cbox.Enabled = false;
+                    //cbox.Enabled = false;
                 }
+                cbFahrstufenschalter.Enabled = false;
                 cbSchalterst.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
 
             }
@@ -918,13 +921,14 @@ namespace ZusiTCPDemoApp
             {
                 //pnlLeft.Controls.Add(pnlData1); //pnlSchalter
 
-                foreach (CheckBox cbox in pnlSchalterst.Controls)
+                //TODO foreach (CheckBox cbox in pnlSchalterst.Controls)
                 {
-                    cbox.Enabled = true;
+                    //cbox.Enabled = true;
                 }
                 //DEBUG: Nicht-Checkboxes wieder hinzufügen! Bessere Lösung finden!
                 pnlSchalterst.Controls.Add(label5);
                 pnlSchalterst.Controls.Add(numFahrschneutral);
+                cbFahrstufenschalter.Enabled = true;
 
             }
 
@@ -946,6 +950,16 @@ namespace ZusiTCPDemoApp
                 tabEinstellungen.Width = 420;
             }
             
+        }
+
+        private void btnFarbeNacht_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+        }
+
+        private void btnFarbeTag_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
         }
         
 
