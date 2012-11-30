@@ -67,7 +67,7 @@ namespace ZusiTCPDemoApp
 
             //DEBUG TODO
             //pnlSeite2.Visible = false;
-            //CMainWindow.ActiveForm.Controls.Remove(pnlSeite2);
+            //CMainWindow.ActiveForm.Controls.Remove(pnlSeite2);   
 
             
            
@@ -465,11 +465,11 @@ namespace ZusiTCPDemoApp
             statusStrip1.BackColor = formnightcolor;
 
             ///Labels
-            foreach (Label label in pnlData1.Controls)
+            foreach (Label label in pnlDataGrunddaten.Controls)
             {
                 label.ForeColor = labelnightcolor;
             }
-            foreach (Label label in pnlData2.Controls)
+            foreach (Label label in pnlDataBremsen.Controls)
             {
                 label.ForeColor = labelnightcolor;
             }
@@ -511,11 +511,11 @@ namespace ZusiTCPDemoApp
             statusStrip1.BackColor = formdaycolor;
             
             
-            foreach (Label label in pnlData1.Controls)
+            foreach (Label label in pnlDataGrunddaten.Controls)
             {
                 label.ForeColor = labeldaycolor;
             }
-            foreach (Label label in pnlData2.Controls)
+            foreach (Label label in pnlDataBremsen.Controls)
             {
                 label.ForeColor = labeldaycolor;
             }
@@ -550,7 +550,11 @@ namespace ZusiTCPDemoApp
 
         private void CMainWindow_Load(object sender, EventArgs e)
         {
-
+            //TODO TEST
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"])
+            {
+                tabEinstellungen.Width = 202;
+            }
         }
 
         private void listAnzeige_1_SelectedIndexChanged(object sender, EventArgs e)
@@ -570,13 +574,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbGeschwindigkeit.Checked == false)
             {
-                pnlData1.Controls.Remove(lblV);
-                pnlData1.Controls.Remove(lblkmh);
+                pnlDataGrunddaten.Controls.Remove(lblV);
+                pnlDataGrunddaten.Controls.Remove(lblkmh);
             }
             else
             {
-                pnlData1.Controls.Add(lblV, 0, 0);
-                pnlData1.Controls.Add(lblkmh, 1, 0);
+                pnlDataGrunddaten.Controls.Add(lblV, 0, 0);
+                pnlDataGrunddaten.Controls.Add(lblkmh, 1, 0);
             }
         }
 
@@ -584,13 +588,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbStreckenmeter.Checked == false)
             {
-                pnlData1.Controls.Remove(lblMeter);
-                pnlData1.Controls.Remove(lblm);
+                pnlDataGrunddaten.Controls.Remove(lblMeter);
+                pnlDataGrunddaten.Controls.Remove(lblm);
             }
             else
             {
-                pnlData1.Controls.Add(lblMeter, 0, 1);
-                pnlData1.Controls.Add(lblm, 1, 1);
+                pnlDataGrunddaten.Controls.Add(lblMeter, 0, 1);
+                pnlDataGrunddaten.Controls.Add(lblm, 1, 1);
             }
         }
 
@@ -598,13 +602,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbDruckhll.Checked == false)
             {
-                pnlData2.Controls.Remove(lblHlldruck);
-                pnlData2.Controls.Remove(lblbarhll);
+                pnlDataBremsen.Controls.Remove(lblHlldruck);
+                pnlDataBremsen.Controls.Remove(lblbarhll);
             }
             else
             {
-                pnlData2.Controls.Add(lblHlldruck, 0, 1);
-                pnlData2.Controls.Add(lblbarhll, 1, 1);
+                pnlDataBremsen.Controls.Add(lblHlldruck, 0, 1);
+                pnlDataBremsen.Controls.Add(lblbarhll, 1, 1);
             }
         }
 
@@ -612,13 +616,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbDruckbz.Checked == false)
             {
-                pnlData2.Controls.Remove(lblBzdruck);
-                pnlData2.Controls.Remove(lblbarbz);
+                pnlDataBremsen.Controls.Remove(lblBzdruck);
+                pnlDataBremsen.Controls.Remove(lblbarbz);
             }
             else
             {
-                pnlData2.Controls.Add(lblBzdruck, 0, 2);
-                pnlData2.Controls.Add(lblbarbz, 1, 2);
+                pnlDataBremsen.Controls.Add(lblBzdruck, 0, 2);
+                pnlDataBremsen.Controls.Add(lblbarbz, 1, 2);
             }
         }
 
@@ -626,13 +630,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbBrh.Checked == false)
             {
-                pnlData2.Controls.Remove(lblBrh);
-                pnlData2.Controls.Remove(lblbremsh);
+                pnlDataBremsen.Controls.Remove(lblBrh);
+                pnlDataBremsen.Controls.Remove(lblbremsh);
             }
             else
             {
-                pnlData2.Controls.Add(lblBrh, 0, 0);
-                pnlData2.Controls.Add(lblbremsh, 1, 0);
+                pnlDataBremsen.Controls.Add(lblBrh, 0, 0);
+                pnlDataBremsen.Controls.Add(lblbremsh, 1, 0);
             }
         }
 
@@ -685,7 +689,7 @@ namespace ZusiTCPDemoApp
         {
             if (cbGrunddaten.Checked == false)
             {
-                pnlLeft.Controls.Remove(pnlData1);                
+                pnlLeft.Controls.Remove(pnlDataGrunddaten);                
 
                 foreach (CheckBox cbox in pnlGrunddaten.Controls)
                 {
@@ -697,7 +701,7 @@ namespace ZusiTCPDemoApp
             }
             else
             {
-                pnlLeft.Controls.Add(pnlData1);
+                pnlLeft.Controls.Add(pnlDataGrunddaten);
                 
                 foreach (CheckBox cbox in pnlGrunddaten.Controls)
                 {
@@ -711,7 +715,7 @@ namespace ZusiTCPDemoApp
         {
             if (cbBremsen.Checked == false)
             {
-                pnlLeft.Controls.Remove(pnlData2);                
+                pnlLeft.Controls.Remove(pnlDataBremsen);                
                 foreach (CheckBox cbox in pnlBremsen.Controls)
                 {
                     cbox.Enabled = false;                    
@@ -721,7 +725,7 @@ namespace ZusiTCPDemoApp
             }
             else
             {
-                pnlLeft.Controls.Add(pnlData2);
+                pnlLeft.Controls.Add(pnlDataBremsen);
                 foreach (CheckBox cbox in pnlBremsen.Controls)
                 {
                     cbox.Enabled = true;
@@ -733,13 +737,13 @@ namespace ZusiTCPDemoApp
         {
             if (cbLmtueren.Checked == false)
             {
-                pnlData1.Controls.Remove(lblTueren);
-                pnlData1.Controls.Remove(lbltuer);
+                pnlDataGrunddaten.Controls.Remove(lblTueren);
+                pnlDataGrunddaten.Controls.Remove(lbltuer);
             }
             else
             {
-                pnlData1.Controls.Add(lblTueren, 0, 3);
-                pnlData1.Controls.Add(lbltuer, 1, 3);
+                pnlDataGrunddaten.Controls.Add(lblTueren, 0, 3);
+                pnlDataGrunddaten.Controls.Add(lbltuer, 1, 3);
                 ShowFlagtest();
                 lblFlag.Visible = true; 
             }
@@ -749,15 +753,15 @@ namespace ZusiTCPDemoApp
         {
             if (cbFahrstufe.Checked == false)
             {
-                pnlData1.Controls.Remove(lblFahrstufe);
-                pnlData1.Controls.Remove(lblfahrst);
+                pnlDataGrunddaten.Controls.Remove(lblFahrstufe);
+                pnlDataGrunddaten.Controls.Remove(lblfahrst);
             }
             else if (cbFahrstufe.Checked)// wenn cbFahrstufe gecheckt
             {
                 cbFahrstufenschalter.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
 
-                pnlData1.Controls.Add(lblFahrstufe, 0, 2);
-                pnlData1.Controls.Add(lblfahrst, 1, 2);
+                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 0, 2);
+                pnlDataGrunddaten.Controls.Add(lblfahrst, 1, 2);
                 lblfahrst.Text = "Fahrstufe";
             }
         }
@@ -771,15 +775,15 @@ namespace ZusiTCPDemoApp
         {
             if (cbFahrstufenschalter.Checked == false && cbFahrstufe.Checked == false)
             {
-                pnlData1.Controls.Remove(lblFahrstufe);
-                pnlData1.Controls.Remove(lblfahrst);
+                pnlDataGrunddaten.Controls.Remove(lblFahrstufe);
+                pnlDataGrunddaten.Controls.Remove(lblfahrst);
             }
             else if(cbFahrstufenschalter.Checked) // wenn cbFahrstufenschalter gecheckt
             {
                 cbFahrstufe.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
 
-                pnlData1.Controls.Add(lblFahrstufe, 0, 2);
-                pnlData1.Controls.Add(lblfahrst, 1, 2);
+                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 0, 2);
+                pnlDataGrunddaten.Controls.Add(lblfahrst, 1, 2);
                 lblfahrst.Text = "Fahrschalter";
             }
         }
@@ -924,6 +928,24 @@ namespace ZusiTCPDemoApp
 
             }
 
+        }
+
+        private void tabEinstellungen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if(tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"])
+            {
+                tabEinstellungen.Width = 202;
+            }
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabDarstellung"])
+            {
+                tabEinstellungen.Width = 202;
+            }
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen"])
+            {
+                tabEinstellungen.Width = 420;
+            }
+            
         }
         
 
