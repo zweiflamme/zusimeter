@@ -92,15 +92,11 @@
             this.tbPort = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnDebugpanel = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFlag = new System.Windows.Forms.Label();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
-            this.lblDebugtuerbool = new System.Windows.Forms.Label();
-            this.lblDebugtueren = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblDebugSchleudern = new System.Windows.Forms.Label();
-            this.lblDebugBremsen = new System.Windows.Forms.Label();
-            this.lblDebugScharf = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tbVerz = new System.Windows.Forms.TextBox();
@@ -120,8 +116,12 @@
             this.lblFahrstufe = new System.Windows.Forms.Label();
             this.lblTueren = new System.Windows.Forms.Label();
             this.pnlDataBremsen = new System.Windows.Forms.TableLayoutPanel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblVerbstatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblfbv = new System.Windows.Forms.Label();
+            this.lbldynbrem = new System.Windows.Forms.Label();
+            this.lblzusbr = new System.Windows.Forms.Label();
+            this.lblFbventil = new System.Windows.Forms.Label();
+            this.lblDynbremse = new System.Windows.Forms.Label();
+            this.lblZusbremse = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.pnlDataAFBLZB = new System.Windows.Forms.TableLayoutPanel();
             this.lblafbeinaus = new System.Windows.Forms.Label();
@@ -133,12 +133,6 @@
             this.lblLZBzielgeschw = new System.Windows.Forms.Label();
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
-            this.lblfbv = new System.Windows.Forms.Label();
-            this.lbldynbrem = new System.Windows.Forms.Label();
-            this.lblzusbr = new System.Windows.Forms.Label();
-            this.lblFbventil = new System.Windows.Forms.Label();
-            this.lblDynbremse = new System.Windows.Forms.Label();
-            this.lblZusbremse = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -152,12 +146,12 @@
             this.panel1.SuspendLayout();
             this.tabSystem.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.pnlDebug.SuspendLayout();
             this.grpDebug.SuspendLayout();
             this.pnlRight.SuspendLayout();
             this.pnlDataGrunddaten.SuspendLayout();
             this.pnlDataBremsen.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.pnlDataAFBLZB.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.SuspendLayout();
@@ -735,7 +729,7 @@
             this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
             this.tabDarstellung.Name = "tabDarstellung";
             this.tabDarstellung.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDarstellung.Size = new System.Drawing.Size(407, 297);
+            this.tabDarstellung.Size = new System.Drawing.Size(407, 299);
             this.tabDarstellung.TabIndex = 1;
             this.tabDarstellung.Text = "Darstellung";
             // 
@@ -869,7 +863,7 @@
             this.tabSystem.Controls.Add(this.btnDebugpanel);
             this.tabSystem.Location = new System.Drawing.Point(4, 22);
             this.tabSystem.Name = "tabSystem";
-            this.tabSystem.Size = new System.Drawing.Size(407, 297);
+            this.tabSystem.Size = new System.Drawing.Size(407, 299);
             this.tabSystem.TabIndex = 2;
             this.tabSystem.Text = "System";
             // 
@@ -923,6 +917,26 @@
             this.btnDebugpanel.UseVisualStyleBackColor = true;
             this.btnDebugpanel.Click += new System.EventHandler(this.btnDebugpanel_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.AutoSize = false;
+            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblVerbstatus});
+            this.statusStrip1.Location = new System.Drawing.Point(3, 330);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(129, 23);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.Stretch = false;
+            this.statusStrip1.TabIndex = 18;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblVerbstatus
+            // 
+            this.lblVerbstatus.Name = "lblVerbstatus";
+            this.lblVerbstatus.Size = new System.Drawing.Size(52, 18);
+            this.lblVerbstatus.Text = "getrennt";
+            // 
             // lblFlag
             // 
             this.lblFlag.BackColor = System.Drawing.Color.Orange;
@@ -938,90 +952,30 @@
             this.pnlDebug.AutoSize = true;
             this.pnlDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlDebug.Controls.Add(this.grpDebug);
-            this.pnlDebug.Location = new System.Drawing.Point(448, 6);
+            this.pnlDebug.Location = new System.Drawing.Point(430, 7);
             this.pnlDebug.Name = "pnlDebug";
-            this.pnlDebug.Size = new System.Drawing.Size(149, 249);
+            this.pnlDebug.Size = new System.Drawing.Size(138, 321);
             this.pnlDebug.TabIndex = 12;
             this.pnlDebug.Visible = false;
             // 
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.grpDebug.Controls.Add(this.lblDebugtuerbool);
-            this.grpDebug.Controls.Add(this.lblDebugtueren);
-            this.grpDebug.Controls.Add(this.label1);
-            this.grpDebug.Controls.Add(this.lblDebugSchleudern);
-            this.grpDebug.Controls.Add(this.lblDebugBremsen);
-            this.grpDebug.Controls.Add(this.lblDebugScharf);
             this.grpDebug.Controls.Add(this.label13);
             this.grpDebug.Controls.Add(this.label12);
             this.grpDebug.Controls.Add(this.tbVerz);
             this.grpDebug.Controls.Add(this.btnFlag);
-            this.grpDebug.Location = new System.Drawing.Point(14, 4);
+            this.grpDebug.Location = new System.Drawing.Point(3, 4);
             this.grpDebug.Name = "grpDebug";
-            this.grpDebug.Size = new System.Drawing.Size(132, 242);
+            this.grpDebug.Size = new System.Drawing.Size(132, 314);
             this.grpDebug.TabIndex = 12;
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
             // 
-            // lblDebugtuerbool
-            // 
-            this.lblDebugtuerbool.AutoSize = true;
-            this.lblDebugtuerbool.Location = new System.Drawing.Point(50, 120);
-            this.lblDebugtuerbool.Name = "lblDebugtuerbool";
-            this.lblDebugtuerbool.Size = new System.Drawing.Size(37, 13);
-            this.lblDebugtuerbool.TabIndex = 29;
-            this.lblDebugtuerbool.Text = "(türen)";
-            // 
-            // lblDebugtueren
-            // 
-            this.lblDebugtueren.AutoSize = true;
-            this.lblDebugtueren.Location = new System.Drawing.Point(48, 107);
-            this.lblDebugtueren.Name = "lblDebugtueren";
-            this.lblDebugtueren.Size = new System.Drawing.Size(37, 13);
-            this.lblDebugtueren.TabIndex = 28;
-            this.lblDebugtueren.Text = "(türen)";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Türen";
-            // 
-            // lblDebugSchleudern
-            // 
-            this.lblDebugSchleudern.AutoSize = true;
-            this.lblDebugSchleudern.Location = new System.Drawing.Point(6, 210);
-            this.lblDebugSchleudern.Name = "lblDebugSchleudern";
-            this.lblDebugSchleudern.Size = new System.Drawing.Size(65, 13);
-            this.lblDebugSchleudern.TabIndex = 26;
-            this.lblDebugSchleudern.Text = "(schleudern)";
-            // 
-            // lblDebugBremsen
-            // 
-            this.lblDebugBremsen.AutoSize = true;
-            this.lblDebugBremsen.Location = new System.Drawing.Point(6, 196);
-            this.lblDebugBremsen.Name = "lblDebugBremsen";
-            this.lblDebugBremsen.Size = new System.Drawing.Size(53, 13);
-            this.lblDebugBremsen.TabIndex = 22;
-            this.lblDebugBremsen.Text = "(bremsen)";
-            // 
-            // lblDebugScharf
-            // 
-            this.lblDebugScharf.AutoSize = true;
-            this.lblDebugScharf.Location = new System.Drawing.Point(6, 181);
-            this.lblDebugScharf.Name = "lblDebugScharf";
-            this.lblDebugScharf.Size = new System.Drawing.Size(42, 13);
-            this.lblDebugScharf.TabIndex = 21;
-            this.lblDebugScharf.Text = "(scharf)";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 51);
+            this.label13.Location = new System.Drawing.Point(6, 193);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(92, 13);
             this.label13.TabIndex = 20;
@@ -1030,7 +984,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(48, 74);
+            this.label12.Location = new System.Drawing.Point(48, 216);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 13);
             this.label12.TabIndex = 19;
@@ -1038,7 +992,7 @@
             // 
             // tbVerz
             // 
-            this.tbVerz.Location = new System.Drawing.Point(6, 67);
+            this.tbVerz.Location = new System.Drawing.Point(6, 209);
             this.tbVerz.Name = "tbVerz";
             this.tbVerz.Size = new System.Drawing.Size(36, 20);
             this.tbVerz.TabIndex = 18;
@@ -1050,7 +1004,7 @@
             this.btnFlag.Name = "btnFlag";
             this.btnFlag.Size = new System.Drawing.Size(60, 23);
             this.btnFlag.TabIndex = 11;
-            this.btnFlag.Text = "flag";
+            this.btnFlag.Text = "lblFlag";
             this.btnFlag.UseVisualStyleBackColor = true;
             this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
             // 
@@ -1062,7 +1016,7 @@
             this.pnlRight.Controls.Add(this.pnlDebug);
             this.pnlRight.Location = new System.Drawing.Point(149, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(600, 357);
+            this.pnlRight.Size = new System.Drawing.Size(571, 357);
             this.pnlRight.TabIndex = 14;
             this.pnlRight.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRight_Paint);
             // 
@@ -1088,7 +1042,7 @@
             this.lblm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblm.Location = new System.Drawing.Point(69, 24);
             this.lblm.Name = "lblm";
-            this.lblm.Size = new System.Drawing.Size(51, 13);
+            this.lblm.Size = new System.Drawing.Size(55, 13);
             this.lblm.TabIndex = 5;
             this.lblm.Text = "km";
             // 
@@ -1128,7 +1082,7 @@
             this.lblkmh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblkmh.Location = new System.Drawing.Point(69, 0);
             this.lblkmh.Name = "lblkmh";
-            this.lblkmh.Size = new System.Drawing.Size(51, 24);
+            this.lblkmh.Size = new System.Drawing.Size(55, 24);
             this.lblkmh.TabIndex = 4;
             this.lblkmh.Text = "km/h";
             // 
@@ -1166,16 +1120,16 @@
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlDataGrunddaten.Size = new System.Drawing.Size(123, 63);
+            this.pnlDataGrunddaten.Size = new System.Drawing.Size(127, 63);
             this.pnlDataGrunddaten.TabIndex = 16;
             // 
             // lbltuer
             // 
             this.lbltuer.AutoSize = true;
             this.lbltuer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbltuer.Location = new System.Drawing.Point(69, 50);
+            this.lbltuer.Location = new System.Drawing.Point(3, 50);
             this.lbltuer.Name = "lbltuer";
-            this.lbltuer.Size = new System.Drawing.Size(51, 13);
+            this.lbltuer.Size = new System.Drawing.Size(60, 13);
             this.lbltuer.TabIndex = 18;
             this.lbltuer.Text = "Türen";
             // 
@@ -1183,9 +1137,9 @@
             // 
             this.lblfahrst.AutoSize = true;
             this.lblfahrst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblfahrst.Location = new System.Drawing.Point(69, 37);
+            this.lblfahrst.Location = new System.Drawing.Point(3, 37);
             this.lblfahrst.Name = "lblfahrst";
-            this.lblfahrst.Size = new System.Drawing.Size(51, 13);
+            this.lblfahrst.Size = new System.Drawing.Size(60, 13);
             this.lblfahrst.TabIndex = 7;
             this.lblfahrst.Text = "Fahrstufe";
             // 
@@ -1193,9 +1147,9 @@
             // 
             this.lblFahrstufe.AutoSize = true;
             this.lblFahrstufe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFahrstufe.Location = new System.Drawing.Point(3, 37);
+            this.lblFahrstufe.Location = new System.Drawing.Point(69, 37);
             this.lblFahrstufe.Name = "lblFahrstufe";
-            this.lblFahrstufe.Size = new System.Drawing.Size(60, 13);
+            this.lblFahrstufe.Size = new System.Drawing.Size(55, 13);
             this.lblFahrstufe.TabIndex = 6;
             this.lblFahrstufe.Text = "88";
             // 
@@ -1204,9 +1158,9 @@
             this.lblTueren.AutoSize = true;
             this.lblTueren.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTueren.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTueren.Location = new System.Drawing.Point(3, 50);
+            this.lblTueren.Location = new System.Drawing.Point(69, 50);
             this.lblTueren.Name = "lblTueren";
-            this.lblTueren.Size = new System.Drawing.Size(60, 13);
+            this.lblTueren.Size = new System.Drawing.Size(55, 13);
             this.lblTueren.TabIndex = 8;
             this.lblTueren.Text = "########";
             // 
@@ -1241,25 +1195,59 @@
             this.pnlDataBremsen.Size = new System.Drawing.Size(94, 78);
             this.pnlDataBremsen.TabIndex = 17;
             // 
-            // statusStrip1
+            // lblfbv
             // 
-            this.statusStrip1.AutoSize = false;
-            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblVerbstatus});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 330);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(129, 23);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.Stretch = false;
-            this.statusStrip1.TabIndex = 18;
-            this.statusStrip1.Text = "statusStrip1";
+            this.lblfbv.AutoSize = true;
+            this.lblfbv.Location = new System.Drawing.Point(3, 39);
+            this.lblfbv.Name = "lblfbv";
+            this.lblfbv.Size = new System.Drawing.Size(26, 13);
+            this.lblfbv.TabIndex = 12;
+            this.lblfbv.Text = "FbV";
             // 
-            // lblVerbstatus
+            // lbldynbrem
             // 
-            this.lblVerbstatus.Name = "lblVerbstatus";
-            this.lblVerbstatus.Size = new System.Drawing.Size(52, 18);
-            this.lblVerbstatus.Text = "getrennt";
+            this.lbldynbrem.AutoSize = true;
+            this.lbldynbrem.Location = new System.Drawing.Point(3, 52);
+            this.lbldynbrem.Name = "lbldynbrem";
+            this.lbldynbrem.Size = new System.Drawing.Size(45, 13);
+            this.lbldynbrem.TabIndex = 13;
+            this.lbldynbrem.Text = "Dyn. Br.";
+            // 
+            // lblzusbr
+            // 
+            this.lblzusbr.AutoSize = true;
+            this.lblzusbr.Location = new System.Drawing.Point(3, 65);
+            this.lblzusbr.Name = "lblzusbr";
+            this.lblzusbr.Size = new System.Drawing.Size(43, 13);
+            this.lblzusbr.TabIndex = 14;
+            this.lblzusbr.Text = "Zus. br.";
+            // 
+            // lblFbventil
+            // 
+            this.lblFbventil.AutoSize = true;
+            this.lblFbventil.Location = new System.Drawing.Point(54, 39);
+            this.lblFbventil.Name = "lblFbventil";
+            this.lblFbventil.Size = new System.Drawing.Size(13, 13);
+            this.lblFbventil.TabIndex = 15;
+            this.lblFbventil.Text = "0";
+            // 
+            // lblDynbremse
+            // 
+            this.lblDynbremse.AutoSize = true;
+            this.lblDynbremse.Location = new System.Drawing.Point(54, 52);
+            this.lblDynbremse.Name = "lblDynbremse";
+            this.lblDynbremse.Size = new System.Drawing.Size(13, 13);
+            this.lblDynbremse.TabIndex = 16;
+            this.lblDynbremse.Text = "0";
+            // 
+            // lblZusbremse
+            // 
+            this.lblZusbremse.AutoSize = true;
+            this.lblZusbremse.Location = new System.Drawing.Point(54, 65);
+            this.lblZusbremse.Name = "lblZusbremse";
+            this.lblZusbremse.Size = new System.Drawing.Size(13, 13);
+            this.lblZusbremse.TabIndex = 17;
+            this.lblZusbremse.Text = "0";
             // 
             // pnlDataAFBLZB
             // 
@@ -1383,62 +1371,8 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.Size = new System.Drawing.Size(129, 342);
+            this.pnlLeft.Size = new System.Drawing.Size(133, 342);
             this.pnlLeft.TabIndex = 19;
-            // 
-            // lblfbv
-            // 
-            this.lblfbv.AutoSize = true;
-            this.lblfbv.Location = new System.Drawing.Point(3, 39);
-            this.lblfbv.Name = "lblfbv";
-            this.lblfbv.Size = new System.Drawing.Size(26, 13);
-            this.lblfbv.TabIndex = 12;
-            this.lblfbv.Text = "FbV";
-            // 
-            // lbldynbrem
-            // 
-            this.lbldynbrem.AutoSize = true;
-            this.lbldynbrem.Location = new System.Drawing.Point(3, 52);
-            this.lbldynbrem.Name = "lbldynbrem";
-            this.lbldynbrem.Size = new System.Drawing.Size(45, 13);
-            this.lbldynbrem.TabIndex = 13;
-            this.lbldynbrem.Text = "Dyn. Br.";
-            // 
-            // lblzusbr
-            // 
-            this.lblzusbr.AutoSize = true;
-            this.lblzusbr.Location = new System.Drawing.Point(3, 65);
-            this.lblzusbr.Name = "lblzusbr";
-            this.lblzusbr.Size = new System.Drawing.Size(43, 13);
-            this.lblzusbr.TabIndex = 14;
-            this.lblzusbr.Text = "Zus. br.";
-            // 
-            // lblFbventil
-            // 
-            this.lblFbventil.AutoSize = true;
-            this.lblFbventil.Location = new System.Drawing.Point(54, 39);
-            this.lblFbventil.Name = "lblFbventil";
-            this.lblFbventil.Size = new System.Drawing.Size(13, 13);
-            this.lblFbventil.TabIndex = 15;
-            this.lblFbventil.Text = "0";
-            // 
-            // lblDynbremse
-            // 
-            this.lblDynbremse.AutoSize = true;
-            this.lblDynbremse.Location = new System.Drawing.Point(54, 52);
-            this.lblDynbremse.Name = "lblDynbremse";
-            this.lblDynbremse.Size = new System.Drawing.Size(13, 13);
-            this.lblDynbremse.TabIndex = 16;
-            this.lblDynbremse.Text = "0";
-            // 
-            // lblZusbremse
-            // 
-            this.lblZusbremse.AutoSize = true;
-            this.lblZusbremse.Location = new System.Drawing.Point(54, 65);
-            this.lblZusbremse.Name = "lblZusbremse";
-            this.lblZusbremse.Size = new System.Drawing.Size(13, 13);
-            this.lblZusbremse.TabIndex = 17;
-            this.lblZusbremse.Text = "0";
             // 
             // CMainWindow
             // 
@@ -1476,6 +1410,8 @@
             this.tabSystem.ResumeLayout(false);
             this.grpVerbindung.ResumeLayout(false);
             this.grpVerbindung.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.pnlDebug.ResumeLayout(false);
             this.grpDebug.ResumeLayout(false);
             this.grpDebug.PerformLayout();
@@ -1485,8 +1421,6 @@
             this.pnlDataGrunddaten.PerformLayout();
             this.pnlDataBremsen.ResumeLayout(false);
             this.pnlDataBremsen.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.pnlDataAFBLZB.ResumeLayout(false);
             this.pnlDataAFBLZB.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
@@ -1508,15 +1442,12 @@
         private System.Windows.Forms.Label lblFlag;
         private System.Windows.Forms.Panel pnlDebug;
         private System.Windows.Forms.GroupBox grpDebug;
-        private System.Windows.Forms.Label lblDebugBremsen;
-        private System.Windows.Forms.Label lblDebugScharf;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tbVerz;
         private System.Windows.Forms.Button btnFlag;
         private System.Windows.Forms.Button btnDebugpanel;
         private System.Windows.Forms.Panel pnlRight;
-        private System.Windows.Forms.Label lblDebugSchleudern;
         private System.Windows.Forms.Timer timerFlag;
         private System.Windows.Forms.Button btnNacht;
         private System.Windows.Forms.Label lblbarhll;
@@ -1550,9 +1481,6 @@
         private System.Windows.Forms.CheckBox cbBremsen;
         private System.Windows.Forms.Label lbltuer;
         private System.Windows.Forms.Label lblTueren;
-        private System.Windows.Forms.Label lblDebugtueren;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblDebugtuerbool;
         private System.Windows.Forms.Panel pnlBremsen;
         private System.Windows.Forms.Panel pnlGrunddaten;
         private System.Windows.Forms.CheckBox cbFahrstufenschalter;

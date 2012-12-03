@@ -124,9 +124,7 @@ namespace ZusiTCPDemoApp
 
         public void ResetDebugLabels() // Resetting all the labels on the Debug panel to their initial state
         {
-            lblDebugBremsen.Text = "(gebremst?)";
-            lblDebugScharf.Text = "(scharf?)";
-            lblDebugSchleudern.Text = "(geschleudert?)";            
+            //         
         }
 
         public void ResetGlobals() // Resetting all global variables
@@ -327,7 +325,7 @@ namespace ZusiTCPDemoApp
 
                 //DEBUG
                 double tuerwert = dataSet.Value;
-                lblDebugtueren.Text = tuerwert.ToString();
+                
 
                 //TEST
                 //if (tuerwert > 9E-45) lblDebugtuerbool.Text = "größer 9E-45";
@@ -505,6 +503,11 @@ namespace ZusiTCPDemoApp
             {
                 pnlDebug.Visible = true;
                 debugging = true;
+
+                //TODO einen Weg finden damit auch bei breitem tabEinstellungen das Debug Panel angezeigt wird
+                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
+                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
+
             }
         }
 
@@ -973,14 +976,23 @@ namespace ZusiTCPDemoApp
             if(tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"])
             {
                 tabEinstellungen.Width = 202;
+                //TODO einen Weg finden damit auch bei breitem tabEinstellungen das Debug Panel angezeigt wird
+                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
+                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
             if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabDarstellung"])
             {
                 tabEinstellungen.Width = 202;
+                //TODO einen Weg finden damit auch bei breitem tabEinstellungen das Debug Panel angezeigt wird
+                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
+                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
             if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen"])
             {
                 tabEinstellungen.Width = 420;
+                //TODO einen Weg finden damit auch bei breitem tabEinstellungen das Debug Panel angezeigt wird
+                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
+                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
             
         }
