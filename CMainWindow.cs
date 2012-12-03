@@ -102,6 +102,7 @@ namespace ZusiTCPDemoApp
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
             MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
+            MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
             MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
             MyTCPConnection.RequestData(2596); // "LM Sifa "
@@ -110,6 +111,7 @@ namespace ZusiTCPDemoApp
             MyTCPConnection.RequestData(2646); // "Türen"
             //TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
             //TEST MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
+            MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2616); // "Schalter AFB ein/aus"
             MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
@@ -277,12 +279,16 @@ namespace ZusiTCPDemoApp
                     }                    
                 }
             }
+            else if (dataSet.Id == MyTCPConnection["Schalter Führerbremsventil"])
+            {
+                lblFbventil.Text = dataSet.Value.ToString();
+            }
             else if (dataSet.Id == MyTCPConnection["Strecken-Km"]) // 2645
             {
                 if (verbunden && dataSet.Value > 0)
                 {
-                        streckenmeter = Convert.ToDouble(dataSet.Value);
-                        lblMeter.Text = String.Format("{0:0.0}", streckenmeter / StreckenmeterDarstfaktor); //Streckenmeter-Darstellungsfaktor
+                    streckenmeter = Convert.ToDouble(dataSet.Value);
+                    lblMeter.Text = String.Format("{0:0.0}", streckenmeter / StreckenmeterDarstfaktor); //Streckenmeter-Darstellungsfaktor
                 }
                 else lblMeter.Text = "---";
             }
@@ -305,7 +311,7 @@ namespace ZusiTCPDemoApp
                     lblFahrstufe.Text = String.Format("{0}", dataSet.Value);
                 else
                     lblFahrstufe.Text = "--";
-            }            
+            }
             else if (dataSet.Id == MyTCPConnection["Türen"])
             {
 
@@ -328,7 +334,7 @@ namespace ZusiTCPDemoApp
                 //else if (tuerwert < 9E-45) lblDebugtuerbool.Text = "kleiner 9E-45";
                 //else lblDebugtuerbool.Text = "anderer Wert";
 
-                
+
                 if (tuerwert > 7E-45 && cbLmtueren.Checked) // geschlossen
                 {
                     lblFlag.Visible = false;
@@ -353,7 +359,7 @@ namespace ZusiTCPDemoApp
                 {
                     lblTueren.Text = "freigegeben";
                 }
-                
+
             }
             else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"] && cbFahrstufenschalter.Checked == true) //ENTWEDER SCHALTER ODER FAHRSTUFE
             {
@@ -365,7 +371,7 @@ namespace ZusiTCPDemoApp
                 else
                     lblFahrstufe.Text = "--";
             }
-           
+
 
             else if (dataSet.Id == MyTCPConnection["Schalter AFB ein/aus"])
             {
@@ -373,11 +379,6 @@ namespace ZusiTCPDemoApp
                     afbistein = true;
                 else
                     afbistein = false;
-
-            }
-            else if (dataSet.Id == MyTCPConnection["AFB Soll-Geschwindigkeit"])
-            {
-                double afbvschalter = dataSet.Value;
 
                 if (afbistein)
                 {
@@ -389,20 +390,28 @@ namespace ZusiTCPDemoApp
                     lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular);
                     lblafbeinaus.Text = "AFB aus";
                 }
+
+            }
+            else if (dataSet.Id == MyTCPConnection["AFB Soll-Geschwindigkeit"])
+            //TEST else if(dataSet.Id == MyTCPConnection["LZB/AFB Soll-Geschwindigkeit"])
+            {
+                double afbvschalter = dataSet.Value;
+
+
                 //TODO: Schauen ob LZB-vSoll höher ist!
                 lblAFBgeschwindigkeit.Text = String.Format("{0} km/h", afbvschalter);
             }
-            else if(dataSet.Id == MyTCPConnection["LZB Soll-Geschwindigkeit"])
+            else if (dataSet.Id == MyTCPConnection["LZB Soll-Geschwindigkeit"])
             {
                 double lzbsoll = dataSet.Value;
                 lblLZBsollgeschw.Text = String.Format("{0}", lzbsoll);
             }
-             else if(dataSet.Id == MyTCPConnection["LZB Ziel-Geschwindigkeit"])
+            else if (dataSet.Id == MyTCPConnection["LZB Ziel-Geschwindigkeit"])
             {
                 double lzbziel = dataSet.Value;
                 lblLZBzielgeschw.Text = String.Format("{0}", lzbziel);
             }
-             else if(dataSet.Id == MyTCPConnection["LM LZB Zielweg (ab 0)"])
+            else if (dataSet.Id == MyTCPConnection["LM LZB Zielweg (ab 0)"])
             {
                 double lzbweg = dataSet.Value;
                 lblLZBzielweg.Text = String.Format("{0}", lzbweg);
@@ -611,7 +620,14 @@ namespace ZusiTCPDemoApp
             pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
             pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
             pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
-            pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);            
+            pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
+
+            pnlDataBremsen.Controls.Remove(lblfbv);
+            pnlDataBremsen.Controls.Remove(lblFbventil);
+            pnlDataBremsen.Controls.Remove(lbldynbrem);
+            pnlDataBremsen.Controls.Remove(lblDynbremse);
+            pnlDataBremsen.Controls.Remove(lblzusbr);
+            pnlDataBremsen.Controls.Remove(lblZusbremse);
         }
 
         private void listAnzeige_1_SelectedIndexChanged(object sender, EventArgs e)
@@ -925,15 +941,12 @@ namespace ZusiTCPDemoApp
             {
                 // pnlLeft.Controls.Remove(pnlData1); //pnlSchalter
 
-                //DEBUG: Nicht-Checkboxes entfernen! Bessere Lösung finden!
-                pnlSchalterst.Controls.Remove(label5);
-                pnlSchalterst.Controls.Remove(numFahrschneutral);
-
+                
                //TODO foreach (CheckBox cbox in pnlSchalterst.Controls)
                 {
                     //cbox.Enabled = false;
                 }
-                cbFahrstufenschalter.Enabled = false;
+                
                 cbSchalterst.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
 
             }
