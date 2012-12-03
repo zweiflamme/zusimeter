@@ -109,7 +109,12 @@ namespace ZusiTCPDemoApp
             MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
             MyTCPConnection.RequestData(2646); // "Türen"
             //TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
-            
+            //TEST MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
+            MyTCPConnection.RequestData(2616); // "Schalter AFB ein/aus"
+            MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
+            MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
+            MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
+            MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"          
 
         }
 
@@ -192,6 +197,8 @@ namespace ZusiTCPDemoApp
 
         //TODO: TEST: Setting a maximum reached speed vReached
         double vReached = 0;
+
+        bool afbistein = false; //TEST speichert den AFB-Schalterstatus
 
 
 
@@ -358,8 +365,48 @@ namespace ZusiTCPDemoApp
                 else
                     lblFahrstufe.Text = "--";
             }
-
            
+
+            else if (dataSet.Id == MyTCPConnection["Schalter AFB ein/aus"])
+            {
+                if (dataSet.Value > 0)
+                    afbistein = true;
+                else
+                    afbistein = false;
+
+            }
+            else if (dataSet.Id == MyTCPConnection["AFB Soll-Geschwindigkeit"])
+            {
+                double afbvschalter = dataSet.Value;
+
+                if (afbistein)
+                {
+                    lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Bold);
+                    lblafbeinaus.Text = "AFB ein";
+                }
+                else
+                {
+                    lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular);
+                    lblafbeinaus.Text = "AFB aus";
+                }
+                //TODO: Schauen ob LZB-vSoll höher ist!
+                lblAFBgeschwindigkeit.Text = String.Format("{0} km/h", afbvschalter);
+            }
+            else if(dataSet.Id == MyTCPConnection["LZB Soll-Geschwindigkeit"])
+            {
+                double lzbsoll = dataSet.Value;
+                lblLZBsollgeschw.Text = String.Format("{0}", lzbsoll);
+            }
+             else if(dataSet.Id == MyTCPConnection["LZB Ziel-Geschwindigkeit"])
+            {
+                double lzbziel = dataSet.Value;
+                lblLZBzielgeschw.Text = String.Format("{0}", lzbziel);
+            }
+             else if(dataSet.Id == MyTCPConnection["LM LZB Zielweg (ab 0)"])
+            {
+                double lzbweg = dataSet.Value;
+                lblLZBzielweg.Text = String.Format("{0}", lzbweg);
+            }           
 
         }
 //###HANDLE INCOMING DATA ENDE###//
@@ -557,6 +604,14 @@ namespace ZusiTCPDemoApp
             {
                 tabEinstellungen.Width = 202;
             }
+
+            //TODO TEST removing unwanted controls
+            pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
+            pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
+            pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
+            pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
+            pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
+            pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);            
         }
 
         private void listAnzeige_1_SelectedIndexChanged(object sender, EventArgs e)
@@ -856,47 +911,12 @@ namespace ZusiTCPDemoApp
         private void btnAnzvor_Click(object sender, EventArgs e)
         {
 
-            btnAnzzurueck.Enabled = true;
-            
-
-            if (anzSeite < anzMaxseiten)
-            {
-                anzSeite++;
-                lblAnzseite.Text = String.Format("{0} / {1}", anzSeite, anzMaxseiten);
-                
-            }
-            if (anzSeite == anzMaxseiten) //wenn jetzt die letzte Seite angezeigt wird btn ausgrauen
-               btnAnzvor.Enabled = false;
-
-            if (anzSeite == 2)
-            {
-                //Panel für Seite 2 zum Panel Anzeigen hinzufügen, Seite 1 entfernen
-                //TODO pnlSeite2.Location = new Point(0, 0);
-                tabAnzeigen.Controls.Remove(pnlSeite1);
-                //TODO tabAnzeigen.Controls.Add(pnlSeite2);
-            }
-               
+                           
         }
 
         private void btnAnzzurueck_Click(object sender, EventArgs e)
         {
-            btnAnzvor.Enabled = true;
-
-            if (anzSeite > 1)
-            {
-                anzSeite--;
-                lblAnzseite.Text = String.Format("{0} / {1}", anzSeite, anzMaxseiten);
-            }
-            if (anzSeite <= 1) //wenn jetzt die erste Seite angezeigt wird btn ausgrauen
-                btnAnzzurueck.Enabled = false;
-
-            if (anzSeite == 1)
-            {
-                //Panel für Seite 1 zum Panel Anzeigen hinzufügen, Seite 2 entfernen
-                pnlSeite1.Location = new Point(0, 0);
-                //TODO tabAnzeigen.Controls.Remove(pnlSeite2);
-                tabAnzeigen.Controls.Add(pnlSeite1);
-            }
+           
         }
 
         private void cbSchalterst_CheckedChanged(object sender, EventArgs e)
@@ -960,6 +980,88 @@ namespace ZusiTCPDemoApp
         private void btnFarbeTag_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
+        }
+
+        private void cbAFBgeschw_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAFBgeschw.Checked == false)
+            {
+                pnlDataAFBLZB.Controls.Remove(lblafbeinaus);
+                pnlDataAFBLZB.Controls.Remove(lblAFBgeschwindigkeit);
+            }
+            else
+            {
+                pnlDataAFBLZB.Controls.Add(lblafbeinaus, 0, 0);
+                pnlDataAFBLZB.Controls.Add(lblAFBgeschwindigkeit, 1, 0);
+            }
+        }
+
+        private void cbLZBvsoll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLZBvsoll.Checked == false)
+            {
+                pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
+                pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
+            }
+            else
+            {
+                pnlDataAFBLZB.Controls.Add(lbllzbvsoll, 0, 1);
+                pnlDataAFBLZB.Controls.Add(lblLZBsollgeschw, 1, 1);
+            }
+        }
+
+        private void cbLZBvziel_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLZBvziel.Checked == false)
+            {
+                pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
+                pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
+            }
+            else
+            {
+                pnlDataAFBLZB.Controls.Add(lbllzbvziel, 0, 2);
+                pnlDataAFBLZB.Controls.Add(lblLZBzielgeschw, 1, 2);
+            }
+        }
+
+        private void cbLZBweg_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLZBweg.Checked == false)
+            {
+                pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
+                pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
+            }
+            else
+            {
+                pnlDataAFBLZB.Controls.Add(lbllzbzielw, 0, 3);
+                pnlDataAFBLZB.Controls.Add(lblLZBzielweg, 1, 3);
+            }
+        }
+
+        private void cbAFBLZB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAFBLZB.Checked == false)
+            {
+                pnlLeft.Controls.Remove(pnlDataAFBLZB);
+
+                foreach (CheckBox cbox in pnlAFBLZB.Controls)
+                {
+                    cbox.Enabled = false;
+                }
+
+                cbAFBLZB.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
+
+            }
+            else
+            {
+                pnlLeft.Controls.Add(pnlDataAFBLZB);
+
+                foreach (CheckBox cbox in pnlAFBLZB.Controls)
+                {
+                    cbox.Enabled = true;
+                }
+
+            }
         }
         
 
