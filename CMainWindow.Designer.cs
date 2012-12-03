@@ -76,10 +76,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbFokusFahrtzurueck = new System.Windows.Forms.CheckBox();
             this.btnFarbeTag = new System.Windows.Forms.Button();
             this.btnFarbeNacht = new System.Windows.Forms.Button();
             this.cbTopmost = new System.Windows.Forms.CheckBox();
-            this.cbFokuszurueck = new System.Windows.Forms.CheckBox();
+            this.cbFokusImmerzurueck = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -97,6 +99,7 @@
             this.lblFlag = new System.Windows.Forms.Label();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
+            this.btnDebugFokusZusi = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tbVerz = new System.Windows.Forms.TextBox();
@@ -133,7 +136,6 @@
             this.lblLZBzielgeschw = new System.Windows.Forms.Label();
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
-            this.btnDebugFokusZusi = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -719,10 +721,12 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.label1);
+            this.tabDarstellung.Controls.Add(this.cbFokusFahrtzurueck);
             this.tabDarstellung.Controls.Add(this.btnFarbeTag);
             this.tabDarstellung.Controls.Add(this.btnFarbeNacht);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
-            this.tabDarstellung.Controls.Add(this.cbFokuszurueck);
+            this.tabDarstellung.Controls.Add(this.cbFokusImmerzurueck);
             this.tabDarstellung.Controls.Add(this.label3);
             this.tabDarstellung.Controls.Add(this.numSifagroesse);
             this.tabDarstellung.Controls.Add(this.panel1);
@@ -733,6 +737,28 @@
             this.tabDarstellung.Size = new System.Drawing.Size(407, 299);
             this.tabDarstellung.TabIndex = 1;
             this.tabDarstellung.Text = "Darstellung";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 246);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(162, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Fokus nach Klick zurück an Zusi";
+            // 
+            // cbFokusFahrtzurueck
+            // 
+            this.cbFokusFahrtzurueck.AutoSize = true;
+            this.cbFokusFahrtzurueck.Checked = true;
+            this.cbFokusFahrtzurueck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbFokusFahrtzurueck.Location = new System.Drawing.Point(66, 264);
+            this.cbFokusFahrtzurueck.Name = "cbFokusFahrtzurueck";
+            this.cbFokusFahrtzurueck.Size = new System.Drawing.Size(115, 17);
+            this.cbFokusFahrtzurueck.TabIndex = 20;
+            this.cbFokusFahrtzurueck.Text = "Während der Fahrt";
+            this.cbFokusFahrtzurueck.UseVisualStyleBackColor = true;
+            this.cbFokusFahrtzurueck.CheckedChanged += new System.EventHandler(this.cbFokusFahrtzurueck_CheckedChanged);
             // 
             // btnFarbeTag
             // 
@@ -771,15 +797,16 @@
             this.cbTopmost.UseVisualStyleBackColor = true;
             this.cbTopmost.CheckedChanged += new System.EventHandler(this.cbTopmost_CheckedChanged);
             // 
-            // cbFokuszurueck
+            // cbFokusImmerzurueck
             // 
-            this.cbFokuszurueck.AutoSize = true;
-            this.cbFokuszurueck.Location = new System.Drawing.Point(6, 231);
-            this.cbFokuszurueck.Name = "cbFokuszurueck";
-            this.cbFokuszurueck.Size = new System.Drawing.Size(181, 17);
-            this.cbFokuszurueck.TabIndex = 16;
-            this.cbFokuszurueck.Text = "Fokus nach Klick zurück an Zusi";
-            this.cbFokuszurueck.UseVisualStyleBackColor = true;
+            this.cbFokusImmerzurueck.AutoSize = true;
+            this.cbFokusImmerzurueck.Location = new System.Drawing.Point(6, 264);
+            this.cbFokusImmerzurueck.Name = "cbFokusImmerzurueck";
+            this.cbFokusImmerzurueck.Size = new System.Drawing.Size(54, 17);
+            this.cbFokusImmerzurueck.TabIndex = 16;
+            this.cbFokusImmerzurueck.Text = "Immer";
+            this.cbFokusImmerzurueck.UseVisualStyleBackColor = true;
+            this.cbFokusImmerzurueck.CheckedChanged += new System.EventHandler(this.cbFokusImmerzurueck_CheckedChanged);
             // 
             // label3
             // 
@@ -973,6 +1000,16 @@
             this.grpDebug.TabIndex = 12;
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
+            // 
+            // btnDebugFokusZusi
+            // 
+            this.btnDebugFokusZusi.Location = new System.Drawing.Point(6, 52);
+            this.btnDebugFokusZusi.Name = "btnDebugFokusZusi";
+            this.btnDebugFokusZusi.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugFokusZusi.TabIndex = 21;
+            this.btnDebugFokusZusi.Text = "Zusi-Fokus";
+            this.btnDebugFokusZusi.UseVisualStyleBackColor = true;
+            this.btnDebugFokusZusi.Click += new System.EventHandler(this.btnDebugFokusZusi_Click);
             // 
             // label13
             // 
@@ -1376,16 +1413,6 @@
             this.pnlLeft.Size = new System.Drawing.Size(133, 342);
             this.pnlLeft.TabIndex = 19;
             // 
-            // btnDebugFokusZusi
-            // 
-            this.btnDebugFokusZusi.Location = new System.Drawing.Point(6, 52);
-            this.btnDebugFokusZusi.Name = "btnDebugFokusZusi";
-            this.btnDebugFokusZusi.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugFokusZusi.TabIndex = 21;
-            this.btnDebugFokusZusi.Text = "Zusi-Fokus";
-            this.btnDebugFokusZusi.UseVisualStyleBackColor = true;
-            this.btnDebugFokusZusi.Click += new System.EventHandler(this.btnDebugFokusZusi_Click);
-            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1505,7 +1532,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numSifagroesse;
         private System.Windows.Forms.CheckBox cbTopmost;
-        private System.Windows.Forms.CheckBox cbFokuszurueck;
+        private System.Windows.Forms.CheckBox cbFokusImmerzurueck;
         private System.Windows.Forms.NumericUpDown numFahrschneutral;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnlSchalterst;
@@ -1548,7 +1575,11 @@
         private System.Windows.Forms.Label lblDynbremse;
         private System.Windows.Forms.Label lblZusbremse;
         private System.Windows.Forms.Button btnDebugFokusZusi;
+        private System.Windows.Forms.CheckBox cbFokusFahrtzurueck;
+        private System.Windows.Forms.Label label1;
 
     }
+
+
 }
 

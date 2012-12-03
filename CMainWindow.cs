@@ -89,7 +89,7 @@ namespace ZusiTCPDemoApp
 
             //nicht funktionierende Checkboxes deaktivieren
             //TODO
-            cbFokuszurueck.Enabled = false;
+            
 
             
 
@@ -190,6 +190,9 @@ namespace ZusiTCPDemoApp
                 }
             }
         }
+
+        //TEST
+        double geschwindigkeit;
 
         public bool abbruch;
 
@@ -619,10 +622,15 @@ namespace ZusiTCPDemoApp
                 btnNacht.Text = "Nachtmodus";
             }
 
+            FokusAnZusi();
+
         }
 
         private void CMainWindow_Load(object sender, EventArgs e)
         {
+            
+
+            
             //TODO TEST
             if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"])
             {
@@ -643,7 +651,28 @@ namespace ZusiTCPDemoApp
             pnlDataBremsen.Controls.Remove(lblDynbremse);
             pnlDataBremsen.Controls.Remove(lblzusbr);
             pnlDataBremsen.Controls.Remove(lblZusbremse);
-        }
+
+            //TODO TEST -- TODO: Bessere Methode verwenden (siehe CodeProject Forum)
+            //neue Eventhandler festlegen für alle Controls
+            //Zweck: Fokus zurück an Zusi
+            foreach (CheckBox c in pnlBremsen.Controls)
+            {
+                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
+            }
+            foreach (CheckBox c in pnlGrunddaten.Controls)
+            {
+                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
+            }
+            foreach (CheckBox c in pnlAFBLZB.Controls)
+            {
+                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
+            }
+            foreach (CheckBox c in pnlSchalterst.Controls)
+            {
+                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
+            }
+
+            }
 
         private void listAnzeige_1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1111,7 +1140,23 @@ namespace ZusiTCPDemoApp
         [DllImport("user32.dll")]
         extern static IntPtr SetActiveWindow(IntPtr Fenster);
 
-        
+
+        //TEST
+        public void FokusAnZusi()
+        {
+            if (hasMoved == true && cbFokusFahrtzurueck.Checked) // Fokus während der Fahrt zurück an Zusi
+            {
+                String window = "Zusi";
+                //SetActiveWindow(FindWindow(null, window));
+                SetForegroundWindow(FindWindow(null, window));
+            }
+            else if (cbFokusImmerzurueck.Checked)
+            {                
+                String window = "Zusi";
+                //SetActiveWindow(FindWindow(null, window));
+                SetForegroundWindow(FindWindow(null, window));
+            }
+        }
 
         private void btnDebugFokusZusi_Click(object sender, EventArgs e)
         {
@@ -1119,9 +1164,27 @@ namespace ZusiTCPDemoApp
             String window = "Zusi";
             //SetActiveWindow(FindWindow(null, window));
             SetForegroundWindow(FindWindow(null, window));        
+            
+        }
+
+        private void Control_CheckedChanged(object sender, EventArgs e)
+        {
+            //TEST
+            FokusAnZusi();
         }
         
 
+        private void cbFokusImmerzurueck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFokusImmerzurueck.Checked)
+                cbFokusFahrtzurueck.Checked = false;
+        }
+
+        private void cbFokusFahrtzurueck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFokusFahrtzurueck.Checked)
+                cbFokusImmerzurueck.Checked = false;
+        }
           
     }
 }
