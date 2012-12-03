@@ -11,6 +11,14 @@ using System.Diagnostics; // für Stoppuhr
 using Zusi_Datenausgabe; //DEBUG: v1.0.0
 
 
+//TEST Um den Fokus an Zusi zurückzugeben
+//Einbinden von:
+using System.Runtime.InteropServices;
+
+
+
+
+
 /* ZusiTCPDemoApp
  * This example shows basic usage of Andreas Karg's Zusi TCP interface for .Net.
  * It is published under the GNU General Public License v3.0. Base your own work on it, play around, do what you want. :-)
@@ -60,6 +68,10 @@ namespace ZusiTCPDemoApp
         //default-Wert für Neutralstellung Fahrschalter (für Kombihebel) TODO: Bessere Lösung?
         int fahrschalterneutral = 0;
            
+        //TODO TEST Fokus zurück an Zusi
+        //Als externe Methode deklarieren...
+        [DllImport("User32.dll")]
+        static extern long SetForegroundWindow(int hwnd);
 
         public CMainWindow()
         {
@@ -1087,6 +1099,26 @@ namespace ZusiTCPDemoApp
                 }
 
             }
+        }
+
+        //TEST TEST TEST//
+        [DllImport("user32.dll")]
+        extern static Boolean SetForegroundWindow(IntPtr Fenster);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll")]
+        extern static IntPtr SetActiveWindow(IntPtr Fenster);
+
+        
+
+        private void btnDebugFokusZusi_Click(object sender, EventArgs e)
+        {
+            //TEST DEBUG Fokus auf Zusi
+            String window = "Zusi";
+            //SetActiveWindow(FindWindow(null, window));
+            SetForegroundWindow(FindWindow(null, window));        
         }
         
 

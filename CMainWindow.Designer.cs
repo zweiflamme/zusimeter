@@ -133,6 +133,7 @@
             this.lblLZBzielgeschw = new System.Windows.Forms.Label();
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
+            this.btnDebugFokusZusi = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -961,6 +962,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.btnDebugFokusZusi);
             this.grpDebug.Controls.Add(this.label13);
             this.grpDebug.Controls.Add(this.label12);
             this.grpDebug.Controls.Add(this.tbVerz);
@@ -1374,6 +1376,16 @@
             this.pnlLeft.Size = new System.Drawing.Size(133, 342);
             this.pnlLeft.TabIndex = 19;
             // 
+            // btnDebugFokusZusi
+            // 
+            this.btnDebugFokusZusi.Location = new System.Drawing.Point(6, 52);
+            this.btnDebugFokusZusi.Name = "btnDebugFokusZusi";
+            this.btnDebugFokusZusi.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugFokusZusi.TabIndex = 21;
+            this.btnDebugFokusZusi.Text = "Zusi-Fokus";
+            this.btnDebugFokusZusi.UseVisualStyleBackColor = true;
+            this.btnDebugFokusZusi.Click += new System.EventHandler(this.btnDebugFokusZusi_Click);
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1535,6 +1547,7 @@
         private System.Windows.Forms.Label lblFbventil;
         private System.Windows.Forms.Label lblDynbremse;
         private System.Windows.Forms.Label lblZusbremse;
+        private System.Windows.Forms.Button btnDebugFokusZusi;
 
     }
 }
