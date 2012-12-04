@@ -807,8 +807,8 @@ namespace Zielbremsen
             {
                 cbFahrstufenschalter.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
 
-                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 0, 2);
-                pnlDataGrunddaten.Controls.Add(lblfahrst, 1, 2);
+                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 1, 2);
+                pnlDataGrunddaten.Controls.Add(lblfahrst, 0, 2);
                 lblfahrst.Text = "Fahrstufe";
             }
         }
@@ -829,8 +829,8 @@ namespace Zielbremsen
             {
                 cbFahrstufe.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
 
-                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 0, 2);
-                pnlDataGrunddaten.Controls.Add(lblfahrst, 1, 2);
+                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 1, 2);
+                pnlDataGrunddaten.Controls.Add(lblfahrst, 0, 2);
                 lblfahrst.Text = "Fahrschalter";
             }
         }
