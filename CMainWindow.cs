@@ -6,32 +6,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Threading; //
-using System.Diagnostics; // für Stoppuhr
-using Zusi_Datenausgabe; //DEBUG: v1.0.0
+using System.Threading;
+using System.Diagnostics; // usage of stopwatch
+using Zusi_Datenausgabe; //TODO: v1.0.0
+using System.Runtime.InteropServices; //to hand over the focus to Zusi main window
 
-
-//TEST Um den Fokus an Zusi zurückzugeben
-//Einbinden von:
-using System.Runtime.InteropServices;
-
-
-
-
-
-/* ZusiTCPDemoApp
- * This example shows basic usage of Andreas Karg's Zusi TCP interface for .Net.
- * It is published under the GNU General Public License v3.0. Base your own work on it, play around, do what you want. :-)
- * 
- * 
- * Using the interface requires three steps:
- * - Write one or more handler methods
- * - Create a ZusiTcpConn object, passing basic parameters
- * - Tell your ZusiTcpConn object what measures you want to receive
- * 
- * Everything else is explained below. */
-
-namespace ZusiTCPDemoApp
+namespace Zielbremsen
 {
     public partial class CMainWindow : Form
     {
@@ -41,8 +21,8 @@ namespace ZusiTCPDemoApp
         // Initalize a new stopwatch
         Stopwatch stopwatch = new Stopwatch();
 
-        //TODO: Mit Preferences laden
-        //Initialisieren der default-Farben für Tag- und Nachtmodus
+        //TODO: Load with preferences
+        //Here are the default colors for day- and nightmode
         Color labeldaycolor = Color.Black;
         Color paneldaycolor = Color.FromName("Control");
         Color buttondaycolor = Color.FromName("Control");
@@ -55,61 +35,41 @@ namespace ZusiTCPDemoApp
         Color formnightcolor = Color.FromName("ControlDark");
         Color textboxnightcolor = Color.LightGray;
 
-        //Streckenmeter: Anzeige in Metern oder Kilometern?
-        //1000: streckenmeter:1000 = Darstellung in km , 1 = Darstellung in Metern
+        //Streckenmeter: User can choose between display in meters or kilometers
+        //if factor == 1000 kilometers will be displayed, if factor == 1 meters will be displayed
         int StreckenmeterDarstfaktor = 1000;
 
-        //default-Werte für anpassbare Elemente
+        //default values fur user-sizeable form elements
         double labelsifadefaultwidth = 114;
         double labelsifadefaultheight = 51;
         double labelflagdefaultwidth = 114;
         double labelflagdefaultheight = 19;
 
-        //default-Wert für Neutralstellung Fahrschalter (für Kombihebel) TODO: Bessere Lösung?
+        //default values for setting a neutral position of Fahr-/Bremsschalter (Kombihebel)
+        //TODO: Is there a better solution?
         int fahrschalterneutral = 0;
            
-        //TODO TEST Fokus zurück an Zusi
-        //Als externe Methode deklarieren...
+        //Declare external method
+        //for usage of the 'focus back to Zusi' feature
         [DllImport("User32.dll")]
         static extern long SetForegroundWindow(int hwnd);
 
         public CMainWindow()
         {
             InitializeComponent();
-
-            //DEBUG TODO
-            //pnlSeite2.Visible = false;
-            //CMainWindow.ActiveForm.Controls.Remove(pnlSeite2);   
-
             
-           
-
-            //System-Tab anzeigen damit ggf. eine Verbindung zum TCP-Server aufgebaut werden kann
-            tabEinstellungen.SelectTab("tabSystem");
-
-            //nicht funktionierende Checkboxes deaktivieren
-            //TODO
-            
-
-            
-
-            
-            /* When the application window is created, we create our new connection class as well.
-             * ReceiveEvent<T> is a generic delegate type for you to use. See the Object Browser for details. */
+            //showing 'System' tab first so that the user is able to establish a connection to the TCP server
+            tabEinstellungen.SelectTab("tabSystem");   
 
             MyTCPConnection = new ZusiTcpConn(
              "ZusiMeter v0.4",                            // The name of this application (Shows up on the server's list)
-             // ClientPriority.Low                                 // The priority with which the server should treat you
              ClientPriority.High,                            
              new ReceiveEvent<float>(HandleIncomingData),   // A delegate method for the connection class to call when it receives float data (may be null)
              null,                                          // A delegate method for the connection class to call when it receives string data (may be null)
-             null                                           //DEBUG: Using v 1.0.0 of Zusi-Datenausgabe.dll
-                                                            // (Using v 1.1.6 of Zusi-Datenausgabe.dll)
+             null                                           //TODO: need to make use of the new DLL v1.1.6                                                            
             );
 
-            
-
-
+            #region RequestData
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
@@ -122,44 +82,37 @@ namespace ZusiTCPDemoApp
             MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
             MyTCPConnection.RequestData(2646); // "Türen"
             //TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
-            //TEST MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
+            //TODO MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2616); // "Schalter AFB ein/aus"
             MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
-            MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"          
-
+            MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
+            #endregion
         }
 
-       
-
-        public void ResetDebugLabels() // Resetting all the labels on the Debug panel to their initial state
+        public void ResetDebugLabels() //resetting all the labels on the Debug panel to their initial state
         {
             //         
         }
 
-        public void ResetGlobals() // Resetting all global variables
+        public void ResetGlobals() //resetting some variables
         {
-
             lblFlag.Visible = false;
             hasMoved = false;
             pnlRight.Visible = true;
             abbruch = false;
             scharf = false;
             vMaxErreicht = false;
-            gebremst = false;
- 
+            gebremst = false; 
         }
-
        
-        public void Connect()
+        public void Connect() // here we are going to try connecting to the TCP server
         {
-
             String server = Convert.ToString(tbServer.Text);
             int port = Convert.ToInt16(tbPort.Text);
-
-            {
+            
                 // If we're currently disconnected...
                 if (MyTCPConnection.ConnectionState == Zusi_Datenausgabe.ConnectionState.Disconnected)
                 {
@@ -187,37 +140,30 @@ namespace ZusiTCPDemoApp
                     // ... reset the connection by explicitly calling Disconnect();
                     MyTCPConnection.Disconnnect();
                     setStatus("Getrennt");
-                }
-            }
+                }            
         }
 
-        //TEST
+        #region Global Variables
+
         double geschwindigkeit;
-
-        public bool abbruch;
-
+        public bool abbruch; //TODO: check if still needed
         double vorgabe, entfernung;
         double streckenmeter = 0;
-        bool hasMoved = false;
+        bool hasMoved = false; //has the train moved?
         double brh;
-        double maxVerz = 1; //maximale Verzögerung 
-        bool scharf = false; //wurde scharf angehalten?
-        bool gebremst = false; // wurde nach dem Beschleunigen gebremst?
-        bool verbunden = false;
-
-
-        //TEST
-        double vAlt = 0, vNeu = 0, deltaV; //Zur Messung der Verzögerung
+        double maxVerz = 1; //maximum deceleration
+        bool scharf = false; //has the train been stopped sharply?
+        bool gebremst = false; //has been braked after acceleration? //TODO: check if still needed
+        bool verbunden = false; //connection state of TCP-Server <-> Zusi (when data from Zusi has been received)
+        double vAlt = 0, vNeu = 0, deltaV; //determination of acceleration / deceleration
         double vTemp = 0;
+        double vReached = 0; //setting a maximum reached speed vReached //TODO: check if still needed
+        bool afbistein = false; //reflects the AFB switch status on/off
 
-        //TODO: TEST: Setting a maximum reached speed vReached
-        double vReached = 0;
-
-        bool afbistein = false; //TEST speichert den AFB-Schalterstatus
-
+        #endregion
 
 
-//###HANDLE INCOMING DATA###//
+        #region HandleIncomingData
         private void HandleIncomingData(DataSet<float> dataSet)
         {
             if (dataSet.Id == MyTCPConnection["Bremshundertstel"]) // 2654
@@ -431,7 +377,7 @@ namespace ZusiTCPDemoApp
             }           
 
         }
-//###HANDLE INCOMING DATA ENDE###//
+        #endregion
 
         public bool vMaxErreicht = false;
 

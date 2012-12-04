@@ -1,4 +1,4 @@
-﻿namespace ZusiTCPDemoApp
+﻿namespace Zielbremsen
 {
     partial class CMainWindow
     {
