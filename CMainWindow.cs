@@ -49,7 +49,7 @@ namespace Zielbremsen
              null                                           //TODO: need to make use of the new DLL v1.1.6                                                            
             );
 
-            #region RequestData //MUST STAY IN CMainWindow()!
+            #region RequestData
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
@@ -225,50 +225,48 @@ namespace Zielbremsen
             }
             else if (dataSet.Id == MyTCPConnection["Geschwindigkeit"]) // 2561
             {
-                if (verbunden)
+                if (verbunden) //only if connected to Zusi. //TODO: check if this is needed
                 {
-                    double geschwindigkeit = dataSet.Value;
+                     geschwindigkeit = dataSet.Value;
+
+                     lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
 
                     if (geschwindigkeit > 0.1) hasMoved = true;
 
                     if (hasMoved == true && settingsVisible == false && debugging == false)
                     {
-                        pnlRight.Visible = false;
-                        //TODO: In eigener Methode unterbringen
+                        pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden
+                        
                     }
 
-                    if (hasMoved == true && geschwindigkeit == 0) //Lok ist zum Stillstand gekommen
-                    {
+                    if (hasMoved == true && geschwindigkeit == 0) //if train has stopped
                         hasMoved = false;
 
                         maxVerz = Convert.ToDouble(tbVerz.Text);
-                        //TODO: Scharfes Anhalten wieder überprüfen
-                        if (deltaV < -maxVerz) //wenn scharf angehalten wurde
+                        //TODO: check sharp braking by by determining deltaV
+                        if (deltaV < -maxVerz) //if deceleration was greater than user set value maxVerz
                         {
                             lblFlag.Visible = true;
                             lblFlag.Text = "scharf angehalten";
                             scharf = true;
-                            timerFlag.Start(); // TODO: Bis zum Beschleunigen oder nach x Sekunden verschwinden lassen
+                            timerFlag.Start(); // TODO: flag shall not hide after x seconds, but only after accelerating again
                         }
                     }
-
-                    lblV.Text = String.Format("{0:0.0}", dataSet.Value); //Geschwindigkeit anzeigen
-
                 }
-            }
+            
             else if (dataSet.Id == MyTCPConnection["Druck Bremszylinder"]) // 2563
             {
 
                 if (verbunden)
                 {
-                    float bzdruck = dataSet.Value; //TODO: Was kann man damit noch anstellen?                
+                    float bzdruck = dataSet.Value;              
                     lblBzdruck.Text = String.Format("{0:0.0}", bzdruck);
                 }
 
             }
             else if (dataSet.Id == MyTCPConnection["Druck Hauptluftleitung"]) // 2562
             {
-                float hlldruck = dataSet.Value; //TODO: Was kann man damit noch anstellen?                
+                float hlldruck = dataSet.Value;               
                 lblHlldruck.Text = String.Format("{0:0.0}", hlldruck);
             }
 
@@ -280,7 +278,7 @@ namespace Zielbremsen
                     {
                         lblFlag.Text = "Schleudern!";
                         lblFlag.Visible = true;
-                        timerFlag.Start(); //Nach x Sekunden verschwindet das Label, TODO: Sekunden als Parameter übergeben
+                        timerFlag.Start();
                     }
                 }
             }
@@ -293,7 +291,7 @@ namespace Zielbremsen
                 if (verbunden && dataSet.Value > 0)
                 {
                     streckenmeter = Convert.ToDouble(dataSet.Value);
-                    lblMeter.Text = String.Format("{0:0.0}", streckenmeter / StreckenmeterDarstfaktor); //Streckenmeter-Darstellungsfaktor
+                    lblMeter.Text = String.Format("{0:0.0}", streckenmeter / StreckenmeterDarstfaktor); //see definition of factor
                 }
                 else lblMeter.Text = "---";
             }
@@ -310,65 +308,47 @@ namespace Zielbremsen
                     lblSifa.BackColor = Color.DarkGray;
                 }
             }
-            else if (dataSet.Id == MyTCPConnection["Fahrstufe"] && cbFahrstufe.Checked == true) // 2576 ) //ENTWEDER SCHALTER ODER FAHRSTUFE
+            else if (dataSet.Id == MyTCPConnection["Fahrstufe"] && cbFahrstufe.Checked == true) // 2576
             {
-                if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: ist das sinnvoll? wieviele Fahrstufen gibt es maximal?
+                if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
                     lblFahrstufe.Text = String.Format("{0}", dataSet.Value);
                 else
                     lblFahrstufe.Text = "--";
             }
             else if (dataSet.Id == MyTCPConnection["Türen"])
             {
-
-                //TODO
-
-                //INFO:
-                //Türstatus
-                //größer als 9: geschlossen
-                //größer als 7: schließen
-                //größer als 5: schließen(?)
-                //größer als 4: Fahrgäste i.O.
-                //größer als 1, kleiner als 5: TODO
-
                 //DEBUG
                 double tuerwert = dataSet.Value;
 
-
-                //TEST
-                //if (tuerwert > 9E-45) lblDebugtuerbool.Text = "größer 9E-45";
-                //else if (tuerwert < 9E-45) lblDebugtuerbool.Text = "kleiner 9E-45";
-                //else lblDebugtuerbool.Text = "anderer Wert";
-
-
-                if (tuerwert > 7E-45 && cbLmtueren.Checked) // geschlossen
+                if (tuerwert > 7E-45 && cbLmtueren.Checked) // closed
                 {
                     lblFlag.Visible = false;
                     lblFlag.Text = "";
                     lblTueren.Text = "zu";
                 }
-                else if (tuerwert < 2E-45 && tuerwert > 0 && cbLmtueren.Checked) //geöffnet
+                else if (tuerwert < 2E-45 && tuerwert > 0 && cbLmtueren.Checked) //open
                 {
                     lblFlag.Visible = true;
                     lblFlag.Text = "Türen geöffnet";
                     lblTueren.Text = "offen";
                 }
-                else if (tuerwert > 5E-45 && tuerwert < 7E-45) //Schließvorgang
+                else if (tuerwert > 5E-45 && tuerwert < 7E-45) //closing
                 {
                     lblTueren.Text = "schließen";
                 }
-                else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //Fahrgäste i.O.
+                else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //passengers okay
                 {
                     lblTueren.Text = "Fahrgäste i.O.";
                 }
-                else if (tuerwert == 0)  //Türfreigabe erfolgt
+                else if (tuerwert == 0)  //doors unblocked
                 {
                     lblTueren.Text = "freigegeben";
                 }
 
             }
-            else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"] && cbFahrstufenschalter.Checked == true) //ENTWEDER SCHALTER ODER FAHRSTUFE
+            else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"] && cbFahrstufenschalter.Checked == true)
             {
-                if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: ist das sinnvoll? wieviele Fahrstufen gibt es maximal?
+                if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
                 {
                     double fahrschalter = dataSet.Value - fahrschalterneutral;
                     lblFahrstufe.Text = String.Format("{0}", fahrschalter);
@@ -398,12 +378,11 @@ namespace Zielbremsen
 
             }
             else if (dataSet.Id == MyTCPConnection["AFB Soll-Geschwindigkeit"])
-            //TEST else if(dataSet.Id == MyTCPConnection["LZB/AFB Soll-Geschwindigkeit"])
+            //TODO: check if there's a value available that reflects some kind of AFB "preset speed" value
             {
                 double afbvschalter = dataSet.Value;
-
-
-                //TODO: Schauen ob LZB-vSoll höher ist!
+                
+                //TODO: check if LZB vSoll is less; if so paint LZB speed value bold instead
                 lblAFBgeschwindigkeit.Text = String.Format("{0} km/h", afbvschalter);
             }
             else if (dataSet.Id == MyTCPConnection["LZB Soll-Geschwindigkeit"])
@@ -438,7 +417,7 @@ namespace Zielbremsen
             else if (statusNeu == "Warte")
             {
 
-                //TODO: Anzeigedaten anzeigen
+                //TODO: set an initial display for all pnlData numbers (like 888.88)
                 btnConnect.Text = "Trennen";
                 pnlRight.Visible = true;
                 tabEinstellungen.SelectTab("tabAnzeigen");
@@ -619,7 +598,7 @@ namespace Zielbremsen
                     cbox.Enabled = false;
                 }
 
-                cbAFBLZB.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
+                cbAFBLZB.Enabled = true; //TODO: use more elegant method to include all controls
 
             }
             else
@@ -743,7 +722,7 @@ namespace Zielbremsen
                     cbox.Enabled = false;                    
                 }
 
-                cbGrunddaten.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
+                cbGrunddaten.Enabled = true; //TODO: use more elegant method to get all controls
 
             }
             else
@@ -768,7 +747,7 @@ namespace Zielbremsen
                     cbox.Enabled = false;                    
                 }
 
-                cbBremsen.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
+                cbBremsen.Enabled = true; //TODO: use more elegant method to get all controls
             }
             else
             {
@@ -803,9 +782,9 @@ namespace Zielbremsen
                 pnlDataGrunddaten.Controls.Remove(lblFahrstufe);
                 pnlDataGrunddaten.Controls.Remove(lblfahrst);
             }
-            else if (cbFahrstufe.Checked)// wenn cbFahrstufe gecheckt
+            else if (cbFahrstufe.Checked)
             {
-                cbFahrstufenschalter.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
+                cbFahrstufenschalter.Checked = false; //TODO: maybe it's not bad if Fahrstufe and Fahrschalter are displayed both
 
                 pnlDataGrunddaten.Controls.Add(lblFahrstufe, 1, 2);
                 pnlDataGrunddaten.Controls.Add(lblfahrst, 0, 2);
@@ -825,9 +804,9 @@ namespace Zielbremsen
                 pnlDataGrunddaten.Controls.Remove(lblFahrstufe);
                 pnlDataGrunddaten.Controls.Remove(lblfahrst);
             }
-            else if(cbFahrstufenschalter.Checked) // wenn cbFahrstufenschalter gecheckt
+            else if(cbFahrstufenschalter.Checked)
             {
-                cbFahrstufe.Checked = false; //TODO: Doppelauswahl sinnvoll von Fahrstufe und -Schalter?
+                cbFahrstufe.Checked = false;
 
                 pnlDataGrunddaten.Controls.Add(lblFahrstufe, 1, 2);
                 pnlDataGrunddaten.Controls.Add(lblfahrst, 0, 2);
@@ -910,21 +889,18 @@ namespace Zielbremsen
             if(tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"])
             {
                 tabEinstellungen.Width = 202;
-                //TODO einen Weg finden damit auch bei breitem tabEinstellungen das Debug Panel angezeigt wird
-                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
+               int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
                 pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
             if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabDarstellung"])
             {
-                tabEinstellungen.Width = 202;
-                //TODO einen Weg finden damit auch bei breitem tabEinstellungen das Debug Panel angezeigt wird
+                tabEinstellungen.Width = 202;                
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
                 pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
             if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen"])
             {
                 tabEinstellungen.Width = 420;
-                //TODO einen Weg finden damit auch bei breitem tabEinstellungen das Debug Panel angezeigt wird
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
                 pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
