@@ -49,7 +49,7 @@ namespace Zielbremsen
              null                                           //TODO: need to make use of the new DLL v1.1.6                                                            
             );
 
-        #region RequestData
+            #region RequestData //MUST STAY IN CMainWindow()!
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
@@ -69,7 +69,7 @@ namespace Zielbremsen
             MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
             MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
-            #endregion
+            #endregion 
 
         }
 
@@ -206,8 +206,8 @@ namespace Zielbremsen
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
-
-            }
+            
+        }
 
         #region HandleIncomingData
         private void HandleIncomingData(DataSet<float> dataSet)
@@ -997,6 +997,15 @@ namespace Zielbremsen
 
         #endregion
 
+
+        //adding a global function for all checkboxes, main reason is to determine if user has clicked
+        //a checkbox, if so it's being checked if Zusi shall have the window focus back
+        //TODO: find a better and more elegant way to detect user interaction with ALL controls on the form
+        private void Control_CheckedChanged(object sender, EventArgs e)
+        {
+            FokusAnZusi();
+        }
+
         public void ResetDebugLabels() //resetting all the labels on the Debug panel to their initial state
         {
             //         
@@ -1014,10 +1023,7 @@ namespace Zielbremsen
         }
 
         //TEST: global function, TODO: find a better way
-        private void Control_CheckedChanged(object sender, EventArgs e)
-        {
-            FokusAnZusi();
-        }
+       
 
         //if called (lblFlag is showing), after x seconds turn off the flag and stop the timer
         private void timerFlag_Tick(object sender, EventArgs e)
@@ -1033,8 +1039,6 @@ namespace Zielbremsen
             timerFlag.Start(); //Zeigt für eine Sekunde ein Testflag
 
         }
-
-        
         
         public void FokusAnZusi()
         {
