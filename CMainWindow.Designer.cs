@@ -229,8 +229,7 @@
             this.pnlSettings.Location = new System.Drawing.Point(3, 1);
             this.pnlSettings.Name = "pnlSettings";
             this.pnlSettings.Size = new System.Drawing.Size(421, 353);
-            this.pnlSettings.TabIndex = 10;
-            this.pnlSettings.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSettings_Paint);
+            this.pnlSettings.TabIndex = 10;           
             // 
             // tabEinstellungen
             // 

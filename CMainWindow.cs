@@ -20,47 +20,27 @@ namespace Zielbremsen
 
         // Initalize a new stopwatch
         Stopwatch stopwatch = new Stopwatch();
-
-        //TODO: Load with preferences
-        //Here are the default colors for day- and nightmode
-        Color labeldaycolor = Color.Black;
-        Color paneldaycolor = Color.FromName("Control");
-        Color buttondaycolor = Color.FromName("Control");
-        Color formdaycolor = Color.FromName("Control");
-        Color textboxdaycolor = Color.FromName("Window");
-
-        Color labelnightcolor = Color.WhiteSmoke;
-        Color panelnightcolor = Color.FromName("ControlDark");
-        Color buttonnightcolor = Color.FromName("ControlDark");
-        Color formnightcolor = Color.FromName("ControlDark");
-        Color textboxnightcolor = Color.LightGray;
-
-        //Streckenmeter: User can choose between display in meters or kilometers
-        //if factor == 1000 kilometers will be displayed, if factor == 1 meters will be displayed
-        int StreckenmeterDarstfaktor = 1000;
-
-        //default values fur user-sizeable form elements
-        double labelsifadefaultwidth = 114;
-        double labelsifadefaultheight = 51;
-        double labelflagdefaultwidth = 114;
-        double labelflagdefaultheight = 19;
-
-        //default values for setting a neutral position of Fahr-/Bremsschalter (Kombihebel)
-        //TODO: Is there a better solution?
-        int fahrschalterneutral = 0;
            
-        //Declare external method
+        //Declare external methods
         //for usage of the 'focus back to Zusi' feature
         [DllImport("User32.dll")]
         static extern long SetForegroundWindow(int hwnd);
+        
+        [DllImport("user32.dll")]
+        extern static Boolean SetForegroundWindow(IntPtr Fenster);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll")]
+        extern static IntPtr SetActiveWindow(IntPtr Fenster);
+
 
         public CMainWindow()
         {
             InitializeComponent();
-            
-            //showing 'System' tab first so that the user is able to establish a connection to the TCP server
-            tabEinstellungen.SelectTab("tabSystem");   
 
+            //we need to define a new connection to the TCP server:
             MyTCPConnection = new ZusiTcpConn(
              "ZusiMeter v0.4",                            // The name of this application (Shows up on the server's list)
              ClientPriority.High,                            
@@ -69,7 +49,7 @@ namespace Zielbremsen
              null                                           //TODO: need to make use of the new DLL v1.1.6                                                            
             );
 
-            #region RequestData
+        #region RequestData
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
@@ -90,24 +70,9 @@ namespace Zielbremsen
             MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
             MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
             #endregion
+
         }
 
-        public void ResetDebugLabels() //resetting all the labels on the Debug panel to their initial state
-        {
-            //         
-        }
-
-        public void ResetGlobals() //resetting some variables
-        {
-            lblFlag.Visible = false;
-            hasMoved = false;
-            pnlRight.Visible = true;
-            abbruch = false;
-            scharf = false;
-            vMaxErreicht = false;
-            gebremst = false; 
-        }
-       
         public void Connect() // here we are going to try connecting to the TCP server
         {
             String server = Convert.ToString(tbServer.Text);
@@ -143,8 +108,37 @@ namespace Zielbremsen
                 }            
         }
 
-        #region Global Variables
+        #region Setting Of Variables
 
+        //TODO: Load with preferences
+        //Here are the default colors for day- and nightmode
+        Color labeldaycolor = Color.Black;
+        Color paneldaycolor = Color.FromName("Control");
+        Color buttondaycolor = Color.FromName("Control");
+        Color formdaycolor = Color.FromName("Control");
+        Color textboxdaycolor = Color.FromName("Window");
+
+        Color labelnightcolor = Color.WhiteSmoke;
+        Color panelnightcolor = Color.FromName("ControlDark");
+        Color buttonnightcolor = Color.FromName("ControlDark");
+        Color formnightcolor = Color.FromName("ControlDark");
+        Color textboxnightcolor = Color.LightGray;      
+
+        //Streckenmeter: User can choose between display in meters or kilometers
+        //if factor == 1000 kilometers will be displayed, if factor == 1 meters will be displayed
+        int StreckenmeterDarstfaktor = 1000;
+
+        //default values fur user-sizeable form elements
+        double labelsifadefaultwidth = 114;
+        double labelsifadefaultheight = 51;
+        double labelflagdefaultwidth = 114;
+        double labelflagdefaultheight = 19;
+
+        //default values for setting a neutral position of Fahr-/Bremsschalter (Kombihebel)
+        //TODO: Is there a better solution?
+        int fahrschalterneutral = 0;
+
+        //TODO: check for every variable if it's still needed
         double geschwindigkeit;
         public bool abbruch; //TODO: check if still needed
         double vorgabe, entfernung;
@@ -158,10 +152,62 @@ namespace Zielbremsen
         double vAlt = 0, vNeu = 0, deltaV; //determination of acceleration / deceleration
         double vTemp = 0;
         double vReached = 0; //setting a maximum reached speed vReached //TODO: check if still needed
+        public bool vMaxErreicht = false; //has a specific speed been reached yet? //TODO: check if still needed
         bool afbistein = false; //reflects the AFB switch status on/off
+        public bool debugging = false; //if user has opened the debug panel debugging will be true
+        public bool settingsVisible = false; //for determining if the settings panel shall auto hide
+        bool nightmode = false; //for letting the user choose between two different color sets
+        //TODO: maybe it makes sense to determine day- and nightmode automatically when receiving daytime from Zusi
 
         #endregion
 
+        private void CMainWindow_Load(object sender, EventArgs e) //on loading of the main window...
+        {
+            //showing 'System' tab first so that the user is able to establish a connection to the TCP server
+            tabEinstellungen.SelectTab("tabSystem");   
+
+            //if a narrow tab page is selected (such as tabSystem)...
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"])
+            {
+                tabEinstellungen.Width = 202;
+            }
+            //TEST removing unwanted controls that should not be showing when first showing the form
+            //TODO: is there a better way? later on this will be controlled by user prefs            
+            pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
+            pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
+            pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
+            pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
+            pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
+            pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
+
+            pnlDataBremsen.Controls.Remove(lblfbv);
+            pnlDataBremsen.Controls.Remove(lblFbventil);
+            pnlDataBremsen.Controls.Remove(lbldynbrem);
+            pnlDataBremsen.Controls.Remove(lblDynbremse);
+            pnlDataBremsen.Controls.Remove(lblzusbr);
+            pnlDataBremsen.Controls.Remove(lblZusbremse);
+
+            //adding a global function for all checkboxes, main reason is to determine if user has clicked
+            //a checkbox, if so it's being checked if Zusi shall have the window focus back
+            //TODO: find a better and more elegant way to detect user interaction with ALL controls on the form
+            foreach (CheckBox c in pnlBremsen.Controls)
+            {
+                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
+            }
+            foreach (CheckBox c in pnlGrunddaten.Controls)
+            {
+                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
+            }
+            foreach (CheckBox c in pnlAFBLZB.Controls)
+            {
+                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
+            }
+            foreach (CheckBox c in pnlSchalterst.Controls)
+            {
+                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
+            }
+
+            }
 
         #region HandleIncomingData
         private void HandleIncomingData(DataSet<float> dataSet)
@@ -173,7 +219,7 @@ namespace Zielbremsen
                     setStatus("Verbunden");
 
                     brh = Convert.ToDouble(dataSet.Value);
-                    lblBrh.Text = String.Format("{0}", brh);                    
+                    lblBrh.Text = String.Format("{0}", brh);
                 }
 
             }
@@ -192,18 +238,18 @@ namespace Zielbremsen
                     }
 
                     if (hasMoved == true && geschwindigkeit == 0) //Lok ist zum Stillstand gekommen
-                    {                
+                    {
                         hasMoved = false;
 
                         maxVerz = Convert.ToDouble(tbVerz.Text);
                         //TODO: Scharfes Anhalten wieder überprüfen
                         if (deltaV < -maxVerz) //wenn scharf angehalten wurde
                         {
-                            lblFlag.Visible = true; 
-                            lblFlag.Text = "scharf angehalten";                             
+                            lblFlag.Visible = true;
+                            lblFlag.Text = "scharf angehalten";
                             scharf = true;
                             timerFlag.Start(); // TODO: Bis zum Beschleunigen oder nach x Sekunden verschwinden lassen
-                        }  
+                        }
                     }
 
                     lblV.Text = String.Format("{0:0.0}", dataSet.Value); //Geschwindigkeit anzeigen
@@ -235,7 +281,7 @@ namespace Zielbremsen
                         lblFlag.Text = "Schleudern!";
                         lblFlag.Visible = true;
                         timerFlag.Start(); //Nach x Sekunden verschwindet das Label, TODO: Sekunden als Parameter übergeben
-                    }                    
+                    }
                 }
             }
             else if (dataSet.Id == MyTCPConnection["Schalter Führerbremsventil"])
@@ -286,7 +332,7 @@ namespace Zielbremsen
 
                 //DEBUG
                 double tuerwert = dataSet.Value;
-                
+
 
                 //TEST
                 //if (tuerwert > 9E-45) lblDebugtuerbool.Text = "größer 9E-45";
@@ -374,21 +420,20 @@ namespace Zielbremsen
             {
                 double lzbweg = dataSet.Value;
                 lblLZBzielweg.Text = String.Format("{0}", lzbweg);
-            }           
+            }
 
         }
         #endregion
 
-        public bool vMaxErreicht = false;
-
-
+        #region SetStatus
+        //here we are setting the program status depending on the connection state 
         public void setStatus(String statusNeu)
         {
             if (statusNeu == "Getrennt")
             {
                 btnConnect.Text = "Verbinden";
                 lblVerbstatus.Text = "Getrennt";
-             
+
             }
             else if (statusNeu == "Warte")
             {
@@ -398,95 +443,24 @@ namespace Zielbremsen
                 pnlRight.Visible = true;
                 tabEinstellungen.SelectTab("tabAnzeigen");
                 lblVerbstatus.Text = "Warte auf Zusi";
-                
+
             }
             else if (statusNeu == "Verbunden")
-            {          
+            {
                 verbunden = true;
                 lblVerbstatus.Text = "Verbunden mit Zusi";
             }
         }
+        #endregion
 
-        private void btnSettings_Click(object sender, EventArgs e)
-        {
-            /* TODO: Je nachdem ob pnlRight ständig sichtbar sein soll ein- oder ausblenden
-            
-            if (pnlRight.Visible == false) //DEBUG  && settingsVisible == false)
-            {
-                // settingsVisible = true; // sorgt für eine ständige Sichtbarkeit
-                pnlRight.Visible = true;
-                btnSettings.Text = "Einstellungen <<<";
-            }
-            if (pnlRight.Visible == true) //DEBUG && settingsVisible == true) //ansonsten ein- und ausblenden
-            {
-                // settingsVisible = false;
-                pnlRight.Visible = false;
-                btnSettings.Text = "Einstellungen >>>";
-            }
-             */
-
-            //DEBUG
-
-            pnlRight.Visible = !pnlRight.Visible;
-            settingsVisible = true; // ständig sichtbar
-                                
-        }
-
-        private void btnConnect_Click(object sender, EventArgs e)
-        {
-            Connect();
-        }
-
-       
-        private void btnFlag_Click(object sender, EventArgs e)
-        {
-            //TEST
-            lblFlag.Visible = !lblFlag.Visible;
-            lblFlag.BackColor = Color.Orange;
-            lblFlag.Text = "####TEST####";
-        }
-
-       
-        
-        //TEST debugging-modus speichern
-        public bool debugging = false;
-        // TEST Sichtbarkeit des rechten Panels speichern
-        public bool settingsVisible = false;
-
-        private void btnDebugpanel_Click(object sender, EventArgs e)
-        {           
-            if(debugging == true)
-            {
-                pnlDebug.Visible = false;
-                debugging = false;
-            }
-            else if (debugging == false)
-            {
-                pnlDebug.Visible = true;
-                debugging = true;
-
-                //TODO einen Weg finden damit auch bei breitem tabEinstellungen das Debug Panel angezeigt wird
-                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
-                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
-
-            }
-        }
-
-        private void timerFlag_Tick(object sender, EventArgs e)
-        {
-            lblFlag.Visible = false;
-            timerFlag.Stop();
-        }
-
-        bool nightmode = false;
+        #region Night- and Daymode
 
         public void setNightmode()
         {
+            BackColor = formnightcolor; //the whole form's background color
+            statusStrip1.BackColor = formnightcolor; //same for the status strip
 
-            BackColor = formnightcolor; // Hintergrund der Form
-            statusStrip1.BackColor = formnightcolor;
-
-            ///Labels
+            //setting colors for the labels
             foreach (Label label in pnlDataGrunddaten.Controls)
             {
                 label.ForeColor = labelnightcolor;
@@ -495,44 +469,29 @@ namespace Zielbremsen
             {
                 label.ForeColor = labelnightcolor;
             }
-            /*foreach (Label label in tabAnzeigen.Controls)
+            foreach (Label label in pnlDataAFBLZB.Controls)
             {
                 label.ForeColor = labelnightcolor;
             }
-            foreach (Label label in tabDarstellung.Controls)
-            {
-                label.ForeColor = labelnightcolor;
-            }
-            foreach (Label label in tabSystem.Controls)
-            {
-                label.ForeColor = labelnightcolor;
-            }*/
 
-            //Textboxes
-            /*foreach (TextBox tb in tabSystem.Controls)
-            {
-                tb.BackColor = textboxnightcolor;
-            }
-            */
-            tbPort.BackColor = textboxnightcolor;
-            tbServer.BackColor = textboxnightcolor;
-            tbVerz.BackColor = textboxnightcolor;
-            
-
-            //Panels
+            //setting colors for the tab pages
             foreach (TabPage tab in tabEinstellungen.Controls)
             {
                 tab.BackColor = panelnightcolor;
             }
-            
+
+            //setting colors for the textboxes
+            tbPort.BackColor = textboxnightcolor;
+            tbServer.BackColor = textboxnightcolor;
+            tbVerz.BackColor = textboxnightcolor;
         }
 
         public void setDaymode()
         {
-            BackColor = formdaycolor; // Hintergrund der Form
-            statusStrip1.BackColor = formdaycolor;
-            
-            
+            BackColor = formdaycolor; //the whole form's background color
+            statusStrip1.BackColor = formdaycolor; //same for the status strip           
+
+            //setting colors for the labels
             foreach (Label label in pnlDataGrunddaten.Controls)
             {
                 label.ForeColor = labeldaycolor;
@@ -541,21 +500,27 @@ namespace Zielbremsen
             {
                 label.ForeColor = labeldaycolor;
             }
+            foreach (Label label in pnlDataAFBLZB.Controls)
+            {
+                label.ForeColor = labeldaycolor;
+            }
 
-            tbServer.BackColor = textboxdaycolor;
-            tbPort.BackColor = textboxdaycolor;
-            tbVerz.BackColor = textboxdaycolor;
-
-            //Panels
+            //setting colors for the tab pages
             foreach (TabPage tab in tabEinstellungen.Controls)
             {
                 tab.BackColor = paneldaycolor;
             }
+
+            //setting colors for the textboxes
+            tbServer.BackColor = textboxdaycolor;
+            tbPort.BackColor = textboxdaycolor;
+            tbVerz.BackColor = textboxdaycolor;
         }
 
+        //if the user clicks the "Nachtmodus / Tagmodus" button
         private void btnNacht_Click(object sender, EventArgs e)
         {
-            if (nightmode == false)
+            if (nightmode == false) //if we're not yet in nightmode...
             {
                 nightmode = true;
                 setNightmode();
@@ -568,73 +533,110 @@ namespace Zielbremsen
                 btnNacht.Text = "Nachtmodus";
             }
 
-            FokusAnZusi();
+            FokusAnZusi(); //determine if focus must be handed over to Zusi according to user settings
 
         }
+        #endregion
 
-        private void CMainWindow_Load(object sender, EventArgs e)
+        #region User Settings Interaction
+
+        //either one or the other checkbox is allowed to be checked, or none
+        private void cbFokusImmerzurueck_CheckedChanged(object sender, EventArgs e)
         {
-            
-
-            
-            //TODO TEST
-            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabSystem"])
-            {
-                tabEinstellungen.Width = 202;
-            }
-
-            //TODO TEST removing unwanted controls
-            pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
-            pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
-            pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
-            pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
-            pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
-            pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
-
-            pnlDataBremsen.Controls.Remove(lblfbv);
-            pnlDataBremsen.Controls.Remove(lblFbventil);
-            pnlDataBremsen.Controls.Remove(lbldynbrem);
-            pnlDataBremsen.Controls.Remove(lblDynbremse);
-            pnlDataBremsen.Controls.Remove(lblzusbr);
-            pnlDataBremsen.Controls.Remove(lblZusbremse);
-
-            //TODO TEST -- TODO: Bessere Methode verwenden (siehe CodeProject Forum)
-            //neue Eventhandler festlegen für alle Controls
-            //Zweck: Fokus zurück an Zusi
-            foreach (CheckBox c in pnlBremsen.Controls)
-            {
-                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
-            }
-            foreach (CheckBox c in pnlGrunddaten.Controls)
-            {
-                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
-            }
-            foreach (CheckBox c in pnlAFBLZB.Controls)
-            {
-                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
-            }
-            foreach (CheckBox c in pnlSchalterst.Controls)
-            {
-                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
-            }
-
-            }
-
-        private void listAnzeige_1_SelectedIndexChanged(object sender, EventArgs e)
+            if (cbFokusImmerzurueck.Checked)
+                cbFokusFahrtzurueck.Checked = false;
+        }
+        private void cbFokusFahrtzurueck_CheckedChanged(object sender, EventArgs e)
         {
-           
-           
+            if (cbFokusFahrtzurueck.Checked)
+                cbFokusImmerzurueck.Checked = false;
         }
 
-        public void enableLabels(String lblname)
+        private void cbAFBgeschw_CheckedChanged(object sender, EventArgs e)
         {
-            Object label = lblname.ToString();
+            if (cbAFBgeschw.Checked == false)
+            {
+                pnlDataAFBLZB.Controls.Remove(lblafbeinaus);
+                pnlDataAFBLZB.Controls.Remove(lblAFBgeschwindigkeit);
+            }
+            else
+            {
+                pnlDataAFBLZB.Controls.Add(lblafbeinaus, 0, 0);
+                pnlDataAFBLZB.Controls.Add(lblAFBgeschwindigkeit, 1, 0);
+            }
+        }
 
-            
+        private void cbLZBvsoll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLZBvsoll.Checked == false)
+            {
+                pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
+                pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
+            }
+            else
+            {
+                pnlDataAFBLZB.Controls.Add(lbllzbvsoll, 0, 1);
+                pnlDataAFBLZB.Controls.Add(lblLZBsollgeschw, 1, 1);
+            }
+        }
+
+        private void cbLZBvziel_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLZBvziel.Checked == false)
+            {
+                pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
+                pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
+            }
+            else
+            {
+                pnlDataAFBLZB.Controls.Add(lbllzbvziel, 0, 2);
+                pnlDataAFBLZB.Controls.Add(lblLZBzielgeschw, 1, 2);
+            }
+        }
+
+        private void cbLZBweg_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLZBweg.Checked == false)
+            {
+                pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
+                pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
+            }
+            else
+            {
+                pnlDataAFBLZB.Controls.Add(lbllzbzielw, 0, 3);
+                pnlDataAFBLZB.Controls.Add(lblLZBzielweg, 1, 3);
+            }
+        }
+
+        private void cbAFBLZB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAFBLZB.Checked == false)
+            {
+                pnlLeft.Controls.Remove(pnlDataAFBLZB);
+
+                foreach (CheckBox cbox in pnlAFBLZB.Controls)
+                {
+                    cbox.Enabled = false;
+                }
+
+                cbAFBLZB.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
+
+            }
+            else
+            {
+                pnlLeft.Controls.Add(pnlDataAFBLZB);
+
+                foreach (CheckBox cbox in pnlAFBLZB.Controls)
+                {
+                    cbox.Enabled = true;
+                }
+
+            }
         }
 
         private void cbGeschwindigkeit_CheckedChanged(object sender, EventArgs e)
         {
+
             if (cbGeschwindigkeit.Checked == false)
             {
                 pnlDataGrunddaten.Controls.Remove(lblV);
@@ -701,17 +703,7 @@ namespace Zielbremsen
                 pnlDataBremsen.Controls.Add(lblBrh, 0, 0);
                 pnlDataBremsen.Controls.Add(lblbremsh, 1, 0);
             }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void pnlData_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        }        
 
         private void cbLmsifa_CheckedChanged(object sender, EventArgs e)
         {
@@ -738,15 +730,7 @@ namespace Zielbremsen
                 ShowFlagtest();
                 lblFlag.Visible = true;                
             }
-        }
-
-        public void ShowFlagtest()
-        {
-            lblFlag.Visible = true;
-            lblFlag.Text = "TEST";
-            timerFlag.Start(); //Zeigt für eine Sekunde ein Testflag
-
-        }
+        }        
 
         private void cbGrunddaten_CheckedChanged(object sender, EventArgs e)
         {
@@ -901,61 +885,24 @@ namespace Zielbremsen
             fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlSettings_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        int anzSeite = 1; //Seite die im Tab Anzeigen angezeigt wird
-        int anzMaxseiten = 2; //Momentane Anzahl an Seitem im Tab Anzeigen
-
-        private void btnAnzvor_Click(object sender, EventArgs e)
-        {
-
-                           
-        }
-
-        private void btnAnzzurueck_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void cbSchalterst_CheckedChanged(object sender, EventArgs e)
         {
             if (cbSchalterst.Checked == false)
             {
-                // pnlLeft.Controls.Remove(pnlData1); //pnlSchalter
-
-                
-               //TODO foreach (CheckBox cbox in pnlSchalterst.Controls)
-                {
-                    //cbox.Enabled = false;
-                }
-                
-                cbSchalterst.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
-
+                cbSchalterst.Enabled = true;
             }
             else
             {
-                //pnlLeft.Controls.Add(pnlData1); //pnlSchalter
-
-                //TODO foreach (CheckBox cbox in pnlSchalterst.Controls)
-                {
-                    //cbox.Enabled = true;
-                }
-                //DEBUG: Nicht-Checkboxes wieder hinzufügen! Bessere Lösung finden!
                 pnlSchalterst.Controls.Add(label5);
                 pnlSchalterst.Controls.Add(numFahrschneutral);
                 cbFahrstufenschalter.Enabled = true;
-
             }
 
         }
+
+        #endregion
+        
+        #region User Tab Interaction
 
         private void tabEinstellungen_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -984,113 +931,114 @@ namespace Zielbremsen
             
         }
 
+        #endregion
+
+        #region User Button Interaction
+
+        //setting user colors for night- and daymode
         private void btnFarbeNacht_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
         }
-
         private void btnFarbeTag_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
         }
 
-        private void cbAFBgeschw_CheckedChanged(object sender, EventArgs e)
+        //if the user clicks the "Einstellungen" button...
+        private void btnSettings_Click(object sender, EventArgs e)
         {
-            if (cbAFBgeschw.Checked == false)
+            pnlRight.Visible = !pnlRight.Visible; //if visible make invisible and vice versa
+            settingsVisible = true; //once btnSettings has been clicked, the settings panel shall not auto hide                                
+        }
+
+        //if the user clicks the "Verbinden / Trennen" button
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            Connect();
+        }
+
+        //DEBUG: shows the flag below the Sifa label (for testing positioning)
+        private void btnFlag_Click(object sender, EventArgs e)
+        {
+            lblFlag.Visible = !lblFlag.Visible;
+            lblFlag.BackColor = Color.Orange;
+            lblFlag.Text = "####TEST####";
+        }
+
+        //DEBUG: if the debug button has been clicked...
+        private void btnDebugpanel_Click(object sender, EventArgs e)
+        {
+            if (debugging == true)  //if we are yet in debugging mode, turn debugging mode off
             {
-                pnlDataAFBLZB.Controls.Remove(lblafbeinaus);
-                pnlDataAFBLZB.Controls.Remove(lblAFBgeschwindigkeit);
+                pnlDebug.Visible = false;
+                debugging = false;
             }
-            else
+            else if (debugging == false) //else turn debugging mode on
             {
-                pnlDataAFBLZB.Controls.Add(lblafbeinaus, 0, 0);
-                pnlDataAFBLZB.Controls.Add(lblAFBgeschwindigkeit, 1, 0);
+                pnlDebug.Visible = true;
+                debugging = true;
+
+                //we want to have the debug panel visible on the right side of our tabbed panel plus 10 pt
+                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
+                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
         }
 
-        private void cbLZBvsoll_CheckedChanged(object sender, EventArgs e)
+        //DEBUG: to test focus handling
+        private void btnDebugFokusZusi_Click(object sender, EventArgs e)
         {
-            if (cbLZBvsoll.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
-                pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lbllzbvsoll, 0, 1);
-                pnlDataAFBLZB.Controls.Add(lblLZBsollgeschw, 1, 1);
-            }
+            String window = "Zusi";
+            //SetActiveWindow(FindWindow(null, window));
+            //TODO: check if SetActiveWindow makes a difference
+            SetForegroundWindow(FindWindow(null, window));
+
         }
 
-        private void cbLZBvziel_CheckedChanged(object sender, EventArgs e)
+        #endregion
+
+        public void ResetDebugLabels() //resetting all the labels on the Debug panel to their initial state
         {
-            if (cbLZBvziel.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
-                pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lbllzbvziel, 0, 2);
-                pnlDataAFBLZB.Controls.Add(lblLZBzielgeschw, 1, 2);
-            }
+            //         
         }
 
-        private void cbLZBweg_CheckedChanged(object sender, EventArgs e)
+        public void ResetGlobals() //resetting some variables
         {
-            if (cbLZBweg.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
-                pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lbllzbzielw, 0, 3);
-                pnlDataAFBLZB.Controls.Add(lblLZBzielweg, 1, 3);
-            }
+            lblFlag.Visible = false;
+            hasMoved = false;
+            pnlRight.Visible = true;
+            abbruch = false;
+            scharf = false;
+            vMaxErreicht = false;
+            gebremst = false;
         }
 
-        private void cbAFBLZB_CheckedChanged(object sender, EventArgs e)
+        //TEST: global function, TODO: find a better way
+        private void Control_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbAFBLZB.Checked == false)
-            {
-                pnlLeft.Controls.Remove(pnlDataAFBLZB);
-
-                foreach (CheckBox cbox in pnlAFBLZB.Controls)
-                {
-                    cbox.Enabled = false;
-                }
-
-                cbAFBLZB.Enabled = true; //Als Ausnahme von foreach :) TODO: geht das eleganter?
-
-            }
-            else
-            {
-                pnlLeft.Controls.Add(pnlDataAFBLZB);
-
-                foreach (CheckBox cbox in pnlAFBLZB.Controls)
-                {
-                    cbox.Enabled = true;
-                }
-
-            }
+            FokusAnZusi();
         }
 
-        //TEST TEST TEST//
-        [DllImport("user32.dll")]
-        extern static Boolean SetForegroundWindow(IntPtr Fenster);
+        //if called (lblFlag is showing), after x seconds turn off the flag and stop the timer
+        private void timerFlag_Tick(object sender, EventArgs e)
+        {
+            lblFlag.Visible = false;
+            timerFlag.Stop();
+        }
 
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+        public void ShowFlagtest()
+        {
+            lblFlag.Visible = true;
+            lblFlag.Text = "TEST";
+            timerFlag.Start(); //Zeigt für eine Sekunde ein Testflag
 
-        [DllImport("user32.dll")]
-        extern static IntPtr SetActiveWindow(IntPtr Fenster);
+        }
 
-
-        //TEST
+        
+        
         public void FokusAnZusi()
         {
-            if (hasMoved == true && cbFokusFahrtzurueck.Checked) // Fokus während der Fahrt zurück an Zusi
+            if (hasMoved == true && cbFokusFahrtzurueck.Checked) //give focus back to Zusi when already moving
             {
                 String window = "Zusi";
                 //SetActiveWindow(FindWindow(null, window));
@@ -1102,34 +1050,6 @@ namespace Zielbremsen
                 //SetActiveWindow(FindWindow(null, window));
                 SetForegroundWindow(FindWindow(null, window));
             }
-        }
-
-        private void btnDebugFokusZusi_Click(object sender, EventArgs e)
-        {
-            //TEST DEBUG Fokus auf Zusi
-            String window = "Zusi";
-            //SetActiveWindow(FindWindow(null, window));
-            SetForegroundWindow(FindWindow(null, window));        
-            
-        }
-
-        private void Control_CheckedChanged(object sender, EventArgs e)
-        {
-            //TEST
-            FokusAnZusi();
-        }
-        
-
-        private void cbFokusImmerzurueck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbFokusImmerzurueck.Checked)
-                cbFokusFahrtzurueck.Checked = false;
-        }
-
-        private void cbFokusFahrtzurueck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbFokusFahrtzurueck.Checked)
-                cbFokusImmerzurueck.Checked = false;
         }
           
     }
