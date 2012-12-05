@@ -51,7 +51,7 @@
             this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
             this.cbFahrstufe = new System.Windows.Forms.CheckBox();
             this.cbLmsifa = new System.Windows.Forms.CheckBox();
-            this.cbLmtueren = new System.Windows.Forms.CheckBox();
+            this.cbTueren = new System.Windows.Forms.CheckBox();
             this.cbUhrzeit = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
             this.pnlBremsen = new System.Windows.Forms.Panel();
@@ -114,7 +114,6 @@
             this.lblkmh = new System.Windows.Forms.Label();
             this.lblV = new System.Windows.Forms.Label();
             this.pnlDataGrunddaten = new System.Windows.Forms.TableLayoutPanel();
-            this.lbltuer = new System.Windows.Forms.Label();
             this.lblfahrst = new System.Windows.Forms.Label();
             this.lblFahrstufe = new System.Windows.Forms.Label();
             this.lblTueren = new System.Windows.Forms.Label();
@@ -136,6 +135,9 @@
             this.lblLZBzielgeschw = new System.Windows.Forms.Label();
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDebugreisezug = new System.Windows.Forms.Label();
+            this.lblDebugreisezwert = new System.Windows.Forms.Label();
+            this.lblDebugreiseztrue = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -340,7 +342,7 @@
             this.pnlGrunddaten.Controls.Add(this.cbGeschwindigkeit);
             this.pnlGrunddaten.Controls.Add(this.cbFahrstufe);
             this.pnlGrunddaten.Controls.Add(this.cbLmsifa);
-            this.pnlGrunddaten.Controls.Add(this.cbLmtueren);
+            this.pnlGrunddaten.Controls.Add(this.cbTueren);
             this.pnlGrunddaten.Controls.Add(this.cbUhrzeit);
             this.pnlGrunddaten.Controls.Add(this.cbLmschleudern);
             this.pnlGrunddaten.Location = new System.Drawing.Point(6, 6);
@@ -417,18 +419,18 @@
             this.cbLmsifa.UseVisualStyleBackColor = true;
             this.cbLmsifa.CheckedChanged += new System.EventHandler(this.cbLmsifa_CheckedChanged);
             // 
-            // cbLmtueren
+            // cbTueren
             // 
-            this.cbLmtueren.AutoSize = true;
-            this.cbLmtueren.Checked = true;
-            this.cbLmtueren.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLmtueren.Location = new System.Drawing.Point(113, 49);
-            this.cbLmtueren.Name = "cbLmtueren";
-            this.cbLmtueren.Size = new System.Drawing.Size(54, 17);
-            this.cbLmtueren.TabIndex = 3;
-            this.cbLmtueren.Text = "Türen";
-            this.cbLmtueren.UseVisualStyleBackColor = true;
-            this.cbLmtueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
+            this.cbTueren.AutoSize = true;
+            this.cbTueren.Checked = true;
+            this.cbTueren.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTueren.Location = new System.Drawing.Point(113, 49);
+            this.cbTueren.Name = "cbTueren";
+            this.cbTueren.Size = new System.Drawing.Size(54, 17);
+            this.cbTueren.TabIndex = 3;
+            this.cbTueren.Text = "Türen";
+            this.cbTueren.UseVisualStyleBackColor = true;
+            this.cbTueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
             // 
             // cbUhrzeit
             // 
@@ -988,6 +990,9 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.lblDebugreiseztrue);
+            this.grpDebug.Controls.Add(this.lblDebugreisezwert);
+            this.grpDebug.Controls.Add(this.lblDebugreisezug);
             this.grpDebug.Controls.Add(this.btnDebugFokusZusi);
             this.grpDebug.Controls.Add(this.label13);
             this.grpDebug.Controls.Add(this.label12);
@@ -1080,7 +1085,7 @@
             this.lblm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblm.Location = new System.Drawing.Point(69, 24);
             this.lblm.Name = "lblm";
-            this.lblm.Size = new System.Drawing.Size(55, 13);
+            this.lblm.Size = new System.Drawing.Size(32, 13);
             this.lblm.TabIndex = 5;
             this.lblm.Text = "km";
             // 
@@ -1120,7 +1125,7 @@
             this.lblkmh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblkmh.Location = new System.Drawing.Point(69, 0);
             this.lblkmh.Name = "lblkmh";
-            this.lblkmh.Size = new System.Drawing.Size(55, 24);
+            this.lblkmh.Size = new System.Drawing.Size(32, 24);
             this.lblkmh.TabIndex = 4;
             this.lblkmh.Text = "km/h";
             // 
@@ -1142,14 +1147,13 @@
             this.pnlDataGrunddaten.ColumnCount = 2;
             this.pnlDataGrunddaten.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.pnlDataGrunddaten.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.pnlDataGrunddaten.Controls.Add(this.lbltuer, 0, 3);
             this.pnlDataGrunddaten.Controls.Add(this.lblfahrst, 0, 2);
             this.pnlDataGrunddaten.Controls.Add(this.lblFahrstufe, 1, 2);
             this.pnlDataGrunddaten.Controls.Add(this.lblV, 0, 0);
             this.pnlDataGrunddaten.Controls.Add(this.lblkmh, 1, 0);
             this.pnlDataGrunddaten.Controls.Add(this.lblMeter, 0, 1);
             this.pnlDataGrunddaten.Controls.Add(this.lblm, 1, 1);
-            this.pnlDataGrunddaten.Controls.Add(this.lblTueren, 1, 3);
+            this.pnlDataGrunddaten.Controls.Add(this.lblTueren, 0, 3);
             this.pnlDataGrunddaten.Location = new System.Drawing.Point(3, 74);
             this.pnlDataGrunddaten.Name = "pnlDataGrunddaten";
             this.pnlDataGrunddaten.RowCount = 4;
@@ -1158,18 +1162,8 @@
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlDataGrunddaten.Size = new System.Drawing.Size(127, 63);
+            this.pnlDataGrunddaten.Size = new System.Drawing.Size(104, 63);
             this.pnlDataGrunddaten.TabIndex = 16;
-            // 
-            // lbltuer
-            // 
-            this.lbltuer.AutoSize = true;
-            this.lbltuer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbltuer.Location = new System.Drawing.Point(3, 50);
-            this.lbltuer.Name = "lbltuer";
-            this.lbltuer.Size = new System.Drawing.Size(60, 13);
-            this.lbltuer.TabIndex = 18;
-            this.lbltuer.Text = "Türen";
             // 
             // lblfahrst
             // 
@@ -1187,18 +1181,19 @@
             this.lblFahrstufe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFahrstufe.Location = new System.Drawing.Point(69, 37);
             this.lblFahrstufe.Name = "lblFahrstufe";
-            this.lblFahrstufe.Size = new System.Drawing.Size(55, 13);
+            this.lblFahrstufe.Size = new System.Drawing.Size(32, 13);
             this.lblFahrstufe.TabIndex = 6;
             this.lblFahrstufe.Text = "88";
             // 
             // lblTueren
             // 
             this.lblTueren.AutoSize = true;
+            this.pnlDataGrunddaten.SetColumnSpan(this.lblTueren, 2);
             this.lblTueren.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTueren.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTueren.Location = new System.Drawing.Point(69, 50);
+            this.lblTueren.Location = new System.Drawing.Point(3, 50);
             this.lblTueren.Name = "lblTueren";
-            this.lblTueren.Size = new System.Drawing.Size(55, 13);
+            this.lblTueren.Size = new System.Drawing.Size(98, 13);
             this.lblTueren.TabIndex = 8;
             this.lblTueren.Text = "########";
             // 
@@ -1409,8 +1404,35 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.Size = new System.Drawing.Size(133, 342);
+            this.pnlLeft.Size = new System.Drawing.Size(124, 342);
             this.pnlLeft.TabIndex = 19;
+            // 
+            // lblDebugreisezug
+            // 
+            this.lblDebugreisezug.AutoSize = true;
+            this.lblDebugreisezug.Location = new System.Drawing.Point(9, 99);
+            this.lblDebugreisezug.Name = "lblDebugreisezug";
+            this.lblDebugreisezug.Size = new System.Drawing.Size(52, 13);
+            this.lblDebugreisezug.TabIndex = 22;
+            this.lblDebugreisezug.Text = "(reisezug)";
+            // 
+            // lblDebugreisezwert
+            // 
+            this.lblDebugreisezwert.AutoSize = true;
+            this.lblDebugreisezwert.Location = new System.Drawing.Point(3, 134);
+            this.lblDebugreisezwert.Name = "lblDebugreisezwert";
+            this.lblDebugreisezwert.Size = new System.Drawing.Size(52, 13);
+            this.lblDebugreisezwert.TabIndex = 23;
+            this.lblDebugreisezwert.Text = "(reisezug)";
+            // 
+            // lblDebugreiseztrue
+            // 
+            this.lblDebugreiseztrue.AutoSize = true;
+            this.lblDebugreiseztrue.Location = new System.Drawing.Point(14, 115);
+            this.lblDebugreiseztrue.Name = "lblDebugreiseztrue";
+            this.lblDebugreiseztrue.Size = new System.Drawing.Size(79, 13);
+            this.lblDebugreiseztrue.TabIndex = 24;
+            this.lblDebugreiseztrue.Text = "(reisezug true?)";
             // 
             // CMainWindow
             // 
@@ -1510,14 +1532,13 @@
         private System.Windows.Forms.TabPage tabSystem;
         private System.Windows.Forms.CheckBox cbLmsifa;
         private System.Windows.Forms.CheckBox cbLmschleudern;
-        private System.Windows.Forms.CheckBox cbLmtueren;
+        private System.Windows.Forms.CheckBox cbTueren;
         private System.Windows.Forms.CheckBox cbFahrstufe;
         private System.Windows.Forms.CheckBox cbUhrzeit;
         private System.Windows.Forms.TableLayoutPanel pnlDataBremsen;
         private System.Windows.Forms.Label lblFahrstufe;
         private System.Windows.Forms.CheckBox cbGrunddaten;
         private System.Windows.Forms.CheckBox cbBremsen;
-        private System.Windows.Forms.Label lbltuer;
         private System.Windows.Forms.Label lblTueren;
         private System.Windows.Forms.Panel pnlBremsen;
         private System.Windows.Forms.Panel pnlGrunddaten;
@@ -1576,6 +1597,9 @@
         private System.Windows.Forms.Button btnDebugFokusZusi;
         private System.Windows.Forms.CheckBox cbFokusFahrtzurueck;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDebugreisezug;
+        private System.Windows.Forms.Label lblDebugreisezwert;
+        private System.Windows.Forms.Label lblDebugreiseztrue;
 
     }
 

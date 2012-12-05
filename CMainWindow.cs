@@ -69,6 +69,7 @@ namespace Zielbremsen
             MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
             MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
+            MyTCPConnection.RequestData(2648); // "Reisezug" 
             #endregion 
 
         }
@@ -158,6 +159,7 @@ namespace Zielbremsen
         public bool settingsVisible = false; //for determining if the settings panel shall auto hide
         bool nightmode = false; //for letting the user choose between two different color sets
         //TODO: maybe it makes sense to determine day- and nightmode automatically when receiving daytime from Zusi
+        bool reisezug = true; //if not true door label will be "Güterzug"
 
         #endregion
 
@@ -320,36 +322,61 @@ namespace Zielbremsen
                 else
                     lblFahrstufe.Text = "--";
             }
-            else if (dataSet.Id == MyTCPConnection["Türen"])
+            else if (dataSet.Id == MyTCPConnection["Reisezug"])
             {
                 //DEBUG
-                double tuerwert = dataSet.Value;
+                lblDebugreisezwert.Text = dataSet.Value.ToString();
 
-                if (tuerwert > 7E-45 && cbLmtueren.Checked) // closed
+                if (dataSet.Value == 0) //if Güterzug
                 {
-                    lblFlag.Visible = false;
-                    lblFlag.Text = "";
-                    lblTueren.Text = "zu";
+                    reisezug = false;
+                    lblFlag.Visible = false; //if doors were open when a freight train has been selected as new train
                 }
-                else if (tuerwert < 2E-45 && tuerwert > 0 && cbLmtueren.Checked) //open
+                else
                 {
-                    lblFlag.Visible = true;
-                    lblFlag.Text = "Türen geöffnet";
-                    lblTueren.Text = "offen";
+                    reisezug = true;
                 }
-                else if (tuerwert > 5E-45 && tuerwert < 7E-45) //closing
+            } 
+            else if (dataSet.Id == MyTCPConnection["Türen"])
+            {
+                if (reisezug == true)
                 {
-                    lblTueren.Text = "schließen";
-                }
-                else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //passengers okay
-                {
-                    lblTueren.Text = "Fahrgäste i.O.";
-                }
-                else if (tuerwert == 0)  //doors unblocked
-                {
-                    lblTueren.Text = "freigegeben";
-                }
+                    double tuerwert = dataSet.Value;
 
+                    //DEBUG
+                    MessageBox.Show("Reisezug TRUE");
+                    
+
+                    if (tuerwert > 7E-45 && cbTueren.Checked) // closed
+                    {
+                        lblFlag.Visible = false;
+                        lblFlag.Text = "";
+                        lblTueren.Text = "Türen zu";
+                    }
+                    else if (tuerwert < 2E-45 && tuerwert > 0 && cbTueren.Checked) //open
+                    {
+                        lblFlag.Visible = true;
+                        lblFlag.Text = "Türen geöffnet";
+                        lblTueren.Text = "Türen offen";
+                    }
+                    else if (tuerwert > 5E-45 && tuerwert < 7E-45) //closing
+                    {
+                        lblTueren.Text = "Türen schließen";
+                    }
+                    else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //passengers okay
+                    {
+                        lblTueren.Text = "Fahrgäste i.O.";
+                    }
+                    else if (tuerwert == 0)  //doors unblocked
+                    {
+                        lblTueren.Text = "Türen freigegeben";
+                    }
+                }
+                else if (reisezug == false)//if reisezug is not true
+                {
+                    //DEBUG
+                    MessageBox.Show("Reisezug FALSE");            
+                }
             }
             else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"] && cbFahrstufenschalter.Checked == true)
             {
@@ -405,7 +432,6 @@ namespace Zielbremsen
                 double lzbweg = dataSet.Value;
                 lblLZBzielweg.Text = String.Format("{0}", lzbweg);
             }
-
         }
         #endregion
 
@@ -766,15 +792,13 @@ namespace Zielbremsen
 
         private void cbLmtueren_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLmtueren.Checked == false)
+            if (cbTueren.Checked == false)
             {
                 pnlDataGrunddaten.Controls.Remove(lblTueren);
-                pnlDataGrunddaten.Controls.Remove(lbltuer);
             }
             else
             {
                 pnlDataGrunddaten.Controls.Add(lblTueren, 1, 3);
-                pnlDataGrunddaten.Controls.Add(lbltuer, 0, 3);
                 ShowFlagtest();
                 lblFlag.Visible = true; 
             }
