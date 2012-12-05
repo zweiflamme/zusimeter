@@ -73,7 +73,7 @@
             this.cbHauptsch = new System.Windows.Forms.CheckBox();
             this.cbSchalterst = new System.Windows.Forms.CheckBox();
             this.numFahrschneutral = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblFahrschneutralbei = new System.Windows.Forms.Label();
             this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -229,7 +229,7 @@
             this.pnlSettings.Location = new System.Drawing.Point(3, 1);
             this.pnlSettings.Name = "pnlSettings";
             this.pnlSettings.Size = new System.Drawing.Size(421, 353);
-            this.pnlSettings.TabIndex = 10;           
+            this.pnlSettings.TabIndex = 10;
             // 
             // tabEinstellungen
             // 
@@ -591,7 +591,7 @@
             this.pnlSchalterst.Controls.Add(this.cbHauptsch);
             this.pnlSchalterst.Controls.Add(this.cbSchalterst);
             this.pnlSchalterst.Controls.Add(this.numFahrschneutral);
-            this.pnlSchalterst.Controls.Add(this.label5);
+            this.pnlSchalterst.Controls.Add(this.lblFahrschneutralbei);
             this.pnlSchalterst.Controls.Add(this.cbFahrstufenschalter);
             this.pnlSchalterst.Location = new System.Drawing.Point(217, 6);
             this.pnlSchalterst.Name = "pnlSchalterst";
@@ -696,15 +696,15 @@
             this.numFahrschneutral.TabIndex = 20;
             this.numFahrschneutral.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             // 
-            // label5
+            // lblFahrschneutralbei
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(86, 40);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "neutral bei";
+            this.lblFahrschneutralbei.AutoSize = true;
+            this.lblFahrschneutralbei.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFahrschneutralbei.Location = new System.Drawing.Point(86, 40);
+            this.lblFahrschneutralbei.Name = "lblFahrschneutralbei";
+            this.lblFahrschneutralbei.Size = new System.Drawing.Size(56, 13);
+            this.lblFahrschneutralbei.TabIndex = 21;
+            this.lblFahrschneutralbei.Text = "neutral bei";
             // 
             // cbFahrstufenschalter
             // 
@@ -1533,7 +1533,7 @@
         private System.Windows.Forms.CheckBox cbTopmost;
         private System.Windows.Forms.CheckBox cbFokusImmerzurueck;
         private System.Windows.Forms.NumericUpDown numFahrschneutral;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblFahrschneutralbei;
         private System.Windows.Forms.Panel pnlSchalterst;
         private System.Windows.Forms.CheckBox cbZusbremse;
         private System.Windows.Forms.CheckBox cbDynbremse;

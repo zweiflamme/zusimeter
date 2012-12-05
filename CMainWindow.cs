@@ -193,7 +193,7 @@ namespace Zielbremsen
             foreach (CheckBox c in pnlBremsen.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
-            }
+            }            
             foreach (CheckBox c in pnlGrunddaten.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
@@ -202,10 +202,15 @@ namespace Zielbremsen
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
+            //DEBUG: remove and add because it's not a checkbox //TODO: find a better way
+            pnlSchalterst.Controls.Remove(numFahrschneutral);
+            pnlSchalterst.Controls.Remove(lblFahrschneutralbei);
             foreach (CheckBox c in pnlSchalterst.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
+            pnlSchalterst.Controls.Add(lblFahrschneutralbei);
+            pnlSchalterst.Controls.Add(numFahrschneutral);
             
         }
 
@@ -768,8 +773,8 @@ namespace Zielbremsen
             }
             else
             {
-                pnlDataGrunddaten.Controls.Add(lblTueren, 0, 3);
-                pnlDataGrunddaten.Controls.Add(lbltuer, 1, 3);
+                pnlDataGrunddaten.Controls.Add(lblTueren, 1, 3);
+                pnlDataGrunddaten.Controls.Add(lbltuer, 0, 3);
                 ShowFlagtest();
                 lblFlag.Visible = true; 
             }
@@ -872,7 +877,7 @@ namespace Zielbremsen
             }
             else
             {
-                pnlSchalterst.Controls.Add(label5);
+                pnlSchalterst.Controls.Add(lblFahrschneutralbei);
                 pnlSchalterst.Controls.Add(numFahrschneutral);
                 cbFahrstufenschalter.Enabled = true;
             }
