@@ -139,6 +139,13 @@
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
             this.timer100 = new System.Windows.Forms.Timer(this.components);
+            this.lblPZB_U = new System.Windows.Forms.Label();
+            this.lblPZB_O = new System.Windows.Forms.Label();
+            this.lblPZB_M = new System.Windows.Forms.Label();
+            this.lblPZB_1000 = new System.Windows.Forms.Label();
+            this.lblPZB_500 = new System.Windows.Forms.Label();
+            this.lblPZB_Bef = new System.Windows.Forms.Label();
+            this.pnlDataPZB90 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -160,6 +167,7 @@
             this.pnlDataBremsen.SuspendLayout();
             this.pnlDataAFBLZB.SuspendLayout();
             this.pnlLeft.SuspendLayout();
+            this.pnlDataPZB90.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -215,7 +223,7 @@
             // btnSettings
             // 
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(3, 314);
+            this.btnSettings.Location = new System.Drawing.Point(3, 385);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(94, 25);
             this.btnSettings.TabIndex = 6;
@@ -1099,7 +1107,7 @@
             // 
             // btnNacht
             // 
-            this.btnNacht.Location = new System.Drawing.Point(3, 285);
+            this.btnNacht.Location = new System.Drawing.Point(3, 356);
             this.btnNacht.Name = "btnNacht";
             this.btnNacht.Size = new System.Drawing.Size(94, 23);
             this.btnNacht.TabIndex = 15;
@@ -1410,20 +1418,20 @@
             // 
             // pnlLeft
             // 
-            this.pnlLeft.AutoSize = true;
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLeft.ColumnCount = 1;
             this.pnlLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlLeft.Controls.Add(this.pnlDataPZB90, 0, 5);
             this.pnlLeft.Controls.Add(this.lblSifa, 0, 0);
             this.pnlLeft.Controls.Add(this.pnlDataBremsen, 0, 3);
-            this.pnlLeft.Controls.Add(this.btnSettings, 0, 6);
             this.pnlLeft.Controls.Add(this.pnlDataAFBLZB, 0, 4);
             this.pnlLeft.Controls.Add(this.lblFlag, 0, 1);
-            this.pnlLeft.Controls.Add(this.btnNacht, 0, 5);
             this.pnlLeft.Controls.Add(this.pnlDataGrunddaten, 0, 2);
+            this.pnlLeft.Controls.Add(this.btnSettings, 0, 7);
+            this.pnlLeft.Controls.Add(this.btnNacht, 0, 6);
             this.pnlLeft.Location = new System.Drawing.Point(2, 13);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.RowCount = 7;
+            this.pnlLeft.RowCount = 8;
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1431,13 +1439,105 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.Size = new System.Drawing.Size(124, 342);
+            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlLeft.Size = new System.Drawing.Size(124, 446);
             this.pnlLeft.TabIndex = 19;
             // 
             // timer100
             // 
             this.timer100.Tick += new System.EventHandler(this.timer100_Tick);
+            // 
+            // lblPZB_U
+            // 
+            this.lblPZB_U.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_U.Location = new System.Drawing.Point(1, 1);
+            this.lblPZB_U.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_U.Name = "lblPZB_U";
+            this.lblPZB_U.Size = new System.Drawing.Size(37, 31);
+            this.lblPZB_U.TabIndex = 25;
+            this.lblPZB_U.Text = "U";
+            this.lblPZB_U.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_O
+            // 
+            this.lblPZB_O.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_O.Location = new System.Drawing.Point(77, 1);
+            this.lblPZB_O.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_O.Name = "lblPZB_O";
+            this.lblPZB_O.Size = new System.Drawing.Size(40, 31);
+            this.lblPZB_O.TabIndex = 26;
+            this.lblPZB_O.Text = "O";
+            this.lblPZB_O.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_M
+            // 
+            this.lblPZB_M.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_M.Location = new System.Drawing.Point(39, 1);
+            this.lblPZB_M.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_M.Name = "lblPZB_M";
+            this.lblPZB_M.Size = new System.Drawing.Size(37, 31);
+            this.lblPZB_M.TabIndex = 27;
+            this.lblPZB_M.Text = "M";
+            this.lblPZB_M.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_1000
+            // 
+            this.lblPZB_1000.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_1000.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPZB_1000.Location = new System.Drawing.Point(77, 33);
+            this.lblPZB_1000.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_1000.Name = "lblPZB_1000";
+            this.lblPZB_1000.Size = new System.Drawing.Size(40, 31);
+            this.lblPZB_1000.TabIndex = 28;
+            this.lblPZB_1000.Text = "1000";
+            this.lblPZB_1000.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_500
+            // 
+            this.lblPZB_500.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_500.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPZB_500.Location = new System.Drawing.Point(39, 33);
+            this.lblPZB_500.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_500.Name = "lblPZB_500";
+            this.lblPZB_500.Size = new System.Drawing.Size(37, 31);
+            this.lblPZB_500.TabIndex = 29;
+            this.lblPZB_500.Text = "500";
+            this.lblPZB_500.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_Bef
+            // 
+            this.lblPZB_Bef.BackColor = System.Drawing.SystemColors.Control;
+            this.lblPZB_Bef.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_Bef.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPZB_Bef.Location = new System.Drawing.Point(1, 33);
+            this.lblPZB_Bef.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_Bef.Name = "lblPZB_Bef";
+            this.lblPZB_Bef.Size = new System.Drawing.Size(37, 31);
+            this.lblPZB_Bef.TabIndex = 30;
+            this.lblPZB_Bef.Text = "Befehl";
+            this.lblPZB_Bef.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlDataPZB90
+            // 
+            this.pnlDataPZB90.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.pnlDataPZB90.ColumnCount = 3;
+            this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_1000, 2, 1);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_500, 1, 1);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_Bef, 0, 1);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_U, 0, 0);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_M, 1, 0);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_O, 2, 0);
+            this.pnlDataPZB90.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDataPZB90.Location = new System.Drawing.Point(3, 285);
+            this.pnlDataPZB90.Name = "pnlDataPZB90";
+            this.pnlDataPZB90.RowCount = 2;
+            this.pnlDataPZB90.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlDataPZB90.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlDataPZB90.Size = new System.Drawing.Size(118, 65);
+            this.pnlDataPZB90.TabIndex = 20;
             // 
             // CMainWindow
             // 
@@ -1446,7 +1546,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1003, 414);
+            this.ClientSize = new System.Drawing.Size(1003, 480);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlRight);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -1490,6 +1590,7 @@
             this.pnlDataAFBLZB.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            this.pnlDataPZB90.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1606,6 +1707,13 @@
         private System.Windows.Forms.Label lblDebugreisezwert;
         private System.Windows.Forms.Label lblDebugreiseztrue;
         private System.Windows.Forms.Timer timer100;
+        private System.Windows.Forms.Label lblPZB_Bef;
+        private System.Windows.Forms.Label lblPZB_500;
+        private System.Windows.Forms.Label lblPZB_1000;
+        private System.Windows.Forms.Label lblPZB_M;
+        private System.Windows.Forms.Label lblPZB_O;
+        private System.Windows.Forms.Label lblPZB_U;
+        private System.Windows.Forms.TableLayoutPanel pnlDataPZB90;
 
     }
 

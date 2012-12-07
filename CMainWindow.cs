@@ -71,6 +71,16 @@ namespace Zielbremsen
             MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
             MyTCPConnection.RequestData(2648); // "Reisezug" 
             MyTCPConnection.RequestData(2647); // "Autopilot"
+            //###PZB-90###//
+            MyTCPConnection.RequestData(2583); // "LM PZB Zugart U"
+            MyTCPConnection.RequestData(2584); // "LM PZB Zugart M"
+            MyTCPConnection.RequestData(2585); // "LM PZB Zugart O"
+            MyTCPConnection.RequestData(2580); // "LM PZB 1000Hz"
+            MyTCPConnection.RequestData(2581); // "LM PZB 500Hz"
+            MyTCPConnection.RequestData(2582); // "LM PZB Befehl"
+            //###//
+
+
             #endregion 
 
         }
@@ -171,6 +181,9 @@ namespace Zielbremsen
 
         private void CMainWindow_Load(object sender, EventArgs e) //on loading of the main window...
         {
+            if (cbTopmost.Checked == true)
+                this.TopMost = true;
+            
             //showing 'System' tab first so that the user is able to establish a connection to the TCP server
             tabEinstellungen.SelectTab("tabSystem");   
 
@@ -462,6 +475,51 @@ namespace Zielbremsen
                     timer100.Enabled = false;
                 }
             }
+            //###PZB-90###//
+            else if (dataSet.Id == MyTCPConnection["LM PZB Zugart O"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_O.BackColor = Color.CornflowerBlue;                      
+                else
+                    lblPZB_O.BackColor = Color.FromName("Control");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB Zugart M"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_M.BackColor = Color.CornflowerBlue;
+                else
+                    lblPZB_M.BackColor = Color.FromName("Control");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB Zugart U"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_M.BackColor = Color.CornflowerBlue;
+                else
+                    lblPZB_M.BackColor = Color.FromName("Control");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB 1000Hz"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_1000.BackColor = Color.Yellow;
+                else
+                    lblPZB_1000.BackColor = Color.FromName("Control");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB 500Hz"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_500.BackColor = Color.Red;
+                else
+                    lblPZB_500.BackColor = Color.FromName("Control");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB Befehl"])
+            {
+                if (dataSet.Value > 0)
+                { lblPZB_Bef.BackColor = Color.Black; lblPZB_Bef.ForeColor = Color.White; }
+                else
+                { lblPZB_Bef.BackColor = Color.FromName("Control"); lblPZB_Bef.ForeColor = Color.FromName("ControlText"); }
+            }
+                
+
         }
         #endregion
 
@@ -1099,6 +1157,14 @@ namespace Zielbremsen
                 lblFlag.Visible = true;
                 lblFlag.Text = "Autopilot ein";
             }
+
+        }
+
+        private void pnlDataPZB90_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+            
+           //
+    
         }
           
     }
