@@ -1140,11 +1140,11 @@
             // 
             // lblm
             // 
+            this.lblm.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblm.AutoSize = true;
-            this.lblm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblm.Location = new System.Drawing.Point(69, 24);
             this.lblm.Name = "lblm";
-            this.lblm.Size = new System.Drawing.Size(32, 13);
+            this.lblm.Size = new System.Drawing.Size(21, 13);
             this.lblm.TabIndex = 5;
             this.lblm.Text = "km";
             // 
@@ -1180,11 +1180,11 @@
             // 
             // lblkmh
             // 
+            this.lblkmh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblkmh.AutoSize = true;
-            this.lblkmh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblkmh.Location = new System.Drawing.Point(69, 0);
+            this.lblkmh.Location = new System.Drawing.Point(69, 11);
             this.lblkmh.Name = "lblkmh";
-            this.lblkmh.Size = new System.Drawing.Size(32, 24);
+            this.lblkmh.Size = new System.Drawing.Size(32, 13);
             this.lblkmh.TabIndex = 4;
             this.lblkmh.Text = "km/h";
             // 
@@ -1236,11 +1236,11 @@
             // 
             // lblFahrstufe
             // 
+            this.lblFahrstufe.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblFahrstufe.AutoSize = true;
-            this.lblFahrstufe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFahrstufe.Location = new System.Drawing.Point(69, 37);
             this.lblFahrstufe.Name = "lblFahrstufe";
-            this.lblFahrstufe.Size = new System.Drawing.Size(32, 13);
+            this.lblFahrstufe.Size = new System.Drawing.Size(19, 13);
             this.lblFahrstufe.TabIndex = 6;
             this.lblFahrstufe.Text = "88";
             // 
