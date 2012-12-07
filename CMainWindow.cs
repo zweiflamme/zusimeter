@@ -70,6 +70,7 @@ namespace Zielbremsen
             MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
             MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
             MyTCPConnection.RequestData(2648); // "Reisezug" 
+            MyTCPConnection.RequestData(2647); // "Autopilot"
             #endregion 
 
         }
@@ -159,7 +160,12 @@ namespace Zielbremsen
         public bool settingsVisible = false; //for determining if the settings panel shall auto hide
         bool nightmode = false; //for letting the user choose between two different color sets
         //TODO: maybe it makes sense to determine day- and nightmode automatically when receiving daytime from Zusi
-        bool reisezug = true; //if not true door label will be "Güterzug"
+        bool reisezug; //if not true door label will be "Güterzug"
+        //DEBUG
+        //String zugdateiOld = "";
+        //String zugdatei = "";
+        //TEST
+        bool autopilot = false; //is being checked in intervals to always display label lblFlag "Autopilot ein" when on
 
         #endregion
 
@@ -324,9 +330,6 @@ namespace Zielbremsen
             }
             else if (dataSet.Id == MyTCPConnection["Reisezug"])
             {
-                //DEBUG
-                lblDebugreisezwert.Text = dataSet.Value.ToString();
-
                 if (dataSet.Value == 0) //if Güterzug
                 {
                     reisezug = false;
@@ -339,13 +342,17 @@ namespace Zielbremsen
             } 
             else if (dataSet.Id == MyTCPConnection["Türen"])
             {
+
+                //DEBUG
+                String reisezugOld = reisezug.ToString();
+                //lblDebugreisezwert.Text = reisezugOld;
+
                 if (reisezug == true)
                 {
-                    double tuerwert = dataSet.Value;
-
                     //DEBUG
-                    MessageBox.Show("Reisezug TRUE");
-                    
+                    //MessageBox.Show("DEBUG: Reisezug=TRUE" + "--old:" + reisezugOld + "--:" + reisezug);
+
+                    double tuerwert = dataSet.Value;
 
                     if (tuerwert > 7E-45 && cbTueren.Checked) // closed
                     {
@@ -375,7 +382,8 @@ namespace Zielbremsen
                 else if (reisezug == false)//if reisezug is not true
                 {
                     //DEBUG
-                    MessageBox.Show("Reisezug FALSE");            
+                    //MessageBox.Show("DEBUG: Reisezug=FALSE" + "--old:" + reisezugOld + "--:" + reisezug);        
+                    lblTueren.Text = "Güterzug";
                 }
             }
             else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"] && cbFahrstufenschalter.Checked == true)
@@ -431,6 +439,28 @@ namespace Zielbremsen
             {
                 double lzbweg = dataSet.Value;
                 lblLZBzielweg.Text = String.Format("{0}", lzbweg);
+            }
+            //DEBUG TEST
+            /* else if (dataSet.Id == MyTCPConnection["Zugdatei"])...
+            {/*zugdateiOld = zugnummer;
+                zugdatei = dataSet.Value.ToString();
+                if (zugnummer != zugnummerOld)
+                    MessageBox.Show("DEBUG: Zugdatei has changed"); } */   
+
+            else if (dataSet.Id == MyTCPConnection["Autopilot"])
+            {
+                if (dataSet.Value > 0) //if autopilot is on...
+                {
+                    autopilot = true;
+                    timer100.Enabled = true; //makes sure "Autopilot ein" lblFlag is displayed as long as A/P is on
+                }
+                else
+                {
+                    autopilot = false;
+                    lblFlag.Visible = false;
+                    lblFlag.Text = "";
+                    timer100.Enabled = false;
+                }
             }
         }
         #endregion
@@ -1058,6 +1088,16 @@ namespace Zielbremsen
                 String window = "Zusi";
                 //SetActiveWindow(FindWindow(null, window));
                 SetForegroundWindow(FindWindow(null, window));
+            }
+        }
+
+        //TEST
+        private void timer100_Tick(object sender, EventArgs e)
+        {
+            if (autopilot == true)
+            {
+                lblFlag.Visible = true;
+                lblFlag.Text = "Autopilot ein";
             }
         }
           

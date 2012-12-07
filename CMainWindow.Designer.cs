@@ -99,6 +99,9 @@
             this.lblFlag = new System.Windows.Forms.Label();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
+            this.lblDebugreiseztrue = new System.Windows.Forms.Label();
+            this.lblDebugreisezwert = new System.Windows.Forms.Label();
+            this.lblDebugreisezug = new System.Windows.Forms.Label();
             this.btnDebugFokusZusi = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -135,9 +138,7 @@
             this.lblLZBzielgeschw = new System.Windows.Forms.Label();
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
-            this.lblDebugreisezug = new System.Windows.Forms.Label();
-            this.lblDebugreisezwert = new System.Windows.Forms.Label();
-            this.lblDebugreiseztrue = new System.Windows.Forms.Label();
+            this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -1005,6 +1006,33 @@
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
             // 
+            // lblDebugreiseztrue
+            // 
+            this.lblDebugreiseztrue.AutoSize = true;
+            this.lblDebugreiseztrue.Location = new System.Drawing.Point(14, 115);
+            this.lblDebugreiseztrue.Name = "lblDebugreiseztrue";
+            this.lblDebugreiseztrue.Size = new System.Drawing.Size(79, 13);
+            this.lblDebugreiseztrue.TabIndex = 24;
+            this.lblDebugreiseztrue.Text = "(reisezug true?)";
+            // 
+            // lblDebugreisezwert
+            // 
+            this.lblDebugreisezwert.AutoSize = true;
+            this.lblDebugreisezwert.Location = new System.Drawing.Point(3, 134);
+            this.lblDebugreisezwert.Name = "lblDebugreisezwert";
+            this.lblDebugreisezwert.Size = new System.Drawing.Size(52, 13);
+            this.lblDebugreisezwert.TabIndex = 23;
+            this.lblDebugreisezwert.Text = "(reisezug)";
+            // 
+            // lblDebugreisezug
+            // 
+            this.lblDebugreisezug.AutoSize = true;
+            this.lblDebugreisezug.Location = new System.Drawing.Point(9, 99);
+            this.lblDebugreisezug.Name = "lblDebugreisezug";
+            this.lblDebugreisezug.Size = new System.Drawing.Size(52, 13);
+            this.lblDebugreisezug.TabIndex = 22;
+            this.lblDebugreisezug.Text = "(reisezug)";
+            // 
             // btnDebugFokusZusi
             // 
             this.btnDebugFokusZusi.Location = new System.Drawing.Point(6, 52);
@@ -1407,32 +1435,9 @@
             this.pnlLeft.Size = new System.Drawing.Size(124, 342);
             this.pnlLeft.TabIndex = 19;
             // 
-            // lblDebugreisezug
+            // timer100
             // 
-            this.lblDebugreisezug.AutoSize = true;
-            this.lblDebugreisezug.Location = new System.Drawing.Point(9, 99);
-            this.lblDebugreisezug.Name = "lblDebugreisezug";
-            this.lblDebugreisezug.Size = new System.Drawing.Size(52, 13);
-            this.lblDebugreisezug.TabIndex = 22;
-            this.lblDebugreisezug.Text = "(reisezug)";
-            // 
-            // lblDebugreisezwert
-            // 
-            this.lblDebugreisezwert.AutoSize = true;
-            this.lblDebugreisezwert.Location = new System.Drawing.Point(3, 134);
-            this.lblDebugreisezwert.Name = "lblDebugreisezwert";
-            this.lblDebugreisezwert.Size = new System.Drawing.Size(52, 13);
-            this.lblDebugreisezwert.TabIndex = 23;
-            this.lblDebugreisezwert.Text = "(reisezug)";
-            // 
-            // lblDebugreiseztrue
-            // 
-            this.lblDebugreiseztrue.AutoSize = true;
-            this.lblDebugreiseztrue.Location = new System.Drawing.Point(14, 115);
-            this.lblDebugreiseztrue.Name = "lblDebugreiseztrue";
-            this.lblDebugreiseztrue.Size = new System.Drawing.Size(79, 13);
-            this.lblDebugreiseztrue.TabIndex = 24;
-            this.lblDebugreiseztrue.Text = "(reisezug true?)";
+            this.timer100.Tick += new System.EventHandler(this.timer100_Tick);
             // 
             // CMainWindow
             // 
@@ -1600,6 +1605,7 @@
         private System.Windows.Forms.Label lblDebugreisezug;
         private System.Windows.Forms.Label lblDebugreisezwert;
         private System.Windows.Forms.Label lblDebugreiseztrue;
+        private System.Windows.Forms.Timer timer100;
 
     }
 
