@@ -223,10 +223,13 @@
             // 
             // btnSettings
             // 
+            this.btnSettings.AutoSize = true;
+            this.btnSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.Location = new System.Drawing.Point(3, 385);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(94, 25);
+            this.btnSettings.Size = new System.Drawing.Size(118, 25);
             this.btnSettings.TabIndex = 6;
             this.btnSettings.Text = "Einstellungen";
             this.btnSettings.UseVisualStyleBackColor = true;
@@ -1124,9 +1127,12 @@
             // 
             // btnNacht
             // 
+            this.btnNacht.AutoSize = true;
+            this.btnNacht.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnNacht.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNacht.Location = new System.Drawing.Point(3, 356);
             this.btnNacht.Name = "btnNacht";
-            this.btnNacht.Size = new System.Drawing.Size(94, 23);
+            this.btnNacht.Size = new System.Drawing.Size(118, 23);
             this.btnNacht.TabIndex = 15;
             this.btnNacht.Text = "Nachtmodus";
             this.btnNacht.UseVisualStyleBackColor = true;
@@ -1438,7 +1444,7 @@
             this.pnlLeft.AutoSize = true;
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLeft.ColumnCount = 1;
-            this.pnlLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.pnlLeft.Controls.Add(this.pnlDataPZB90, 0, 3);
             this.pnlLeft.Controls.Add(this.lblSifa, 0, 0);
             this.pnlLeft.Controls.Add(this.pnlDataBremsen, 0, 4);
