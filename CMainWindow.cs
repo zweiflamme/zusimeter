@@ -481,42 +481,42 @@ namespace Zielbremsen
                 if (dataSet.Value > 0)
                     lblPZB_O.BackColor = Color.CornflowerBlue;                      
                 else
-                    lblPZB_O.BackColor = Color.FromName("Control");
+                    lblPZB_O.BackColor = Color.FromName("Transparent");
             }
             else if (dataSet.Id == MyTCPConnection["LM PZB Zugart M"])
             {
                 if (dataSet.Value > 0)
                     lblPZB_M.BackColor = Color.CornflowerBlue;
                 else
-                    lblPZB_M.BackColor = Color.FromName("Control");
+                    lblPZB_M.BackColor = Color.FromName("Transparent");
             }
             else if (dataSet.Id == MyTCPConnection["LM PZB Zugart U"])
             {
                 if (dataSet.Value > 0)
                     lblPZB_M.BackColor = Color.CornflowerBlue;
                 else
-                    lblPZB_M.BackColor = Color.FromName("Control");
+                    lblPZB_M.BackColor = Color.FromName("Transparent");
             }
             else if (dataSet.Id == MyTCPConnection["LM PZB 1000Hz"])
             {
                 if (dataSet.Value > 0)
                     lblPZB_1000.BackColor = Color.Yellow;
                 else
-                    lblPZB_1000.BackColor = Color.FromName("Control");
+                    lblPZB_1000.BackColor = Color.FromName("Transparent");
             }
             else if (dataSet.Id == MyTCPConnection["LM PZB 500Hz"])
             {
                 if (dataSet.Value > 0)
                     lblPZB_500.BackColor = Color.Red;
                 else
-                    lblPZB_500.BackColor = Color.FromName("Control");
+                    lblPZB_500.BackColor = Color.FromName("Transparent");
             }
             else if (dataSet.Id == MyTCPConnection["LM PZB Befehl"])
             {
                 if (dataSet.Value > 0)
                 { lblPZB_Bef.BackColor = Color.Black; lblPZB_Bef.ForeColor = Color.White; }
                 else
-                { lblPZB_Bef.BackColor = Color.FromName("Control"); lblPZB_Bef.ForeColor = Color.FromName("ControlText"); }
+                { lblPZB_Bef.BackColor = Color.FromName("Transparent"); lblPZB_Bef.ForeColor = Color.FromName("ControlText"); }
             }
                 
 
@@ -582,6 +582,14 @@ namespace Zielbremsen
             tbPort.BackColor = textboxnightcolor;
             tbServer.BackColor = textboxnightcolor;
             tbVerz.BackColor = textboxnightcolor;
+
+            //setting colors for PZB90-Panel
+            //TEST: darkening background
+            //Color c1 = pnlDataPZB90.BackColor;
+            //Color c2 = Color.FromArgb(c1.A, (Convert.ToInt32(c1.R*0.8)), (Convert.ToInt32(c1.G*0.8)), (Convert.ToInt32(c1.B*0.8)));
+            //pnlDataPZB90.BackColor = c2;
+            pnlDataPZB90.BackColor = Color.FromName("ControlDark");
+            pnlDataPZB90.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
         }
 
         public void setDaymode()
@@ -613,6 +621,14 @@ namespace Zielbremsen
             tbServer.BackColor = textboxdaycolor;
             tbPort.BackColor = textboxdaycolor;
             tbVerz.BackColor = textboxdaycolor;
+
+            //setting colors for PZB90-Panel
+            //TEST: lightening background
+            //Color c1 = pnlDataPZB90.BackColor;
+            //Color c2 = Color.FromArgb(c1.A, (Convert.ToInt32(c1.R * 1.2)), (Convert.ToInt32(c1.G * 1.2)), (Convert.ToInt32(c1.B * 1.2)));
+            //pnlDataPZB90.BackColor = c2;
+            pnlDataPZB90.BackColor = Color.FromName("Control");
+            pnlDataPZB90.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
         }
 
         //if the user clicks the "Nachtmodus / Tagmodus" button
@@ -1168,6 +1184,11 @@ namespace Zielbremsen
                 pnlDataPZB90.Visible = true;
             else
                 pnlDataPZB90.Visible = false;
+        }
+
+        private void numFahrschneutral_ValueChanged(object sender, EventArgs e)
+        {
+            fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
         }
           
     }

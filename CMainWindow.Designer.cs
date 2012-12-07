@@ -722,6 +722,7 @@
             this.numFahrschneutral.Size = new System.Drawing.Size(33, 20);
             this.numFahrschneutral.TabIndex = 20;
             this.numFahrschneutral.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numFahrschneutral.ValueChanged += new System.EventHandler(this.numFahrschneutral_ValueChanged);
             // 
             // lblFahrschneutralbei
             // 
@@ -1462,6 +1463,7 @@
             // 
             // pnlDataPZB90
             // 
+            this.pnlDataPZB90.BackColor = System.Drawing.SystemColors.Control;
             this.pnlDataPZB90.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.pnlDataPZB90.ColumnCount = 3;
             this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -1483,6 +1485,7 @@
             // 
             // lblPZB_1000
             // 
+            this.lblPZB_1000.BackColor = System.Drawing.Color.Transparent;
             this.lblPZB_1000.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPZB_1000.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPZB_1000.Location = new System.Drawing.Point(79, 33);
@@ -1495,6 +1498,7 @@
             // 
             // lblPZB_500
             // 
+            this.lblPZB_500.BackColor = System.Drawing.Color.Transparent;
             this.lblPZB_500.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPZB_500.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPZB_500.Location = new System.Drawing.Point(40, 33);
@@ -1507,7 +1511,7 @@
             // 
             // lblPZB_Bef
             // 
-            this.lblPZB_Bef.BackColor = System.Drawing.SystemColors.Control;
+            this.lblPZB_Bef.BackColor = System.Drawing.Color.Transparent;
             this.lblPZB_Bef.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPZB_Bef.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPZB_Bef.Location = new System.Drawing.Point(1, 33);
@@ -1520,6 +1524,7 @@
             // 
             // lblPZB_U
             // 
+            this.lblPZB_U.BackColor = System.Drawing.Color.Transparent;
             this.lblPZB_U.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPZB_U.Location = new System.Drawing.Point(1, 1);
             this.lblPZB_U.Margin = new System.Windows.Forms.Padding(0);
@@ -1531,6 +1536,7 @@
             // 
             // lblPZB_M
             // 
+            this.lblPZB_M.BackColor = System.Drawing.Color.Transparent;
             this.lblPZB_M.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPZB_M.Location = new System.Drawing.Point(40, 1);
             this.lblPZB_M.Margin = new System.Windows.Forms.Padding(0);
@@ -1542,6 +1548,7 @@
             // 
             // lblPZB_O
             // 
+            this.lblPZB_O.BackColor = System.Drawing.Color.Transparent;
             this.lblPZB_O.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPZB_O.Location = new System.Drawing.Point(79, 1);
             this.lblPZB_O.Margin = new System.Windows.Forms.Padding(0);
