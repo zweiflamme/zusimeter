@@ -46,6 +46,7 @@
             this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.cbAFBLZB = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
+            this.cbPZBLM = new System.Windows.Forms.CheckBox();
             this.cbGrunddaten = new System.Windows.Forms.CheckBox();
             this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
             this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
@@ -138,14 +139,14 @@
             this.lblLZBzielgeschw = new System.Windows.Forms.Label();
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
-            this.timer100 = new System.Windows.Forms.Timer(this.components);
-            this.lblPZB_U = new System.Windows.Forms.Label();
-            this.lblPZB_O = new System.Windows.Forms.Label();
-            this.lblPZB_M = new System.Windows.Forms.Label();
+            this.pnlDataPZB90 = new System.Windows.Forms.TableLayoutPanel();
             this.lblPZB_1000 = new System.Windows.Forms.Label();
             this.lblPZB_500 = new System.Windows.Forms.Label();
             this.lblPZB_Bef = new System.Windows.Forms.Label();
-            this.pnlDataPZB90 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblPZB_U = new System.Windows.Forms.Label();
+            this.lblPZB_M = new System.Windows.Forms.Label();
+            this.lblPZB_O = new System.Windows.Forms.Label();
+            this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -346,6 +347,7 @@
             // 
             // pnlGrunddaten
             // 
+            this.pnlGrunddaten.Controls.Add(this.cbPZBLM);
             this.pnlGrunddaten.Controls.Add(this.cbGrunddaten);
             this.pnlGrunddaten.Controls.Add(this.cbStreckenmeter);
             this.pnlGrunddaten.Controls.Add(this.cbGeschwindigkeit);
@@ -356,8 +358,22 @@
             this.pnlGrunddaten.Controls.Add(this.cbLmschleudern);
             this.pnlGrunddaten.Location = new System.Drawing.Point(6, 6);
             this.pnlGrunddaten.Name = "pnlGrunddaten";
-            this.pnlGrunddaten.Size = new System.Drawing.Size(205, 108);
+            this.pnlGrunddaten.Size = new System.Drawing.Size(205, 132);
             this.pnlGrunddaten.TabIndex = 19;
+            // 
+            // cbPZBLM
+            // 
+            this.cbPZBLM.AutoSize = true;
+            this.cbPZBLM.Checked = true;
+            this.cbPZBLM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPZBLM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPZBLM.Location = new System.Drawing.Point(4, 109);
+            this.cbPZBLM.Name = "cbPZBLM";
+            this.cbPZBLM.Size = new System.Drawing.Size(114, 17);
+            this.cbPZBLM.TabIndex = 9;
+            this.cbPZBLM.Text = "PZB-Leuchtmelder";
+            this.cbPZBLM.UseVisualStyleBackColor = true;
+            this.cbPZBLM.CheckedChanged += new System.EventHandler(this.cbPZBLM_CheckedChanged);
             // 
             // cbGrunddaten
             // 
@@ -476,9 +492,9 @@
             this.pnlBremsen.Controls.Add(this.cbDruckhll);
             this.pnlBremsen.Controls.Add(this.cbBrh);
             this.pnlBremsen.Controls.Add(this.cbDruckbz);
-            this.pnlBremsen.Location = new System.Drawing.Point(6, 120);
+            this.pnlBremsen.Location = new System.Drawing.Point(6, 144);
             this.pnlBremsen.Name = "pnlBremsen";
-            this.pnlBremsen.Size = new System.Drawing.Size(205, 171);
+            this.pnlBremsen.Size = new System.Drawing.Size(205, 147);
             this.pnlBremsen.TabIndex = 19;
             // 
             // cbZusbremse
@@ -1252,7 +1268,7 @@
             this.pnlDataBremsen.Controls.Add(this.lblFbventil, 1, 3);
             this.pnlDataBremsen.Controls.Add(this.lblDynbremse, 1, 4);
             this.pnlDataBremsen.Controls.Add(this.lblZusbremse, 1, 5);
-            this.pnlDataBremsen.Location = new System.Drawing.Point(3, 143);
+            this.pnlDataBremsen.Location = new System.Drawing.Point(3, 214);
             this.pnlDataBremsen.Name = "pnlDataBremsen";
             this.pnlDataBremsen.RowCount = 6;
             this.pnlDataBremsen.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1333,7 +1349,7 @@
             this.pnlDataAFBLZB.Controls.Add(this.lblLZBsollgeschw, 1, 1);
             this.pnlDataAFBLZB.Controls.Add(this.lblLZBzielgeschw, 1, 2);
             this.pnlDataAFBLZB.Controls.Add(this.lblLZBzielweg, 1, 3);
-            this.pnlDataAFBLZB.Location = new System.Drawing.Point(3, 227);
+            this.pnlDataAFBLZB.Location = new System.Drawing.Point(3, 298);
             this.pnlDataAFBLZB.Name = "pnlDataAFBLZB";
             this.pnlDataAFBLZB.RowCount = 4;
             this.pnlDataAFBLZB.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1418,13 +1434,14 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.AutoSize = true;
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLeft.ColumnCount = 1;
             this.pnlLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlLeft.Controls.Add(this.pnlDataPZB90, 0, 5);
+            this.pnlLeft.Controls.Add(this.pnlDataPZB90, 0, 3);
             this.pnlLeft.Controls.Add(this.lblSifa, 0, 0);
-            this.pnlLeft.Controls.Add(this.pnlDataBremsen, 0, 3);
-            this.pnlLeft.Controls.Add(this.pnlDataAFBLZB, 0, 4);
+            this.pnlLeft.Controls.Add(this.pnlDataBremsen, 0, 4);
+            this.pnlLeft.Controls.Add(this.pnlDataAFBLZB, 0, 5);
             this.pnlLeft.Controls.Add(this.lblFlag, 0, 1);
             this.pnlLeft.Controls.Add(this.pnlDataGrunddaten, 0, 2);
             this.pnlLeft.Controls.Add(this.btnSettings, 0, 7);
@@ -1440,82 +1457,8 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlLeft.Size = new System.Drawing.Size(124, 446);
+            this.pnlLeft.Size = new System.Drawing.Size(124, 413);
             this.pnlLeft.TabIndex = 19;
-            // 
-            // timer100
-            // 
-            this.timer100.Tick += new System.EventHandler(this.timer100_Tick);
-            // 
-            // lblPZB_U
-            // 
-            this.lblPZB_U.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_U.Location = new System.Drawing.Point(1, 1);
-            this.lblPZB_U.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_U.Name = "lblPZB_U";
-            this.lblPZB_U.Size = new System.Drawing.Size(37, 31);
-            this.lblPZB_U.TabIndex = 25;
-            this.lblPZB_U.Text = "U";
-            this.lblPZB_U.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_O
-            // 
-            this.lblPZB_O.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_O.Location = new System.Drawing.Point(77, 1);
-            this.lblPZB_O.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_O.Name = "lblPZB_O";
-            this.lblPZB_O.Size = new System.Drawing.Size(40, 31);
-            this.lblPZB_O.TabIndex = 26;
-            this.lblPZB_O.Text = "O";
-            this.lblPZB_O.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_M
-            // 
-            this.lblPZB_M.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_M.Location = new System.Drawing.Point(39, 1);
-            this.lblPZB_M.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_M.Name = "lblPZB_M";
-            this.lblPZB_M.Size = new System.Drawing.Size(37, 31);
-            this.lblPZB_M.TabIndex = 27;
-            this.lblPZB_M.Text = "M";
-            this.lblPZB_M.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_1000
-            // 
-            this.lblPZB_1000.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_1000.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPZB_1000.Location = new System.Drawing.Point(77, 33);
-            this.lblPZB_1000.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_1000.Name = "lblPZB_1000";
-            this.lblPZB_1000.Size = new System.Drawing.Size(40, 31);
-            this.lblPZB_1000.TabIndex = 28;
-            this.lblPZB_1000.Text = "1000";
-            this.lblPZB_1000.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_500
-            // 
-            this.lblPZB_500.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_500.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPZB_500.Location = new System.Drawing.Point(39, 33);
-            this.lblPZB_500.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_500.Name = "lblPZB_500";
-            this.lblPZB_500.Size = new System.Drawing.Size(37, 31);
-            this.lblPZB_500.TabIndex = 29;
-            this.lblPZB_500.Text = "500";
-            this.lblPZB_500.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_Bef
-            // 
-            this.lblPZB_Bef.BackColor = System.Drawing.SystemColors.Control;
-            this.lblPZB_Bef.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_Bef.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPZB_Bef.Location = new System.Drawing.Point(1, 33);
-            this.lblPZB_Bef.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_Bef.Name = "lblPZB_Bef";
-            this.lblPZB_Bef.Size = new System.Drawing.Size(37, 31);
-            this.lblPZB_Bef.TabIndex = 30;
-            this.lblPZB_Bef.Text = "Befehl";
-            this.lblPZB_Bef.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlDataPZB90
             // 
@@ -1530,14 +1473,87 @@
             this.pnlDataPZB90.Controls.Add(this.lblPZB_U, 0, 0);
             this.pnlDataPZB90.Controls.Add(this.lblPZB_M, 1, 0);
             this.pnlDataPZB90.Controls.Add(this.lblPZB_O, 2, 0);
-            this.pnlDataPZB90.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDataPZB90.Location = new System.Drawing.Point(3, 285);
+            this.pnlDataPZB90.Location = new System.Drawing.Point(3, 143);
             this.pnlDataPZB90.Name = "pnlDataPZB90";
             this.pnlDataPZB90.RowCount = 2;
             this.pnlDataPZB90.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pnlDataPZB90.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pnlDataPZB90.Size = new System.Drawing.Size(118, 65);
             this.pnlDataPZB90.TabIndex = 20;
+            // 
+            // lblPZB_1000
+            // 
+            this.lblPZB_1000.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_1000.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPZB_1000.Location = new System.Drawing.Point(79, 33);
+            this.lblPZB_1000.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_1000.Name = "lblPZB_1000";
+            this.lblPZB_1000.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_1000.TabIndex = 28;
+            this.lblPZB_1000.Text = "1000";
+            this.lblPZB_1000.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_500
+            // 
+            this.lblPZB_500.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_500.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPZB_500.Location = new System.Drawing.Point(40, 33);
+            this.lblPZB_500.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_500.Name = "lblPZB_500";
+            this.lblPZB_500.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_500.TabIndex = 29;
+            this.lblPZB_500.Text = "500";
+            this.lblPZB_500.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_Bef
+            // 
+            this.lblPZB_Bef.BackColor = System.Drawing.SystemColors.Control;
+            this.lblPZB_Bef.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_Bef.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPZB_Bef.Location = new System.Drawing.Point(1, 33);
+            this.lblPZB_Bef.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_Bef.Name = "lblPZB_Bef";
+            this.lblPZB_Bef.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_Bef.TabIndex = 30;
+            this.lblPZB_Bef.Text = "Befehl";
+            this.lblPZB_Bef.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_U
+            // 
+            this.lblPZB_U.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_U.Location = new System.Drawing.Point(1, 1);
+            this.lblPZB_U.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_U.Name = "lblPZB_U";
+            this.lblPZB_U.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_U.TabIndex = 25;
+            this.lblPZB_U.Text = "U";
+            this.lblPZB_U.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_M
+            // 
+            this.lblPZB_M.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_M.Location = new System.Drawing.Point(40, 1);
+            this.lblPZB_M.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_M.Name = "lblPZB_M";
+            this.lblPZB_M.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_M.TabIndex = 27;
+            this.lblPZB_M.Text = "M";
+            this.lblPZB_M.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_O
+            // 
+            this.lblPZB_O.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_O.Location = new System.Drawing.Point(79, 1);
+            this.lblPZB_O.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_O.Name = "lblPZB_O";
+            this.lblPZB_O.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_O.TabIndex = 26;
+            this.lblPZB_O.Text = "O";
+            this.lblPZB_O.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timer100
+            // 
+            this.timer100.Tick += new System.EventHandler(this.timer100_Tick);
             // 
             // CMainWindow
             // 
@@ -1714,6 +1730,7 @@
         private System.Windows.Forms.Label lblPZB_O;
         private System.Windows.Forms.Label lblPZB_U;
         private System.Windows.Forms.TableLayoutPanel pnlDataPZB90;
+        private System.Windows.Forms.CheckBox cbPZBLM;
 
     }
 

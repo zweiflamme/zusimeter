@@ -1160,11 +1160,14 @@ namespace Zielbremsen
 
         }
 
-        private void pnlDataPZB90_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        
+
+        private void cbPZBLM_CheckedChanged(object sender, EventArgs e)
         {
-            
-           //
-    
+            if (cbPZBLM.Checked == true)
+                pnlDataPZB90.Visible = true;
+            else
+                pnlDataPZB90.Visible = false;
         }
           
     }
