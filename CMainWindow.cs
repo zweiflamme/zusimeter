@@ -79,6 +79,7 @@ namespace Zielbremsen
             MyTCPConnection.RequestData(2581); // "LM PZB 500Hz"
             MyTCPConnection.RequestData(2582); // "LM PZB Befehl"
             //###//
+            MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
 
 
             #endregion 
@@ -183,6 +184,8 @@ namespace Zielbremsen
         decimal oldlblsizevaluegrunddaten = 0;
         decimal oldlblsizevaluebremsen = 0;
         decimal oldlblsizevalueafblzb = 0;
+        double afbvorwahl = 0.0; // storing value of AFB Schalter * preselected facor / preselected speed
+        double afbschalter = 0.0; // storing value of AFB Schalter
 
         #endregion
 
@@ -402,15 +405,15 @@ namespace Zielbremsen
                     lblTueren.Text = "Güterzug";
                 }
             }
-            else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"] && cbFahrstufenschalter.Checked == true)
+            else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"])
             {
                 if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
                 {
                     double fahrschalter = dataSet.Value - fahrschalterneutral;
-                    lblFahrstufe.Text = String.Format("{0}", fahrschalter);
+                    lblFahrstufenschalter.Text = String.Format("{0}", fahrschalter);
                 }
                 else
-                    lblFahrstufe.Text = "--";
+                    lblFahrstufenschalter.Text = "--";
             }
 
 
@@ -521,8 +524,18 @@ namespace Zielbremsen
                 else
                 { lblPZB_Bef.BackColor = Color.FromName("Transparent"); lblPZB_Bef.ForeColor = Color.FromName("ControlText"); }
             }
-                
+            else if (dataSet.Id == MyTCPConnection["Schalter AFB-Geschwindigkeit"])
+            {
+                afbschalter = dataSet.Value;
 
+                if(cbAFBvor5.Checked)
+                    afbvorwahl = afbschalter * 5;
+                else if (cbAFBvor10.Checked)
+                    afbvorwahl = afbschalter * 10;
+
+                lblAFBvorwahl.Text = afbvorwahl.ToString();
+            }
+            
         }
         #endregion
 
@@ -1193,6 +1206,38 @@ namespace Zielbremsen
         {
             if(rrrunning)
                 btnRailrunner.BackColor = Color.LightSkyBlue;
+        }
+
+        private void cbAFBVorwahl_CheckedChanged(object sender, EventArgs e)
+        {
+            lblAFBvorwahl.Visible = cbAFBVorwahl.Checked;
+            lblafbvorw.Visible = cbAFBVorwahl.Checked;
+            cbAFBvor5.Enabled = cbAFBVorwahl.Checked;
+            cbAFBvor10.Enabled = cbAFBVorwahl.Checked;
+        }
+
+        //TODO: more elegant soution appreciated
+        private void cbAFBvor5_CheckedChanged(object sender, EventArgs e)
+        {
+            cbAFBvor10.Checked = !cbAFBvor5.Checked;
+
+            if(cbAFBvor5.Checked)
+                afbvorwahl = afbschalter * 5;
+            else if (cbAFBvor10.Checked)
+                afbvorwahl = afbschalter * 10;
+            lblAFBvorwahl.Text = afbvorwahl.ToString(); //update display of preselected speed
+        }
+
+        //TODO: more elegant soution appreciated
+        private void cbAFBvor10_CheckedChanged(object sender, EventArgs e)
+        {
+            cbAFBvor5.Checked = !cbAFBvor10.Checked;
+
+            if (cbAFBvor5.Checked)
+                afbvorwahl = afbschalter * 5;
+            else if (cbAFBvor10.Checked)
+                afbvorwahl = afbschalter * 10;
+            lblAFBvorwahl.Text = afbvorwahl.ToString(); //update display of preselected speed
         }
 
         
