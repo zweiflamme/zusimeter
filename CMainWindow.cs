@@ -179,7 +179,11 @@ namespace Zielbremsen
         double vmps = 0; // speed in meters per second
         double railrunner = 0; // meters elapsed
         bool rrrunning = false; //is railrunner running?
-        
+        //TEST TODO: declare local instead of global
+        decimal oldlblsizevaluegrunddaten = 0;
+        decimal oldlblsizevaluebremsen = 0;
+        decimal oldlblsizevalueafblzb = 0;
+
         #endregion
 
         private void CMainWindow_Load(object sender, EventArgs e) //on loading of the main window...
@@ -544,7 +548,7 @@ namespace Zielbremsen
                 //TODO: set an initial display for all pnlData numbers (like 888.88)
                 btnConnect.Text = "Trennen";
                 pnlRight.Visible = true;
-                tabEinstellungen.SelectTab("tabAnzeigen");
+                tabEinstellungen.SelectTab("tabAnzeigen1");
                 lblVerbstatus.Text = "Warte auf Zusi";
 
             }
@@ -676,16 +680,8 @@ namespace Zielbremsen
 
         private void cbAFBgeschw_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbAFBgeschw.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lblafbeinaus);
-                pnlDataAFBLZB.Controls.Remove(lblAFBgeschwindigkeit);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lblafbeinaus, 0, 0);
-                pnlDataAFBLZB.Controls.Add(lblAFBgeschwindigkeit, 1, 0);
-            }
+                lblafbeinaus.Visible = cbAFBgeschw.Checked;
+                lblAFBgeschwindigkeit.Visible = cbAFBgeschw.Checked;
         }
 
         private void cbLZBvsoll_CheckedChanged(object sender, EventArgs e)
@@ -1283,6 +1279,116 @@ namespace Zielbremsen
                 rrrunning = true;
             }
         }
+
+       
+
+        private void numSizegrunddaten_ValueChanged(object sender, EventArgs e)
+        {
+            if (numSizegrunddaten.Value > oldlblsizevaluegrunddaten) // we want to upscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataGrunddaten.Controls)
+                {
+                    float newsize = lbl.Font.Size + 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevaluegrunddaten = numSizegrunddaten.Value;
+            }
+            else if (numSizegrunddaten.Value < oldlblsizevaluegrunddaten) // we want to downscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataGrunddaten.Controls)
+                {
+                    float newsize = lbl.Font.Size - 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevaluegrunddaten = numSizegrunddaten.Value;
+            }
+        }
+
+        private void numSizeBremsen_ValueChanged(object sender, EventArgs e)
+        {
+            if (numSizeBremsen.Value > oldlblsizevaluebremsen) // we want to upscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataBremsen.Controls)
+                {
+                    float newsize = lbl.Font.Size + 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevaluebremsen = numSizeBremsen.Value;
+            }
+            else if (numSizeBremsen.Value < oldlblsizevaluebremsen) // we want to downscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataBremsen.Controls)
+                {
+                    float newsize = lbl.Font.Size - 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevaluebremsen = numSizeBremsen.Value;
+            }
+
+        }
+
+        private void numSizeRailrunner_ValueChanged(object sender, EventArgs e)
+        {
+            //if (numSizeRailrunner.Value > oldlblsizevalue) // we want to upscale the font of each label
+            //{
+
+
+            //    double newheight = btnRailrunner.Height * 1.1;
+            //    double newwidth = btnRailrunner.Width * 1.1;                
+
+            //    oldlblsizevalue = numSizeRailrunner.Value;
+            //}
+            //else if (numSizegrunddaten.Value < oldlblsizevalue) // we want to downscale the font of each label
+            //{
+
+            //    double newheight = btnRailrunner.Height * 0.9;
+            //    double newwidth = btnRailrunner.Width * 0.9;
+                
+            //    oldlblsizevalue = numSizeRailrunner.Value;
+            //}
+        }
+
+        private void numSizeAFBLZB_ValueChanged(object sender, EventArgs e)
+        {
+            if (numSizeAFBLZB.Value > oldlblsizevalueafblzb) // we want to upscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataAFBLZB.Controls)
+                {
+                    float newsize = lbl.Font.Size + 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevalueafblzb = numSizeAFBLZB.Value;
+            }
+            else if (numSizeAFBLZB.Value < oldlblsizevalueafblzb) // we want to downscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataAFBLZB.Controls)
+                {
+                    float newsize = lbl.Font.Size - 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevalueafblzb = numSizeAFBLZB.Value;
+            }
+        }
+
+        
           
     }
 }
