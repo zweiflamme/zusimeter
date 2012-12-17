@@ -100,6 +100,12 @@
             this.lblFlag = new System.Windows.Forms.Label();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
+            this.lblDebugint = new System.Windows.Forms.Label();
+            this.btnDebugRailrunner = new System.Windows.Forms.Button();
+            this.lblDebugRailrunner = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numDebugsetspeed = new System.Windows.Forms.NumericUpDown();
             this.lblDebugreiseztrue = new System.Windows.Forms.Label();
             this.lblDebugreisezwert = new System.Windows.Forms.Label();
             this.lblDebugreisezug = new System.Windows.Forms.Label();
@@ -147,6 +153,7 @@
             this.lblPZB_M = new System.Windows.Forms.Label();
             this.lblPZB_O = new System.Windows.Forms.Label();
             this.timer100 = new System.Windows.Forms.Timer(this.components);
+            this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen.SuspendLayout();
@@ -163,6 +170,7 @@
             this.statusStrip1.SuspendLayout();
             this.pnlDebug.SuspendLayout();
             this.grpDebug.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).BeginInit();
             this.pnlRight.SuspendLayout();
             this.pnlDataGrunddaten.SuspendLayout();
             this.pnlDataBremsen.SuspendLayout();
@@ -1019,6 +1027,12 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.lblDebugint);
+            this.grpDebug.Controls.Add(this.btnDebugRailrunner);
+            this.grpDebug.Controls.Add(this.lblDebugRailrunner);
+            this.grpDebug.Controls.Add(this.label5);
+            this.grpDebug.Controls.Add(this.label4);
+            this.grpDebug.Controls.Add(this.numDebugsetspeed);
             this.grpDebug.Controls.Add(this.lblDebugreiseztrue);
             this.grpDebug.Controls.Add(this.lblDebugreisezwert);
             this.grpDebug.Controls.Add(this.lblDebugreisezug);
@@ -1034,10 +1048,64 @@
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
             // 
+            // lblDebugint
+            // 
+            this.lblDebugint.AutoSize = true;
+            this.lblDebugint.Location = new System.Drawing.Point(45, 165);
+            this.lblDebugint.Name = "lblDebugint";
+            this.lblDebugint.Size = new System.Drawing.Size(16, 13);
+            this.lblDebugint.TabIndex = 30;
+            this.lblDebugint.Text = "---";
+            // 
+            // btnDebugRailrunner
+            // 
+            this.btnDebugRailrunner.Location = new System.Drawing.Point(10, 181);
+            this.btnDebugRailrunner.Name = "btnDebugRailrunner";
+            this.btnDebugRailrunner.Size = new System.Drawing.Size(75, 23);
+            this.btnDebugRailrunner.TabIndex = 29;
+            this.btnDebugRailrunner.Text = "RR";
+            this.btnDebugRailrunner.UseVisualStyleBackColor = true;
+            this.btnDebugRailrunner.Click += new System.EventHandler(this.btnDebugRailrunner_Click);
+            // 
+            // lblDebugRailrunner
+            // 
+            this.lblDebugRailrunner.AutoSize = true;
+            this.lblDebugRailrunner.Location = new System.Drawing.Point(10, 165);
+            this.lblDebugRailrunner.Name = "lblDebugRailrunner";
+            this.lblDebugRailrunner.Size = new System.Drawing.Size(16, 13);
+            this.lblDebugRailrunner.TabIndex = 28;
+            this.lblDebugRailrunner.Text = "---";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(66, 139);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "km/h";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 113);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Geschwindigkeit";
+            // 
+            // numDebugsetspeed
+            // 
+            this.numDebugsetspeed.Location = new System.Drawing.Point(10, 133);
+            this.numDebugsetspeed.Name = "numDebugsetspeed";
+            this.numDebugsetspeed.Size = new System.Drawing.Size(49, 20);
+            this.numDebugsetspeed.TabIndex = 25;
+            this.numDebugsetspeed.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
             // lblDebugreiseztrue
             // 
             this.lblDebugreiseztrue.AutoSize = true;
-            this.lblDebugreiseztrue.Location = new System.Drawing.Point(14, 115);
+            this.lblDebugreiseztrue.Location = new System.Drawing.Point(3, 222);
             this.lblDebugreiseztrue.Name = "lblDebugreiseztrue";
             this.lblDebugreiseztrue.Size = new System.Drawing.Size(79, 13);
             this.lblDebugreiseztrue.TabIndex = 24;
@@ -1046,7 +1114,7 @@
             // lblDebugreisezwert
             // 
             this.lblDebugreisezwert.AutoSize = true;
-            this.lblDebugreisezwert.Location = new System.Drawing.Point(3, 134);
+            this.lblDebugreisezwert.Location = new System.Drawing.Point(3, 238);
             this.lblDebugreisezwert.Name = "lblDebugreisezwert";
             this.lblDebugreisezwert.Size = new System.Drawing.Size(52, 13);
             this.lblDebugreisezwert.TabIndex = 23;
@@ -1055,7 +1123,7 @@
             // lblDebugreisezug
             // 
             this.lblDebugreisezug.AutoSize = true;
-            this.lblDebugreisezug.Location = new System.Drawing.Point(9, 99);
+            this.lblDebugreisezug.Location = new System.Drawing.Point(3, 208);
             this.lblDebugreisezug.Name = "lblDebugreisezug";
             this.lblDebugreisezug.Size = new System.Drawing.Size(52, 13);
             this.lblDebugreisezug.TabIndex = 22;
@@ -1074,7 +1142,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 193);
+            this.label13.Location = new System.Drawing.Point(3, 266);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(92, 13);
             this.label13.TabIndex = 20;
@@ -1083,7 +1151,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(48, 216);
+            this.label12.Location = new System.Drawing.Point(45, 289);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 13);
             this.label12.TabIndex = 19;
@@ -1091,7 +1159,7 @@
             // 
             // tbVerz
             // 
-            this.tbVerz.Location = new System.Drawing.Point(6, 209);
+            this.tbVerz.Location = new System.Drawing.Point(3, 282);
             this.tbVerz.Name = "tbVerz";
             this.tbVerz.Size = new System.Drawing.Size(36, 20);
             this.tbVerz.TabIndex = 18;
@@ -1568,6 +1636,10 @@
             // 
             this.timer100.Tick += new System.EventHandler(this.timer100_Tick);
             // 
+            // timerRailrunner
+            // 
+            this.timerRailrunner.Tick += new System.EventHandler(this.timerRailrunner_Tick);
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1609,6 +1681,7 @@
             this.pnlDebug.ResumeLayout(false);
             this.grpDebug.ResumeLayout(false);
             this.grpDebug.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).EndInit();
             this.pnlRight.ResumeLayout(false);
             this.pnlRight.PerformLayout();
             this.pnlDataGrunddaten.ResumeLayout(false);
@@ -1744,6 +1817,13 @@
         private System.Windows.Forms.Label lblPZB_U;
         private System.Windows.Forms.TableLayoutPanel pnlDataPZB90;
         private System.Windows.Forms.CheckBox cbPZBLM;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown numDebugsetspeed;
+        private System.Windows.Forms.Timer timerRailrunner;
+        private System.Windows.Forms.Label lblDebugRailrunner;
+        private System.Windows.Forms.Button btnDebugRailrunner;
+        private System.Windows.Forms.Label lblDebugint;
 
     }
 

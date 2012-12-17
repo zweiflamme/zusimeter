@@ -176,6 +176,10 @@ namespace Zielbremsen
         //String zugdatei = "";
         //TEST
         bool autopilot = false; //is being checked in intervals to always display label lblFlag "Autopilot ein" when on
+        double vmps = 0; // speed in meters per second
+        double railrunner = 0; // meters elapsed
+        //DEBUG
+        int debugint = 0;
 
         #endregion
 
@@ -254,6 +258,7 @@ namespace Zielbremsen
                 if (verbunden) //only if connected to Zusi. //TODO: check if this is needed
                 {
                      geschwindigkeit = dataSet.Value;
+                     vmps = geschwindigkeit / 3.6;
 
                      lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
 
@@ -531,6 +536,7 @@ namespace Zielbremsen
             {
                 btnConnect.Text = "Verbinden";
                 lblVerbstatus.Text = "Getrennt";
+                verbunden = false;
 
             }
             else if (statusNeu == "Warte")
@@ -1189,6 +1195,35 @@ namespace Zielbremsen
         private void numFahrschneutral_ValueChanged(object sender, EventArgs e)
         {
             fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
+        }
+
+        //TODO: rename method
+        //TEST
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            if (verbunden == false)
+            {
+                geschwindigkeit = Convert.ToDouble(numDebugsetspeed.Value);
+                vmps = geschwindigkeit / 3.6;
+                lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
+            }
+        }
+
+        //TEST
+        private void timerRailrunner_Tick(object sender, EventArgs e)
+        {
+            double intrvl = Convert.ToDouble(timerRailrunner.Interval);           
+            railrunner = railrunner + (vmps * (intrvl / 1000.0));
+            //lblDebugint.Text = Convert.ToDouble(100 / 1000).ToString();
+            lblDebugRailrunner.Text = String.Format("{0:0}", railrunner);
+            //DEBUG
+            debugint++;
+            //lblDebugint.Text = debugint.ToString();
+        }
+
+        private void btnDebugRailrunner_Click(object sender, EventArgs e)
+        {
+            timerRailrunner.Start();
         }
           
     }
