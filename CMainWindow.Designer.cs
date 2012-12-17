@@ -38,7 +38,7 @@
             this.btnSettings = new System.Windows.Forms.Button();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.tabEinstellungen = new System.Windows.Forms.TabControl();
-            this.tabAnzeigen = new System.Windows.Forms.TabPage();
+            this.tabAnzeigen1 = new System.Windows.Forms.TabPage();
             this.pnlAFBLZB = new System.Windows.Forms.Panel();
             this.cbLZBvziel = new System.Windows.Forms.CheckBox();
             this.cbLZBweg = new System.Windows.Forms.CheckBox();
@@ -76,6 +76,13 @@
             this.numFahrschneutral = new System.Windows.Forms.NumericUpDown();
             this.lblFahrschneutralbei = new System.Windows.Forms.Label();
             this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
+            this.pnlRailrunner = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbRailrunner = new System.Windows.Forms.CheckBox();
+            this.rbRRfest = new System.Windows.Forms.RadioButton();
+            this.numRRfest = new System.Windows.Forms.NumericUpDown();
+            this.rbRRfrei = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.cbFokusFahrtzurueck = new System.Windows.Forms.CheckBox();
@@ -100,12 +107,10 @@
             this.lblFlag = new System.Windows.Forms.Label();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
-            this.lblDebugint = new System.Windows.Forms.Label();
-            this.btnDebugRailrunner = new System.Windows.Forms.Button();
-            this.lblDebugRailrunner = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.grpDebugoffline = new System.Windows.Forms.GroupBox();
             this.numDebugsetspeed = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.lblDebugreiseztrue = new System.Windows.Forms.Label();
             this.lblDebugreisezwert = new System.Windows.Forms.Label();
             this.lblDebugreisezug = new System.Windows.Forms.Label();
@@ -145,6 +150,7 @@
             this.lblLZBzielgeschw = new System.Windows.Forms.Label();
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
+            this.btnRailrunner = new System.Windows.Forms.Button();
             this.pnlDataPZB90 = new System.Windows.Forms.TableLayoutPanel();
             this.lblPZB_1000 = new System.Windows.Forms.Label();
             this.lblPZB_500 = new System.Windows.Forms.Label();
@@ -156,12 +162,14 @@
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
-            this.tabAnzeigen.SuspendLayout();
+            this.tabAnzeigen1.SuspendLayout();
             this.pnlAFBLZB.SuspendLayout();
             this.pnlGrunddaten.SuspendLayout();
             this.pnlBremsen.SuspendLayout();
             this.pnlSchalterst.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).BeginInit();
+            this.pnlRailrunner.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).BeginInit();
             this.tabDarstellung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).BeginInit();
             this.panel1.SuspendLayout();
@@ -170,6 +178,7 @@
             this.statusStrip1.SuspendLayout();
             this.pnlDebug.SuspendLayout();
             this.grpDebug.SuspendLayout();
+            this.grpDebugoffline.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).BeginInit();
             this.pnlRight.SuspendLayout();
             this.pnlDataGrunddaten.SuspendLayout();
@@ -235,7 +244,7 @@
             this.btnSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(3, 385);
+            this.btnSettings.Location = new System.Drawing.Point(3, 416);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(118, 25);
             this.btnSettings.TabIndex = 6;
@@ -251,35 +260,36 @@
             this.pnlSettings.Controls.Add(this.statusStrip1);
             this.pnlSettings.Location = new System.Drawing.Point(3, 1);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(421, 353);
+            this.pnlSettings.Size = new System.Drawing.Size(421, 404);
             this.pnlSettings.TabIndex = 10;
             // 
             // tabEinstellungen
             // 
-            this.tabEinstellungen.Controls.Add(this.tabAnzeigen);
+            this.tabEinstellungen.Controls.Add(this.tabAnzeigen1);
             this.tabEinstellungen.Controls.Add(this.tabDarstellung);
             this.tabEinstellungen.Controls.Add(this.tabSystem);
             this.tabEinstellungen.Location = new System.Drawing.Point(3, 2);
             this.tabEinstellungen.Name = "tabEinstellungen";
             this.tabEinstellungen.SelectedIndex = 0;
-            this.tabEinstellungen.Size = new System.Drawing.Size(415, 325);
+            this.tabEinstellungen.Size = new System.Drawing.Size(415, 376);
             this.tabEinstellungen.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabEinstellungen.TabIndex = 0;
             this.tabEinstellungen.SelectedIndexChanged += new System.EventHandler(this.tabEinstellungen_SelectedIndexChanged);
             // 
-            // tabAnzeigen
+            // tabAnzeigen1
             // 
-            this.tabAnzeigen.BackColor = System.Drawing.SystemColors.Control;
-            this.tabAnzeigen.Controls.Add(this.pnlAFBLZB);
-            this.tabAnzeigen.Controls.Add(this.pnlGrunddaten);
-            this.tabAnzeigen.Controls.Add(this.pnlBremsen);
-            this.tabAnzeigen.Controls.Add(this.pnlSchalterst);
-            this.tabAnzeigen.Location = new System.Drawing.Point(4, 22);
-            this.tabAnzeigen.Name = "tabAnzeigen";
-            this.tabAnzeigen.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAnzeigen.Size = new System.Drawing.Size(407, 299);
-            this.tabAnzeigen.TabIndex = 0;
-            this.tabAnzeigen.Text = "Anzeigen";
+            this.tabAnzeigen1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabAnzeigen1.Controls.Add(this.pnlRailrunner);
+            this.tabAnzeigen1.Controls.Add(this.pnlAFBLZB);
+            this.tabAnzeigen1.Controls.Add(this.pnlGrunddaten);
+            this.tabAnzeigen1.Controls.Add(this.pnlBremsen);
+            this.tabAnzeigen1.Controls.Add(this.pnlSchalterst);
+            this.tabAnzeigen1.Location = new System.Drawing.Point(4, 22);
+            this.tabAnzeigen1.Name = "tabAnzeigen1";
+            this.tabAnzeigen1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAnzeigen1.Size = new System.Drawing.Size(407, 350);
+            this.tabAnzeigen1.TabIndex = 0;
+            this.tabAnzeigen1.Text = "Anzeigen";
             // 
             // pnlAFBLZB
             // 
@@ -290,7 +300,7 @@
             this.pnlAFBLZB.Controls.Add(this.cbAFBLZB);
             this.pnlAFBLZB.Location = new System.Drawing.Point(218, 167);
             this.pnlAFBLZB.Name = "pnlAFBLZB";
-            this.pnlAFBLZB.Size = new System.Drawing.Size(177, 124);
+            this.pnlAFBLZB.Size = new System.Drawing.Size(182, 81);
             this.pnlAFBLZB.TabIndex = 24;
             // 
             // cbLZBvziel
@@ -505,7 +515,7 @@
             this.pnlBremsen.Controls.Add(this.cbDruckbz);
             this.pnlBremsen.Location = new System.Drawing.Point(6, 144);
             this.pnlBremsen.Name = "pnlBremsen";
-            this.pnlBremsen.Size = new System.Drawing.Size(205, 147);
+            this.pnlBremsen.Size = new System.Drawing.Size(205, 131);
             this.pnlBremsen.TabIndex = 19;
             // 
             // cbZusbremse
@@ -756,6 +766,99 @@
             this.cbFahrstufenschalter.UseVisualStyleBackColor = true;
             this.cbFahrstufenschalter.CheckedChanged += new System.EventHandler(this.cbFahrstufenschalter_CheckedChanged);
             // 
+            // pnlRailrunner
+            // 
+            this.pnlRailrunner.Controls.Add(this.label7);
+            this.pnlRailrunner.Controls.Add(this.cbRailrunner);
+            this.pnlRailrunner.Controls.Add(this.rbRRfest);
+            this.pnlRailrunner.Controls.Add(this.numRRfest);
+            this.pnlRailrunner.Controls.Add(this.rbRRfrei);
+            this.pnlRailrunner.Controls.Add(this.label6);
+            this.pnlRailrunner.Location = new System.Drawing.Point(6, 281);
+            this.pnlRailrunner.Name = "pnlRailrunner";
+            this.pnlRailrunner.Size = new System.Drawing.Size(171, 60);
+            this.pnlRailrunner.TabIndex = 25;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(144, 36);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(15, 13);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "m";
+            // 
+            // cbRailrunner
+            // 
+            this.cbRailrunner.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbRailrunner.AutoSize = true;
+            this.cbRailrunner.Checked = true;
+            this.cbRailrunner.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRailrunner.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbRailrunner.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRailrunner.Location = new System.Drawing.Point(3, 0);
+            this.cbRailrunner.Name = "cbRailrunner";
+            this.cbRailrunner.Size = new System.Drawing.Size(65, 23);
+            this.cbRailrunner.TabIndex = 31;
+            this.cbRailrunner.Text = "Railrunner";
+            this.cbRailrunner.UseVisualStyleBackColor = true;
+            this.cbRailrunner.CheckedChanged += new System.EventHandler(this.cbRailrunner_CheckedChanged);
+            // 
+            // rbRRfest
+            // 
+            this.rbRRfest.AutoSize = true;
+            this.rbRRfest.Location = new System.Drawing.Point(48, 32);
+            this.rbRRfest.Name = "rbRRfest";
+            this.rbRRfest.Size = new System.Drawing.Size(45, 17);
+            this.rbRRfest.TabIndex = 34;
+            this.rbRRfest.TabStop = true;
+            this.rbRRfest.Text = "fest:";
+            this.rbRRfest.UseVisualStyleBackColor = true;
+            // 
+            // numRRfest
+            // 
+            this.numRRfest.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numRRfest.Location = new System.Drawing.Point(93, 29);
+            this.numRRfest.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numRRfest.Name = "numRRfest";
+            this.numRRfest.Size = new System.Drawing.Size(45, 20);
+            this.numRRfest.TabIndex = 35;
+            this.numRRfest.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // rbRRfrei
+            // 
+            this.rbRRfrei.AutoSize = true;
+            this.rbRRfrei.Checked = true;
+            this.rbRRfrei.Location = new System.Drawing.Point(3, 32);
+            this.rbRRfrei.Name = "rbRRfrei";
+            this.rbRRfrei.Size = new System.Drawing.Size(39, 17);
+            this.rbRRfrei.TabIndex = 33;
+            this.rbRRfrei.TabStop = true;
+            this.rbRRfrei.Text = "frei";
+            this.rbRRfrei.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(71, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Wegmessung";
+            // 
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
@@ -772,7 +875,7 @@
             this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
             this.tabDarstellung.Name = "tabDarstellung";
             this.tabDarstellung.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDarstellung.Size = new System.Drawing.Size(407, 299);
+            this.tabDarstellung.Size = new System.Drawing.Size(407, 386);
             this.tabDarstellung.TabIndex = 1;
             this.tabDarstellung.Text = "Darstellung";
             // 
@@ -929,7 +1032,7 @@
             this.tabSystem.Controls.Add(this.btnDebugpanel);
             this.tabSystem.Location = new System.Drawing.Point(4, 22);
             this.tabSystem.Name = "tabSystem";
-            this.tabSystem.Size = new System.Drawing.Size(407, 299);
+            this.tabSystem.Size = new System.Drawing.Size(407, 386);
             this.tabSystem.TabIndex = 2;
             this.tabSystem.Text = "System";
             // 
@@ -989,7 +1092,7 @@
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblVerbstatus});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 330);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 381);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(129, 23);
             this.statusStrip1.SizingGrip = false;
@@ -1027,12 +1130,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.grpDebug.Controls.Add(this.lblDebugint);
-            this.grpDebug.Controls.Add(this.btnDebugRailrunner);
-            this.grpDebug.Controls.Add(this.lblDebugRailrunner);
-            this.grpDebug.Controls.Add(this.label5);
-            this.grpDebug.Controls.Add(this.label4);
-            this.grpDebug.Controls.Add(this.numDebugsetspeed);
+            this.grpDebug.Controls.Add(this.grpDebugoffline);
             this.grpDebug.Controls.Add(this.lblDebugreiseztrue);
             this.grpDebug.Controls.Add(this.lblDebugreisezwert);
             this.grpDebug.Controls.Add(this.lblDebugreisezug);
@@ -1048,59 +1146,43 @@
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
             // 
-            // lblDebugint
+            // grpDebugoffline
             // 
-            this.lblDebugint.AutoSize = true;
-            this.lblDebugint.Location = new System.Drawing.Point(45, 165);
-            this.lblDebugint.Name = "lblDebugint";
-            this.lblDebugint.Size = new System.Drawing.Size(16, 13);
-            this.lblDebugint.TabIndex = 30;
-            this.lblDebugint.Text = "---";
+            this.grpDebugoffline.Controls.Add(this.numDebugsetspeed);
+            this.grpDebugoffline.Controls.Add(this.label4);
+            this.grpDebugoffline.Controls.Add(this.label5);
+            this.grpDebugoffline.Location = new System.Drawing.Point(6, 100);
+            this.grpDebugoffline.Name = "grpDebugoffline";
+            this.grpDebugoffline.Size = new System.Drawing.Size(107, 68);
+            this.grpDebugoffline.TabIndex = 20;
+            this.grpDebugoffline.TabStop = false;
+            this.grpDebugoffline.Text = "Offline";
             // 
-            // btnDebugRailrunner
+            // numDebugsetspeed
             // 
-            this.btnDebugRailrunner.Location = new System.Drawing.Point(10, 181);
-            this.btnDebugRailrunner.Name = "btnDebugRailrunner";
-            this.btnDebugRailrunner.Size = new System.Drawing.Size(75, 23);
-            this.btnDebugRailrunner.TabIndex = 29;
-            this.btnDebugRailrunner.Text = "RR";
-            this.btnDebugRailrunner.UseVisualStyleBackColor = true;
-            this.btnDebugRailrunner.Click += new System.EventHandler(this.btnDebugRailrunner_Click);
-            // 
-            // lblDebugRailrunner
-            // 
-            this.lblDebugRailrunner.AutoSize = true;
-            this.lblDebugRailrunner.Location = new System.Drawing.Point(10, 165);
-            this.lblDebugRailrunner.Name = "lblDebugRailrunner";
-            this.lblDebugRailrunner.Size = new System.Drawing.Size(16, 13);
-            this.lblDebugRailrunner.TabIndex = 28;
-            this.lblDebugRailrunner.Text = "---";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(66, 139);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "km/h";
+            this.numDebugsetspeed.Location = new System.Drawing.Point(6, 37);
+            this.numDebugsetspeed.Name = "numDebugsetspeed";
+            this.numDebugsetspeed.Size = new System.Drawing.Size(49, 20);
+            this.numDebugsetspeed.TabIndex = 25;
+            this.numDebugsetspeed.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 113);
+            this.label4.Location = new System.Drawing.Point(3, 17);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 26;
             this.label4.Text = "Geschwindigkeit";
             // 
-            // numDebugsetspeed
+            // label5
             // 
-            this.numDebugsetspeed.Location = new System.Drawing.Point(10, 133);
-            this.numDebugsetspeed.Name = "numDebugsetspeed";
-            this.numDebugsetspeed.Size = new System.Drawing.Size(49, 20);
-            this.numDebugsetspeed.TabIndex = 25;
-            this.numDebugsetspeed.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(62, 43);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "km/h";
             // 
             // lblDebugreiseztrue
             // 
@@ -1142,7 +1224,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 266);
+            this.label13.Location = new System.Drawing.Point(6, 266);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(92, 13);
             this.label13.TabIndex = 20;
@@ -1151,7 +1233,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(45, 289);
+            this.label12.Location = new System.Drawing.Point(48, 289);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 13);
             this.label12.TabIndex = 19;
@@ -1159,7 +1241,7 @@
             // 
             // tbVerz
             // 
-            this.tbVerz.Location = new System.Drawing.Point(3, 282);
+            this.tbVerz.Location = new System.Drawing.Point(6, 282);
             this.tbVerz.Name = "tbVerz";
             this.tbVerz.Size = new System.Drawing.Size(36, 20);
             this.tbVerz.TabIndex = 18;
@@ -1183,7 +1265,7 @@
             this.pnlRight.Controls.Add(this.pnlDebug);
             this.pnlRight.Location = new System.Drawing.Point(149, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(571, 357);
+            this.pnlRight.Size = new System.Drawing.Size(571, 408);
             this.pnlRight.TabIndex = 14;
             this.pnlRight.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRight_Paint);
             // 
@@ -1513,17 +1595,18 @@
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLeft.ColumnCount = 1;
             this.pnlLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlLeft.Controls.Add(this.btnRailrunner, 0, 7);
             this.pnlLeft.Controls.Add(this.pnlDataPZB90, 0, 3);
             this.pnlLeft.Controls.Add(this.lblSifa, 0, 0);
             this.pnlLeft.Controls.Add(this.pnlDataBremsen, 0, 4);
             this.pnlLeft.Controls.Add(this.pnlDataAFBLZB, 0, 5);
             this.pnlLeft.Controls.Add(this.lblFlag, 0, 1);
             this.pnlLeft.Controls.Add(this.pnlDataGrunddaten, 0, 2);
-            this.pnlLeft.Controls.Add(this.btnSettings, 0, 7);
+            this.pnlLeft.Controls.Add(this.btnSettings, 0, 8);
             this.pnlLeft.Controls.Add(this.btnNacht, 0, 6);
             this.pnlLeft.Location = new System.Drawing.Point(2, 13);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.RowCount = 8;
+            this.pnlLeft.RowCount = 9;
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1532,8 +1615,23 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlLeft.Size = new System.Drawing.Size(124, 413);
+            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlLeft.Size = new System.Drawing.Size(124, 444);
             this.pnlLeft.TabIndex = 19;
+            // 
+            // btnRailrunner
+            // 
+            this.btnRailrunner.AutoSize = true;
+            this.btnRailrunner.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRailrunner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRailrunner.Location = new System.Drawing.Point(3, 385);
+            this.btnRailrunner.Name = "btnRailrunner";
+            this.btnRailrunner.Size = new System.Drawing.Size(118, 25);
+            this.btnRailrunner.TabIndex = 21;
+            this.btnRailrunner.Text = "Wegmessung";
+            this.btnRailrunner.UseVisualStyleBackColor = true;
+            this.btnRailrunner.Click += new System.EventHandler(this.btnRailrunner_Click);
             // 
             // pnlDataPZB90
             // 
@@ -1658,7 +1756,7 @@
             this.Load += new System.EventHandler(this.CMainWindow_Load);
             this.pnlSettings.ResumeLayout(false);
             this.tabEinstellungen.ResumeLayout(false);
-            this.tabAnzeigen.ResumeLayout(false);
+            this.tabAnzeigen1.ResumeLayout(false);
             this.pnlAFBLZB.ResumeLayout(false);
             this.pnlAFBLZB.PerformLayout();
             this.pnlGrunddaten.ResumeLayout(false);
@@ -1668,6 +1766,9 @@
             this.pnlSchalterst.ResumeLayout(false);
             this.pnlSchalterst.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).EndInit();
+            this.pnlRailrunner.ResumeLayout(false);
+            this.pnlRailrunner.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).EndInit();
             this.tabDarstellung.ResumeLayout(false);
             this.tabDarstellung.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).EndInit();
@@ -1681,6 +1782,8 @@
             this.pnlDebug.ResumeLayout(false);
             this.grpDebug.ResumeLayout(false);
             this.grpDebug.PerformLayout();
+            this.grpDebugoffline.ResumeLayout(false);
+            this.grpDebugoffline.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDebugsetspeed)).EndInit();
             this.pnlRight.ResumeLayout(false);
             this.pnlRight.PerformLayout();
@@ -1735,7 +1838,7 @@
         private System.Windows.Forms.Label lblV;
         private System.Windows.Forms.TableLayoutPanel pnlDataGrunddaten;
         private System.Windows.Forms.TabControl tabEinstellungen;
-        private System.Windows.Forms.TabPage tabAnzeigen;
+        private System.Windows.Forms.TabPage tabAnzeigen1;
         private System.Windows.Forms.TabPage tabDarstellung;
         private System.Windows.Forms.TabPage tabSystem;
         private System.Windows.Forms.CheckBox cbLmsifa;
@@ -1821,9 +1924,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numDebugsetspeed;
         private System.Windows.Forms.Timer timerRailrunner;
-        private System.Windows.Forms.Label lblDebugRailrunner;
-        private System.Windows.Forms.Button btnDebugRailrunner;
-        private System.Windows.Forms.Label lblDebugint;
+        private System.Windows.Forms.GroupBox grpDebugoffline;
+        private System.Windows.Forms.Button btnRailrunner;
+        private System.Windows.Forms.Panel pnlRailrunner;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox cbRailrunner;
+        private System.Windows.Forms.RadioButton rbRRfest;
+        private System.Windows.Forms.NumericUpDown numRRfest;
+        private System.Windows.Forms.RadioButton rbRRfrei;
+        private System.Windows.Forms.Label label6;
 
     }
 

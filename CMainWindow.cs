@@ -178,9 +178,8 @@ namespace Zielbremsen
         bool autopilot = false; //is being checked in intervals to always display label lblFlag "Autopilot ein" when on
         double vmps = 0; // speed in meters per second
         double railrunner = 0; // meters elapsed
-        //DEBUG
-        int debugint = 0;
-
+        bool rrrunning = false; //is railrunner running?
+        
         #endregion
 
         private void CMainWindow_Load(object sender, EventArgs e) //on loading of the main window...
@@ -553,6 +552,9 @@ namespace Zielbremsen
             {
                 verbunden = true;
                 lblVerbstatus.Text = "Verbunden mit Zusi";
+
+                grpDebugoffline.Enabled = false; //DEBUG: disabling control of speed via numUD
+
             }
         }
         #endregion
@@ -1037,7 +1039,13 @@ namespace Zielbremsen
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
                 pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
-            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen"])
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen1"])
+            {
+                tabEinstellungen.Width = 420;
+                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
+                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
+            }
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen2"])
             {
                 tabEinstellungen.Width = 420;
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
@@ -1198,7 +1206,7 @@ namespace Zielbremsen
         }
 
         //TODO: rename method
-        //TEST
+        //DEBUG
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             if (verbunden == false)
@@ -1214,16 +1222,66 @@ namespace Zielbremsen
         {
             double intrvl = Convert.ToDouble(timerRailrunner.Interval);           
             railrunner = railrunner + (vmps * (intrvl / 1000.0));
-            //lblDebugint.Text = Convert.ToDouble(100 / 1000).ToString();
-            lblDebugRailrunner.Text = String.Format("{0:0}", railrunner);
-            //DEBUG
-            debugint++;
-            //lblDebugint.Text = debugint.ToString();
+
+            btnRailrunner.Text = String.Format("{0:0} m", railrunner);
+
+            if (rbRRfest.Checked && railrunner >= Convert.ToDouble(numRRfest.Value))
+            {
+                btnRailrunner.Text = numRRfest.Value.ToString() + " m OK";
+                btnRailrunner.BackColor = Color.LightGreen;
+            }
         }
 
         private void btnDebugRailrunner_Click(object sender, EventArgs e)
         {
             timerRailrunner.Start();
+        }
+
+        private void cbRailrunner_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbRailrunner.Checked == false)
+            {
+                btnRailrunner.Visible = false;
+
+                //TODO
+                //foreach (CheckBox cbox in pnlRailrunner.Controls)
+                //{
+                //    cbox.Enabled = false;
+                //}
+
+                cbRailrunner.Enabled = true; //TODO: use more elegant method to get all controls
+
+            }
+            else
+            {
+                btnRailrunner.Visible = true;
+
+                //TODO
+                //foreach (CheckBox cbox in pnlRailrunner.Controls)
+                //{
+                //    cbox.Enabled = true;
+                //}
+
+            }
+
+        }
+
+        private void btnRailrunner_Click(object sender, EventArgs e)
+        {
+            if (rrrunning)
+            {
+                timerRailrunner.Stop();
+                btnRailrunner.BackColor = Color.FromName("Control");
+                btnRailrunner.Text = "Wegmessung";
+                railrunner = 0;
+                rrrunning = false;
+            }
+            else if (rrrunning == false)
+            {
+                timerRailrunner.Start();
+                btnRailrunner.BackColor = Color.LightSkyBlue;
+                rrrunning = true;
+            }
         }
           
     }
