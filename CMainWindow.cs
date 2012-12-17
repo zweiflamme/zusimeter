@@ -204,26 +204,26 @@ namespace Zielbremsen
             //a checkbox, if so it's being checked if Zusi shall have the window focus back
             //TODO: find a better and more elegant way to detect user interaction with ALL controls on the form
 
-            pnlBremsen.Controls.Remove(numSizeBremsen);
+            //pnlBremsen.Controls.Remove(numSizeBremsen);
             foreach (CheckBox c in pnlBremsen.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
-            pnlBremsen.Controls.Add(numSizeBremsen);
+            //pnlBremsen.Controls.Add(numSizeBremsen);
 
-            pnlGrunddaten.Controls.Remove(numSizegrunddaten);
+            //pnlGrunddaten.Controls.Remove(numSizeGrunddaten);
             foreach (CheckBox c in pnlGrunddaten.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
-            pnlGrunddaten.Controls.Add(numSizegrunddaten);
+            //pnlGrunddaten.Controls.Add(numSizeGrunddaten);
 
-            pnlAFBLZB.Controls.Remove(numSizeAFBLZB);
+            //pnlAFBLZB.Controls.Remove(numSizeAFBLZB);
             foreach (CheckBox c in pnlAFBLZB.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
-            pnlAFBLZB.Controls.Add(numSizeAFBLZB);
+            //pnlAFBLZB.Controls.Add(numSizeAFBLZB);
 
             //DEBUG: remove and add because it's not a checkbox //TODO: find a better way
             pnlSchalterst.Controls.Remove(numFahrschneutral);
@@ -700,6 +700,7 @@ namespace Zielbremsen
         private void cbAFBLZB_CheckedChanged(object sender, EventArgs e)
         {
             pnlDataAFBLZB.Visible = cbAFBLZB.Checked;
+            pnlAFBLZB.Enabled = cbAFBLZB.Checked;
         }
 
         private void cbGeschwindigkeit_CheckedChanged(object sender, EventArgs e)
@@ -740,23 +741,28 @@ namespace Zielbremsen
         private void cbLmschleudern_CheckedChanged(object sender, EventArgs e)
         {
             lblFlag.Visible =cbLmschleudern.Checked;
-            ShowFlagtest();
+            if(cbLmschleudern.Checked)
+                ShowFlagtest();
         }        
 
         private void cbGrunddaten_CheckedChanged(object sender, EventArgs e)
         {
-                pnlDataGrunddaten.Visible = cbGrunddaten.Checked; 
+            pnlDataGrunddaten.Visible = cbGrunddaten.Checked;
+            pnlDataPZB90.Visible = cbGrunddaten.Checked && cbPZBLM.Checked; //TODO: watch out if PZB controls visibility can also be controlled by another checkbox
+            pnlGrunddaten.Enabled = cbGrunddaten.Checked;
         }
 
         private void cbBremsen_CheckedChanged(object sender, EventArgs e)
         {
             pnlDataBremsen.Visible = cbBremsen.Checked;
+            pnlBremsen.Enabled = cbBremsen.Checked;
         }
 
         private void cbLmtueren_CheckedChanged(object sender, EventArgs e)
         {
             lblTueren.Visible = cbTueren.Checked;
-            ShowFlagtest(); //TODO: check if flagtest is only shown when necessary, also: check if lblFlag is really always shown when necessary
+            if(cbTueren.Checked)
+                ShowFlagtest(); //TODO: check if flagtest is only shown when necessary, also: check if lblFlag is really always shown when necessary
         }
 
         private void cbFahrstufe_CheckedChanged(object sender, EventArgs e)
@@ -822,17 +828,9 @@ namespace Zielbremsen
 
         private void cbSchalterst_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbSchalterst.Checked == false)
-            {
-                cbSchalterst.Enabled = true;
-            }
-            else
-            {
-                pnlSchalterst.Controls.Add(lblFahrschneutralbei);
-                pnlSchalterst.Controls.Add(numFahrschneutral);
-                cbFahrstufenschalter.Enabled = true;
-            }
-
+            lblfahrstschalter.Visible = cbSchalterst.Checked && cbFahrstufenschalter.Checked; ;
+            lblFahrstufenschalter.Visible = cbSchalterst.Checked && cbFahrstufenschalter.Checked;
+            pnlSchalterst.Enabled = cbSchalterst.Checked;
         }
 
         #endregion
@@ -911,11 +909,13 @@ namespace Zielbremsen
             {
                 pnlDebug.Visible = false;
                 debugging = false;
+                btnDebugpanel.BackColor = Color.FromName("Control");
             }
             else if (debugging == false) //else turn debugging mode on
             {
                 pnlDebug.Visible = true;
                 debugging = true;
+                btnDebugpanel.BackColor = Color.Salmon;
 
                 //we want to have the debug panel visible on the right side of our tabbed panel plus 10 pt
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
@@ -1051,31 +1051,8 @@ namespace Zielbremsen
 
         private void cbRailrunner_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbRailrunner.Checked == false)
-            {
-                btnRailrunner.Visible = false;
-
-                //TODO
-                //foreach (CheckBox cbox in pnlRailrunner.Controls)
-                //{
-                //    cbox.Enabled = false;
-                //}
-
-                cbRailrunner.Enabled = true; //TODO: use more elegant method to get all controls
-
-            }
-            else
-            {
-                btnRailrunner.Visible = true;
-
-                //TODO
-                //foreach (CheckBox cbox in pnlRailrunner.Controls)
-                //{
-                //    cbox.Enabled = true;
-                //}
-
-            }
-
+            btnRailrunner.Visible = cbRailrunner.Checked;
+            pnlRailrunner.Enabled = cbRailrunner.Checked;
         }
 
         private void btnRailrunner_Click(object sender, EventArgs e)
@@ -1098,9 +1075,9 @@ namespace Zielbremsen
 
        
 
-        private void numSizegrunddaten_ValueChanged(object sender, EventArgs e)
+        private void numSizeGrunddaten_ValueChanged(object sender, EventArgs e)
         {
-            if (numSizegrunddaten.Value > oldlblsizevaluegrunddaten) // we want to upscale the font of each label
+            if (numSizeGrunddaten.Value > oldlblsizevaluegrunddaten) // we want to upscale the font of each label
             {
 
                 foreach (Label lbl in pnlDataGrunddaten.Controls)
@@ -1110,9 +1087,9 @@ namespace Zielbremsen
                     lbl.Font = new Font(lbl.Font.Name, newsize);
                 }
 
-                oldlblsizevaluegrunddaten = numSizegrunddaten.Value;
+                oldlblsizevaluegrunddaten = numSizeGrunddaten.Value;
             }
-            else if (numSizegrunddaten.Value < oldlblsizevaluegrunddaten) // we want to downscale the font of each label
+            else if (numSizeGrunddaten.Value < oldlblsizevaluegrunddaten) // we want to downscale the font of each label
             {
 
                 foreach (Label lbl in pnlDataGrunddaten.Controls)
@@ -1122,7 +1099,7 @@ namespace Zielbremsen
                     lbl.Font = new Font(lbl.Font.Name, newsize);
                 }
 
-                oldlblsizevaluegrunddaten = numSizegrunddaten.Value;
+                oldlblsizevaluegrunddaten = numSizeGrunddaten.Value;
             }
         }
 
@@ -1166,7 +1143,7 @@ namespace Zielbremsen
 
             //    oldlblsizevalue = numSizeRailrunner.Value;
             //}
-            //else if (numSizegrunddaten.Value < oldlblsizevalue) // we want to downscale the font of each label
+            //else if (numSizeGrunddaten.Value < oldlblsizevalue) // we want to downscale the font of each label
             //{
 
             //    double newheight = btnRailrunner.Height * 0.9;
@@ -1202,6 +1179,20 @@ namespace Zielbremsen
 
                 oldlblsizevalueafblzb = numSizeAFBLZB.Value;
             }
+        }
+
+        private void numRRfest_ValueChanged(object sender, EventArgs e)
+        {
+            if (rrrunning && railrunner <= Convert.ToDouble(numRRfest.Value)) //if value has increased, change color back to blue
+            {
+                btnRailrunner.BackColor = Color.LightSkyBlue;
+            }
+        }
+
+        private void rbRRfrei_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rrrunning)
+                btnRailrunner.BackColor = Color.LightSkyBlue;
         }
 
         
