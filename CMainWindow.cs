@@ -199,37 +199,32 @@ namespace Zielbremsen
             {
                 tabEinstellungen.Width = 202;
             }
-            //TEST removing unwanted controls that should not be showing when first showing the form
-            //TODO: is there a better way? later on this will be controlled by user prefs            
-            pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
-            pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
-            pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
-            pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
-            pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
-            pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
-
-            pnlDataBremsen.Controls.Remove(lblfbv);
-            pnlDataBremsen.Controls.Remove(lblFbventil);
-            pnlDataBremsen.Controls.Remove(lbldynbrem);
-            pnlDataBremsen.Controls.Remove(lblDynbremse);
-            pnlDataBremsen.Controls.Remove(lblzusbr);
-            pnlDataBremsen.Controls.Remove(lblZusbremse);
 
             //adding a global function for all checkboxes, main reason is to determine if user has clicked
             //a checkbox, if so it's being checked if Zusi shall have the window focus back
             //TODO: find a better and more elegant way to detect user interaction with ALL controls on the form
+
+            pnlBremsen.Controls.Remove(numSizeBremsen);
             foreach (CheckBox c in pnlBremsen.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
-            }            
+            }
+            pnlBremsen.Controls.Add(numSizeBremsen);
+
+            pnlGrunddaten.Controls.Remove(numSizegrunddaten);
             foreach (CheckBox c in pnlGrunddaten.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
+            pnlGrunddaten.Controls.Add(numSizegrunddaten);
+
+            pnlAFBLZB.Controls.Remove(numSizeAFBLZB);
             foreach (CheckBox c in pnlAFBLZB.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
+            pnlAFBLZB.Controls.Add(numSizeAFBLZB);
+
             //DEBUG: remove and add because it's not a checkbox //TODO: find a better way
             pnlSchalterst.Controls.Remove(numFahrschneutral);
             pnlSchalterst.Controls.Remove(lblFahrschneutralbei);
@@ -683,272 +678,96 @@ namespace Zielbremsen
                 lblafbeinaus.Visible = cbAFBgeschw.Checked;
                 lblAFBgeschwindigkeit.Visible = cbAFBgeschw.Checked;
         }
-
+        
         private void cbLZBvsoll_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLZBvsoll.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
-                pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lbllzbvsoll, 0, 1);
-                pnlDataAFBLZB.Controls.Add(lblLZBsollgeschw, 1, 1);
-            }
+            lbllzbvsoll.Visible = cbLZBvsoll.Checked;
+            lblLZBsollgeschw.Visible = cbLZBvsoll.Checked;
         }
 
         private void cbLZBvziel_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLZBvziel.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
-                pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lbllzbvziel, 0, 2);
-                pnlDataAFBLZB.Controls.Add(lblLZBzielgeschw, 1, 2);
-            }
+            lbllzbvziel.Visible = cbLZBvziel.Checked;
+            lblLZBzielgeschw.Visible = cbLZBvziel.Checked;
         }
 
         private void cbLZBweg_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLZBweg.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
-                pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lbllzbzielw, 0, 3);
-                pnlDataAFBLZB.Controls.Add(lblLZBzielweg, 1, 3);
-            }
+            lbllzbzielw.Visible = cbLZBweg.Checked;
+            lblLZBzielweg.Visible = cbLZBweg.Checked;
         }
 
         private void cbAFBLZB_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbAFBLZB.Checked == false)
-            {
-                pnlLeft.Controls.Remove(pnlDataAFBLZB);
-
-                foreach (CheckBox cbox in pnlAFBLZB.Controls)
-                {
-                    cbox.Enabled = false;
-                }
-
-                cbAFBLZB.Enabled = true; //TODO: use more elegant method to include all controls
-
-            }
-            else
-            {
-                pnlLeft.Controls.Add(pnlDataAFBLZB);
-
-                foreach (CheckBox cbox in pnlAFBLZB.Controls)
-                {
-                    cbox.Enabled = true;
-                }
-
-            }
+            pnlDataAFBLZB.Visible = cbAFBLZB.Checked;
         }
 
         private void cbGeschwindigkeit_CheckedChanged(object sender, EventArgs e)
         {
-
-            if (cbGeschwindigkeit.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblV);
-                pnlDataGrunddaten.Controls.Remove(lblkmh);
-            }
-            else
-            {
-                pnlDataGrunddaten.Controls.Add(lblV, 0, 0);
-                pnlDataGrunddaten.Controls.Add(lblkmh, 1, 0);
-            }
+            lblV.Visible = cbGeschwindigkeit.Checked;
+            lblkmh.Visible = cbGeschwindigkeit.Checked;
         }
 
         private void cbStreckenmeter_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbStreckenmeter.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblMeter);
-                pnlDataGrunddaten.Controls.Remove(lblm);
-            }
-            else
-            {
-                pnlDataGrunddaten.Controls.Add(lblMeter, 0, 1);
-                pnlDataGrunddaten.Controls.Add(lblm, 1, 1);
-            }
+            lblMeter.Visible = cbStreckenmeter.Checked;
+            lblm.Visible = cbStreckenmeter.Checked;
         }
 
         private void cbDruckhll_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbDruckhll.Checked == false)
-            {
-                pnlDataBremsen.Controls.Remove(lblHlldruck);
-                pnlDataBremsen.Controls.Remove(lblbarhll);
-            }
-            else
-            {
-                pnlDataBremsen.Controls.Add(lblHlldruck, 0, 1);
-                pnlDataBremsen.Controls.Add(lblbarhll, 1, 1);
-            }
+            lblHlldruck.Visible = cbDruckhll.Checked;
+            lblbarhll.Visible = cbDruckhll.Checked;
         }
 
         private void cbDruckbz_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbDruckbz.Checked == false)
-            {
-                pnlDataBremsen.Controls.Remove(lblBzdruck);
-                pnlDataBremsen.Controls.Remove(lblbarbz);
-            }
-            else
-            {
-                pnlDataBremsen.Controls.Add(lblBzdruck, 0, 2);
-                pnlDataBremsen.Controls.Add(lblbarbz, 1, 2);
-            }
+            lblBzdruck.Visible = cbDruckbz.Checked;
+            lblbarbz.Visible = cbDruckbz.Checked;
         }
 
         private void cbBrh_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbBrh.Checked == false)
-            {
-                pnlDataBremsen.Controls.Remove(lblBrh);
-                pnlDataBremsen.Controls.Remove(lblbremsh);
-            }
-            else
-            {
-                pnlDataBremsen.Controls.Add(lblBrh, 0, 0);
-                pnlDataBremsen.Controls.Add(lblbremsh, 1, 0);
-            }
+            lblBrh.Visible = cbBrh.Checked;
+            lblbremsh.Visible = cbBrh.Checked;
         }        
 
         private void cbLmsifa_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLmsifa.Checked == false)
-            {
-                pnlLeft.Controls.Remove(lblSifa);                
-            }
-            else
-            {
-                pnlLeft.Controls.Add(lblSifa);           
-            }
+            lblSifa.Visible = cbLmsifa.Checked;
         }
 
         private void cbLmschleudern_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLmschleudern.Checked == false)
-            {
-                pnlLeft.Controls.Remove(lblFlag);
-               
-            }
-            else
-            {
-                pnlLeft.Controls.Add(lblFlag);
-                ShowFlagtest();
-                lblFlag.Visible = true;                
-            }
+            lblFlag.Visible =cbLmschleudern.Checked;
+            ShowFlagtest();
         }        
 
         private void cbGrunddaten_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbGrunddaten.Checked == false)
-            {
-                pnlLeft.Controls.Remove(pnlDataGrunddaten);                
-
-                foreach (CheckBox cbox in pnlGrunddaten.Controls)
-                {
-                    cbox.Enabled = false;                    
-                }
-
-                cbGrunddaten.Enabled = true; //TODO: use more elegant method to get all controls
-
-            }
-            else
-            {
-                pnlLeft.Controls.Add(pnlDataGrunddaten);
-                
-                foreach (CheckBox cbox in pnlGrunddaten.Controls)
-                {
-                    cbox.Enabled = true;                   
-                }           
-
-            }
+                pnlDataGrunddaten.Visible = cbGrunddaten.Checked; 
         }
 
         private void cbBremsen_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbBremsen.Checked == false)
-            {
-                pnlLeft.Controls.Remove(pnlDataBremsen);                
-                foreach (CheckBox cbox in pnlBremsen.Controls)
-                {
-                    cbox.Enabled = false;                    
-                }
-
-                cbBremsen.Enabled = true; //TODO: use more elegant method to get all controls
-            }
-            else
-            {
-                pnlLeft.Controls.Add(pnlDataBremsen);
-                foreach (CheckBox cbox in pnlBremsen.Controls)
-                {
-                    cbox.Enabled = true;
-                }                
-            }
+            pnlDataBremsen.Visible = cbBremsen.Checked;
         }
 
         private void cbLmtueren_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbTueren.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblTueren);
-            }
-            else
-            {
-                pnlDataGrunddaten.Controls.Add(lblTueren, 1, 3);
-                ShowFlagtest();
-                lblFlag.Visible = true; 
-            }
+            lblTueren.Visible = cbTueren.Checked;
+            ShowFlagtest(); //TODO: check if flagtest is only shown when necessary, also: check if lblFlag is really always shown when necessary
         }
 
         private void cbFahrstufe_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbFahrstufe.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblFahrstufe);
-                pnlDataGrunddaten.Controls.Remove(lblfahrst);
-            }
-            else if (cbFahrstufe.Checked)
-            {
-                cbFahrstufenschalter.Checked = false; //TODO: maybe it's not bad if Fahrstufe and Fahrschalter are displayed both
-
-                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 1, 2);
-                pnlDataGrunddaten.Controls.Add(lblfahrst, 0, 2);
-                lblfahrst.Text = "Fahrstufe";
-            }
+            lblFahrstufe.Visible = cbFahrstufe.Checked;
+            lblfahrst.Visible = cbFahrstufe.Checked;
         }
-
-        private void pnlRight_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void cbFahrstufenschalter_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbFahrstufenschalter.Checked == false && cbFahrstufe.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblFahrstufe);
-                pnlDataGrunddaten.Controls.Remove(lblfahrst);
-            }
-            else if(cbFahrstufenschalter.Checked)
-            {
-                cbFahrstufe.Checked = false;
-
-                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 1, 2);
-                pnlDataGrunddaten.Controls.Add(lblfahrst, 0, 2);
-                lblfahrst.Text = "Fahrschalter";
-            }
+            lblFahrstufenschalter.Visible = cbFahrstufenschalter.Checked;
+            lblfahrstschalter.Visible = cbFahrstufenschalter.Checked;
         }
 
         private void rbDarstKm_CheckedChanged(object sender, EventArgs e)
@@ -1190,10 +1009,7 @@ namespace Zielbremsen
 
         private void cbPZBLM_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbPZBLM.Checked == true)
-                pnlDataPZB90.Visible = true;
-            else
-                pnlDataPZB90.Visible = false;
+            pnlDataPZB90.Visible = cbPZBLM.Checked;
         }
 
         private void numFahrschneutral_ValueChanged(object sender, EventArgs e)
