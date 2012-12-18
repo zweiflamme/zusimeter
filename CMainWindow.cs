@@ -51,10 +51,14 @@ namespace Zielbremsen
             );
 
             #region RequestData
+            MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
+
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
-            MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
             MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
+            MyTCPConnection.RequestData(2564); // "Druck Hauptluftbehälter"
+            MyTCPConnection.RequestData(2579); // "Druck Hilfsluftbehälter"
+
             MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
             MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
@@ -81,6 +85,12 @@ namespace Zielbremsen
             MyTCPConnection.RequestData(2582); // "LM PZB Befehl"
             //###//
             MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
+            //###Uhrzeit###//
+            MyTCPConnection.RequestData(2570); // "Uhrzeit Stunde"
+            MyTCPConnection.RequestData(2571); // "Uhrzeit Minute"
+            MyTCPConnection.RequestData(2572); // "Uhrzeit Sekunde"
+            //###//
+
 
 
             #endregion 
@@ -202,8 +212,10 @@ namespace Zielbremsen
         decimal oldlblsizevalueafblzb = 0;
         double afbvorwahl = 0.0; // storing value of AFB Schalter * preselected facor / preselected speed
         double afbschalter = 0.0; // storing value of AFB Schalter
-        bool rrSoundplayed = false; // TODO: has Railrunner sound been played?
-        double oldspeed = 0.0;
+        bool rrSoundplayed = false; //has Railrunner sound been played?
+        double stunde, minute, sekunde; //TODO: if DLL 1.1.6 is used, this will be obsolete
+        double druckhbl, druckhlb;
+    
 
         #endregion
 
@@ -257,6 +269,8 @@ namespace Zielbremsen
             pnlSchalterst.Controls.Add(numFahrschneutral);
             
         }
+
+        
 
         #region HandleIncomingData
         private void HandleIncomingData(DataSet<float> dataSet)
@@ -557,6 +571,32 @@ namespace Zielbremsen
 
                 lblAFBvorwahl.Text = afbvorwahl.ToString();
             }
+            //TODO TEST display time
+            //else if (dataSet.Id == MyTCPConnection["Uhrzeit Stunde"])
+            //{
+            //    stunde = dataSet.Value;
+            //    DisplayTime();
+            //}
+            //else if (dataSet.Id == MyTCPConnection["Uhrzeit Minute"])
+            //{
+            //    minute = dataSet.Value;
+            //    DisplayTime();
+            //}
+            //else if (dataSet.Id == MyTCPConnection["Uhrzeit Sekunde"])
+            //{
+            //    sekunde = dataSet.Value;
+            //    DisplayTime();
+            //}
+            else if (dataSet.Id == MyTCPConnection["Druck Hauptluftbehälter"])
+            {
+                druckhbl = dataSet.Value;
+                lblHBLwert.Text = String.Format("{0:0.0} bar", druckhbl);
+            }
+            else if (dataSet.Id == MyTCPConnection["Druck Hilfsluftbehälter"])
+            {
+                druckhlb = dataSet.Value;
+                lblHLBwert.Text = String.Format("{0:0.0} bar", druckhlb);
+            }
             
         }
         #endregion
@@ -632,6 +672,16 @@ namespace Zielbremsen
             //pnlDataPZB90.BackColor = c2;
             pnlDataPZB90.BackColor = Color.FromName("ControlDark");
             pnlDataPZB90.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
+        }
+
+        public void DisplayTime()
+        {
+           //lblUhrzeit.Text = String.Format("{0:0}", stunde) + ":" + String.Format("{0:0}", minute) + ":"
+           //    + String.Format("{0:0}", sekunde);
+
+           //label8.Text = stunde.ToString();
+           //label9.Text = minute.ToString();
+           //label10.Text = sekunde.ToString();
         }
 
         public void setDaymode()
@@ -1344,6 +1394,18 @@ namespace Zielbremsen
             cbRRcountup.Enabled = rbRRfest.Checked;
             cbRRcountdown.Enabled = rbRRfest.Checked;
             cbRRautoreset.Enabled = rbRRfest.Checked;
+        }
+
+        private void cbDruckhbl_CheckedChanged(object sender, EventArgs e)
+        {
+            lblhbl.Visible = cbDruckhbl.Checked;
+            lblHBLwert.Visible = cbDruckhbl.Checked;
+        }
+
+        private void cbDruckhlb_CheckedChanged(object sender, EventArgs e)
+        {
+            lblhlb.Visible = cbDruckhlb.Checked;
+            lblHLBwert.Visible = cbDruckhlb.Checked;
         }
 
         
