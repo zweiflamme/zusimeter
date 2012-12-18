@@ -1436,7 +1436,7 @@ namespace Zielbremsen
 
         private void rbRRfest_CheckedChanged(object sender, EventArgs e)
         {
-            //TODO: integrate these controls into a panel?
+            //TODO: integrate these controls into a panel...
             cbRRSound.Enabled = rbRRfest.Checked; //if rbRRfrei is checked, cbRRSound will be disabled ...
             numRRfest.Enabled = rbRRfest.Checked;
             cbRRcountup.Enabled = rbRRfest.Checked;

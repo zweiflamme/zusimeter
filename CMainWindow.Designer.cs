@@ -1658,7 +1658,7 @@
             this.lblTueren.Name = "lblTueren";
             this.lblTueren.Size = new System.Drawing.Size(103, 13);
             this.lblTueren.TabIndex = 8;
-            this.lblTueren.Text = "##Türstatus##";
+            this.lblTueren.Text = "###############";
             // 
             // pnlDataBremsen
             // 
