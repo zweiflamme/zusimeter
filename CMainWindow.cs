@@ -835,6 +835,8 @@ namespace ZusiMeter
         {
             pnlDataAFBLZB.Visible = cbAFBLZB.Checked;
             pnlAFBLZB.Enabled = cbAFBLZB.Checked;
+
+            pnlDataLZB.Visible = cbLZBlm.Checked && cbAFBLZB.Checked;
         }
 
         private void cbGeschwindigkeit_CheckedChanged(object sender, EventArgs e)
