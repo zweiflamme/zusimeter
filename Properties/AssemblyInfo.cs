@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ZusiMeter")]
-[assembly: AssemblyDescription("ZusiMeter ist eine Ergänzung zu Zusi in der Hoffnung von Nutzen zu sein.Intention ist vor allen Dingen Informationen zum aktuellen Zug in Zusi anzuzeigen die über den Führerstand und das Infofenster nicht ersichtlich sind. Über Lob und Kritik freue ich mich immer!")]
+[assembly: AssemblyDescription("ZusiMeter ist eine Ergänzung zu Zusi in der Hoffnung von Nutzen zu sein. Intention ist vor allen Dingen Informationen zum aktuellen Zug in Zusi anzuzeigen die über den Führerstand und das Infofenster nicht ersichtlich sind. Über Lob und Kritik freue ich mich immer!")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ZusiMeter")]

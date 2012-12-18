@@ -683,6 +683,16 @@ namespace ZusiMeter
         }
         #endregion
 
+        public void DisplayTime()
+        {
+            //lblUhrzeit.Text = String.Format("{0:0}", stunde) + ":" + String.Format("{0:0}", minute) + ":"
+            //    + String.Format("{0:0}", sekunde);
+
+            //label8.Text = stunde.ToString();
+            //label9.Text = minute.ToString();
+            //label10.Text = sekunde.ToString();
+        }
+
         #region Night- and Daymode
 
         public void setNightmode()
@@ -722,18 +732,12 @@ namespace ZusiMeter
             //pnlDataPZB90.BackColor = c2;
             pnlDataPZB90.BackColor = Color.FromName("ControlDark");
             pnlDataPZB90.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
+            //setting colors for PZB90-Panel
+            pnlDataLZB.BackColor = Color.FromName("ControlDark");
+            pnlDataLZB.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
         }
 
-        public void DisplayTime()
-        {
-           //lblUhrzeit.Text = String.Format("{0:0}", stunde) + ":" + String.Format("{0:0}", minute) + ":"
-           //    + String.Format("{0:0}", sekunde);
-
-           //label8.Text = stunde.ToString();
-           //label9.Text = minute.ToString();
-           //label10.Text = sekunde.ToString();
-        }
-
+       
         public void setDaymode()
         {
             BackColor = formdaycolor; //the whole form's background color
@@ -771,6 +775,9 @@ namespace ZusiMeter
             //pnlDataPZB90.BackColor = c2;
             pnlDataPZB90.BackColor = Color.FromName("Control");
             pnlDataPZB90.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            //setting colors for PZB90-Panel
+            pnlDataLZB.BackColor = Color.FromName("Control");
+            pnlDataLZB.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
         }
 
         //if the user clicks the "Nachtmodus / Tagmodus" button
