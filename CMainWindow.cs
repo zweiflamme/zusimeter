@@ -10,8 +10,9 @@ using System.Threading;
 using System.Diagnostics; // usage of stopwatch
 using Zusi_Datenausgabe; //TODO: v1.0.0
 using System.Runtime.InteropServices; //to hand over the focus to Zusi main window
+using System.Media; //for sound playback
 
-namespace Zielbremsen
+namespace ZusiMeter
 {
     public partial class CMainWindow : Form
     {
@@ -50,10 +51,14 @@ namespace Zielbremsen
             );
 
             #region RequestData
+            MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
+
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
-            MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
             MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
+            MyTCPConnection.RequestData(2564); // "Druck Hauptluftbehälter"
+            MyTCPConnection.RequestData(2579); // "Druck Hilfsluftbehälter"
+
             MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
             MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
@@ -69,8 +74,47 @@ namespace Zielbremsen
             MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
             MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
+            MyTCPConnection.RequestData(2648); // "Reisezug" 
+            MyTCPConnection.RequestData(2647); // "Autopilot"
+            //###PZB-90###//
+            MyTCPConnection.RequestData(2583); // "LM PZB Zugart U"
+            MyTCPConnection.RequestData(2584); // "LM PZB Zugart M"
+            MyTCPConnection.RequestData(2585); // "LM PZB Zugart O"
+            MyTCPConnection.RequestData(2580); // "LM PZB 1000Hz"
+            MyTCPConnection.RequestData(2581); // "LM PZB 500Hz"
+            MyTCPConnection.RequestData(2582); // "LM PZB Befehl"
+            //###//
+            //###LZB###//
+            MyTCPConnection.RequestData(2587); // "LM LZB G"
+            MyTCPConnection.RequestData(2590); // "LM LZB Ende"
+            MyTCPConnection.RequestData(2592); // "LM LZB B"
+            MyTCPConnection.RequestData(2593); // "LM LZB S "
+            MyTCPConnection.RequestData(2594); // "LM LZB Ü"
+            MyTCPConnection.RequestData(2595); // "LM LZB Prüfen"
+            //###//
+            MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
+            //###Uhrzeit###//
+            //MyTCPConnection.RequestData(2570); // "Uhrzeit Stunde"
+            //MyTCPConnection.RequestData(2571); // "Uhrzeit Minute"
+            //MyTCPConnection.RequestData(2572); // "Uhrzeit Sekunde"
+            //###//
             #endregion 
 
+        }
+
+        public void PlayRRSound()
+        {
+            try
+            {
+                SoundPlayer rrSound = new SoundPlayer(@".\resources\rr_meep.wav");
+                rrSound.Play();
+                //TODO: DEBUG: rrSound needs to be played only ONCE when railrunner i done
+                rrSoundplayed = true;
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                MessageBox.Show("Sound kann nicht wiedergegeben werden - Datei nicht gefunden!");
+            }
         }
 
         public void Connect() // here we are going to try connecting to the TCP server
@@ -158,11 +202,33 @@ namespace Zielbremsen
         public bool settingsVisible = false; //for determining if the settings panel shall auto hide
         bool nightmode = false; //for letting the user choose between two different color sets
         //TODO: maybe it makes sense to determine day- and nightmode automatically when receiving daytime from Zusi
+        bool reisezug; //if not true door label will be "Güterzug"
+        //DEBUG
+        //String zugdateiOld = "";
+        //String zugdatei = "";
+        //TEST
+        bool autopilot = false; //is being checked in intervals to always display label lblFlag "Autopilot ein" when on
+        double vmps = 0; // speed in meters per second
+        double railrunner = 0; // meters elapsed
+        bool rrrunning = false; //is railrunner running?
+        //TEST TODO: declare local instead of global
+        decimal oldlblsizevaluegrunddaten = 0;
+        decimal oldlblsizevaluebremsen = 0;
+        decimal oldlblsizevalueafblzb = 0;
+        double afbvorwahl = 0.0; // storing value of AFB Schalter * preselected facor / preselected speed
+        double afbschalter = 0.0; // storing value of AFB Schalter
+        bool rrSoundplayed = false; //has Railrunner sound been played?
+        double stunde, minute, sekunde; //TODO: if DLL 1.1.6 is used, this will be obsolete
+        double druckhbl, druckhlb;
+    
 
         #endregion
 
         private void CMainWindow_Load(object sender, EventArgs e) //on loading of the main window...
         {
+            if (cbTopmost.Checked == true)
+                this.TopMost = true;
+            
             //showing 'System' tab first so that the user is able to establish a connection to the TCP server
             tabEinstellungen.SelectTab("tabSystem");   
 
@@ -171,43 +237,45 @@ namespace Zielbremsen
             {
                 tabEinstellungen.Width = 202;
             }
-            //TEST removing unwanted controls that should not be showing when first showing the form
-            //TODO: is there a better way? later on this will be controlled by user prefs            
-            pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
-            pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
-            pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
-            pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
-            pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
-            pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
-
-            pnlDataBremsen.Controls.Remove(lblfbv);
-            pnlDataBremsen.Controls.Remove(lblFbventil);
-            pnlDataBremsen.Controls.Remove(lbldynbrem);
-            pnlDataBremsen.Controls.Remove(lblDynbremse);
-            pnlDataBremsen.Controls.Remove(lblzusbr);
-            pnlDataBremsen.Controls.Remove(lblZusbremse);
 
             //adding a global function for all checkboxes, main reason is to determine if user has clicked
             //a checkbox, if so it's being checked if Zusi shall have the window focus back
             //TODO: find a better and more elegant way to detect user interaction with ALL controls on the form
+
+            //pnlBremsen.Controls.Remove(numSizeBremsen);
             foreach (CheckBox c in pnlBremsen.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
+            //pnlBremsen.Controls.Add(numSizeBremsen);
+
+            //pnlGrunddaten.Controls.Remove(numSizeGrunddaten);
             foreach (CheckBox c in pnlGrunddaten.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
+            //pnlGrunddaten.Controls.Add(numSizeGrunddaten);
+
+            //pnlAFBLZB.Controls.Remove(numSizeAFBLZB);
             foreach (CheckBox c in pnlAFBLZB.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
+            //pnlAFBLZB.Controls.Add(numSizeAFBLZB);
+
+            //DEBUG: remove and add because it's not a checkbox //TODO: find a better way
+            pnlSchalterst.Controls.Remove(numFahrschneutral);
+            pnlSchalterst.Controls.Remove(lblFahrschneutralbei);
             foreach (CheckBox c in pnlSchalterst.Controls)
             {
                 c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
             }
+            pnlSchalterst.Controls.Add(lblFahrschneutralbei);
+            pnlSchalterst.Controls.Add(numFahrschneutral);
             
         }
+
+        
 
         #region HandleIncomingData
         private void HandleIncomingData(DataSet<float> dataSet)
@@ -228,6 +296,11 @@ namespace Zielbremsen
                 if (verbunden) //only if connected to Zusi. //TODO: check if this is needed
                 {
                      geschwindigkeit = dataSet.Value;
+                     vmps = geschwindigkeit / 3.6;
+
+                     //vAlt = vNeu;
+                     //vNeu = geschwindigkeit;
+                     //deltaV = vNeu - vAlt;
 
                      lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
 
@@ -315,46 +388,73 @@ namespace Zielbremsen
                 else
                     lblFahrstufe.Text = "--";
             }
+            else if (dataSet.Id == MyTCPConnection["Reisezug"])
+            {
+                if (dataSet.Value == 0) //if Güterzug
+                {
+                    reisezug = false;
+                    lblFlag.Visible = false; //if doors were open when a freight train has been selected as new train
+                }
+                else
+                {
+                    reisezug = true;
+                }
+            } 
             else if (dataSet.Id == MyTCPConnection["Türen"])
             {
+
                 //DEBUG
-                double tuerwert = dataSet.Value;
+                String reisezugOld = reisezug.ToString();
+                //lblDebugreisezwert.Text = reisezugOld;
 
-                if (tuerwert > 7E-45 && cbLmtueren.Checked) // closed
+                if (reisezug == true)
                 {
-                    lblFlag.Visible = false;
-                    lblFlag.Text = "";
-                    lblTueren.Text = "zu";
-                }
-                else if (tuerwert < 2E-45 && tuerwert > 0 && cbLmtueren.Checked) //open
-                {
-                    lblFlag.Visible = true;
-                    lblFlag.Text = "Türen geöffnet";
-                    lblTueren.Text = "offen";
-                }
-                else if (tuerwert > 5E-45 && tuerwert < 7E-45) //closing
-                {
-                    lblTueren.Text = "schließen";
-                }
-                else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //passengers okay
-                {
-                    lblTueren.Text = "Fahrgäste i.O.";
-                }
-                else if (tuerwert == 0)  //doors unblocked
-                {
-                    lblTueren.Text = "freigegeben";
-                }
+                    //DEBUG
+                    //MessageBox.Show("DEBUG: Reisezug=TRUE" + "--old:" + reisezugOld + "--:" + reisezug);
 
+                    double tuerwert = dataSet.Value;
+
+                    if (tuerwert > 7E-45 && cbTueren.Checked) // closed
+                    {
+                        lblFlag.Visible = false;
+                        lblFlag.Text = "";
+                        lblTueren.Text = "Türen zu";
+                    }
+                    else if (tuerwert < 2E-45 && tuerwert > 0 && cbTueren.Checked) //open
+                    {
+                        lblFlag.Visible = true;
+                        lblFlag.Text = "Türen geöffnet";
+                        lblTueren.Text = "Türen offen";
+                    }
+                    else if (tuerwert > 5E-45 && tuerwert < 7E-45) //closing
+                    {
+                        lblTueren.Text = "Türen schließen";
+                    }
+                    else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //passengers okay
+                    {
+                        lblTueren.Text = "Fahrgäste i.O.";
+                    }
+                    else if (tuerwert == 0)  //doors unblocked
+                    {
+                        lblTueren.Text = "Türen freigegeben";
+                    }
+                }
+                else if (reisezug == false)//if reisezug is not true
+                {
+                    //DEBUG
+                    //MessageBox.Show("DEBUG: Reisezug=FALSE" + "--old:" + reisezugOld + "--:" + reisezug);        
+                    lblTueren.Text = "Güterzug";
+                }
             }
-            else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"] && cbFahrstufenschalter.Checked == true)
+            else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"])
             {
                 if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
                 {
                     double fahrschalter = dataSet.Value - fahrschalterneutral;
-                    lblFahrstufe.Text = String.Format("{0}", fahrschalter);
+                    lblFahrstufenschalter.Text = String.Format("{0}", fahrschalter);
                 }
                 else
-                    lblFahrstufe.Text = "--";
+                    lblFahrstufenschalter.Text = "--";
             }
 
 
@@ -400,7 +500,153 @@ namespace Zielbremsen
                 double lzbweg = dataSet.Value;
                 lblLZBzielweg.Text = String.Format("{0}", lzbweg);
             }
+            //DEBUG TEST
+            /* else if (dataSet.Id == MyTCPConnection["Zugdatei"])...
+            {/*zugdateiOld = zugnummer;
+                zugdatei = dataSet.Value.ToString();
+                if (zugnummer != zugnummerOld)
+                    MessageBox.Show("DEBUG: Zugdatei has changed"); } */   
 
+            else if (dataSet.Id == MyTCPConnection["Autopilot"])
+            {
+                if (dataSet.Value > 0) //if autopilot is on...
+                {
+                    autopilot = true;
+                    timer100.Enabled = true; //makes sure "Autopilot ein" lblFlag is displayed as long as A/P is on
+                }
+                else
+                {
+                    autopilot = false;
+                    lblFlag.Visible = false;
+                    lblFlag.Text = "";
+                    timer100.Enabled = false;
+                }
+            }
+            //###PZB-90###//
+            else if (dataSet.Id == MyTCPConnection["LM PZB Zugart O"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_O.BackColor = Color.CornflowerBlue;                      
+                else
+                    lblPZB_O.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB Zugart M"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_M.BackColor = Color.CornflowerBlue;
+                else
+                    lblPZB_M.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB Zugart U"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_M.BackColor = Color.CornflowerBlue;
+                else
+                    lblPZB_M.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB 1000Hz"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_1000.BackColor = Color.Yellow;
+                else
+                    lblPZB_1000.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB 500Hz"])
+            {
+                if (dataSet.Value > 0)
+                    lblPZB_500.BackColor = Color.Red;
+                else
+                    lblPZB_500.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM PZB Befehl"])
+            {
+                if (dataSet.Value > 0)
+                { lblPZB_Bef.BackColor = Color.Black; lblPZB_Bef.ForeColor = Color.White; }
+                else
+                { lblPZB_Bef.BackColor = Color.FromName("Transparent"); lblPZB_Bef.ForeColor = Color.FromName("ControlText"); }
+            }
+            //###LZB###//
+            else if (dataSet.Id == MyTCPConnection["LM LZB G"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_G.BackColor = Color.Red;
+                else
+                    lblLZB_G.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB Ende"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_Ende.BackColor = Color.Yellow;
+                else
+                    lblLZB_Ende.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB S"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_S.BackColor = Color.Red;
+                else
+                    lblLZB_S.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB Prüfen"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_Pruefstoer.BackColor = Color.White;
+                else
+                    lblLZB_Pruefstoer.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB Ü"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_Ue.BackColor = Color.CornflowerBlue;
+                else
+                    lblLZB_Ue.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB B"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_B.BackColor = Color.CornflowerBlue;
+                else
+                    lblLZB_B.BackColor = Color.FromName("Transparent");
+            }
+            //######//
+            else if (dataSet.Id == MyTCPConnection["Schalter AFB-Geschwindigkeit"])
+            {
+                afbschalter = dataSet.Value;
+
+                if(cbAFBvor5.Checked)
+                    afbvorwahl = afbschalter * 5;
+                else if (cbAFBvor10.Checked)
+                    afbvorwahl = afbschalter * 10;
+
+                lblAFBvorwahl.Text = afbvorwahl.ToString();
+            }
+            //TODO TEST display time
+            //else if (dataSet.Id == MyTCPConnection["Uhrzeit Stunde"])
+            //{
+            //    stunde = dataSet.Value;
+            //    DisplayTime();
+            //}
+            //else if (dataSet.Id == MyTCPConnection["Uhrzeit Minute"])
+            //{
+            //    minute = dataSet.Value;
+            //    DisplayTime();
+            //}
+            //else if (dataSet.Id == MyTCPConnection["Uhrzeit Sekunde"])
+            //{
+            //    sekunde = dataSet.Value;
+            //    DisplayTime();
+            //}
+            else if (dataSet.Id == MyTCPConnection["Druck Hauptluftbehälter"])
+            {
+                druckhbl = dataSet.Value;
+                lblHBLwert.Text = String.Format("{0:0.0} bar", druckhbl);
+            }
+            else if (dataSet.Id == MyTCPConnection["Druck Hilfsluftbehälter"])
+            {
+                druckhlb = dataSet.Value;
+                lblHLBwert.Text = String.Format("{0:0.0} bar", druckhlb);
+            }
+            
         }
         #endregion
 
@@ -412,6 +658,7 @@ namespace Zielbremsen
             {
                 btnConnect.Text = "Verbinden";
                 lblVerbstatus.Text = "Getrennt";
+                verbunden = false;
 
             }
             else if (statusNeu == "Warte")
@@ -420,7 +667,7 @@ namespace Zielbremsen
                 //TODO: set an initial display for all pnlData numbers (like 888.88)
                 btnConnect.Text = "Trennen";
                 pnlRight.Visible = true;
-                tabEinstellungen.SelectTab("tabAnzeigen");
+                tabEinstellungen.SelectTab("tabAnzeigen1");
                 lblVerbstatus.Text = "Warte auf Zusi";
 
             }
@@ -428,6 +675,9 @@ namespace Zielbremsen
             {
                 verbunden = true;
                 lblVerbstatus.Text = "Verbunden mit Zusi";
+
+                grpDebugoffline.Enabled = false; //DEBUG: disabling control of speed via numUD
+
             }
         }
         #endregion
@@ -463,6 +713,24 @@ namespace Zielbremsen
             tbPort.BackColor = textboxnightcolor;
             tbServer.BackColor = textboxnightcolor;
             tbVerz.BackColor = textboxnightcolor;
+
+            //setting colors for PZB90-Panel
+            //TEST: darkening background
+            //Color c1 = pnlDataPZB90.BackColor;
+            //Color c2 = Color.FromArgb(c1.A, (Convert.ToInt32(c1.R*0.8)), (Convert.ToInt32(c1.G*0.8)), (Convert.ToInt32(c1.B*0.8)));
+            //pnlDataPZB90.BackColor = c2;
+            pnlDataPZB90.BackColor = Color.FromName("ControlDark");
+            pnlDataPZB90.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
+        }
+
+        public void DisplayTime()
+        {
+           //lblUhrzeit.Text = String.Format("{0:0}", stunde) + ":" + String.Format("{0:0}", minute) + ":"
+           //    + String.Format("{0:0}", sekunde);
+
+           //label8.Text = stunde.ToString();
+           //label9.Text = minute.ToString();
+           //label10.Text = sekunde.ToString();
         }
 
         public void setDaymode()
@@ -494,6 +762,14 @@ namespace Zielbremsen
             tbServer.BackColor = textboxdaycolor;
             tbPort.BackColor = textboxdaycolor;
             tbVerz.BackColor = textboxdaycolor;
+
+            //setting colors for PZB90-Panel
+            //TEST: lightening background
+            //Color c1 = pnlDataPZB90.BackColor;
+            //Color c2 = Color.FromArgb(c1.A, (Convert.ToInt32(c1.R * 1.2)), (Convert.ToInt32(c1.G * 1.2)), (Convert.ToInt32(c1.B * 1.2)));
+            //pnlDataPZB90.BackColor = c2;
+            pnlDataPZB90.BackColor = Color.FromName("Control");
+            pnlDataPZB90.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
         }
 
         //if the user clicks the "Nachtmodus / Tagmodus" button
@@ -533,285 +809,105 @@ namespace Zielbremsen
 
         private void cbAFBgeschw_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbAFBgeschw.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lblafbeinaus);
-                pnlDataAFBLZB.Controls.Remove(lblAFBgeschwindigkeit);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lblafbeinaus, 0, 0);
-                pnlDataAFBLZB.Controls.Add(lblAFBgeschwindigkeit, 1, 0);
-            }
+                lblafbeinaus.Visible = cbAFBgeschw.Checked;
+                lblAFBgeschwindigkeit.Visible = cbAFBgeschw.Checked;
         }
-
+        
         private void cbLZBvsoll_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLZBvsoll.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lbllzbvsoll);
-                pnlDataAFBLZB.Controls.Remove(lblLZBsollgeschw);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lbllzbvsoll, 0, 1);
-                pnlDataAFBLZB.Controls.Add(lblLZBsollgeschw, 1, 1);
-            }
+            lbllzbvsoll.Visible = cbLZBvsoll.Checked;
+            lblLZBsollgeschw.Visible = cbLZBvsoll.Checked;
         }
 
         private void cbLZBvziel_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLZBvziel.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lbllzbvziel);
-                pnlDataAFBLZB.Controls.Remove(lblLZBzielgeschw);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lbllzbvziel, 0, 2);
-                pnlDataAFBLZB.Controls.Add(lblLZBzielgeschw, 1, 2);
-            }
+            lbllzbvziel.Visible = cbLZBvziel.Checked;
+            lblLZBzielgeschw.Visible = cbLZBvziel.Checked;
         }
 
         private void cbLZBweg_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLZBweg.Checked == false)
-            {
-                pnlDataAFBLZB.Controls.Remove(lbllzbzielw);
-                pnlDataAFBLZB.Controls.Remove(lblLZBzielweg);
-            }
-            else
-            {
-                pnlDataAFBLZB.Controls.Add(lbllzbzielw, 0, 3);
-                pnlDataAFBLZB.Controls.Add(lblLZBzielweg, 1, 3);
-            }
+            lbllzbzielw.Visible = cbLZBweg.Checked;
+            lblLZBzielweg.Visible = cbLZBweg.Checked;
         }
 
         private void cbAFBLZB_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbAFBLZB.Checked == false)
-            {
-                pnlLeft.Controls.Remove(pnlDataAFBLZB);
-
-                foreach (CheckBox cbox in pnlAFBLZB.Controls)
-                {
-                    cbox.Enabled = false;
-                }
-
-                cbAFBLZB.Enabled = true; //TODO: use more elegant method to include all controls
-
-            }
-            else
-            {
-                pnlLeft.Controls.Add(pnlDataAFBLZB);
-
-                foreach (CheckBox cbox in pnlAFBLZB.Controls)
-                {
-                    cbox.Enabled = true;
-                }
-
-            }
+            pnlDataAFBLZB.Visible = cbAFBLZB.Checked;
+            pnlAFBLZB.Enabled = cbAFBLZB.Checked;
         }
 
         private void cbGeschwindigkeit_CheckedChanged(object sender, EventArgs e)
         {
-
-            if (cbGeschwindigkeit.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblV);
-                pnlDataGrunddaten.Controls.Remove(lblkmh);
-            }
-            else
-            {
-                pnlDataGrunddaten.Controls.Add(lblV, 0, 0);
-                pnlDataGrunddaten.Controls.Add(lblkmh, 1, 0);
-            }
+            lblV.Visible = cbGeschwindigkeit.Checked;
+            lblkmh.Visible = cbGeschwindigkeit.Checked;
         }
 
         private void cbStreckenmeter_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbStreckenmeter.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblMeter);
-                pnlDataGrunddaten.Controls.Remove(lblm);
-            }
-            else
-            {
-                pnlDataGrunddaten.Controls.Add(lblMeter, 0, 1);
-                pnlDataGrunddaten.Controls.Add(lblm, 1, 1);
-            }
+            lblMeter.Visible = cbStreckenmeter.Checked;
+            lblm.Visible = cbStreckenmeter.Checked;
         }
 
         private void cbDruckhll_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbDruckhll.Checked == false)
-            {
-                pnlDataBremsen.Controls.Remove(lblHlldruck);
-                pnlDataBremsen.Controls.Remove(lblbarhll);
-            }
-            else
-            {
-                pnlDataBremsen.Controls.Add(lblHlldruck, 0, 1);
-                pnlDataBremsen.Controls.Add(lblbarhll, 1, 1);
-            }
+            lblHlldruck.Visible = cbDruckhll.Checked;
+            lblbarhll.Visible = cbDruckhll.Checked;
         }
 
         private void cbDruckbz_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbDruckbz.Checked == false)
-            {
-                pnlDataBremsen.Controls.Remove(lblBzdruck);
-                pnlDataBremsen.Controls.Remove(lblbarbz);
-            }
-            else
-            {
-                pnlDataBremsen.Controls.Add(lblBzdruck, 0, 2);
-                pnlDataBremsen.Controls.Add(lblbarbz, 1, 2);
-            }
+            lblBzdruck.Visible = cbDruckbz.Checked;
+            lblbarbz.Visible = cbDruckbz.Checked;
         }
 
         private void cbBrh_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbBrh.Checked == false)
-            {
-                pnlDataBremsen.Controls.Remove(lblBrh);
-                pnlDataBremsen.Controls.Remove(lblbremsh);
-            }
-            else
-            {
-                pnlDataBremsen.Controls.Add(lblBrh, 0, 0);
-                pnlDataBremsen.Controls.Add(lblbremsh, 1, 0);
-            }
+            lblBrh.Visible = cbBrh.Checked;
+            lblbremsh.Visible = cbBrh.Checked;
         }        
 
         private void cbLmsifa_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLmsifa.Checked == false)
-            {
-                pnlLeft.Controls.Remove(lblSifa);                
-            }
-            else
-            {
-                pnlLeft.Controls.Add(lblSifa);           
-            }
+            lblSifa.Visible = cbLmsifa.Checked;
         }
 
         private void cbLmschleudern_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLmschleudern.Checked == false)
-            {
-                pnlLeft.Controls.Remove(lblFlag);
-               
-            }
-            else
-            {
-                pnlLeft.Controls.Add(lblFlag);
+            lblFlag.Visible =cbLmschleudern.Checked;
+            if(cbLmschleudern.Checked)
                 ShowFlagtest();
-                lblFlag.Visible = true;                
-            }
         }        
 
         private void cbGrunddaten_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbGrunddaten.Checked == false)
-            {
-                pnlLeft.Controls.Remove(pnlDataGrunddaten);                
-
-                foreach (CheckBox cbox in pnlGrunddaten.Controls)
-                {
-                    cbox.Enabled = false;                    
-                }
-
-                cbGrunddaten.Enabled = true; //TODO: use more elegant method to get all controls
-
-            }
-            else
-            {
-                pnlLeft.Controls.Add(pnlDataGrunddaten);
-                
-                foreach (CheckBox cbox in pnlGrunddaten.Controls)
-                {
-                    cbox.Enabled = true;                   
-                }           
-
-            }
+            pnlDataGrunddaten.Visible = cbGrunddaten.Checked;
+            pnlDataPZB90.Visible = cbGrunddaten.Checked && cbPZBLM.Checked; //TODO: watch out if PZB controls visibility can also be controlled by another checkbox
+            pnlGrunddaten.Enabled = cbGrunddaten.Checked;
         }
 
         private void cbBremsen_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbBremsen.Checked == false)
-            {
-                pnlLeft.Controls.Remove(pnlDataBremsen);                
-                foreach (CheckBox cbox in pnlBremsen.Controls)
-                {
-                    cbox.Enabled = false;                    
-                }
-
-                cbBremsen.Enabled = true; //TODO: use more elegant method to get all controls
-            }
-            else
-            {
-                pnlLeft.Controls.Add(pnlDataBremsen);
-                foreach (CheckBox cbox in pnlBremsen.Controls)
-                {
-                    cbox.Enabled = true;
-                }                
-            }
+            pnlDataBremsen.Visible = cbBremsen.Checked;
+            pnlBremsen.Enabled = cbBremsen.Checked;
         }
 
         private void cbLmtueren_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLmtueren.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblTueren);
-                pnlDataGrunddaten.Controls.Remove(lbltuer);
-            }
-            else
-            {
-                pnlDataGrunddaten.Controls.Add(lblTueren, 0, 3);
-                pnlDataGrunddaten.Controls.Add(lbltuer, 1, 3);
-                ShowFlagtest();
-                lblFlag.Visible = true; 
-            }
+            lblTueren.Visible = cbTueren.Checked;
+            if(cbTueren.Checked)
+                ShowFlagtest(); //TODO: check if flagtest is only shown when necessary, also: check if lblFlag is really always shown when necessary
         }
 
         private void cbFahrstufe_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbFahrstufe.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblFahrstufe);
-                pnlDataGrunddaten.Controls.Remove(lblfahrst);
-            }
-            else if (cbFahrstufe.Checked)
-            {
-                cbFahrstufenschalter.Checked = false; //TODO: maybe it's not bad if Fahrstufe and Fahrschalter are displayed both
-
-                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 1, 2);
-                pnlDataGrunddaten.Controls.Add(lblfahrst, 0, 2);
-                lblfahrst.Text = "Fahrstufe";
-            }
+            lblFahrstufe.Visible = cbFahrstufe.Checked;
+            lblfahrst.Visible = cbFahrstufe.Checked;
         }
-
-        private void pnlRight_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void cbFahrstufenschalter_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbFahrstufenschalter.Checked == false && cbFahrstufe.Checked == false)
-            {
-                pnlDataGrunddaten.Controls.Remove(lblFahrstufe);
-                pnlDataGrunddaten.Controls.Remove(lblfahrst);
-            }
-            else if(cbFahrstufenschalter.Checked)
-            {
-                cbFahrstufe.Checked = false;
-
-                pnlDataGrunddaten.Controls.Add(lblFahrstufe, 1, 2);
-                pnlDataGrunddaten.Controls.Add(lblfahrst, 0, 2);
-                lblfahrst.Text = "Fahrschalter";
-            }
+            lblFahrstufenschalter.Visible = cbFahrstufenschalter.Checked;
+            lblfahrstschalter.Visible = cbFahrstufenschalter.Checked;
         }
 
         private void rbDarstKm_CheckedChanged(object sender, EventArgs e)
@@ -866,17 +962,9 @@ namespace Zielbremsen
 
         private void cbSchalterst_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbSchalterst.Checked == false)
-            {
-                cbSchalterst.Enabled = true;
-            }
-            else
-            {
-                pnlSchalterst.Controls.Add(label5);
-                pnlSchalterst.Controls.Add(numFahrschneutral);
-                cbFahrstufenschalter.Enabled = true;
-            }
-
+            lblfahrstschalter.Visible = cbSchalterst.Checked && cbFahrstufenschalter.Checked; ;
+            lblFahrstufenschalter.Visible = cbSchalterst.Checked && cbFahrstufenschalter.Checked;
+            pnlSchalterst.Enabled = cbSchalterst.Checked;
         }
 
         #endregion
@@ -898,7 +986,13 @@ namespace Zielbremsen
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
                 pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
             }
-            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen"])
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen1"])
+            {
+                tabEinstellungen.Width = 420;
+                int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
+                pnlDebug.Location = new Point(offsetX, pnlDebug.Location.Y);
+            }
+            if (tabEinstellungen.SelectedTab == tabEinstellungen.TabPages["tabAnzeigen2"])
             {
                 tabEinstellungen.Width = 420;
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
@@ -924,6 +1018,7 @@ namespace Zielbremsen
         //if the user clicks the "Einstellungen" button...
         private void btnSettings_Click(object sender, EventArgs e)
         {
+            FokusAnZusi();
             pnlRight.Visible = !pnlRight.Visible; //if visible make invisible and vice versa
             settingsVisible = true; //once btnSettings has been clicked, the settings panel shall not auto hide                                
         }
@@ -949,11 +1044,13 @@ namespace Zielbremsen
             {
                 pnlDebug.Visible = false;
                 debugging = false;
+                btnDebugpanel.BackColor = Color.FromName("Control");
             }
             else if (debugging == false) //else turn debugging mode on
             {
                 pnlDebug.Visible = true;
                 debugging = true;
+                btnDebugpanel.BackColor = Color.Salmon;
 
                 //we want to have the debug panel visible on the right side of our tabbed panel plus 10 pt
                 int offsetX = pnlSettings.Location.X + pnlSettings.Width + 10;
@@ -1031,6 +1128,368 @@ namespace Zielbremsen
                 SetForegroundWindow(FindWindow(null, window));
             }
         }
+
+        //TEST
+        private void timer100_Tick(object sender, EventArgs e)
+        {
+            if (autopilot == true)
+            {
+                lblFlag.Visible = true;
+                lblFlag.Text = "Autopilot ein";
+            }
+
+        }
+
+        
+
+        private void cbPZBLM_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlDataPZB90.Visible = cbPZBLM.Checked;
+        }
+
+        private void numFahrschneutral_ValueChanged(object sender, EventArgs e)
+        {
+            fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
+        }
+
+        //TODO: rename method
+        //DEBUG
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            if (verbunden == false)
+            {
+                geschwindigkeit = Convert.ToDouble(numDebugsetspeed.Value);
+                vmps = geschwindigkeit / 3.6;
+                //vAlt = vNeu;
+                //vNeu = geschwindigkeit;
+                //deltaV = vNeu - vAlt;
+                lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
+            }
+        }
+
+        //TEST
+        private void timerRailrunner_Tick(object sender, EventArgs e)
+        {
+            double intrvl = Convert.ToDouble(timerRailrunner.Interval);
+            railrunner = railrunner + (vmps * (intrvl / 1000.0));
+
+            if (cbRRcountdown.Checked && rbRRfest.Checked)
+            {
+                btnRailrunner.Text = String.Format("noch {0:0} m", Convert.ToDouble(numRRfest.Value) - railrunner);
+
+                if (railrunner >= Convert.ToDouble(numRRfest.Value))
+                {
+                    if (vAlt == 0.0)
+                        vAlt = geschwindigkeit;
+
+                    btnRailrunner.Text = "Strecke abgefahren";
+                    btnRailrunner.BackColor = Color.LightGreen;
+                    if (cbRRSound.Checked && rrSoundplayed == false)
+                       PlayRRSound();
+
+                    //for determining if train has been accelerated by more than x kph                                  
+                    if (geschwindigkeit > vAlt + 3 && cbRRautoreset.Checked)
+                    {
+                        SetRR(); //will reset RR if rrrunning is still true
+                        vAlt = 0.0;
+                    }                
+                }
+            }
+            else if (cbRRcountup.Checked && rbRRfest.Checked)
+            {
+                btnRailrunner.Text = String.Format("{0:0} m", railrunner);
+
+                if (railrunner >= Convert.ToDouble(numRRfest.Value))
+                {
+                    if (vAlt == 0.0)
+                        vAlt = geschwindigkeit;
+
+                    btnRailrunner.Text = numRRfest.Value.ToString() + " m OK";
+                    btnRailrunner.BackColor = Color.LightGreen;
+                    if (cbRRSound.Checked && rrSoundplayed == false)
+                        PlayRRSound();
+  
+                    //for determining if train has been accelerated by more than x kph                                  
+                    if (geschwindigkeit > vAlt + 3 && cbRRautoreset.Checked)
+                    {
+                        SetRR(); //will reset RR if rrrunning is still true
+                        vAlt = 0.0;
+                    }
+                }
+            }
+            else if (rbRRfrei.Checked)
+                btnRailrunner.Text = String.Format("{0:0} m", railrunner);    
+        }
+
+        private void btnDebugRailrunner_Click(object sender, EventArgs e)
+        {
+            timerRailrunner.Start();
+        }
+
+        private void cbRailrunner_CheckedChanged(object sender, EventArgs e)
+        {
+            btnRailrunner.Visible = cbRailrunner.Checked;
+            pnlRailrunner.Enabled = cbRailrunner.Checked;
+        }
+
+        public void SetRR()
+        {
+            if (rrrunning)
+            {
+                timerRailrunner.Stop();
+                btnRailrunner.BackColor = Color.FromName("Control");
+                btnRailrunner.Text = "Wegmessung";
+                railrunner = 0;
+                rrrunning = false;
+                rrSoundplayed = false; //TODO
+            }
+            else if (rrrunning == false)
+            {
+                timerRailrunner.Start();
+                btnRailrunner.BackColor = Color.LightSkyBlue;
+                rrrunning = true;
+            }
+        }
+
+        private void btnRailrunner_Click(object sender, EventArgs e)
+        {
+            SetRR();
+            FokusAnZusi();
+        }
+
+       
+
+        private void numSizeGrunddaten_ValueChanged(object sender, EventArgs e)
+        {
+            if (numSizeGrunddaten.Value > oldlblsizevaluegrunddaten) // we want to upscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataGrunddaten.Controls)
+                {
+                    float newsize = lbl.Font.Size + 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevaluegrunddaten = numSizeGrunddaten.Value;
+            }
+            else if (numSizeGrunddaten.Value < oldlblsizevaluegrunddaten) // we want to downscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataGrunddaten.Controls)
+                {
+                    float newsize = lbl.Font.Size - 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevaluegrunddaten = numSizeGrunddaten.Value;
+            }
+        }
+
+        private void numSizeBremsen_ValueChanged(object sender, EventArgs e)
+        {
+            if (numSizeBremsen.Value > oldlblsizevaluebremsen) // we want to upscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataBremsen.Controls)
+                {
+                    float newsize = lbl.Font.Size + 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevaluebremsen = numSizeBremsen.Value;
+            }
+            else if (numSizeBremsen.Value < oldlblsizevaluebremsen) // we want to downscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataBremsen.Controls)
+                {
+                    float newsize = lbl.Font.Size - 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevaluebremsen = numSizeBremsen.Value;
+            }
+
+        }
+
+        private void numSizeRailrunner_ValueChanged(object sender, EventArgs e)
+        {
+            //if (numSizeRailrunner.Value > oldlblsizevalue) // we want to upscale the font of each label
+            //{
+
+
+            //    double newheight = btnRailrunner.Height * 1.1;
+            //    double newwidth = btnRailrunner.Width * 1.1;                
+
+            //    oldlblsizevalue = numSizeRailrunner.Value;
+            //}
+            //else if (numSizeGrunddaten.Value < oldlblsizevalue) // we want to downscale the font of each label
+            //{
+
+            //    double newheight = btnRailrunner.Height * 0.9;
+            //    double newwidth = btnRailrunner.Width * 0.9;
+                
+            //    oldlblsizevalue = numSizeRailrunner.Value;
+            //}
+        }
+
+        private void numSizeAFBLZB_ValueChanged(object sender, EventArgs e)
+        {
+            if (numSizeAFBLZB.Value > oldlblsizevalueafblzb) // we want to upscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataAFBLZB.Controls)
+                {
+                    float newsize = lbl.Font.Size + 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevalueafblzb = numSizeAFBLZB.Value;
+            }
+            else if (numSizeAFBLZB.Value < oldlblsizevalueafblzb) // we want to downscale the font of each label
+            {
+
+                foreach (Label lbl in pnlDataAFBLZB.Controls)
+                {
+                    float newsize = lbl.Font.Size - 1;
+
+                    lbl.Font = new Font(lbl.Font.Name, newsize);
+                }
+
+                oldlblsizevalueafblzb = numSizeAFBLZB.Value;
+            }
+        }
+
+        private void numRRfest_ValueChanged(object sender, EventArgs e)
+        {
+            if (rrrunning && railrunner <= Convert.ToDouble(numRRfest.Value)) //if value has increased, change color back to blue
+            {
+                btnRailrunner.BackColor = Color.LightSkyBlue;
+            }
+        }
+
+        private void rbRRfrei_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rrrunning)
+                btnRailrunner.BackColor = Color.LightSkyBlue;
+
+            //TODO: integrate these controls into a panel?
+            cbRRSound.Enabled = !rbRRfrei.Checked; //if rbRRfrei is checked, cbRRSound will be disabled ...
+            numRRfest.Enabled = !rbRRfrei.Checked;
+            cbRRcountup.Enabled = !rbRRfrei.Checked;
+            cbRRcountdown.Enabled = !rbRRfrei.Checked;
+            cbRRautoreset.Enabled = !rbRRfrei.Checked;
+
+        }
+
+        private void cbAFBVorwahl_CheckedChanged(object sender, EventArgs e)
+        {
+            lblAFBvorwahl.Visible = cbAFBVorwahl.Checked;
+            lblafbvorw.Visible = cbAFBVorwahl.Checked;
+            cbAFBvor5.Enabled = cbAFBVorwahl.Checked;
+            cbAFBvor10.Enabled = cbAFBVorwahl.Checked;
+        }
+
+        //TODO: more elegant soution appreciated
+        private void cbAFBvor5_CheckedChanged(object sender, EventArgs e)
+        {
+            cbAFBvor10.Checked = !cbAFBvor5.Checked;
+
+            if(cbAFBvor5.Checked)
+                afbvorwahl = afbschalter * 5;
+            else if (cbAFBvor10.Checked)
+                afbvorwahl = afbschalter * 10;
+            lblAFBvorwahl.Text = afbvorwahl.ToString(); //update display of preselected speed
+        }
+
+        //TODO: more elegant soution appreciated
+        private void cbAFBvor10_CheckedChanged(object sender, EventArgs e)
+        {
+            cbAFBvor5.Checked = !cbAFBvor10.Checked;
+
+            if (cbAFBvor5.Checked)
+                afbvorwahl = afbschalter * 5;
+            else if (cbAFBvor10.Checked)
+                afbvorwahl = afbschalter * 10;
+            lblAFBvorwahl.Text = afbvorwahl.ToString(); //update display of preselected speed
+        }
+
+        private void cbRRcountdown_CheckedChanged(object sender, EventArgs e)
+        {
+            cbRRcountup.Checked = !cbRRcountdown.Checked;
+        }
+
+        private void cbRRcountup_CheckedChanged(object sender, EventArgs e)
+        {
+            cbRRcountdown.Checked = !cbRRcountup.Checked;
+        }
+
+        private void btnDebugPlaysound_Click(object sender, EventArgs e)
+        {
+            PlayRRSound();
+        }
+
+        private void rbRRfest_CheckedChanged(object sender, EventArgs e)
+        {
+            //TODO: integrate these controls into a panel...
+            cbRRSound.Enabled = rbRRfest.Checked; //if rbRRfrei is checked, cbRRSound will be disabled ...
+            numRRfest.Enabled = rbRRfest.Checked;
+            cbRRcountup.Enabled = rbRRfest.Checked;
+            cbRRcountdown.Enabled = rbRRfest.Checked;
+            cbRRautoreset.Enabled = rbRRfest.Checked;
+        }
+
+        private void cbDruckhbl_CheckedChanged(object sender, EventArgs e)
+        {
+            lblhbl.Visible = cbDruckhbl.Checked;
+            lblHBLwert.Visible = cbDruckhbl.Checked;
+        }
+
+        private void cbDruckhlb_CheckedChanged(object sender, EventArgs e)
+        {
+            lblhlb.Visible = cbDruckhlb.Checked;
+            lblHLBwert.Visible = cbDruckhlb.Checked;
+        }
+
+        private void cbLZBlm_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlDataLZB.Visible = cbLZBlm.Checked;
+        }
+
+        private void CMainWindow_Click(object sender, EventArgs e)
+        {
+            FokusAnZusi();
+        }
+
+        private void tabAnzeigen1_Click(object sender, EventArgs e)
+        {
+            FokusAnZusi();
+        }
+
+        private void tabDarstellung_Click(object sender, EventArgs e)
+        {
+            FokusAnZusi();
+        }
+
+        private void tabSystem_Click(object sender, EventArgs e)
+        {
+            FokusAnZusi();
+        }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            AboutBox aBox = new AboutBox();
+            this.TopMost = false; //temporarily disable topMost so that the about box will be on top
+            aBox.ShowDialog();
+            this.TopMost = cbTopmost.Checked;
+        }
+
+        
           
     }
 }
