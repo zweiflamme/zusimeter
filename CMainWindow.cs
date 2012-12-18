@@ -84,15 +84,20 @@ namespace Zielbremsen
             MyTCPConnection.RequestData(2581); // "LM PZB 500Hz"
             MyTCPConnection.RequestData(2582); // "LM PZB Befehl"
             //###//
+            //###LZB###//
+            MyTCPConnection.RequestData(2587); // "LM LZB G"
+            MyTCPConnection.RequestData(2590); // "LM LZB Ende"
+            MyTCPConnection.RequestData(2592); // "LM LZB B"
+            MyTCPConnection.RequestData(2593); // "LM LZB S "
+            MyTCPConnection.RequestData(2594); // "LM LZB Ü"
+            MyTCPConnection.RequestData(2595); // "LM LZB Prüfen"
+            //###//
             MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             //###Uhrzeit###//
-            MyTCPConnection.RequestData(2570); // "Uhrzeit Stunde"
-            MyTCPConnection.RequestData(2571); // "Uhrzeit Minute"
-            MyTCPConnection.RequestData(2572); // "Uhrzeit Sekunde"
+            //MyTCPConnection.RequestData(2570); // "Uhrzeit Stunde"
+            //MyTCPConnection.RequestData(2571); // "Uhrzeit Minute"
+            //MyTCPConnection.RequestData(2572); // "Uhrzeit Sekunde"
             //###//
-
-
-
             #endregion 
 
         }
@@ -101,7 +106,7 @@ namespace Zielbremsen
         {
             try
             {
-                SoundPlayer rrSound = new SoundPlayer(@".\Road_Runner.wav");
+                SoundPlayer rrSound = new SoundPlayer(@".\resources\rr_meep.wav");
                 rrSound.Play();
                 //TODO: DEBUG: rrSound needs to be played only ONCE when railrunner i done
                 rrSoundplayed = true;
@@ -560,6 +565,50 @@ namespace Zielbremsen
                 else
                 { lblPZB_Bef.BackColor = Color.FromName("Transparent"); lblPZB_Bef.ForeColor = Color.FromName("ControlText"); }
             }
+            //###LZB###//
+            else if (dataSet.Id == MyTCPConnection["LM LZB G"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_G.BackColor = Color.Red;
+                else
+                    lblLZB_G.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB Ende"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_Ende.BackColor = Color.Yellow;
+                else
+                    lblLZB_Ende.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB S"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_S.BackColor = Color.Red;
+                else
+                    lblLZB_S.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB Prüfen"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_Pruefstoer.BackColor = Color.White;
+                else
+                    lblLZB_Pruefstoer.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB Ü"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_Ue.BackColor = Color.CornflowerBlue;
+                else
+                    lblLZB_Ue.BackColor = Color.FromName("Transparent");
+            }
+            else if (dataSet.Id == MyTCPConnection["LM LZB B"])
+            {
+                if (dataSet.Value > 0)
+                    lblLZB_B.BackColor = Color.CornflowerBlue;
+                else
+                    lblLZB_B.BackColor = Color.FromName("Transparent");
+            }
+            //######//
             else if (dataSet.Id == MyTCPConnection["Schalter AFB-Geschwindigkeit"])
             {
                 afbschalter = dataSet.Value;
@@ -1382,8 +1431,7 @@ namespace Zielbremsen
 
         private void btnDebugPlaysound_Click(object sender, EventArgs e)
         {
-            SoundPlayer simpleSound = new SoundPlayer(@".\Road_Runner.wav");
-            simpleSound.Play();
+            PlayRRSound();
         }
 
         private void rbRRfest_CheckedChanged(object sender, EventArgs e)
@@ -1406,6 +1454,31 @@ namespace Zielbremsen
         {
             lblhlb.Visible = cbDruckhlb.Checked;
             lblHLBwert.Visible = cbDruckhlb.Checked;
+        }
+
+        private void cbLZBlm_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlDataLZB.Visible = cbLZBlm.Checked;
+        }
+
+        private void CMainWindow_Click(object sender, EventArgs e)
+        {
+            FokusAnZusi();
+        }
+
+        private void tabAnzeigen1_Click(object sender, EventArgs e)
+        {
+            FokusAnZusi();
+        }
+
+        private void tabDarstellung_Click(object sender, EventArgs e)
+        {
+            FokusAnZusi();
+        }
+
+        private void tabSystem_Click(object sender, EventArgs e)
+        {
+            FokusAnZusi();
         }
 
         

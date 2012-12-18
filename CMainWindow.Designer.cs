@@ -154,6 +154,10 @@
             this.lblFbventil = new System.Windows.Forms.Label();
             this.lblDynbremse = new System.Windows.Forms.Label();
             this.lblZusbremse = new System.Windows.Forms.Label();
+            this.lblhlb = new System.Windows.Forms.Label();
+            this.lblHLBwert = new System.Windows.Forms.Label();
+            this.lblhbl = new System.Windows.Forms.Label();
+            this.lblHBLwert = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.pnlDataAFBLZB = new System.Windows.Forms.TableLayoutPanel();
             this.lblAFBvorwahl = new System.Windows.Forms.Label();
@@ -167,7 +171,6 @@
             this.lblLZBzielgeschw = new System.Windows.Forms.Label();
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
-            this.btnRailrunner = new System.Windows.Forms.Button();
             this.pnlDataPZB90 = new System.Windows.Forms.TableLayoutPanel();
             this.lblPZB_1000 = new System.Windows.Forms.Label();
             this.lblPZB_500 = new System.Windows.Forms.Label();
@@ -175,12 +178,17 @@
             this.lblPZB_U = new System.Windows.Forms.Label();
             this.lblPZB_M = new System.Windows.Forms.Label();
             this.lblPZB_O = new System.Windows.Forms.Label();
+            this.pnlDataLZB = new System.Windows.Forms.TableLayoutPanel();
+            this.lblLZB_B = new System.Windows.Forms.Label();
+            this.lblLZB_Pruefstoer = new System.Windows.Forms.Label();
+            this.lblLZB_S = new System.Windows.Forms.Label();
+            this.lblLZB_G = new System.Windows.Forms.Label();
+            this.lblLZB_Ende = new System.Windows.Forms.Label();
+            this.lblLZB_Ue = new System.Windows.Forms.Label();
+            this.btnRailrunner = new System.Windows.Forms.Button();
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
-            this.lblhlb = new System.Windows.Forms.Label();
-            this.lblHLBwert = new System.Windows.Forms.Label();
-            this.lblhbl = new System.Windows.Forms.Label();
-            this.lblHBLwert = new System.Windows.Forms.Label();
+            this.cbLZBlm = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -210,6 +218,7 @@
             this.pnlDataAFBLZB.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.pnlDataPZB90.SuspendLayout();
+            this.pnlDataLZB.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -268,7 +277,7 @@
             this.btnSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(3, 468);
+            this.btnSettings.Location = new System.Drawing.Point(3, 539);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(118, 25);
             this.btnSettings.TabIndex = 6;
@@ -323,6 +332,7 @@
             this.tabAnzeigen1.Size = new System.Drawing.Size(407, 376);
             this.tabAnzeigen1.TabIndex = 0;
             this.tabAnzeigen1.Text = "Anzeigen";
+            this.tabAnzeigen1.Click += new System.EventHandler(this.tabAnzeigen1_Click);
             // 
             // numSizeAFBLZB
             // 
@@ -452,7 +462,7 @@
             this.cbRRSound.Checked = true;
             this.cbRRSound.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbRRSound.Enabled = false;
-            this.cbRRSound.Location = new System.Drawing.Point(4, 23);
+            this.cbRRSound.Location = new System.Drawing.Point(4, 25);
             this.cbRRSound.Name = "cbRRSound";
             this.cbRRSound.Size = new System.Drawing.Size(62, 17);
             this.cbRRSound.TabIndex = 37;
@@ -600,6 +610,7 @@
             // 
             // pnlAFBLZB
             // 
+            this.pnlAFBLZB.Controls.Add(this.cbLZBlm);
             this.pnlAFBLZB.Controls.Add(this.cbAFBvor5);
             this.pnlAFBLZB.Controls.Add(this.cbAFBVorwahl);
             this.pnlAFBLZB.Controls.Add(this.cbAFBvor10);
@@ -609,7 +620,7 @@
             this.pnlAFBLZB.Controls.Add(this.cbAFBgeschw);
             this.pnlAFBLZB.Location = new System.Drawing.Point(217, 190);
             this.pnlAFBLZB.Name = "pnlAFBLZB";
-            this.pnlAFBLZB.Size = new System.Drawing.Size(182, 90);
+            this.pnlAFBLZB.Size = new System.Drawing.Size(182, 98);
             this.pnlAFBLZB.TabIndex = 24;
             // 
             // cbAFBvor5
@@ -639,7 +650,7 @@
             // cbAFBvor10
             // 
             this.cbAFBvor10.AutoSize = true;
-            this.cbAFBvor10.Location = new System.Drawing.Point(21, 71);
+            this.cbAFBvor10.Location = new System.Drawing.Point(79, 53);
             this.cbAFBvor10.Name = "cbAFBvor10";
             this.cbAFBvor10.Size = new System.Drawing.Size(66, 17);
             this.cbAFBvor10.TabIndex = 33;
@@ -1075,6 +1086,7 @@
             this.tabDarstellung.Size = new System.Drawing.Size(407, 376);
             this.tabDarstellung.TabIndex = 1;
             this.tabDarstellung.Text = "Darstellung";
+            this.tabDarstellung.Click += new System.EventHandler(this.tabDarstellung_Click);
             // 
             // label1
             // 
@@ -1232,6 +1244,7 @@
             this.tabSystem.Size = new System.Drawing.Size(407, 376);
             this.tabSystem.TabIndex = 2;
             this.tabSystem.Text = "System";
+            this.tabSystem.Click += new System.EventHandler(this.tabSystem_Click);
             // 
             // grpVerbindung
             // 
@@ -1497,7 +1510,7 @@
             this.btnNacht.AutoSize = true;
             this.btnNacht.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNacht.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNacht.Location = new System.Drawing.Point(3, 408);
+            this.btnNacht.Location = new System.Drawing.Point(3, 479);
             this.btnNacht.Name = "btnNacht";
             this.btnNacht.Size = new System.Drawing.Size(118, 23);
             this.btnNacht.TabIndex = 15;
@@ -1670,7 +1683,7 @@
             this.pnlDataBremsen.Controls.Add(this.lblHLBwert, 1, 6);
             this.pnlDataBremsen.Controls.Add(this.lblhbl, 0, 7);
             this.pnlDataBremsen.Controls.Add(this.lblHBLwert, 1, 7);
-            this.pnlDataBremsen.Location = new System.Drawing.Point(3, 227);
+            this.pnlDataBremsen.Location = new System.Drawing.Point(3, 298);
             this.pnlDataBremsen.Name = "pnlDataBremsen";
             this.pnlDataBremsen.RowCount = 8;
             this.pnlDataBremsen.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1744,6 +1757,46 @@
             this.lblZusbremse.Text = "---";
             this.lblZusbremse.Visible = false;
             // 
+            // lblhlb
+            // 
+            this.lblhlb.AutoSize = true;
+            this.lblhlb.Location = new System.Drawing.Point(3, 78);
+            this.lblhlb.Name = "lblhlb";
+            this.lblhlb.Size = new System.Drawing.Size(28, 13);
+            this.lblhlb.TabIndex = 18;
+            this.lblhlb.Text = "HLB";
+            this.lblhlb.Visible = false;
+            // 
+            // lblHLBwert
+            // 
+            this.lblHLBwert.AutoSize = true;
+            this.lblHLBwert.Location = new System.Drawing.Point(54, 78);
+            this.lblHLBwert.Name = "lblHLBwert";
+            this.lblHLBwert.Size = new System.Drawing.Size(16, 13);
+            this.lblHLBwert.TabIndex = 19;
+            this.lblHLBwert.Text = "---";
+            this.lblHLBwert.Visible = false;
+            // 
+            // lblhbl
+            // 
+            this.lblhbl.AutoSize = true;
+            this.lblhbl.Location = new System.Drawing.Point(3, 91);
+            this.lblhbl.Name = "lblhbl";
+            this.lblhbl.Size = new System.Drawing.Size(28, 13);
+            this.lblhbl.TabIndex = 20;
+            this.lblhbl.Text = "HBL";
+            this.lblhbl.Visible = false;
+            // 
+            // lblHBLwert
+            // 
+            this.lblHBLwert.AutoSize = true;
+            this.lblHBLwert.Location = new System.Drawing.Point(54, 91);
+            this.lblHBLwert.Name = "lblHBLwert";
+            this.lblHBLwert.Size = new System.Drawing.Size(16, 13);
+            this.lblHBLwert.TabIndex = 21;
+            this.lblHBLwert.Text = "---";
+            this.lblHBLwert.Visible = false;
+            // 
             // pnlDataAFBLZB
             // 
             this.pnlDataAFBLZB.AutoSize = true;
@@ -1761,7 +1814,7 @@
             this.pnlDataAFBLZB.Controls.Add(this.lblLZBsollgeschw, 1, 2);
             this.pnlDataAFBLZB.Controls.Add(this.lblLZBzielgeschw, 1, 3);
             this.pnlDataAFBLZB.Controls.Add(this.lblLZBzielweg, 1, 4);
-            this.pnlDataAFBLZB.Location = new System.Drawing.Point(3, 337);
+            this.pnlDataAFBLZB.Location = new System.Drawing.Point(3, 408);
             this.pnlDataAFBLZB.Name = "pnlDataAFBLZB";
             this.pnlDataAFBLZB.RowCount = 5;
             this.pnlDataAFBLZB.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1877,18 +1930,19 @@
             this.pnlLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLeft.ColumnCount = 1;
             this.pnlLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.pnlLeft.Controls.Add(this.btnRailrunner, 0, 7);
-            this.pnlLeft.Controls.Add(this.pnlDataPZB90, 0, 3);
+            this.pnlLeft.Controls.Add(this.pnlDataLZB, 0, 4);
             this.pnlLeft.Controls.Add(this.lblSifa, 0, 0);
-            this.pnlLeft.Controls.Add(this.pnlDataBremsen, 0, 4);
-            this.pnlLeft.Controls.Add(this.pnlDataAFBLZB, 0, 5);
             this.pnlLeft.Controls.Add(this.lblFlag, 0, 1);
             this.pnlLeft.Controls.Add(this.pnlDataGrunddaten, 0, 2);
-            this.pnlLeft.Controls.Add(this.btnSettings, 0, 8);
-            this.pnlLeft.Controls.Add(this.btnNacht, 0, 6);
+            this.pnlLeft.Controls.Add(this.pnlDataPZB90, 0, 3);
+            this.pnlLeft.Controls.Add(this.pnlDataBremsen, 0, 5);
+            this.pnlLeft.Controls.Add(this.pnlDataAFBLZB, 0, 6);
+            this.pnlLeft.Controls.Add(this.btnNacht, 0, 7);
+            this.pnlLeft.Controls.Add(this.btnRailrunner, 0, 8);
+            this.pnlLeft.Controls.Add(this.btnSettings, 0, 9);
             this.pnlLeft.Location = new System.Drawing.Point(2, 13);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.RowCount = 9;
+            this.pnlLeft.RowCount = 10;
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1898,22 +1952,9 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlLeft.Size = new System.Drawing.Size(124, 496);
+            this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlLeft.Size = new System.Drawing.Size(124, 567);
             this.pnlLeft.TabIndex = 19;
-            // 
-            // btnRailrunner
-            // 
-            this.btnRailrunner.AutoSize = true;
-            this.btnRailrunner.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnRailrunner.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRailrunner.Location = new System.Drawing.Point(3, 437);
-            this.btnRailrunner.Name = "btnRailrunner";
-            this.btnRailrunner.Size = new System.Drawing.Size(118, 25);
-            this.btnRailrunner.TabIndex = 21;
-            this.btnRailrunner.Text = "Wegmessung";
-            this.btnRailrunner.UseVisualStyleBackColor = true;
-            this.btnRailrunner.Click += new System.EventHandler(this.btnRailrunner_Click);
             // 
             // pnlDataPZB90
             // 
@@ -2012,6 +2053,118 @@
             this.lblPZB_O.Text = "O";
             this.lblPZB_O.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pnlDataLZB
+            // 
+            this.pnlDataLZB.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlDataLZB.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.pnlDataLZB.ColumnCount = 3;
+            this.pnlDataLZB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlDataLZB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlDataLZB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlDataLZB.Controls.Add(this.lblLZB_B, 2, 1);
+            this.pnlDataLZB.Controls.Add(this.lblLZB_Pruefstoer, 1, 1);
+            this.pnlDataLZB.Controls.Add(this.lblLZB_S, 0, 1);
+            this.pnlDataLZB.Controls.Add(this.lblLZB_G, 0, 0);
+            this.pnlDataLZB.Controls.Add(this.lblLZB_Ende, 1, 0);
+            this.pnlDataLZB.Controls.Add(this.lblLZB_Ue, 2, 0);
+            this.pnlDataLZB.Location = new System.Drawing.Point(3, 227);
+            this.pnlDataLZB.Name = "pnlDataLZB";
+            this.pnlDataLZB.RowCount = 2;
+            this.pnlDataLZB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlDataLZB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlDataLZB.Size = new System.Drawing.Size(118, 65);
+            this.pnlDataLZB.TabIndex = 21;
+            this.pnlDataLZB.Visible = false;
+            // 
+            // lblLZB_B
+            // 
+            this.lblLZB_B.BackColor = System.Drawing.Color.Transparent;
+            this.lblLZB_B.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLZB_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLZB_B.Location = new System.Drawing.Point(79, 33);
+            this.lblLZB_B.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLZB_B.Name = "lblLZB_B";
+            this.lblLZB_B.Size = new System.Drawing.Size(38, 31);
+            this.lblLZB_B.TabIndex = 28;
+            this.lblLZB_B.Text = "B";
+            this.lblLZB_B.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLZB_Pruefstoer
+            // 
+            this.lblLZB_Pruefstoer.BackColor = System.Drawing.Color.Transparent;
+            this.lblLZB_Pruefstoer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLZB_Pruefstoer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLZB_Pruefstoer.Location = new System.Drawing.Point(40, 33);
+            this.lblLZB_Pruefstoer.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLZB_Pruefstoer.Name = "lblLZB_Pruefstoer";
+            this.lblLZB_Pruefstoer.Size = new System.Drawing.Size(38, 31);
+            this.lblLZB_Pruefstoer.TabIndex = 29;
+            this.lblLZB_Pruefstoer.Text = "Prüft Stör";
+            this.lblLZB_Pruefstoer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLZB_S
+            // 
+            this.lblLZB_S.BackColor = System.Drawing.Color.Transparent;
+            this.lblLZB_S.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLZB_S.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLZB_S.Location = new System.Drawing.Point(1, 33);
+            this.lblLZB_S.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLZB_S.Name = "lblLZB_S";
+            this.lblLZB_S.Size = new System.Drawing.Size(38, 31);
+            this.lblLZB_S.TabIndex = 30;
+            this.lblLZB_S.Text = "S";
+            this.lblLZB_S.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLZB_G
+            // 
+            this.lblLZB_G.BackColor = System.Drawing.Color.Transparent;
+            this.lblLZB_G.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLZB_G.Location = new System.Drawing.Point(1, 1);
+            this.lblLZB_G.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLZB_G.Name = "lblLZB_G";
+            this.lblLZB_G.Size = new System.Drawing.Size(38, 31);
+            this.lblLZB_G.TabIndex = 25;
+            this.lblLZB_G.Text = "G";
+            this.lblLZB_G.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLZB_Ende
+            // 
+            this.lblLZB_Ende.BackColor = System.Drawing.Color.Transparent;
+            this.lblLZB_Ende.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLZB_Ende.Location = new System.Drawing.Point(40, 1);
+            this.lblLZB_Ende.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLZB_Ende.Name = "lblLZB_Ende";
+            this.lblLZB_Ende.Size = new System.Drawing.Size(38, 31);
+            this.lblLZB_Ende.TabIndex = 27;
+            this.lblLZB_Ende.Text = "Ende";
+            this.lblLZB_Ende.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLZB_Ue
+            // 
+            this.lblLZB_Ue.BackColor = System.Drawing.Color.Transparent;
+            this.lblLZB_Ue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLZB_Ue.Location = new System.Drawing.Point(79, 1);
+            this.lblLZB_Ue.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLZB_Ue.Name = "lblLZB_Ue";
+            this.lblLZB_Ue.Size = new System.Drawing.Size(38, 31);
+            this.lblLZB_Ue.TabIndex = 26;
+            this.lblLZB_Ue.Text = "Ü";
+            this.lblLZB_Ue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnRailrunner
+            // 
+            this.btnRailrunner.AutoSize = true;
+            this.btnRailrunner.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRailrunner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRailrunner.Location = new System.Drawing.Point(3, 508);
+            this.btnRailrunner.Name = "btnRailrunner";
+            this.btnRailrunner.Size = new System.Drawing.Size(118, 25);
+            this.btnRailrunner.TabIndex = 21;
+            this.btnRailrunner.Text = "Wegmessung";
+            this.btnRailrunner.UseVisualStyleBackColor = true;
+            this.btnRailrunner.Click += new System.EventHandler(this.btnRailrunner_Click);
+            // 
             // timer100
             // 
             this.timer100.Tick += new System.EventHandler(this.timer100_Tick);
@@ -2020,45 +2173,16 @@
             // 
             this.timerRailrunner.Tick += new System.EventHandler(this.timerRailrunner_Tick);
             // 
-            // lblhlb
+            // cbLZBlm
             // 
-            this.lblhlb.AutoSize = true;
-            this.lblhlb.Location = new System.Drawing.Point(3, 78);
-            this.lblhlb.Name = "lblhlb";
-            this.lblhlb.Size = new System.Drawing.Size(28, 13);
-            this.lblhlb.TabIndex = 18;
-            this.lblhlb.Text = "HLB";
-            this.lblhlb.Visible = false;
-            // 
-            // lblHLBwert
-            // 
-            this.lblHLBwert.AutoSize = true;
-            this.lblHLBwert.Location = new System.Drawing.Point(54, 78);
-            this.lblHLBwert.Name = "lblHLBwert";
-            this.lblHLBwert.Size = new System.Drawing.Size(16, 13);
-            this.lblHLBwert.TabIndex = 19;
-            this.lblHLBwert.Text = "---";
-            this.lblHLBwert.Visible = false;
-            // 
-            // lblhbl
-            // 
-            this.lblhbl.AutoSize = true;
-            this.lblhbl.Location = new System.Drawing.Point(3, 91);
-            this.lblhbl.Name = "lblhbl";
-            this.lblhbl.Size = new System.Drawing.Size(28, 13);
-            this.lblhbl.TabIndex = 20;
-            this.lblhbl.Text = "HBL";
-            this.lblhbl.Visible = false;
-            // 
-            // lblHBLwert
-            // 
-            this.lblHBLwert.AutoSize = true;
-            this.lblHBLwert.Location = new System.Drawing.Point(54, 91);
-            this.lblHBLwert.Name = "lblHBLwert";
-            this.lblHBLwert.Size = new System.Drawing.Size(16, 13);
-            this.lblHBLwert.TabIndex = 21;
-            this.lblHBLwert.Text = "---";
-            this.lblHBLwert.Visible = false;
+            this.cbLZBlm.AutoSize = true;
+            this.cbLZBlm.Location = new System.Drawing.Point(3, 76);
+            this.cbLZBlm.Name = "cbLZBlm";
+            this.cbLZBlm.Size = new System.Drawing.Size(113, 17);
+            this.cbLZBlm.TabIndex = 34;
+            this.cbLZBlm.Text = "LZB-Leuchtmelder";
+            this.cbLZBlm.UseVisualStyleBackColor = true;
+            this.cbLZBlm.CheckedChanged += new System.EventHandler(this.cbLZBlm_CheckedChanged);
             // 
             // CMainWindow
             // 
@@ -2067,7 +2191,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1003, 480);
+            this.ClientSize = new System.Drawing.Size(1003, 593);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlRight);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -2077,6 +2201,7 @@
             this.Text = "ZusiMeter - v0.4";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.CMainWindow_Load);
+            this.Click += new System.EventHandler(this.CMainWindow_Click);
             this.pnlSettings.ResumeLayout(false);
             this.tabEinstellungen.ResumeLayout(false);
             this.tabAnzeigen1.ResumeLayout(false);
@@ -2123,6 +2248,7 @@
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
             this.pnlDataPZB90.ResumeLayout(false);
+            this.pnlDataLZB.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2280,6 +2406,14 @@
         private System.Windows.Forms.Label lblHLBwert;
         private System.Windows.Forms.Label lblhbl;
         private System.Windows.Forms.Label lblHBLwert;
+        private System.Windows.Forms.TableLayoutPanel pnlDataLZB;
+        private System.Windows.Forms.Label lblLZB_B;
+        private System.Windows.Forms.Label lblLZB_Pruefstoer;
+        private System.Windows.Forms.Label lblLZB_S;
+        private System.Windows.Forms.Label lblLZB_G;
+        private System.Windows.Forms.Label lblLZB_Ende;
+        private System.Windows.Forms.Label lblLZB_Ue;
+        private System.Windows.Forms.CheckBox cbLZBlm;
 
     }
 
