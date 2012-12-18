@@ -1181,7 +1181,7 @@ namespace ZusiMeter
 
                 if (railrunner >= Convert.ToDouble(numRRfest.Value))
                 {
-                    if (vAlt == 0.0)
+                    if (vAlt == 0.0 | geschwindigkeit < vAlt)
                         vAlt = geschwindigkeit;
 
                     btnRailrunner.Text = "Strecke abgefahren";
@@ -1190,7 +1190,7 @@ namespace ZusiMeter
                        PlayRRSound();
 
                     //for determining if train has been accelerated by more than x kph                                  
-                    if (geschwindigkeit > vAlt + 3 && cbRRautoreset.Checked)
+                    if (geschwindigkeit > vAlt + 5 && cbRRautoreset.Checked)
                     {
                         SetRR(); //will reset RR if rrrunning is still true
                         vAlt = 0.0;
@@ -1203,7 +1203,7 @@ namespace ZusiMeter
 
                 if (railrunner >= Convert.ToDouble(numRRfest.Value))
                 {
-                    if (vAlt == 0.0)
+                    if (vAlt == 0.0 | geschwindigkeit < vAlt)
                         vAlt = geschwindigkeit;
 
                     btnRailrunner.Text = numRRfest.Value.ToString() + " m OK";
@@ -1212,7 +1212,7 @@ namespace ZusiMeter
                         PlayRRSound();
   
                     //for determining if train has been accelerated by more than x kph                                  
-                    if (geschwindigkeit > vAlt + 3 && cbRRautoreset.Checked)
+                    if (geschwindigkeit > vAlt + 5 && cbRRautoreset.Checked)
                     {
                         SetRR(); //will reset RR if rrrunning is still true
                         vAlt = 0.0;
@@ -1372,6 +1372,7 @@ namespace ZusiMeter
             if (rrrunning && railrunner <= Convert.ToDouble(numRRfest.Value)) //if value has increased, change color back to blue
             {
                 btnRailrunner.BackColor = Color.LightSkyBlue;
+                rrSoundplayed = false; // so that the sound is played when the new value has been reached
             }
         }
 
@@ -1489,6 +1490,19 @@ namespace ZusiMeter
             this.TopMost = false; //temporarily disable topMost so that the about box will be on top
             aBox.ShowDialog();
             this.TopMost = cbTopmost.Checked;
+        }
+
+        private void numDebugsetspeed_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (verbunden == false)
+            {
+                geschwindigkeit = Convert.ToDouble(numDebugsetspeed.Value);
+                vmps = geschwindigkeit / 3.6;
+                //vAlt = vNeu;
+                //vNeu = geschwindigkeit;
+                //deltaV = vNeu - vAlt;
+                lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
+            }
         }
 
         
