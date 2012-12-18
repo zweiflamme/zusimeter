@@ -10,6 +10,7 @@ using System.Threading;
 using System.Diagnostics; // usage of stopwatch
 using Zusi_Datenausgabe; //TODO: v1.0.0
 using System.Runtime.InteropServices; //to hand over the focus to Zusi main window
+using System.Media; //for sound playback
 
 namespace Zielbremsen
 {
@@ -84,6 +85,15 @@ namespace Zielbremsen
 
             #endregion 
 
+        }
+
+        public void PlayRRSound()
+        {
+            SoundPlayer rrSound = new SoundPlayer(@".\Road_Runner.wav");
+            rrSound.Play();
+
+            //TODO: DEBUG: rrSound needs to be played only ONCE when railrunner i done
+            rrSoundplayed = true;
         }
 
         public void Connect() // here we are going to try connecting to the TCP server
@@ -186,6 +196,7 @@ namespace Zielbremsen
         decimal oldlblsizevalueafblzb = 0;
         double afbvorwahl = 0.0; // storing value of AFB Schalter * preselected facor / preselected speed
         double afbschalter = 0.0; // storing value of AFB Schalter
+        bool rrSoundplayed = false; // TODO: has Railrunner sound been played?
 
         #endregion
 
@@ -1045,16 +1056,36 @@ namespace Zielbremsen
         //TEST
         private void timerRailrunner_Tick(object sender, EventArgs e)
         {
-            double intrvl = Convert.ToDouble(timerRailrunner.Interval);           
+            double intrvl = Convert.ToDouble(timerRailrunner.Interval);
             railrunner = railrunner + (vmps * (intrvl / 1000.0));
 
-            btnRailrunner.Text = String.Format("{0:0} m", railrunner);
-
-            if (rbRRfest.Checked && railrunner >= Convert.ToDouble(numRRfest.Value))
+            if (cbRRcountdown.Checked && rbRRfest.Checked)
             {
-                btnRailrunner.Text = numRRfest.Value.ToString() + " m OK";
-                btnRailrunner.BackColor = Color.LightGreen;
+                btnRailrunner.Text = String.Format("noch {0:0} m", Convert.ToDouble(numRRfest.Value) - railrunner);
+
+                if (railrunner >= Convert.ToDouble(numRRfest.Value))
+                {
+                    btnRailrunner.Text = "Strecke abgefahren";
+                    btnRailrunner.BackColor = Color.LightGreen;
+                    if (cbRRSound.Checked && rrSoundplayed == false)
+                       PlayRRSound();                        
+                    
+                }
             }
+            else if (cbRRcountup.Checked && rbRRfest.Checked)
+            {
+                btnRailrunner.Text = String.Format("{0:0} m", railrunner);
+
+                if (railrunner >= Convert.ToDouble(numRRfest.Value))
+                {
+                    btnRailrunner.Text = numRRfest.Value.ToString() + " m OK";
+                    btnRailrunner.BackColor = Color.LightGreen;
+                    if (cbRRSound.Checked && rrSoundplayed == false)
+                        PlayRRSound();  
+                }
+            }
+            else if (rbRRfrei.Checked)
+                btnRailrunner.Text = String.Format("{0:0} m", railrunner);            
         }
 
         private void btnDebugRailrunner_Click(object sender, EventArgs e)
@@ -1077,6 +1108,7 @@ namespace Zielbremsen
                 btnRailrunner.Text = "Wegmessung";
                 railrunner = 0;
                 rrrunning = false;
+                rrSoundplayed = false; //TODO
             }
             else if (rrrunning == false)
             {
@@ -1238,6 +1270,22 @@ namespace Zielbremsen
             else if (cbAFBvor10.Checked)
                 afbvorwahl = afbschalter * 10;
             lblAFBvorwahl.Text = afbvorwahl.ToString(); //update display of preselected speed
+        }
+
+        private void cbRRcountdown_CheckedChanged(object sender, EventArgs e)
+        {
+            cbRRcountup.Checked = !cbRRcountdown.Checked;
+        }
+
+        private void cbRRcountup_CheckedChanged(object sender, EventArgs e)
+        {
+            cbRRcountdown.Checked = !cbRRcountup.Checked;
+        }
+
+        private void btnDebugPlaysound_Click(object sender, EventArgs e)
+        {
+            SoundPlayer simpleSound = new SoundPlayer(@".\Road_Runner.wav");
+            simpleSound.Play();
         }
 
         
