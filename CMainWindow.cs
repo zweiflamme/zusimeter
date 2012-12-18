@@ -256,11 +256,12 @@ namespace ZusiMeter
             }
             //pnlGrunddaten.Controls.Add(numSizeGrunddaten);
 
+            //TODO: panel object is inside
             //pnlAFBLZB.Controls.Remove(numSizeAFBLZB);
-            foreach (CheckBox c in pnlAFBLZB.Controls)
-            {
-                c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
-            }
+            //foreach (CheckBox c in pnlAFBLZB.Controls)
+            //{
+            //    c.CheckedChanged += new System.EventHandler(this.Control_CheckedChanged);
+            //}
             //pnlAFBLZB.Controls.Add(numSizeAFBLZB);
 
             //DEBUG: remove and add because it's not a checkbox //TODO: find a better way
