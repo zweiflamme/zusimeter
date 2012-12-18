@@ -12,7 +12,7 @@ using Zusi_Datenausgabe; //TODO: v1.0.0
 using System.Runtime.InteropServices; //to hand over the focus to Zusi main window
 using System.Media; //for sound playback
 
-namespace Zielbremsen
+namespace ZusiMeter
 {
     public partial class CMainWindow : Form
     {
@@ -1479,6 +1479,14 @@ namespace Zielbremsen
         private void tabSystem_Click(object sender, EventArgs e)
         {
             FokusAnZusi();
+        }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            AboutBox aBox = new AboutBox();
+            this.TopMost = false; //temporarily disable topMost so that the about box will be on top
+            aBox.ShowDialog();
+            this.TopMost = cbTopmost.Checked;
         }
 
         

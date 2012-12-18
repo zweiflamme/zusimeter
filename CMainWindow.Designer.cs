@@ -1,4 +1,4 @@
-﻿namespace Zielbremsen
+﻿namespace ZusiMeter
 {
     partial class CMainWindow
     {
@@ -58,6 +58,7 @@
             this.cbGrunddaten = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlAFBLZB = new System.Windows.Forms.Panel();
+            this.cbLZBlm = new System.Windows.Forms.CheckBox();
             this.cbAFBvor5 = new System.Windows.Forms.CheckBox();
             this.cbAFBVorwahl = new System.Windows.Forms.CheckBox();
             this.cbAFBvor10 = new System.Windows.Forms.CheckBox();
@@ -108,6 +109,7 @@
             this.rbDarstKm = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.tabSystem = new System.Windows.Forms.TabPage();
+            this.btnAbout = new System.Windows.Forms.Button();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
             this.tbServer = new System.Windows.Forms.TextBox();
             this.tbPort = new System.Windows.Forms.TextBox();
@@ -171,13 +173,6 @@
             this.lblLZBzielgeschw = new System.Windows.Forms.Label();
             this.lblLZBzielweg = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.TableLayoutPanel();
-            this.pnlDataPZB90 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblPZB_1000 = new System.Windows.Forms.Label();
-            this.lblPZB_500 = new System.Windows.Forms.Label();
-            this.lblPZB_Bef = new System.Windows.Forms.Label();
-            this.lblPZB_U = new System.Windows.Forms.Label();
-            this.lblPZB_M = new System.Windows.Forms.Label();
-            this.lblPZB_O = new System.Windows.Forms.Label();
             this.pnlDataLZB = new System.Windows.Forms.TableLayoutPanel();
             this.lblLZB_B = new System.Windows.Forms.Label();
             this.lblLZB_Pruefstoer = new System.Windows.Forms.Label();
@@ -185,10 +180,16 @@
             this.lblLZB_G = new System.Windows.Forms.Label();
             this.lblLZB_Ende = new System.Windows.Forms.Label();
             this.lblLZB_Ue = new System.Windows.Forms.Label();
+            this.pnlDataPZB90 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblPZB_1000 = new System.Windows.Forms.Label();
+            this.lblPZB_500 = new System.Windows.Forms.Label();
+            this.lblPZB_Bef = new System.Windows.Forms.Label();
+            this.lblPZB_U = new System.Windows.Forms.Label();
+            this.lblPZB_M = new System.Windows.Forms.Label();
+            this.lblPZB_O = new System.Windows.Forms.Label();
             this.btnRailrunner = new System.Windows.Forms.Button();
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
-            this.cbLZBlm = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -217,8 +218,8 @@
             this.pnlDataBremsen.SuspendLayout();
             this.pnlDataAFBLZB.SuspendLayout();
             this.pnlLeft.SuspendLayout();
-            this.pnlDataPZB90.SuspendLayout();
             this.pnlDataLZB.SuspendLayout();
+            this.pnlDataPZB90.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -622,6 +623,17 @@
             this.pnlAFBLZB.Name = "pnlAFBLZB";
             this.pnlAFBLZB.Size = new System.Drawing.Size(182, 98);
             this.pnlAFBLZB.TabIndex = 24;
+            // 
+            // cbLZBlm
+            // 
+            this.cbLZBlm.AutoSize = true;
+            this.cbLZBlm.Location = new System.Drawing.Point(3, 76);
+            this.cbLZBlm.Name = "cbLZBlm";
+            this.cbLZBlm.Size = new System.Drawing.Size(113, 17);
+            this.cbLZBlm.TabIndex = 34;
+            this.cbLZBlm.Text = "LZB-Leuchtmelder";
+            this.cbLZBlm.UseVisualStyleBackColor = true;
+            this.cbLZBlm.CheckedChanged += new System.EventHandler(this.cbLZBlm_CheckedChanged);
             // 
             // cbAFBvor5
             // 
@@ -1237,6 +1249,7 @@
             // tabSystem
             // 
             this.tabSystem.BackColor = System.Drawing.SystemColors.Control;
+            this.tabSystem.Controls.Add(this.btnAbout);
             this.tabSystem.Controls.Add(this.grpVerbindung);
             this.tabSystem.Controls.Add(this.btnDebugpanel);
             this.tabSystem.Location = new System.Drawing.Point(4, 22);
@@ -1245,6 +1258,18 @@
             this.tabSystem.TabIndex = 2;
             this.tabSystem.Text = "System";
             this.tabSystem.Click += new System.EventHandler(this.tabSystem_Click);
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbout.Location = new System.Drawing.Point(3, 132);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(121, 23);
+            this.btnAbout.TabIndex = 14;
+            this.btnAbout.Text = "Über ZusiMeter";
+            this.btnAbout.UseVisualStyleBackColor = false;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // grpVerbindung
             // 
@@ -1286,14 +1311,17 @@
             // 
             // btnDebugpanel
             // 
-            this.btnDebugpanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Salmon;
+            this.btnDebugpanel.BackColor = System.Drawing.Color.Transparent;
+            this.btnDebugpanel.FlatAppearance.BorderSize = 0;
+            this.btnDebugpanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSalmon;
             this.btnDebugpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDebugpanel.Location = new System.Drawing.Point(3, 121);
+            this.btnDebugpanel.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnDebugpanel.Location = new System.Drawing.Point(143, 10);
             this.btnDebugpanel.Name = "btnDebugpanel";
-            this.btnDebugpanel.Size = new System.Drawing.Size(121, 22);
+            this.btnDebugpanel.Size = new System.Drawing.Size(18, 107);
             this.btnDebugpanel.TabIndex = 13;
             this.btnDebugpanel.Text = "DEBUG";
-            this.btnDebugpanel.UseVisualStyleBackColor = true;
+            this.btnDebugpanel.UseVisualStyleBackColor = false;
             this.btnDebugpanel.Click += new System.EventHandler(this.btnDebugpanel_Click);
             // 
             // statusStrip1
@@ -1956,103 +1984,6 @@
             this.pnlLeft.Size = new System.Drawing.Size(124, 567);
             this.pnlLeft.TabIndex = 19;
             // 
-            // pnlDataPZB90
-            // 
-            this.pnlDataPZB90.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlDataPZB90.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.pnlDataPZB90.ColumnCount = 3;
-            this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.pnlDataPZB90.Controls.Add(this.lblPZB_1000, 2, 1);
-            this.pnlDataPZB90.Controls.Add(this.lblPZB_500, 1, 1);
-            this.pnlDataPZB90.Controls.Add(this.lblPZB_Bef, 0, 1);
-            this.pnlDataPZB90.Controls.Add(this.lblPZB_U, 0, 0);
-            this.pnlDataPZB90.Controls.Add(this.lblPZB_M, 1, 0);
-            this.pnlDataPZB90.Controls.Add(this.lblPZB_O, 2, 0);
-            this.pnlDataPZB90.Location = new System.Drawing.Point(3, 156);
-            this.pnlDataPZB90.Name = "pnlDataPZB90";
-            this.pnlDataPZB90.RowCount = 2;
-            this.pnlDataPZB90.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.pnlDataPZB90.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.pnlDataPZB90.Size = new System.Drawing.Size(118, 65);
-            this.pnlDataPZB90.TabIndex = 20;
-            // 
-            // lblPZB_1000
-            // 
-            this.lblPZB_1000.BackColor = System.Drawing.Color.Transparent;
-            this.lblPZB_1000.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_1000.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPZB_1000.Location = new System.Drawing.Point(79, 33);
-            this.lblPZB_1000.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_1000.Name = "lblPZB_1000";
-            this.lblPZB_1000.Size = new System.Drawing.Size(38, 31);
-            this.lblPZB_1000.TabIndex = 28;
-            this.lblPZB_1000.Text = "1000";
-            this.lblPZB_1000.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_500
-            // 
-            this.lblPZB_500.BackColor = System.Drawing.Color.Transparent;
-            this.lblPZB_500.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_500.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPZB_500.Location = new System.Drawing.Point(40, 33);
-            this.lblPZB_500.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_500.Name = "lblPZB_500";
-            this.lblPZB_500.Size = new System.Drawing.Size(38, 31);
-            this.lblPZB_500.TabIndex = 29;
-            this.lblPZB_500.Text = "500";
-            this.lblPZB_500.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_Bef
-            // 
-            this.lblPZB_Bef.BackColor = System.Drawing.Color.Transparent;
-            this.lblPZB_Bef.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_Bef.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPZB_Bef.Location = new System.Drawing.Point(1, 33);
-            this.lblPZB_Bef.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_Bef.Name = "lblPZB_Bef";
-            this.lblPZB_Bef.Size = new System.Drawing.Size(38, 31);
-            this.lblPZB_Bef.TabIndex = 30;
-            this.lblPZB_Bef.Text = "Befehl";
-            this.lblPZB_Bef.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_U
-            // 
-            this.lblPZB_U.BackColor = System.Drawing.Color.Transparent;
-            this.lblPZB_U.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_U.Location = new System.Drawing.Point(1, 1);
-            this.lblPZB_U.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_U.Name = "lblPZB_U";
-            this.lblPZB_U.Size = new System.Drawing.Size(38, 31);
-            this.lblPZB_U.TabIndex = 25;
-            this.lblPZB_U.Text = "U";
-            this.lblPZB_U.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_M
-            // 
-            this.lblPZB_M.BackColor = System.Drawing.Color.Transparent;
-            this.lblPZB_M.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_M.Location = new System.Drawing.Point(40, 1);
-            this.lblPZB_M.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_M.Name = "lblPZB_M";
-            this.lblPZB_M.Size = new System.Drawing.Size(38, 31);
-            this.lblPZB_M.TabIndex = 27;
-            this.lblPZB_M.Text = "M";
-            this.lblPZB_M.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPZB_O
-            // 
-            this.lblPZB_O.BackColor = System.Drawing.Color.Transparent;
-            this.lblPZB_O.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPZB_O.Location = new System.Drawing.Point(79, 1);
-            this.lblPZB_O.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPZB_O.Name = "lblPZB_O";
-            this.lblPZB_O.Size = new System.Drawing.Size(38, 31);
-            this.lblPZB_O.TabIndex = 26;
-            this.lblPZB_O.Text = "O";
-            this.lblPZB_O.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // pnlDataLZB
             // 
             this.pnlDataLZB.BackColor = System.Drawing.SystemColors.Control;
@@ -2151,6 +2082,103 @@
             this.lblLZB_Ue.Text = "Ü";
             this.lblLZB_Ue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pnlDataPZB90
+            // 
+            this.pnlDataPZB90.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlDataPZB90.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.pnlDataPZB90.ColumnCount = 3;
+            this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlDataPZB90.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_1000, 2, 1);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_500, 1, 1);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_Bef, 0, 1);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_U, 0, 0);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_M, 1, 0);
+            this.pnlDataPZB90.Controls.Add(this.lblPZB_O, 2, 0);
+            this.pnlDataPZB90.Location = new System.Drawing.Point(3, 156);
+            this.pnlDataPZB90.Name = "pnlDataPZB90";
+            this.pnlDataPZB90.RowCount = 2;
+            this.pnlDataPZB90.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlDataPZB90.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlDataPZB90.Size = new System.Drawing.Size(118, 65);
+            this.pnlDataPZB90.TabIndex = 20;
+            // 
+            // lblPZB_1000
+            // 
+            this.lblPZB_1000.BackColor = System.Drawing.Color.Transparent;
+            this.lblPZB_1000.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_1000.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPZB_1000.Location = new System.Drawing.Point(79, 33);
+            this.lblPZB_1000.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_1000.Name = "lblPZB_1000";
+            this.lblPZB_1000.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_1000.TabIndex = 28;
+            this.lblPZB_1000.Text = "1000";
+            this.lblPZB_1000.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_500
+            // 
+            this.lblPZB_500.BackColor = System.Drawing.Color.Transparent;
+            this.lblPZB_500.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_500.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPZB_500.Location = new System.Drawing.Point(40, 33);
+            this.lblPZB_500.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_500.Name = "lblPZB_500";
+            this.lblPZB_500.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_500.TabIndex = 29;
+            this.lblPZB_500.Text = "500";
+            this.lblPZB_500.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_Bef
+            // 
+            this.lblPZB_Bef.BackColor = System.Drawing.Color.Transparent;
+            this.lblPZB_Bef.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_Bef.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPZB_Bef.Location = new System.Drawing.Point(1, 33);
+            this.lblPZB_Bef.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_Bef.Name = "lblPZB_Bef";
+            this.lblPZB_Bef.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_Bef.TabIndex = 30;
+            this.lblPZB_Bef.Text = "Befehl";
+            this.lblPZB_Bef.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_U
+            // 
+            this.lblPZB_U.BackColor = System.Drawing.Color.Transparent;
+            this.lblPZB_U.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_U.Location = new System.Drawing.Point(1, 1);
+            this.lblPZB_U.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_U.Name = "lblPZB_U";
+            this.lblPZB_U.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_U.TabIndex = 25;
+            this.lblPZB_U.Text = "U";
+            this.lblPZB_U.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_M
+            // 
+            this.lblPZB_M.BackColor = System.Drawing.Color.Transparent;
+            this.lblPZB_M.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_M.Location = new System.Drawing.Point(40, 1);
+            this.lblPZB_M.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_M.Name = "lblPZB_M";
+            this.lblPZB_M.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_M.TabIndex = 27;
+            this.lblPZB_M.Text = "M";
+            this.lblPZB_M.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPZB_O
+            // 
+            this.lblPZB_O.BackColor = System.Drawing.Color.Transparent;
+            this.lblPZB_O.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPZB_O.Location = new System.Drawing.Point(79, 1);
+            this.lblPZB_O.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPZB_O.Name = "lblPZB_O";
+            this.lblPZB_O.Size = new System.Drawing.Size(38, 31);
+            this.lblPZB_O.TabIndex = 26;
+            this.lblPZB_O.Text = "O";
+            this.lblPZB_O.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnRailrunner
             // 
             this.btnRailrunner.AutoSize = true;
@@ -2172,17 +2200,6 @@
             // timerRailrunner
             // 
             this.timerRailrunner.Tick += new System.EventHandler(this.timerRailrunner_Tick);
-            // 
-            // cbLZBlm
-            // 
-            this.cbLZBlm.AutoSize = true;
-            this.cbLZBlm.Location = new System.Drawing.Point(3, 76);
-            this.cbLZBlm.Name = "cbLZBlm";
-            this.cbLZBlm.Size = new System.Drawing.Size(113, 17);
-            this.cbLZBlm.TabIndex = 34;
-            this.cbLZBlm.Text = "LZB-Leuchtmelder";
-            this.cbLZBlm.UseVisualStyleBackColor = true;
-            this.cbLZBlm.CheckedChanged += new System.EventHandler(this.cbLZBlm_CheckedChanged);
             // 
             // CMainWindow
             // 
@@ -2247,8 +2264,8 @@
             this.pnlDataAFBLZB.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
-            this.pnlDataPZB90.ResumeLayout(false);
             this.pnlDataLZB.ResumeLayout(false);
+            this.pnlDataPZB90.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2414,6 +2431,7 @@
         private System.Windows.Forms.Label lblLZB_Ende;
         private System.Windows.Forms.Label lblLZB_Ue;
         private System.Windows.Forms.CheckBox cbLZBlm;
+        private System.Windows.Forms.Button btnAbout;
 
     }
 
