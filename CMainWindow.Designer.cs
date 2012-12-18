@@ -176,6 +176,7 @@
             this.cbRRcountdown = new System.Windows.Forms.CheckBox();
             this.cbRRSound = new System.Windows.Forms.CheckBox();
             this.btnDebugPlaysound = new System.Windows.Forms.Button();
+            this.cbRRautoreset = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -273,13 +274,12 @@
             // 
             // pnlSettings
             // 
-            this.pnlSettings.AutoSize = true;
             this.pnlSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSettings.Controls.Add(this.tabEinstellungen);
             this.pnlSettings.Controls.Add(this.statusStrip1);
             this.pnlSettings.Location = new System.Drawing.Point(3, 1);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(421, 423);
+            this.pnlSettings.Size = new System.Drawing.Size(421, 454);
             this.pnlSettings.TabIndex = 10;
             // 
             // tabEinstellungen
@@ -290,7 +290,7 @@
             this.tabEinstellungen.Location = new System.Drawing.Point(3, 2);
             this.tabEinstellungen.Name = "tabEinstellungen";
             this.tabEinstellungen.SelectedIndex = 0;
-            this.tabEinstellungen.Size = new System.Drawing.Size(415, 395);
+            this.tabEinstellungen.Size = new System.Drawing.Size(415, 402);
             this.tabEinstellungen.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabEinstellungen.TabIndex = 0;
             this.tabEinstellungen.SelectedIndexChanged += new System.EventHandler(this.tabEinstellungen_SelectedIndexChanged);
@@ -315,7 +315,7 @@
             this.tabAnzeigen1.Location = new System.Drawing.Point(4, 22);
             this.tabAnzeigen1.Name = "tabAnzeigen1";
             this.tabAnzeigen1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAnzeigen1.Size = new System.Drawing.Size(407, 369);
+            this.tabAnzeigen1.Size = new System.Drawing.Size(407, 376);
             this.tabAnzeigen1.TabIndex = 0;
             this.tabAnzeigen1.Text = "Anzeigen";
             // 
@@ -415,6 +415,7 @@
             // 
             // pnlRailrunner
             // 
+            this.pnlRailrunner.Controls.Add(this.cbRRautoreset);
             this.pnlRailrunner.Controls.Add(this.cbRRSound);
             this.pnlRailrunner.Controls.Add(this.cbRRcountdown);
             this.pnlRailrunner.Controls.Add(this.label7);
@@ -424,12 +425,13 @@
             this.pnlRailrunner.Controls.Add(this.rbRRfrei);
             this.pnlRailrunner.Location = new System.Drawing.Point(6, 305);
             this.pnlRailrunner.Name = "pnlRailrunner";
-            this.pnlRailrunner.Size = new System.Drawing.Size(171, 58);
+            this.pnlRailrunner.Size = new System.Drawing.Size(171, 68);
             this.pnlRailrunner.TabIndex = 25;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Enabled = false;
             this.label7.Location = new System.Drawing.Point(144, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(15, 13);
@@ -446,9 +448,11 @@
             this.rbRRfest.TabStop = true;
             this.rbRRfest.Text = "fest:";
             this.rbRRfest.UseVisualStyleBackColor = true;
+            this.rbRRfest.CheckedChanged += new System.EventHandler(this.rbRRfest_CheckedChanged);
             // 
             // numRRfest
             // 
+            this.numRRfest.Enabled = false;
             this.numRRfest.Increment = new decimal(new int[] {
             50,
             0,
@@ -1218,7 +1222,7 @@
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblVerbstatus});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 400);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 415);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(129, 23);
             this.statusStrip1.SizingGrip = false;
@@ -1402,7 +1406,7 @@
             this.pnlRight.Controls.Add(this.pnlDebug);
             this.pnlRight.Location = new System.Drawing.Point(149, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(571, 430);
+            this.pnlRight.Size = new System.Drawing.Size(571, 458);
             this.pnlRight.TabIndex = 14;
             // 
             // timerFlag
@@ -1938,6 +1942,7 @@
             this.cbRRcountup.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbRRcountup.AutoSize = true;
             this.cbRRcountup.BackColor = System.Drawing.Color.Transparent;
+            this.cbRRcountup.Enabled = false;
             this.cbRRcountup.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
             this.cbRRcountup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbRRcountup.Location = new System.Drawing.Point(114, 23);
@@ -1956,6 +1961,7 @@
             this.cbRRcountdown.BackColor = System.Drawing.Color.Transparent;
             this.cbRRcountdown.Checked = true;
             this.cbRRcountdown.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRRcountdown.Enabled = false;
             this.cbRRcountdown.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
             this.cbRRcountdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbRRcountdown.Location = new System.Drawing.Point(93, 23);
@@ -1972,7 +1978,8 @@
             this.cbRRSound.AutoSize = true;
             this.cbRRSound.Checked = true;
             this.cbRRSound.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRRSound.Location = new System.Drawing.Point(4, 28);
+            this.cbRRSound.Enabled = false;
+            this.cbRRSound.Location = new System.Drawing.Point(4, 23);
             this.cbRRSound.Name = "cbRRSound";
             this.cbRRSound.Size = new System.Drawing.Size(62, 17);
             this.cbRRSound.TabIndex = 37;
@@ -1988,6 +1995,19 @@
             this.btnDebugPlaysound.Text = "Sound";
             this.btnDebugPlaysound.UseVisualStyleBackColor = true;
             this.btnDebugPlaysound.Click += new System.EventHandler(this.btnDebugPlaysound_Click);
+            // 
+            // cbRRautoreset
+            // 
+            this.cbRRautoreset.AutoSize = true;
+            this.cbRRautoreset.Checked = true;
+            this.cbRRautoreset.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRRautoreset.Enabled = false;
+            this.cbRRautoreset.Location = new System.Drawing.Point(3, 46);
+            this.cbRRautoreset.Name = "cbRRautoreset";
+            this.cbRRautoreset.Size = new System.Drawing.Size(139, 17);
+            this.cbRRautoreset.TabIndex = 38;
+            this.cbRRautoreset.Text = "Automatisch rücksetzen";
+            this.cbRRautoreset.UseVisualStyleBackColor = true;
             // 
             // CMainWindow
             // 
@@ -2204,6 +2224,7 @@
         private System.Windows.Forms.CheckBox cbRRcountdown;
         private System.Windows.Forms.CheckBox cbRRSound;
         private System.Windows.Forms.Button btnDebugPlaysound;
+        private System.Windows.Forms.CheckBox cbRRautoreset;
 
     }
 

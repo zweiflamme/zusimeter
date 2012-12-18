@@ -89,11 +89,17 @@ namespace Zielbremsen
 
         public void PlayRRSound()
         {
-            SoundPlayer rrSound = new SoundPlayer(@".\Road_Runner.wav");
-            rrSound.Play();
-
-            //TODO: DEBUG: rrSound needs to be played only ONCE when railrunner i done
-            rrSoundplayed = true;
+            try
+            {
+                SoundPlayer rrSound = new SoundPlayer(@".\Road_Runner.wav");
+                rrSound.Play();
+                //TODO: DEBUG: rrSound needs to be played only ONCE when railrunner i done
+                rrSoundplayed = true;
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                MessageBox.Show("Sound kann nicht wiedergegeben werden - Datei nicht gefunden!");
+            }
         }
 
         public void Connect() // here we are going to try connecting to the TCP server
@@ -197,6 +203,7 @@ namespace Zielbremsen
         double afbvorwahl = 0.0; // storing value of AFB Schalter * preselected facor / preselected speed
         double afbschalter = 0.0; // storing value of AFB Schalter
         bool rrSoundplayed = false; // TODO: has Railrunner sound been played?
+        double oldspeed = 0.0;
 
         #endregion
 
@@ -271,6 +278,10 @@ namespace Zielbremsen
                 {
                      geschwindigkeit = dataSet.Value;
                      vmps = geschwindigkeit / 3.6;
+
+                     //vAlt = vNeu;
+                     //vNeu = geschwindigkeit;
+                     //deltaV = vNeu - vAlt;
 
                      lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
 
@@ -1049,6 +1060,9 @@ namespace Zielbremsen
             {
                 geschwindigkeit = Convert.ToDouble(numDebugsetspeed.Value);
                 vmps = geschwindigkeit / 3.6;
+                //vAlt = vNeu;
+                //vNeu = geschwindigkeit;
+                //deltaV = vNeu - vAlt;
                 lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
             }
         }
@@ -1065,11 +1079,20 @@ namespace Zielbremsen
 
                 if (railrunner >= Convert.ToDouble(numRRfest.Value))
                 {
+                    if (vAlt == 0.0)
+                        vAlt = geschwindigkeit;
+
                     btnRailrunner.Text = "Strecke abgefahren";
                     btnRailrunner.BackColor = Color.LightGreen;
                     if (cbRRSound.Checked && rrSoundplayed == false)
-                       PlayRRSound();                        
-                    
+                       PlayRRSound();
+
+                    //for determining if train has been accelerated by more than x kph                                  
+                    if (geschwindigkeit > vAlt + 3 && cbRRautoreset.Checked)
+                    {
+                        SetRR(); //will reset RR if rrrunning is still true
+                        vAlt = 0.0;
+                    }                
                 }
             }
             else if (cbRRcountup.Checked && rbRRfest.Checked)
@@ -1078,14 +1101,24 @@ namespace Zielbremsen
 
                 if (railrunner >= Convert.ToDouble(numRRfest.Value))
                 {
+                    if (vAlt == 0.0)
+                        vAlt = geschwindigkeit;
+
                     btnRailrunner.Text = numRRfest.Value.ToString() + " m OK";
                     btnRailrunner.BackColor = Color.LightGreen;
                     if (cbRRSound.Checked && rrSoundplayed == false)
-                        PlayRRSound();  
+                        PlayRRSound();
+  
+                    //for determining if train has been accelerated by more than x kph                                  
+                    if (geschwindigkeit > vAlt + 3 && cbRRautoreset.Checked)
+                    {
+                        SetRR(); //will reset RR if rrrunning is still true
+                        vAlt = 0.0;
+                    }
                 }
             }
             else if (rbRRfrei.Checked)
-                btnRailrunner.Text = String.Format("{0:0} m", railrunner);            
+                btnRailrunner.Text = String.Format("{0:0} m", railrunner);    
         }
 
         private void btnDebugRailrunner_Click(object sender, EventArgs e)
@@ -1099,7 +1132,7 @@ namespace Zielbremsen
             pnlRailrunner.Enabled = cbRailrunner.Checked;
         }
 
-        private void btnRailrunner_Click(object sender, EventArgs e)
+        public void SetRR()
         {
             if (rrrunning)
             {
@@ -1116,6 +1149,11 @@ namespace Zielbremsen
                 btnRailrunner.BackColor = Color.LightSkyBlue;
                 rrrunning = true;
             }
+        }
+
+        private void btnRailrunner_Click(object sender, EventArgs e)
+        {
+            SetRR();
         }
 
        
@@ -1238,6 +1276,14 @@ namespace Zielbremsen
         {
             if(rrrunning)
                 btnRailrunner.BackColor = Color.LightSkyBlue;
+
+            //TODO: integrate these controls into a panel?
+            cbRRSound.Enabled = !rbRRfrei.Checked; //if rbRRfrei is checked, cbRRSound will be disabled ...
+            numRRfest.Enabled = !rbRRfrei.Checked;
+            cbRRcountup.Enabled = !rbRRfrei.Checked;
+            cbRRcountdown.Enabled = !rbRRfrei.Checked;
+            cbRRautoreset.Enabled = !rbRRfrei.Checked;
+
         }
 
         private void cbAFBVorwahl_CheckedChanged(object sender, EventArgs e)
@@ -1286,6 +1332,16 @@ namespace Zielbremsen
         {
             SoundPlayer simpleSound = new SoundPlayer(@".\Road_Runner.wav");
             simpleSound.Play();
+        }
+
+        private void rbRRfest_CheckedChanged(object sender, EventArgs e)
+        {
+            //TODO: integrate these controls into a panel?
+            cbRRSound.Enabled = rbRRfest.Checked; //if rbRRfrei is checked, cbRRSound will be disabled ...
+            numRRfest.Enabled = rbRRfest.Checked;
+            cbRRcountup.Enabled = rbRRfest.Checked;
+            cbRRcountdown.Enabled = rbRRfest.Checked;
+            cbRRautoreset.Enabled = rbRRfest.Checked;
         }
 
         
