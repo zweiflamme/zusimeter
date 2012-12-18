@@ -59,9 +59,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.pnlAFBLZB = new System.Windows.Forms.Panel();
             this.cbLZBlm = new System.Windows.Forms.CheckBox();
-            this.cbAFBvor5 = new System.Windows.Forms.CheckBox();
             this.cbAFBVorwahl = new System.Windows.Forms.CheckBox();
-            this.cbAFBvor10 = new System.Windows.Forms.CheckBox();
             this.cbLZBvziel = new System.Windows.Forms.CheckBox();
             this.cbLZBweg = new System.Windows.Forms.CheckBox();
             this.cbLZBvsoll = new System.Windows.Forms.CheckBox();
@@ -190,6 +188,9 @@
             this.btnRailrunner = new System.Windows.Forms.Button();
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
+            this.rbAFBvor5 = new System.Windows.Forms.RadioButton();
+            this.rbAFBvor10 = new System.Windows.Forms.RadioButton();
+            this.pnlAFBrbvor = new System.Windows.Forms.Panel();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -220,6 +221,7 @@
             this.pnlLeft.SuspendLayout();
             this.pnlDataLZB.SuspendLayout();
             this.pnlDataPZB90.SuspendLayout();
+            this.pnlAFBrbvor.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -313,6 +315,7 @@
             // tabAnzeigen1
             // 
             this.tabAnzeigen1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabAnzeigen1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabAnzeigen1.Controls.Add(this.numSizeAFBLZB);
             this.tabAnzeigen1.Controls.Add(this.numSizeBremsen);
             this.tabAnzeigen1.Controls.Add(this.cbRailrunner);
@@ -358,7 +361,7 @@
             // numSizeBremsen
             // 
             this.numSizeBremsen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numSizeBremsen.Location = new System.Drawing.Point(65, 146);
+            this.numSizeBremsen.Location = new System.Drawing.Point(65, 144);
             this.numSizeBremsen.Maximum = new decimal(new int[] {
             4,
             0,
@@ -431,6 +434,7 @@
             // 
             // pnlRailrunner
             // 
+            this.pnlRailrunner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlRailrunner.Controls.Add(this.cbRRautoreset);
             this.pnlRailrunner.Controls.Add(this.cbRRSound);
             this.pnlRailrunner.Controls.Add(this.cbRRcountdown);
@@ -611,23 +615,22 @@
             // 
             // pnlAFBLZB
             // 
+            this.pnlAFBLZB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlAFBLZB.Controls.Add(this.pnlAFBrbvor);
             this.pnlAFBLZB.Controls.Add(this.cbLZBlm);
-            this.pnlAFBLZB.Controls.Add(this.cbAFBvor5);
-            this.pnlAFBLZB.Controls.Add(this.cbAFBVorwahl);
-            this.pnlAFBLZB.Controls.Add(this.cbAFBvor10);
             this.pnlAFBLZB.Controls.Add(this.cbLZBvziel);
             this.pnlAFBLZB.Controls.Add(this.cbLZBweg);
             this.pnlAFBLZB.Controls.Add(this.cbLZBvsoll);
             this.pnlAFBLZB.Controls.Add(this.cbAFBgeschw);
             this.pnlAFBLZB.Location = new System.Drawing.Point(217, 190);
             this.pnlAFBLZB.Name = "pnlAFBLZB";
-            this.pnlAFBLZB.Size = new System.Drawing.Size(182, 98);
+            this.pnlAFBLZB.Size = new System.Drawing.Size(182, 113);
             this.pnlAFBLZB.TabIndex = 24;
             // 
             // cbLZBlm
             // 
             this.cbLZBlm.AutoSize = true;
-            this.cbLZBlm.Location = new System.Drawing.Point(3, 76);
+            this.cbLZBlm.Location = new System.Drawing.Point(3, 90);
             this.cbLZBlm.Name = "cbLZBlm";
             this.cbLZBlm.Size = new System.Drawing.Size(113, 17);
             this.cbLZBlm.TabIndex = 34;
@@ -635,40 +638,16 @@
             this.cbLZBlm.UseVisualStyleBackColor = true;
             this.cbLZBlm.CheckedChanged += new System.EventHandler(this.cbLZBlm_CheckedChanged);
             // 
-            // cbAFBvor5
-            // 
-            this.cbAFBvor5.AutoSize = true;
-            this.cbAFBvor5.Checked = true;
-            this.cbAFBvor5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAFBvor5.Location = new System.Drawing.Point(21, 55);
-            this.cbAFBvor5.Name = "cbAFBvor5";
-            this.cbAFBvor5.Size = new System.Drawing.Size(60, 17);
-            this.cbAFBvor5.TabIndex = 32;
-            this.cbAFBvor5.Text = "5 km/h";
-            this.cbAFBvor5.UseVisualStyleBackColor = true;
-            this.cbAFBvor5.CheckedChanged += new System.EventHandler(this.cbAFBvor5_CheckedChanged);
-            // 
             // cbAFBVorwahl
             // 
             this.cbAFBVorwahl.AutoSize = true;
-            this.cbAFBVorwahl.Location = new System.Drawing.Point(3, 39);
+            this.cbAFBVorwahl.Location = new System.Drawing.Point(3, 2);
             this.cbAFBVorwahl.Name = "cbAFBVorwahl";
             this.cbAFBVorwahl.Size = new System.Drawing.Size(101, 17);
             this.cbAFBVorwahl.TabIndex = 31;
             this.cbAFBVorwahl.Text = "AFB vorgewählt";
             this.cbAFBVorwahl.UseVisualStyleBackColor = true;
             this.cbAFBVorwahl.CheckedChanged += new System.EventHandler(this.cbAFBVorwahl_CheckedChanged);
-            // 
-            // cbAFBvor10
-            // 
-            this.cbAFBvor10.AutoSize = true;
-            this.cbAFBvor10.Location = new System.Drawing.Point(79, 53);
-            this.cbAFBvor10.Name = "cbAFBvor10";
-            this.cbAFBvor10.Size = new System.Drawing.Size(66, 17);
-            this.cbAFBvor10.TabIndex = 33;
-            this.cbAFBvor10.Text = "10 km/h";
-            this.cbAFBvor10.UseVisualStyleBackColor = true;
-            this.cbAFBvor10.CheckedChanged += new System.EventHandler(this.cbAFBvor10_CheckedChanged);
             // 
             // cbLZBvziel
             // 
@@ -718,6 +697,7 @@
             // 
             // pnlGrunddaten
             // 
+            this.pnlGrunddaten.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlGrunddaten.Controls.Add(this.cbPZBLM);
             this.pnlGrunddaten.Controls.Add(this.cbStreckenmeter);
             this.pnlGrunddaten.Controls.Add(this.cbGeschwindigkeit);
@@ -836,6 +816,7 @@
             // 
             // pnlBremsen
             // 
+            this.pnlBremsen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlBremsen.Controls.Add(this.cbZusbremse);
             this.pnlBremsen.Controls.Add(this.cbDruckhbl);
             this.pnlBremsen.Controls.Add(this.cbDynbremse);
@@ -844,7 +825,7 @@
             this.pnlBremsen.Controls.Add(this.cbDruckhll);
             this.pnlBremsen.Controls.Add(this.cbBrh);
             this.pnlBremsen.Controls.Add(this.cbDruckbz);
-            this.pnlBremsen.Location = new System.Drawing.Point(6, 167);
+            this.pnlBremsen.Location = new System.Drawing.Point(6, 165);
             this.pnlBremsen.Name = "pnlBremsen";
             this.pnlBremsen.Size = new System.Drawing.Size(205, 107);
             this.pnlBremsen.TabIndex = 19;
@@ -952,7 +933,7 @@
             this.cbBremsen.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
             this.cbBremsen.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.cbBremsen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbBremsen.Location = new System.Drawing.Point(6, 143);
+            this.cbBremsen.Location = new System.Drawing.Point(6, 141);
             this.cbBremsen.Name = "cbBremsen";
             this.cbBremsen.Size = new System.Drawing.Size(58, 23);
             this.cbBremsen.TabIndex = 9;
@@ -962,6 +943,7 @@
             // 
             // pnlSchalterst
             // 
+            this.pnlSchalterst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlSchalterst.Controls.Add(this.checkBox2);
             this.pnlSchalterst.Controls.Add(this.checkBox1);
             this.pnlSchalterst.Controls.Add(this.cbMotorsch);
@@ -2201,6 +2183,41 @@
             // 
             this.timerRailrunner.Tick += new System.EventHandler(this.timerRailrunner_Tick);
             // 
+            // rbAFBvor5
+            // 
+            this.rbAFBvor5.AutoSize = true;
+            this.rbAFBvor5.Checked = true;
+            this.rbAFBvor5.Location = new System.Drawing.Point(22, 17);
+            this.rbAFBvor5.Name = "rbAFBvor5";
+            this.rbAFBvor5.Size = new System.Drawing.Size(59, 17);
+            this.rbAFBvor5.TabIndex = 20;
+            this.rbAFBvor5.TabStop = true;
+            this.rbAFBvor5.Text = "5 km/h";
+            this.rbAFBvor5.UseVisualStyleBackColor = true;
+            this.rbAFBvor5.CheckedChanged += new System.EventHandler(this.rbAFBvor5_CheckedChanged);
+            // 
+            // rbAFBvor10
+            // 
+            this.rbAFBvor10.AutoSize = true;
+            this.rbAFBvor10.Location = new System.Drawing.Point(83, 17);
+            this.rbAFBvor10.Name = "rbAFBvor10";
+            this.rbAFBvor10.Size = new System.Drawing.Size(65, 17);
+            this.rbAFBvor10.TabIndex = 21;
+            this.rbAFBvor10.Text = "10 km/h";
+            this.rbAFBvor10.UseVisualStyleBackColor = true;
+            this.rbAFBvor10.CheckedChanged += new System.EventHandler(this.rbAFBvor10_CheckedChanged);
+            // 
+            // pnlAFBrbvor
+            // 
+            this.pnlAFBrbvor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlAFBrbvor.Controls.Add(this.rbAFBvor5);
+            this.pnlAFBrbvor.Controls.Add(this.cbAFBVorwahl);
+            this.pnlAFBrbvor.Controls.Add(this.rbAFBvor10);
+            this.pnlAFBrbvor.Location = new System.Drawing.Point(-1, 41);
+            this.pnlAFBrbvor.Name = "pnlAFBrbvor";
+            this.pnlAFBrbvor.Size = new System.Drawing.Size(149, 37);
+            this.pnlAFBrbvor.TabIndex = 22;
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2266,6 +2283,8 @@
             this.pnlLeft.PerformLayout();
             this.pnlDataLZB.ResumeLayout(false);
             this.pnlDataPZB90.ResumeLayout(false);
+            this.pnlAFBrbvor.ResumeLayout(false);
+            this.pnlAFBrbvor.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2409,9 +2428,7 @@
         private System.Windows.Forms.NumericUpDown numSizeBremsen;
         private System.Windows.Forms.NumericUpDown numSizeGrunddaten;
         private System.Windows.Forms.Label lblDebugafbschalter;
-        private System.Windows.Forms.CheckBox cbAFBvor5;
         private System.Windows.Forms.CheckBox cbAFBVorwahl;
-        private System.Windows.Forms.CheckBox cbAFBvor10;
         private System.Windows.Forms.Label lblAFBvorwahl;
         private System.Windows.Forms.Label lblafbvorw;
         private System.Windows.Forms.CheckBox cbRRcountup;
@@ -2432,6 +2449,9 @@
         private System.Windows.Forms.Label lblLZB_Ue;
         private System.Windows.Forms.CheckBox cbLZBlm;
         private System.Windows.Forms.Button btnAbout;
+        private System.Windows.Forms.Panel pnlAFBrbvor;
+        private System.Windows.Forms.RadioButton rbAFBvor5;
+        private System.Windows.Forms.RadioButton rbAFBvor10;
 
     }
 

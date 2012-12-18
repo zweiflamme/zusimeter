@@ -613,9 +613,9 @@ namespace ZusiMeter
             {
                 afbschalter = dataSet.Value;
 
-                if(cbAFBvor5.Checked)
+                if(rbAFBvor5.Checked)
                     afbvorwahl = afbschalter * 5;
-                else if (cbAFBvor10.Checked)
+                else if (rbAFBvor10.Checked)
                     afbvorwahl = afbschalter * 10;
 
                 lblAFBvorwahl.Text = afbvorwahl.ToString();
@@ -1393,30 +1393,30 @@ namespace ZusiMeter
         {
             lblAFBvorwahl.Visible = cbAFBVorwahl.Checked;
             lblafbvorw.Visible = cbAFBVorwahl.Checked;
-            cbAFBvor5.Enabled = cbAFBVorwahl.Checked;
-            cbAFBvor10.Enabled = cbAFBVorwahl.Checked;
+            rbAFBvor5.Enabled = cbAFBVorwahl.Checked;
+            rbAFBvor10.Enabled = cbAFBVorwahl.Checked;
         }
 
         //TODO: more elegant soution appreciated
-        private void cbAFBvor5_CheckedChanged(object sender, EventArgs e)
+        private void rbAFBvor5_CheckedChanged(object sender, EventArgs e)
         {
-            cbAFBvor10.Checked = !cbAFBvor5.Checked;
+            rbAFBvor10.Checked = !rbAFBvor5.Checked;
 
-            if(cbAFBvor5.Checked)
+            if(rbAFBvor5.Checked)
                 afbvorwahl = afbschalter * 5;
-            else if (cbAFBvor10.Checked)
+            else if (rbAFBvor10.Checked)
                 afbvorwahl = afbschalter * 10;
             lblAFBvorwahl.Text = afbvorwahl.ToString(); //update display of preselected speed
         }
 
         //TODO: more elegant soution appreciated
-        private void cbAFBvor10_CheckedChanged(object sender, EventArgs e)
+        private void rbAFBvor10_CheckedChanged(object sender, EventArgs e)
         {
-            cbAFBvor5.Checked = !cbAFBvor10.Checked;
+            rbAFBvor5.Checked = !rbAFBvor10.Checked;
 
-            if (cbAFBvor5.Checked)
+            if (rbAFBvor5.Checked)
                 afbvorwahl = afbschalter * 5;
-            else if (cbAFBvor10.Checked)
+            else if (rbAFBvor10.Checked)
                 afbvorwahl = afbschalter * 10;
             lblAFBvorwahl.Text = afbvorwahl.ToString(); //update display of preselected speed
         }
