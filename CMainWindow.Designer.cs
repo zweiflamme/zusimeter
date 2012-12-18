@@ -274,12 +274,13 @@
             // 
             // pnlSettings
             // 
+            this.pnlSettings.AutoSize = true;
             this.pnlSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSettings.Controls.Add(this.tabEinstellungen);
             this.pnlSettings.Controls.Add(this.statusStrip1);
             this.pnlSettings.Location = new System.Drawing.Point(3, 1);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(421, 454);
+            this.pnlSettings.Size = new System.Drawing.Size(421, 438);
             this.pnlSettings.TabIndex = 10;
             // 
             // tabEinstellungen
@@ -1406,7 +1407,7 @@
             this.pnlRight.Controls.Add(this.pnlDebug);
             this.pnlRight.Location = new System.Drawing.Point(149, 13);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(571, 458);
+            this.pnlRight.Size = new System.Drawing.Size(571, 442);
             this.pnlRight.TabIndex = 14;
             // 
             // timerFlag

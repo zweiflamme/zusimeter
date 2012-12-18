@@ -919,6 +919,7 @@ namespace Zielbremsen
         //if the user clicks the "Einstellungen" button...
         private void btnSettings_Click(object sender, EventArgs e)
         {
+            FokusAnZusi();
             pnlRight.Visible = !pnlRight.Visible; //if visible make invisible and vice versa
             settingsVisible = true; //once btnSettings has been clicked, the settings panel shall not auto hide                                
         }
@@ -1154,6 +1155,7 @@ namespace Zielbremsen
         private void btnRailrunner_Click(object sender, EventArgs e)
         {
             SetRR();
+            FokusAnZusi();
         }
 
        
