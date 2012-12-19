@@ -1513,6 +1513,52 @@ namespace ZusiMeter
             }
         }
 
+        int clicks = 0;
+        private void lblSifa_Click(object sender, EventArgs e)
+        {
+            //TODO
+            //if (clicks > 2)
+            //    clicks = 0;
+
+            //if (clicks == 0)
+            //{
+            //    double faktor = 0.6;
+            //    lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * faktor);
+            //    lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * faktor);
+            //    lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * faktor);
+
+            //    clicks++;
+            //}
+            //else if (clicks == 1)
+            //{
+            //    double faktor = 0.8;
+            //    lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * faktor);
+            //    lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * faktor);
+            //    lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * faktor);
+
+            //    clicks++;
+            //}
+            //else if (clicks == 2)
+            //{
+            //    double faktor = 1.3;
+            //    lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * faktor);
+            //    lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * faktor);
+            //    lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * faktor);
+
+            //    clicks++;
+            //}
+            //else if (clicks == 3)
+            //{
+            //    double faktor = 1;
+            //    lblSifa.Width = Convert.ToInt32(labelsifadefaultwidth * faktor);
+            //    lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * faktor);
+            //    lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * faktor);
+
+            //    clicks++;
+            //}
+
+        }
+
         
           
     }

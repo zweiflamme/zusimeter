@@ -233,6 +233,7 @@
             this.lblSifa.Size = new System.Drawing.Size(114, 51);
             this.lblSifa.TabIndex = 0;
             this.lblSifa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSifa.Click += new System.EventHandler(this.lblSifa_Click);
             // 
             // lblbarbz
             // 
