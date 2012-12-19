@@ -98,6 +98,8 @@ namespace ZusiMeter
             //MyTCPConnection.RequestData(2571); // "Uhrzeit Minute"
             //MyTCPConnection.RequestData(2572); // "Uhrzeit Sekunde"
             //###//
+            //###Schalter Sifa for Railrunner activation###//
+            MyTCPConnection.RequestData(2621); //"Schalter Sifa"
             #endregion 
 
         }
@@ -220,6 +222,7 @@ namespace ZusiMeter
         bool rrSoundplayed = false; //has Railrunner sound been played?
         double stunde, minute, sekunde; //TODO: if DLL 1.1.6 is used, this will be obsolete
         double druckhbl, druckhlb;
+        double schaltersifa; // if pressed twice RR is activated
     
 
         #endregion
@@ -288,7 +291,7 @@ namespace ZusiMeter
                     setStatus("Verbunden");
 
                     brh = Convert.ToDouble(dataSet.Value);
-                    lblBrh.Text = String.Format("{0}", brh);
+                    lblBrh.Text = String.Format("{0:0}", brh);
                 }
 
             }
@@ -385,7 +388,7 @@ namespace ZusiMeter
             else if (dataSet.Id == MyTCPConnection["Fahrstufe"] && cbFahrstufe.Checked == true) // 2576
             {
                 if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
-                    lblFahrstufe.Text = String.Format("{0}", dataSet.Value);
+                    lblFahrstufe.Text = String.Format("{0:0}", dataSet.Value);
                 else
                     lblFahrstufe.Text = "--";
             }
@@ -452,7 +455,7 @@ namespace ZusiMeter
                 if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
                 {
                     double fahrschalter = dataSet.Value - fahrschalterneutral;
-                    lblFahrstufenschalter.Text = String.Format("{0}", fahrschalter);
+                    lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalter);
                 }
                 else
                     lblFahrstufenschalter.Text = "--";
@@ -484,22 +487,22 @@ namespace ZusiMeter
                 double afbvschalter = dataSet.Value;
                 
                 //TODO: check if LZB vSoll is less; if so paint LZB speed value bold instead
-                lblAFBgeschwindigkeit.Text = String.Format("{0} km/h", afbvschalter);
+                lblAFBgeschwindigkeit.Text = String.Format("{0:0} km/h", afbvschalter);
             }
             else if (dataSet.Id == MyTCPConnection["LZB Soll-Geschwindigkeit"])
             {
                 double lzbsoll = dataSet.Value;
-                lblLZBsollgeschw.Text = String.Format("{0}", lzbsoll);
+                lblLZBsollgeschw.Text = String.Format("{0:0}", lzbsoll);
             }
             else if (dataSet.Id == MyTCPConnection["LZB Ziel-Geschwindigkeit"])
             {
                 double lzbziel = dataSet.Value;
-                lblLZBzielgeschw.Text = String.Format("{0}", lzbziel);
+                lblLZBzielgeschw.Text = String.Format("{0:0}", lzbziel);
             }
             else if (dataSet.Id == MyTCPConnection["LM LZB Zielweg (ab 0)"])
             {
                 double lzbweg = dataSet.Value;
-                lblLZBzielweg.Text = String.Format("{0}", lzbweg);
+                lblLZBzielweg.Text = String.Format("{0:0}", lzbweg);
             }
             //DEBUG TEST
             /* else if (dataSet.Id == MyTCPConnection["Zugdatei"])...
@@ -646,6 +649,15 @@ namespace ZusiMeter
             {
                 druckhlb = dataSet.Value;
                 lblHLBwert.Text = String.Format("{0:0.0} bar", druckhlb);
+            }
+            else if (dataSet.Id == MyTCPConnection["Schalter Sifa"])
+            {
+                if (dataSet.Value > 0)
+                {
+                    schaltersifa++;
+                    timerResetSifaschalter.Start();
+                    lblDebugsifaschalter.Text = schaltersifa.ToString();
+                }
             }
             
         }
@@ -1557,6 +1569,31 @@ namespace ZusiMeter
             //    clicks++;
             //}
 
+        }
+
+        private void timerResetSifaschalter_Tick(object sender, EventArgs e)
+        {
+            if (schaltersifa >= 2)
+            {
+                SetRR();
+                schaltersifa = 0; //TODO: check if this is the right place
+                timerResetSifaschalter.Stop();
+            }
+            else
+            {
+                schaltersifa = 0;
+                timerResetSifaschalter.Stop();
+            }
+            lblDebugsifaschalter.Text = schaltersifa.ToString(); //DEBUG
+        }
+
+        private void timerCheckSifaschalter_Tick(object sender, EventArgs e)
+        {
+            //if (schaltersifa == 2)
+            //{
+            //    SetRR();
+            //    schaltersifa = 0; //TODO: check if this is the right place
+            //}            
         }
 
         

@@ -122,7 +122,6 @@
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
             this.btnDebugPlaysound = new System.Windows.Forms.Button();
-            this.lblDebugafbschalter = new System.Windows.Forms.Label();
             this.grpDebugoffline = new System.Windows.Forms.GroupBox();
             this.numDebugsetspeed = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
@@ -191,6 +190,10 @@
             this.btnRailrunner = new System.Windows.Forms.Button();
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
+            this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
+            this.timerCheckSifaschalter = new System.Windows.Forms.Timer(this.components);
+            this.lblDebugsifaschalter = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -1386,8 +1389,9 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.label8);
+            this.grpDebug.Controls.Add(this.lblDebugsifaschalter);
             this.grpDebug.Controls.Add(this.btnDebugPlaysound);
-            this.grpDebug.Controls.Add(this.lblDebugafbschalter);
             this.grpDebug.Controls.Add(this.grpDebugoffline);
             this.grpDebug.Controls.Add(this.lblDebugreiseztrue);
             this.grpDebug.Controls.Add(this.lblDebugreisezwert);
@@ -1406,22 +1410,13 @@
             // 
             // btnDebugPlaysound
             // 
-            this.btnDebugPlaysound.Location = new System.Drawing.Point(9, 315);
+            this.btnDebugPlaysound.Location = new System.Drawing.Point(7, 334);
             this.btnDebugPlaysound.Name = "btnDebugPlaysound";
             this.btnDebugPlaysound.Size = new System.Drawing.Size(75, 23);
             this.btnDebugPlaysound.TabIndex = 26;
             this.btnDebugPlaysound.Text = "Sound";
             this.btnDebugPlaysound.UseVisualStyleBackColor = true;
             this.btnDebugPlaysound.Click += new System.EventHandler(this.btnDebugPlaysound_Click);
-            // 
-            // lblDebugafbschalter
-            // 
-            this.lblDebugafbschalter.AutoSize = true;
-            this.lblDebugafbschalter.Location = new System.Drawing.Point(9, 175);
-            this.lblDebugafbschalter.Name = "lblDebugafbschalter";
-            this.lblDebugafbschalter.Size = new System.Drawing.Size(102, 13);
-            this.lblDebugafbschalter.TabIndex = 25;
-            this.lblDebugafbschalter.Text = "AFBSchalterstellung";
             // 
             // grpDebugoffline
             // 
@@ -2225,6 +2220,35 @@
             // 
             this.timerRailrunner.Tick += new System.EventHandler(this.timerRailrunner_Tick);
             // 
+            // timerResetSifaschalter
+            // 
+            this.timerResetSifaschalter.Enabled = true;
+            this.timerResetSifaschalter.Interval = 1100;
+            this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
+            // 
+            // timerCheckSifaschalter
+            // 
+            this.timerCheckSifaschalter.Interval = 500;
+            this.timerCheckSifaschalter.Tick += new System.EventHandler(this.timerCheckSifaschalter_Tick);
+            // 
+            // lblDebugsifaschalter
+            // 
+            this.lblDebugsifaschalter.AutoSize = true;
+            this.lblDebugsifaschalter.Location = new System.Drawing.Point(87, 365);
+            this.lblDebugsifaschalter.Name = "lblDebugsifaschalter";
+            this.lblDebugsifaschalter.Size = new System.Drawing.Size(13, 13);
+            this.lblDebugsifaschalter.TabIndex = 27;
+            this.lblDebugsifaschalter.Text = "--";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 365);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 13);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "Sifa gedrückt:";
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2434,7 +2458,6 @@
         private System.Windows.Forms.Label lblfahrstschalter;
         private System.Windows.Forms.NumericUpDown numSizeBremsen;
         private System.Windows.Forms.NumericUpDown numSizeGrunddaten;
-        private System.Windows.Forms.Label lblDebugafbschalter;
         private System.Windows.Forms.CheckBox cbAFBVorwahl;
         private System.Windows.Forms.Label lblAFBvorwahl;
         private System.Windows.Forms.Label lblafbvorw;
@@ -2459,6 +2482,10 @@
         private System.Windows.Forms.Panel pnlAFBrbvor;
         private System.Windows.Forms.RadioButton rbAFBvor5;
         private System.Windows.Forms.RadioButton rbAFBvor10;
+        private System.Windows.Forms.Timer timerResetSifaschalter;
+        private System.Windows.Forms.Timer timerCheckSifaschalter;
+        private System.Windows.Forms.Label lblDebugsifaschalter;
+        private System.Windows.Forms.Label label8;
 
     }
 
