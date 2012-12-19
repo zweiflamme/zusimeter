@@ -655,8 +655,16 @@ namespace ZusiMeter
                 if (dataSet.Value > 0)
                 {
                     schaltersifa++;
-                    timerResetSifaschalter.Start();
+                    if(schaltersifa == 1)
+                        timerResetSifaschalter.Start();
                     lblDebugsifaschalter.Text = schaltersifa.ToString();
+                }
+                else if (schaltersifa >= 2)
+                {
+                    lblDebugsifaschalter.Text = schaltersifa.ToString();
+                    schaltersifa = 0;
+                    timerResetSifaschalter.Stop();
+                    SetRR();   
                 }
             }
             
@@ -1573,18 +1581,8 @@ namespace ZusiMeter
 
         private void timerResetSifaschalter_Tick(object sender, EventArgs e)
         {
-            if (schaltersifa >= 2)
-            {
-                SetRR();
-                schaltersifa = 0; //TODO: check if this is the right place
-                timerResetSifaschalter.Stop();
-            }
-            else
-            {
-                schaltersifa = 0;
-                timerResetSifaschalter.Stop();
-            }
-            lblDebugsifaschalter.Text = schaltersifa.ToString(); //DEBUG
+            schaltersifa = 0;
+            lblDebugsifaschalter.Text = schaltersifa.ToString();
         }
 
         private void timerCheckSifaschalter_Tick(object sender, EventArgs e)

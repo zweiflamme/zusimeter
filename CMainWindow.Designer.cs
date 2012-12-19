@@ -121,6 +121,8 @@
             this.lblFlag = new System.Windows.Forms.Label();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblDebugsifaschalter = new System.Windows.Forms.Label();
             this.btnDebugPlaysound = new System.Windows.Forms.Button();
             this.grpDebugoffline = new System.Windows.Forms.GroupBox();
             this.numDebugsetspeed = new System.Windows.Forms.NumericUpDown();
@@ -191,9 +193,6 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
-            this.timerCheckSifaschalter = new System.Windows.Forms.Timer(this.components);
-            this.lblDebugsifaschalter = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -1408,6 +1407,24 @@
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 365);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 13);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "Sifa gedrückt:";
+            // 
+            // lblDebugsifaschalter
+            // 
+            this.lblDebugsifaschalter.AutoSize = true;
+            this.lblDebugsifaschalter.Location = new System.Drawing.Point(87, 365);
+            this.lblDebugsifaschalter.Name = "lblDebugsifaschalter";
+            this.lblDebugsifaschalter.Size = new System.Drawing.Size(13, 13);
+            this.lblDebugsifaschalter.TabIndex = 27;
+            this.lblDebugsifaschalter.Text = "--";
+            // 
             // btnDebugPlaysound
             // 
             this.btnDebugPlaysound.Location = new System.Drawing.Point(7, 334);
@@ -2222,32 +2239,8 @@
             // 
             // timerResetSifaschalter
             // 
-            this.timerResetSifaschalter.Enabled = true;
-            this.timerResetSifaschalter.Interval = 1100;
+            this.timerResetSifaschalter.Interval = 1000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
-            // 
-            // timerCheckSifaschalter
-            // 
-            this.timerCheckSifaschalter.Interval = 500;
-            this.timerCheckSifaschalter.Tick += new System.EventHandler(this.timerCheckSifaschalter_Tick);
-            // 
-            // lblDebugsifaschalter
-            // 
-            this.lblDebugsifaschalter.AutoSize = true;
-            this.lblDebugsifaschalter.Location = new System.Drawing.Point(87, 365);
-            this.lblDebugsifaschalter.Name = "lblDebugsifaschalter";
-            this.lblDebugsifaschalter.Size = new System.Drawing.Size(13, 13);
-            this.lblDebugsifaschalter.TabIndex = 27;
-            this.lblDebugsifaschalter.Text = "--";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 365);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 13);
-            this.label8.TabIndex = 28;
-            this.label8.Text = "Sifa gedrückt:";
             // 
             // CMainWindow
             // 
@@ -2483,7 +2476,6 @@
         private System.Windows.Forms.RadioButton rbAFBvor5;
         private System.Windows.Forms.RadioButton rbAFBvor10;
         private System.Windows.Forms.Timer timerResetSifaschalter;
-        private System.Windows.Forms.Timer timerCheckSifaschalter;
         private System.Windows.Forms.Label lblDebugsifaschalter;
         private System.Windows.Forms.Label label8;
 
