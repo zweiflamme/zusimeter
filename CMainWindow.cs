@@ -1568,9 +1568,14 @@ namespace ZusiMeter
         private void btnAbout_Click(object sender, EventArgs e)
         {
             AboutBox aBox = new AboutBox();
-            this.TopMost = false; //temporarily disable topMost so that the about box will be on top
+            //temporarily disable topMost so that the about box will be on top
+            this.TopMost = false;
+            frmSettings.TopMost = false;
+
             aBox.ShowDialog();
+
             this.TopMost = cbTopmost.Checked;
+            frmSettings.TopMost = cbTopmost.Checked;
         }
 
         private void numDebugsetspeed_KeyUp(object sender, KeyEventArgs e)
@@ -1665,7 +1670,7 @@ namespace ZusiMeter
 
         private void cbSettingsSeparate_CheckedChanged(object sender, EventArgs e)
         {
-            bool hideSettingsCheckedOLD = cbHidesettings.Checked; //stores the user checked box value
+            //bool hideSettingsCheckedOLD = cbHidesettings.Checked; //stores the user checked box value, -- "!" because value has already changed!
             cbHidesettings.Checked = !cbSettingsSeparate.Checked; //settings shall not be autohidden if on a separate form
 
             //TEST
@@ -1696,7 +1701,7 @@ namespace ZusiMeter
                 
                 this.pnlRight.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
                 this.Controls.Add(pnlRight);
-                cbHidesettings.Checked = hideSettingsCheckedOLD; // restore value from before settings were separated
+                //cbHidesettings.Checked = hideSettingsCheckedOLD; // restore value from before settings were separated                
                 this.pnlRight.Visible = true;
                 
                 settingsAreSeparated = false;
