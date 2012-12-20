@@ -74,7 +74,7 @@
             this.cbFahrstufe = new System.Windows.Forms.CheckBox();
             this.cbLmsifa = new System.Windows.Forms.CheckBox();
             this.cbTueren = new System.Windows.Forms.CheckBox();
-            this.cbUhrzeit = new System.Windows.Forms.CheckBox();
+            this.cbTime = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
             this.pnlBremsen = new System.Windows.Forms.Panel();
             this.cbZusbremse = new System.Windows.Forms.CheckBox();
@@ -153,6 +153,7 @@
             this.lblfahrst = new System.Windows.Forms.Label();
             this.lblFahrstufe = new System.Windows.Forms.Label();
             this.lblTueren = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             this.pnlDataBremsen = new System.Windows.Forms.TableLayoutPanel();
             this.lblfbv = new System.Windows.Forms.Label();
             this.lbldynbrem = new System.Windows.Forms.Label();
@@ -194,7 +195,6 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
-            this.lblTime = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -743,7 +743,7 @@
             this.pnlGrunddaten.Controls.Add(this.cbFahrstufe);
             this.pnlGrunddaten.Controls.Add(this.cbLmsifa);
             this.pnlGrunddaten.Controls.Add(this.cbTueren);
-            this.pnlGrunddaten.Controls.Add(this.cbUhrzeit);
+            this.pnlGrunddaten.Controls.Add(this.cbTime);
             this.pnlGrunddaten.Controls.Add(this.cbLmschleudern);
             this.pnlGrunddaten.Location = new System.Drawing.Point(6, 35);
             this.pnlGrunddaten.Name = "pnlGrunddaten";
@@ -829,16 +829,18 @@
             this.cbTueren.UseVisualStyleBackColor = true;
             this.cbTueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
             // 
-            // cbUhrzeit
+            // cbTime
             // 
-            this.cbUhrzeit.AutoSize = true;
-            this.cbUhrzeit.Enabled = false;
-            this.cbUhrzeit.Location = new System.Drawing.Point(113, 36);
-            this.cbUhrzeit.Name = "cbUhrzeit";
-            this.cbUhrzeit.Size = new System.Drawing.Size(59, 17);
-            this.cbUhrzeit.TabIndex = 6;
-            this.cbUhrzeit.Text = "Uhrzeit";
-            this.cbUhrzeit.UseVisualStyleBackColor = true;
+            this.cbTime.AutoSize = true;
+            this.cbTime.Checked = true;
+            this.cbTime.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTime.Location = new System.Drawing.Point(113, 36);
+            this.cbTime.Name = "cbTime";
+            this.cbTime.Size = new System.Drawing.Size(59, 17);
+            this.cbTime.TabIndex = 6;
+            this.cbTime.Text = "Uhrzeit";
+            this.cbTime.UseVisualStyleBackColor = true;
+            this.cbTime.CheckedChanged += new System.EventHandler(this.cbTime_CheckedChanged);
             // 
             // cbLmschleudern
             // 
@@ -1336,6 +1338,7 @@
             // 
             this.btnDebugpanel.BackColor = System.Drawing.Color.Transparent;
             this.btnDebugpanel.FlatAppearance.BorderSize = 0;
+            this.btnDebugpanel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnDebugpanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSalmon;
             this.btnDebugpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDebugpanel.ForeColor = System.Drawing.SystemColors.Control;
@@ -1749,6 +1752,15 @@
             this.lblTueren.Size = new System.Drawing.Size(103, 13);
             this.lblTueren.TabIndex = 8;
             this.lblTueren.Text = "###############";
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Location = new System.Drawing.Point(3, 86);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(31, 13);
+            this.lblTime.TabIndex = 20;
+            this.lblTime.Text = "--:--:--";
             // 
             // pnlDataBremsen
             // 
@@ -2268,15 +2280,6 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
-            // lblTime
-            // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(3, 86);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(31, 13);
-            this.lblTime.TabIndex = 20;
-            this.lblTime.Text = "--:--:--";
-            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2393,7 +2396,7 @@
         private System.Windows.Forms.CheckBox cbLmschleudern;
         private System.Windows.Forms.CheckBox cbTueren;
         private System.Windows.Forms.CheckBox cbFahrstufe;
-        private System.Windows.Forms.CheckBox cbUhrzeit;
+        private System.Windows.Forms.CheckBox cbTime;
         private System.Windows.Forms.TableLayoutPanel pnlDataBremsen;
         private System.Windows.Forms.Label lblFahrstufe;
         private System.Windows.Forms.CheckBox cbGrunddaten;

@@ -486,6 +486,7 @@ namespace ZusiMeter
                 case 2610:
                     {
                         lblTime.Text = string.Format("{0}", data.Value.ToLongTimeString());
+                        //TODO: add a real-timing functionality that can replace some timers
                         break;
                     }
                 #endregion
@@ -826,7 +827,10 @@ namespace ZusiMeter
 
         public void setNightmode()
         {
-            BackColor = formnightcolor; //the whole form's background color
+            this.BackColor = formnightcolor; //the whole main form's background color
+            if (settingsAreSeparated) // if there's a separate settings window
+                frmSettings.BackColor = formnightcolor;
+
             statusStrip1.BackColor = formnightcolor; //same for the status strip
 
             //setting colors for the labels
@@ -864,12 +868,18 @@ namespace ZusiMeter
             //setting colors for PZB90-Panel
             pnlDataLZB.BackColor = Color.FromName("ControlDark");
             pnlDataLZB.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
+
+            //TEST make btnDebug invisible
+            btnDebugpanel.BackColor = formnightcolor;
+            btnDebugpanel.ForeColor = formnightcolor;
         }
 
        
         public void setDaymode()
         {
-            BackColor = formdaycolor; //the whole form's background color
+            BackColor = formdaycolor; //the whole main form's background color
+            if (settingsAreSeparated) // if there's a separate settings window
+                frmSettings.BackColor = formdaycolor;
             statusStrip1.BackColor = formdaycolor; //same for the status strip           
 
             //setting colors for the labels
@@ -907,6 +917,10 @@ namespace ZusiMeter
             //setting colors for PZB90-Panel
             pnlDataLZB.BackColor = Color.FromName("Control");
             pnlDataLZB.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+
+            //TEST make btnDebug invisible
+            btnDebugpanel.BackColor = formdaycolor;
+            btnDebugpanel.ForeColor = formdaycolor;
         }
 
         //if the user clicks the "Nachtmodus / Tagmodus" button
@@ -1794,6 +1808,11 @@ namespace ZusiMeter
 
                 frmSettings.Hide();
             }
+        }
+
+        private void cbTime_CheckedChanged(object sender, EventArgs e)
+        {
+            lblTime.Visible = cbTime.Checked;
         }
 
         
