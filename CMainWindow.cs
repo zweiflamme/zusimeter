@@ -296,405 +296,405 @@ namespace ZusiMeter
         #region HandleIncomingData
         private void HandleIncomingData(DataSet<float> dataSet)
         {
-            if (dataSet.Id == MyTCPConnection["Bremshundertstel"]) // 2654
-            {
-                if (dataSet.Value > 0)
-                {
-                    setStatus("Verbunden");
+        //    if (dataSet.Id == MyTCPConnection["Bremshundertstel"]) // 2654
+        //    {
+        //        if (dataSet.Value > 0)
+        //        {
+        //            setStatus("Verbunden");
 
-                    brh = Convert.ToDouble(dataSet.Value);
-                    lblBrh.Text = String.Format("{0:0}", brh);
-                }
+        //            brh = Convert.ToDouble(dataSet.Value);
+        //            lblBrh.Text = String.Format("{0:0}", brh);
+        //        }
 
-            }
-            else if (dataSet.Id == MyTCPConnection["Geschwindigkeit"]) // 2561
-            {
-                if (verbunden) //only if connected to Zusi. //TODO: check if this is needed
-                {
-                     geschwindigkeit = dataSet.Value;
-                     vmps = geschwindigkeit / 3.6;
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["Geschwindigkeit"]) // 2561
+        //    {
+        //        if (verbunden) //only if connected to Zusi. //TODO: check if this is needed
+        //        {
+        //             geschwindigkeit = dataSet.Value;
+        //             vmps = geschwindigkeit / 3.6;
 
-                     //vAlt = vNeu;
-                     //vNeu = geschwindigkeit;
-                     //deltaV = vNeu - vAlt;
+        //             //vAlt = vNeu;
+        //             //vNeu = geschwindigkeit;
+        //             //deltaV = vNeu - vAlt;
 
-                     lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
+        //             lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
 
-                    if (geschwindigkeit > 0.1) hasMoved = true;
+        //            if (geschwindigkeit > 0.1) hasMoved = true;
 
-                    //TEST
-                    if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false) 
-                    {
-                        if (settingsAreSeparated)
-                            frmSettings.Hide();
-                        else
-                            pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden                        
-                    }
+        //            //TEST
+        //            if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false) 
+        //            {
+        //                if (settingsAreSeparated)
+        //                    frmSettings.Hide();
+        //                else
+        //                    pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden                        
+        //            }
 
-                    if (hasMoved == true && geschwindigkeit == 0) //if train has stopped
-                    {
-                        hasMoved = false;
-                        alwaysShowSettings = false; //TEST: reset so that settings can autohide again
-                    }
+        //            if (hasMoved == true && geschwindigkeit == 0) //if train has stopped
+        //            {
+        //                hasMoved = false;
+        //                alwaysShowSettings = false; //TEST: reset so that settings can autohide again
+        //            }
 
-                        maxVerz = Convert.ToDouble(tbVerz.Text);
-                        //TODO: check sharp braking by by determining deltaV
-                        if (deltaV < -maxVerz) //if deceleration was greater than user set value maxVerz
-                        {
-                            lblFlag.Visible = true;
-                            lblFlag.Text = "scharf angehalten";
-                            scharf = true;
-                            timerFlag.Start(); // TODO: flag shall not hide after x seconds, but only after accelerating again
-                        }
-                    }
-                }
+        //                maxVerz = Convert.ToDouble(tbVerz.Text);
+        //                //TODO: check sharp braking by by determining deltaV
+        //                if (deltaV < -maxVerz) //if deceleration was greater than user set value maxVerz
+        //                {
+        //                    lblFlag.Visible = true;
+        //                    lblFlag.Text = "scharf angehalten";
+        //                    scharf = true;
+        //                    timerFlag.Start(); // TODO: flag shall not hide after x seconds, but only after accelerating again
+        //                }
+        //            }
+        //        }
             
-            else if (dataSet.Id == MyTCPConnection["Druck Bremszylinder"]) // 2563
-            {
+        //    else if (dataSet.Id == MyTCPConnection["Druck Bremszylinder"]) // 2563
+        //    {
 
-                if (verbunden)
-                {
-                    float bzdruck = dataSet.Value;              
-                    lblBzdruck.Text = String.Format("{0:0.0}", bzdruck);
-                }
+        //        if (verbunden)
+        //        {
+        //            float bzdruck = dataSet.Value;              
+        //            lblBzdruck.Text = String.Format("{0:0.0}", bzdruck);
+        //        }
 
-            }
-            else if (dataSet.Id == MyTCPConnection["Druck Hauptluftleitung"]) // 2562
-            {
-                float hlldruck = dataSet.Value;               
-                lblHlldruck.Text = String.Format("{0:0.0}", hlldruck);
-            }
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["Druck Hauptluftleitung"]) // 2562
+        //    {
+        //        float hlldruck = dataSet.Value;               
+        //        lblHlldruck.Text = String.Format("{0:0.0}", hlldruck);
+        //    }
 
-            else if (dataSet.Id == MyTCPConnection["LM Schleudern"]) // 2599
-            {
-                if (verbunden)
-                {
-                    if (dataSet.Value > 0)
-                    {
-                        lblFlag.Text = "Schleudern!";
-                        lblFlag.Visible = true;
-                        timerFlag.Start();
-                    }
-                }
-            }
-            else if (dataSet.Id == MyTCPConnection["Schalter Führerbremsventil"])
-            {
-                lblFbventil.Text = dataSet.Value.ToString();
-            }
-            else if (dataSet.Id == MyTCPConnection["Strecken-Km"]) // 2645
-            {
-                if (verbunden && dataSet.Value > 0)
-                {
-                    streckenmeter = Convert.ToDouble(dataSet.Value);
-                    lblMeter.Text = String.Format("{0:0.0}", streckenmeter / StreckenmeterDarstfaktor); //see definition of factor
-                }
-                else lblMeter.Text = "---";
-            }
-            else if (dataSet.Id == MyTCPConnection["LM Sifa"]) // 2596
-            {
-                if (dataSet.Value > 0)
-                {
-                    lblSifa.Text = "SIFA";
-                    lblSifa.BackColor = Color.White;
-                }
-                else
-                {
-                    lblSifa.Text = "";
-                    lblSifa.BackColor = Color.DarkGray;
-                }
-            }
-            else if (dataSet.Id == MyTCPConnection["Fahrstufe"] && cbFahrstufe.Checked == true) // 2576
-            {
-                if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
-                    lblFahrstufe.Text = String.Format("{0:0}", dataSet.Value);
-                else
-                    lblFahrstufe.Text = "--";
-            }
-            else if (dataSet.Id == MyTCPConnection["Reisezug"])
-            {
-                if (dataSet.Value == 0) //if Güterzug
-                {
-                    reisezug = false;
-                    lblFlag.Visible = false; //if doors were open when a freight train has been selected as new train
-                }
-                else
-                {
-                    reisezug = true;
-                }
-            } 
-            else if (dataSet.Id == MyTCPConnection["Türen"])
-            {
+        //    else if (dataSet.Id == MyTCPConnection["LM Schleudern"]) // 2599
+        //    {
+        //        if (verbunden)
+        //        {
+        //            if (dataSet.Value > 0)
+        //            {
+        //                lblFlag.Text = "Schleudern!";
+        //                lblFlag.Visible = true;
+        //                timerFlag.Start();
+        //            }
+        //        }
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["Schalter Führerbremsventil"])
+        //    {
+        //        lblFbventil.Text = dataSet.Value.ToString();
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["Strecken-Km"]) // 2645
+        //    {
+        //        if (verbunden && dataSet.Value > 0)
+        //        {
+        //            streckenmeter = Convert.ToDouble(dataSet.Value);
+        //            lblMeter.Text = String.Format("{0:0.0}", streckenmeter / StreckenmeterDarstfaktor); //see definition of factor
+        //        }
+        //        else lblMeter.Text = "---";
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM Sifa"]) // 2596
+        //    {
+        //        if (dataSet.Value > 0)
+        //        {
+        //            lblSifa.Text = "SIFA";
+        //            lblSifa.BackColor = Color.White;
+        //        }
+        //        else
+        //        {
+        //            lblSifa.Text = "";
+        //            lblSifa.BackColor = Color.DarkGray;
+        //        }
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["Fahrstufe"] && cbFahrstufe.Checked == true) // 2576
+        //    {
+        //        if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
+        //            lblFahrstufe.Text = String.Format("{0:0}", dataSet.Value);
+        //        else
+        //            lblFahrstufe.Text = "--";
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["Reisezug"])
+        //    {
+        //        if (dataSet.Value == 0) //if Güterzug
+        //        {
+        //            reisezug = false;
+        //            lblFlag.Visible = false; //if doors were open when a freight train has been selected as new train
+        //        }
+        //        else
+        //        {
+        //            reisezug = true;
+        //        }
+        //    } 
+        //    else if (dataSet.Id == MyTCPConnection["Türen"])
+        //    {
 
-                //DEBUG
-                String reisezugOld = reisezug.ToString();
-                //lblDebugreisezwert.Text = reisezugOld;
+        //        //DEBUG
+        //        String reisezugOld = reisezug.ToString();
+        //        //lblDebugreisezwert.Text = reisezugOld;
 
-                if (reisezug == true)
-                {
-                    //DEBUG
-                    //MessageBox.Show("DEBUG: Reisezug=TRUE" + "--old:" + reisezugOld + "--:" + reisezug);
+        //        if (reisezug == true)
+        //        {
+        //            //DEBUG
+        //            //MessageBox.Show("DEBUG: Reisezug=TRUE" + "--old:" + reisezugOld + "--:" + reisezug);
 
-                    double tuerwert = dataSet.Value;
+        //            double tuerwert = dataSet.Value;
 
-                    if (tuerwert > 7E-45 && cbTueren.Checked) // closed
-                    {
-                        lblFlag.Visible = false;
-                        lblFlag.Text = "";
-                        lblTueren.Text = "Türen zu";
-                    }
-                    else if (tuerwert < 2E-45 && tuerwert > 0 && cbTueren.Checked) //open
-                    {
-                        lblFlag.Visible = true;
-                        lblFlag.Text = "Türen geöffnet";
-                        lblTueren.Text = "Türen offen";
-                    }
-                    else if (tuerwert > 5E-45 && tuerwert < 7E-45) //closing
-                    {
-                        lblTueren.Text = "Türen schließen";
-                    }
-                    else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //passengers okay
-                    {
-                        lblTueren.Text = "Fahrgäste i.O.";
-                    }
-                    else if (tuerwert == 0)  //doors unblocked
-                    {
-                        lblTueren.Text = "Türen freigegeben";
-                    }
-                }
-                else if (reisezug == false)//if reisezug is not true
-                {
-                    //DEBUG
-                    //MessageBox.Show("DEBUG: Reisezug=FALSE" + "--old:" + reisezugOld + "--:" + reisezug);        
-                    lblTueren.Text = "Güterzug";
-                }
-            }
-            else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"])
-            {
-                if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
-                {
-                    double fahrschalter = dataSet.Value - fahrschalterneutral;
-                    lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalter);
-                }
-                else
-                    lblFahrstufenschalter.Text = "--";
-            }
+        //            if (tuerwert > 7E-45 && cbTueren.Checked) // closed
+        //            {
+        //                lblFlag.Visible = false;
+        //                lblFlag.Text = "";
+        //                lblTueren.Text = "Türen zu";
+        //            }
+        //            else if (tuerwert < 2E-45 && tuerwert > 0 && cbTueren.Checked) //open
+        //            {
+        //                lblFlag.Visible = true;
+        //                lblFlag.Text = "Türen geöffnet";
+        //                lblTueren.Text = "Türen offen";
+        //            }
+        //            else if (tuerwert > 5E-45 && tuerwert < 7E-45) //closing
+        //            {
+        //                lblTueren.Text = "Türen schließen";
+        //            }
+        //            else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //passengers okay
+        //            {
+        //                lblTueren.Text = "Fahrgäste i.O.";
+        //            }
+        //            else if (tuerwert == 0)  //doors unblocked
+        //            {
+        //                lblTueren.Text = "Türen freigegeben";
+        //            }
+        //        }
+        //        else if (reisezug == false)//if reisezug is not true
+        //        {
+        //            //DEBUG
+        //            //MessageBox.Show("DEBUG: Reisezug=FALSE" + "--old:" + reisezugOld + "--:" + reisezug);        
+        //            lblTueren.Text = "Güterzug";
+        //        }
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"])
+        //    {
+        //        if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
+        //        {
+        //            double fahrschalter = dataSet.Value - fahrschalterneutral;
+        //            lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalter);
+        //        }
+        //        else
+        //            lblFahrstufenschalter.Text = "--";
+        //    }
 
 
-            else if (dataSet.Id == MyTCPConnection["Schalter AFB ein/aus"])
-            {
-                if (dataSet.Value > 0)
-                    afbistein = true;
-                else
-                    afbistein = false;
+        //    else if (dataSet.Id == MyTCPConnection["Schalter AFB ein/aus"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            afbistein = true;
+        //        else
+        //            afbistein = false;
 
-                if (afbistein)
-                {
-                    lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Bold);
-                    lblafbeinaus.Text = "AFB ein";
-                }
-                else
-                {
-                    lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular);
-                    lblafbeinaus.Text = "AFB aus";
-                }
+        //        if (afbistein)
+        //        {
+        //            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Bold);
+        //            lblafbeinaus.Text = "AFB ein";
+        //        }
+        //        else
+        //        {
+        //            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular);
+        //            lblafbeinaus.Text = "AFB aus";
+        //        }
 
-            }
-            else if (dataSet.Id == MyTCPConnection["AFB Soll-Geschwindigkeit"])
-            //TODO: check if there's a value available that reflects some kind of AFB "preset speed" value
-            {
-                double afbvschalter = dataSet.Value;
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["AFB Soll-Geschwindigkeit"])
+        //    //TODO: check if there's a value available that reflects some kind of AFB "preset speed" value
+        //    {
+        //        double afbvschalter = dataSet.Value;
                 
-                //TODO: check if LZB vSoll is less; if so paint LZB speed value bold instead
-                lblAFBgeschwindigkeit.Text = String.Format("{0:0} km/h", afbvschalter);
-            }
-            else if (dataSet.Id == MyTCPConnection["LZB Soll-Geschwindigkeit"])
-            {
-                double lzbsoll = dataSet.Value;
-                lblLZBsollgeschw.Text = String.Format("{0:0}", lzbsoll);
-            }
-            else if (dataSet.Id == MyTCPConnection["LZB Ziel-Geschwindigkeit"])
-            {
-                double lzbziel = dataSet.Value;
-                lblLZBzielgeschw.Text = String.Format("{0:0}", lzbziel);
-            }
-            else if (dataSet.Id == MyTCPConnection["LM LZB Zielweg (ab 0)"])
-            {
-                double lzbweg = dataSet.Value;
-                lblLZBzielweg.Text = String.Format("{0:0}", lzbweg);
-            }
-            //DEBUG TEST
-            /* else if (dataSet.Id == MyTCPConnection["Zugdatei"])...
-            {/*zugdateiOld = zugnummer;
-                zugdatei = dataSet.Value.ToString();
-                if (zugnummer != zugnummerOld)
-                    MessageBox.Show("DEBUG: Zugdatei has changed"); } */   
+        //        //TODO: check if LZB vSoll is less; if so paint LZB speed value bold instead
+        //        lblAFBgeschwindigkeit.Text = String.Format("{0:0} km/h", afbvschalter);
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LZB Soll-Geschwindigkeit"])
+        //    {
+        //        double lzbsoll = dataSet.Value;
+        //        lblLZBsollgeschw.Text = String.Format("{0:0}", lzbsoll);
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LZB Ziel-Geschwindigkeit"])
+        //    {
+        //        double lzbziel = dataSet.Value;
+        //        lblLZBzielgeschw.Text = String.Format("{0:0}", lzbziel);
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM LZB Zielweg (ab 0)"])
+        //    {
+        //        double lzbweg = dataSet.Value;
+        //        lblLZBzielweg.Text = String.Format("{0:0}", lzbweg);
+        //    }
+        //    //DEBUG TEST
+        //    /* else if (dataSet.Id == MyTCPConnection["Zugdatei"])...
+        //    {/*zugdateiOld = zugnummer;
+        //        zugdatei = dataSet.Value.ToString();
+        //        if (zugnummer != zugnummerOld)
+        //            MessageBox.Show("DEBUG: Zugdatei has changed"); } */   
 
-            else if (dataSet.Id == MyTCPConnection["Autopilot"])
-            {
-                if (dataSet.Value > 0) //if autopilot is on...
-                {
-                    autopilot = true;
-                    timer100.Enabled = true; //makes sure "Autopilot ein" lblFlag is displayed as long as A/P is on
-                }
-                else
-                {
-                    autopilot = false;
-                    lblFlag.Visible = false;
-                    lblFlag.Text = "";
-                    timer100.Enabled = false;
-                }
-            }
-            //###PZB-90###//
-            else if (dataSet.Id == MyTCPConnection["LM PZB Zugart O"])
-            {
-                if (dataSet.Value > 0)
-                    lblPZB_O.BackColor = Color.CornflowerBlue;                      
-                else
-                    lblPZB_O.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM PZB Zugart M"])
-            {
-                if (dataSet.Value > 0)
-                    lblPZB_M.BackColor = Color.CornflowerBlue;
-                else
-                    lblPZB_M.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM PZB Zugart U"])
-            {
-                if (dataSet.Value > 0)
-                    lblPZB_M.BackColor = Color.CornflowerBlue;
-                else
-                    lblPZB_M.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM PZB 1000Hz"])
-            {
-                if (dataSet.Value > 0)
-                    lblPZB_1000.BackColor = Color.Yellow;
-                else
-                    lblPZB_1000.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM PZB 500Hz"])
-            {
-                if (dataSet.Value > 0)
-                    lblPZB_500.BackColor = Color.Red;
-                else
-                    lblPZB_500.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM PZB Befehl"])
-            {
-                if (dataSet.Value > 0)
-                { lblPZB_Bef.BackColor = Color.Black; lblPZB_Bef.ForeColor = Color.White; }
-                else
-                { lblPZB_Bef.BackColor = Color.FromName("Transparent"); lblPZB_Bef.ForeColor = Color.FromName("ControlText"); }
-            }
-            //###LZB###//
-            else if (dataSet.Id == MyTCPConnection["LM LZB G"])
-            {
-                if (dataSet.Value > 0)
-                    lblLZB_G.BackColor = Color.Red;
-                else
-                    lblLZB_G.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM LZB Ende"])
-            {
-                if (dataSet.Value > 0)
-                    lblLZB_Ende.BackColor = Color.Yellow;
-                else
-                    lblLZB_Ende.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM LZB S"])
-            {
-                if (dataSet.Value > 0)
-                    lblLZB_S.BackColor = Color.Red;
-                else
-                    lblLZB_S.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM LZB Prüfen"])
-            {
-                if (dataSet.Value > 0)
-                    lblLZB_Pruefstoer.BackColor = Color.White;
-                else
-                    lblLZB_Pruefstoer.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM LZB Ü"])
-            {
-                if (dataSet.Value > 0)
-                    lblLZB_Ue.BackColor = Color.CornflowerBlue;
-                else
-                    lblLZB_Ue.BackColor = Color.FromName("Transparent");
-            }
-            else if (dataSet.Id == MyTCPConnection["LM LZB B"])
-            {
-                if (dataSet.Value > 0)
-                    lblLZB_B.BackColor = Color.CornflowerBlue;
-                else
-                    lblLZB_B.BackColor = Color.FromName("Transparent");
-            }
-            //######//
-            else if (dataSet.Id == MyTCPConnection["Schalter AFB-Geschwindigkeit"])
-            {
-                afbschalter = dataSet.Value;
+        //    else if (dataSet.Id == MyTCPConnection["Autopilot"])
+        //    {
+        //        if (dataSet.Value > 0) //if autopilot is on...
+        //        {
+        //            autopilot = true;
+        //            timer100.Enabled = true; //makes sure "Autopilot ein" lblFlag is displayed as long as A/P is on
+        //        }
+        //        else
+        //        {
+        //            autopilot = false;
+        //            lblFlag.Visible = false;
+        //            lblFlag.Text = "";
+        //            timer100.Enabled = false;
+        //        }
+        //    }
+        //    //###PZB-90###//
+        //    else if (dataSet.Id == MyTCPConnection["LM PZB Zugart O"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblPZB_O.BackColor = Color.CornflowerBlue;                      
+        //        else
+        //            lblPZB_O.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM PZB Zugart M"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblPZB_M.BackColor = Color.CornflowerBlue;
+        //        else
+        //            lblPZB_M.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM PZB Zugart U"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblPZB_M.BackColor = Color.CornflowerBlue;
+        //        else
+        //            lblPZB_M.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM PZB 1000Hz"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblPZB_1000.BackColor = Color.Yellow;
+        //        else
+        //            lblPZB_1000.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM PZB 500Hz"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblPZB_500.BackColor = Color.Red;
+        //        else
+        //            lblPZB_500.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM PZB Befehl"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //        { lblPZB_Bef.BackColor = Color.Black; lblPZB_Bef.ForeColor = Color.White; }
+        //        else
+        //        { lblPZB_Bef.BackColor = Color.FromName("Transparent"); lblPZB_Bef.ForeColor = Color.FromName("ControlText"); }
+        //    }
+        //    //###LZB###//
+        //    else if (dataSet.Id == MyTCPConnection["LM LZB G"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblLZB_G.BackColor = Color.Red;
+        //        else
+        //            lblLZB_G.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM LZB Ende"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblLZB_Ende.BackColor = Color.Yellow;
+        //        else
+        //            lblLZB_Ende.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM LZB S"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblLZB_S.BackColor = Color.Red;
+        //        else
+        //            lblLZB_S.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM LZB Prüfen"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblLZB_Pruefstoer.BackColor = Color.White;
+        //        else
+        //            lblLZB_Pruefstoer.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM LZB Ü"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblLZB_Ue.BackColor = Color.CornflowerBlue;
+        //        else
+        //            lblLZB_Ue.BackColor = Color.FromName("Transparent");
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["LM LZB B"])
+        //    {
+        //        if (dataSet.Value > 0)
+        //            lblLZB_B.BackColor = Color.CornflowerBlue;
+        //        else
+        //            lblLZB_B.BackColor = Color.FromName("Transparent");
+        //    }
+        //    //######//
+        //    else if (dataSet.Id == MyTCPConnection["Schalter AFB-Geschwindigkeit"])
+        //    {
+        //        afbschalter = dataSet.Value;
 
-                if(rbAFBvor5.Checked)
-                    afbvorwahl = afbschalter * 5;
-                else if (rbAFBvor10.Checked)
-                    afbvorwahl = afbschalter * 10;
+        //        if(rbAFBvor5.Checked)
+        //            afbvorwahl = afbschalter * 5;
+        //        else if (rbAFBvor10.Checked)
+        //            afbvorwahl = afbschalter * 10;
 
-                lblAFBvorwahl.Text = afbvorwahl.ToString();
-            }
-            //TODO TEST display time
-            //else if (dataSet.Id == MyTCPConnection["Uhrzeit Stunde"])
-            //{
-            //    stunde = dataSet.Value;
-            //    DisplayTime();
-            //}
-            //else if (dataSet.Id == MyTCPConnection["Uhrzeit Minute"])
-            //{
-            //    minute = dataSet.Value;
-            //    DisplayTime();
-            //}
-            //else if (dataSet.Id == MyTCPConnection["Uhrzeit Sekunde"])
-            //{
-            //    sekunde = dataSet.Value;
-            //    DisplayTime();
-            //}
-            else if (dataSet.Id == MyTCPConnection["Druck Hauptluftbehälter"])
-            {
-                druckhbl = dataSet.Value;
-                lblHBLwert.Text = String.Format("{0:0.0} bar", druckhbl);
-            }
-            else if (dataSet.Id == MyTCPConnection["Druck Hilfsluftbehälter"])
-            {
-                druckhlb = dataSet.Value;
-                lblHLBwert.Text = String.Format("{0:0.0} bar", druckhlb);
-            }
-            else if (dataSet.Id == MyTCPConnection["Schalter Sifa"])
-            {
-                //DEBUG
-                //if (dataSet.Value > 0)
-                //{
-                //    schaltersifa++;
-                //    lblDebugsifaschalter.Text = schaltersifa.ToString();
-                //}
-                if (dataSet.Value > 0)
-                {
-                    schaltersifa++;
-                    lblDebugsifaschalter.Text = schaltersifa.ToString();
-                    if (schaltersifa == 1)
-                    {
-                        timerResetSifaschalter.Start();
-                        lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
-                    }
-                    else if (schaltersifa == 2)
-                    {
-                        schaltersifa = 0;
-                        timerResetSifaschalter.Stop();
-                        lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
-                        if (cbRailrunner.Checked)  //IMPORTANT - only if cbRailrunner is checked, RR counter will start
-                            SetRR();
-                    }
-                }
-            }
+        //        lblAFBvorwahl.Text = afbvorwahl.ToString();
+        //    }
+        //    //TODO TEST display time
+        //    //else if (dataSet.Id == MyTCPConnection["Uhrzeit Stunde"])
+        //    //{
+        //    //    stunde = dataSet.Value;
+        //    //    DisplayTime();
+        //    //}
+        //    //else if (dataSet.Id == MyTCPConnection["Uhrzeit Minute"])
+        //    //{
+        //    //    minute = dataSet.Value;
+        //    //    DisplayTime();
+        //    //}
+        //    //else if (dataSet.Id == MyTCPConnection["Uhrzeit Sekunde"])
+        //    //{
+        //    //    sekunde = dataSet.Value;
+        //    //    DisplayTime();
+        //    //}
+        //    else if (dataSet.Id == MyTCPConnection["Druck Hauptluftbehälter"])
+        //    {
+        //        druckhbl = dataSet.Value;
+        //        lblHBLwert.Text = String.Format("{0:0.0} bar", druckhbl);
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["Druck Hilfsluftbehälter"])
+        //    {
+        //        druckhlb = dataSet.Value;
+        //        lblHLBwert.Text = String.Format("{0:0.0} bar", druckhlb);
+        //    }
+        //    else if (dataSet.Id == MyTCPConnection["Schalter Sifa"])
+        //    {
+        //        //DEBUG
+        //        //if (dataSet.Value > 0)
+        //        //{
+        //        //    schaltersifa++;
+        //        //    lblDebugsifaschalter.Text = schaltersifa.ToString();
+        //        //}
+        //        if (dataSet.Value > 0)
+        //        {
+        //            schaltersifa++;
+        //            lblDebugsifaschalter.Text = schaltersifa.ToString();
+        //            if (schaltersifa == 1)
+        //            {
+        //                timerResetSifaschalter.Start();
+        //                lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
+        //            }
+        //            else if (schaltersifa == 2)
+        //            {
+        //                schaltersifa = 0;
+        //                timerResetSifaschalter.Stop();
+        //                lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
+        //                if (cbRailrunner.Checked)  //IMPORTANT - only if cbRailrunner is checked, RR counter will start
+        //                    SetRR();
+        //            }
+        //        }
+        //    }
         }
         #endregion
 
