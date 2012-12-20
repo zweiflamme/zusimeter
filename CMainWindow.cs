@@ -16,6 +16,8 @@ namespace ZusiMeter
 {
     public partial class CMainWindow : Form
     {
+        
+
         // We do want to have a ZusiTcpConn object, so here's the declaration
         private ZusiTcpConn MyTCPConnection;
 
@@ -223,6 +225,10 @@ namespace ZusiMeter
         double stunde, minute, sekunde; //TODO: if DLL 1.1.6 is used, this will be obsolete
         double druckhbl, druckhlb;
         double schaltersifa; // if pressed twice RR is activated
+        bool settingsAreSeparated = false; // true if settings are shown on a separate form (frmSettings)
+
+        //TODO: TEST: is this the best place?
+        SettingsForm frmSettings = new SettingsForm();
     
 
         #endregion
@@ -1061,17 +1067,20 @@ namespace ZusiMeter
         //if the user clicks the "Einstellungen" button...
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            //TEST
-            if (hasMoved)
+            if (settingsAreSeparated == false) // if settings are NOT in a separate window
             {
-                alwaysShowSettings = true; //when we're moving, we do NOT want to autohide at the moment
-                pnlRight.Visible = !pnlRight.Visible;
-            }
-            else
-            {
-                alwaysShowSettings = false;
-                pnlRight.Visible = !pnlRight.Visible;
+                //TEST
+                if (hasMoved)
+                {
+                    alwaysShowSettings = true; //when we're moving, we do NOT want to autohide at the moment
+                    pnlRight.Visible = !pnlRight.Visible;
+                }
+                else
+                {
+                    alwaysShowSettings = false;
+                    pnlRight.Visible = !pnlRight.Visible;
 
+                }
             }
 
             FokusAnZusi();
@@ -1627,20 +1636,43 @@ namespace ZusiMeter
                 pnlRight.Visible = false;
         }
 
+        public void createSettingsForm()
+        {
+            
+        }
+       
+
         private void cbSettingsSeparate_CheckedChanged(object sender, EventArgs e)
         {
             cbHidesettings.Enabled = !cbSettingsSeparate.Checked; //settings shall not be autohidden if on a separate form
 
+            
+
             if (cbSettingsSeparate.Checked)
             {
-                SettingsForm frmSettings = new SettingsForm();
                 //TODO: does not yet work, why? Location is determined correctly
+                frmSettings.StartPosition = FormStartPosition.Manual;
                 frmSettings.Location = new Point(this.Location.X + this.Width + 10, this.Location.Y);
 
                 pnlRight.Controls.Remove(pnlSettings); // removing settings panel from main form
                 frmSettings.Controls.Add(pnlSettings); //adding settings panel to settings form
 
+                settingsAreSeparated = true;
+                this.pnlRight.Visible = false;
+
                 frmSettings.Show();
+                
+            }
+            else
+            {
+                pnlRight.Controls.Add(pnlSettings); // adding settings panel to main form again
+                settingsAreSeparated = false;
+                this.pnlRight.Visible = true;
+
+                //TEST: should hide the settings form
+                //TODO: can we close and / or dispose it?
+                frmSettings.Hide();
+               
             }
         }
 

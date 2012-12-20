@@ -15,5 +15,11 @@ namespace ZusiMeter
         {
             InitializeComponent();
         }
+
+        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //TODO
+            
+        }
     }
 }
