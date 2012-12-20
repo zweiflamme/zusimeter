@@ -69,12 +69,16 @@ namespace ZusiMeter
             //MyTCPConnection.RequestData(2564); // "Druck Hauptluftbehälter"
             //MyTCPConnection.RequestData(2579); // "Druck Hilfsluftbehälter"
 
+            MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
+
+            MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
+
             //MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
-            //MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
+            
             //MyTCPConnection.RequestData(2599); // "LM Schleudern"     
             //MyTCPConnection.RequestData(2596); // "LM Sifa "
             //MyTCPConnection.RequestData(2576); // "Fahrstufe"
-            //MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
+            
             //MyTCPConnection.RequestData(2646); // "Türen"
             ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
             ////TODO MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
@@ -389,6 +393,24 @@ namespace ZusiMeter
                 }
                 #endregion
 
+                #region Streckenkilometer
+                case 2645:
+                {
+                    streckenmeter = Convert.ToDouble(data.Value);
+                    lblMeter.Text = String.Format("{0:0.0}", streckenmeter / StreckenmeterDarstfaktor); //see definition of factor
+                    break;
+                }
+                #endregion
+
+                #region Schalter Fahrstufen
+                case 2611:
+                {
+                    double fahrschalter = data.Value - fahrschalterneutral;
+                   lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalter);
+                    break;
+                }
+                #endregion
+
                 default:
                     break;
             }
@@ -412,15 +434,7 @@ namespace ZusiMeter
         //    {
         //        lblFbventil.Text = dataSet.Value.ToString();
         //    }
-        //    else if (dataSet.Id == MyTCPConnection["Strecken-Km"]) // 2645
-        //    {
-        //        if (verbunden && dataSet.Value > 0)
-        //        {
-        //            streckenmeter = Convert.ToDouble(dataSet.Value);
-        //            lblMeter.Text = String.Format("{0:0.0}", streckenmeter / StreckenmeterDarstfaktor); //see definition of factor
-        //        }
-        //        else lblMeter.Text = "---";
-        //    }
+        //    
         //    else if (dataSet.Id == MyTCPConnection["LM Sifa"]) // 2596
         //    {
         //        if (dataSet.Value > 0)
@@ -499,16 +513,7 @@ namespace ZusiMeter
         //            lblTueren.Text = "Güterzug";
         //        }
         //    }
-        //    else if (dataSet.Id == MyTCPConnection["Schalter Fahrstufen"])
-        //    {
-        //        if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
-        //        {
-        //            double fahrschalter = dataSet.Value - fahrschalterneutral;
-        //            lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalter);
-        //        }
-        //        else
-        //            lblFahrstufenschalter.Text = "--";
-        //    }
+        //    
 
 
         //    else if (dataSet.Id == MyTCPConnection["Schalter AFB ein/aus"])
