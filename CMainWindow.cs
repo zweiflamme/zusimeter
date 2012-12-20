@@ -51,7 +51,7 @@ namespace ZusiMeter
 
             MyTCPConnection.ErrorReceived += TCPConnection_ErrorReceived;
             MyTCPConnection.FloatReceived += TCPConnection_FloatReceived;            
-            //MyTCPConnection.BoolReceived += TCPConnection_BoolReceived;
+            MyTCPConnection.BoolReceived += TCPConnection_BoolReceived;
             //MyTCPConnection.IntReceived += TCPConnection_IntReceived;
             //MyTCPConnection.StringReceived += TCPConnection_StringReceived;
             //MyTCPConnection.DateTimeReceived += TCPConnection_DateTimeReceived;
@@ -72,12 +72,13 @@ namespace ZusiMeter
             MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
 
             MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
+            MyTCPConnection.RequestData(2576); // "Fahrstufe"
 
             //MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
             
-            //MyTCPConnection.RequestData(2599); // "LM Schleudern"     
-            //MyTCPConnection.RequestData(2596); // "LM Sifa "
-            //MyTCPConnection.RequestData(2576); // "Fahrstufe"
+            MyTCPConnection.RequestData(2599); // "LM Schleudern"     
+            MyTCPConnection.RequestData(2596); // "LM Sifa "
+            
             
             //MyTCPConnection.RequestData(2646); // "Türen"
             ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
@@ -410,26 +411,46 @@ namespace ZusiMeter
                     break;
                 }
                 #endregion
+                
+                #region Fahrstufe
+                case 2576:
+                {
+                    lblFahrstufe.Text = String.Format("{0:0}", data.Value);
+                    break;
+                }
+                #endregion
 
                 default:
                     break;
             }
         }
+
+        private void TCPConnection_BoolReceived(object sender, DataSet<bool> data) //Handles MyTCPConnection.BoolReceived
+        {
+            switch (data.Id)
+            {
+                #region LM Sifa
+                case 2596:
+                    {
+                        break;
+                    }
+                #endregion
+
+                #region LM Schleudern
+                case 2599:
+                    {
+                        lblFlag.Text = "Schleudern!";
+                        lblFlag.Visible = true;
+                        timerFlag.Start();
+                        break;
+                    }
+                #endregion
+            }
+        }
         private void HandleIncomingData(DataSet<float> dataSet)
         {
 
-        //    else if (dataSet.Id == MyTCPConnection["LM Schleudern"]) // 2599
-        //    {
-        //        if (verbunden)
-        //        {
-        //            if (dataSet.Value > 0)
-        //            {
-        //                lblFlag.Text = "Schleudern!";
-        //                lblFlag.Visible = true;
-        //                timerFlag.Start();
-        //            }
-        //        }
-        //    }
+        //    
         //    else if (dataSet.Id == MyTCPConnection["Schalter Führerbremsventil"])
         //    {
         //        lblFbventil.Text = dataSet.Value.ToString();
