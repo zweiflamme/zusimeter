@@ -238,6 +238,7 @@ namespace ZusiMeter
         {
             if (cbTopmost.Checked == true)
                 this.TopMost = true;
+
             
             //showing 'System' tab first so that the user is able to establish a connection to the TCP server
             tabEinstellungen.SelectTab("tabSystem");   
@@ -1658,25 +1659,24 @@ namespace ZusiMeter
                 frmSettings.StartPosition = FormStartPosition.Manual;
                 frmSettings.Location = new Point(this.Location.X + 200, this.Location.Y);
 
-                this.Controls.Remove(pnlSettings); // removing settings panel from main form
-                frmSettings.Controls.Add(pnlSettings); //adding settings panel to settings form
+                this.Controls.Remove(pnlRight); // removing settings panel from main form
+                frmSettings.Controls.Add(pnlRight); //adding settings panel to settings form
 
                 //TEST
                 pnlRight.Location = new Point(0, 0);
 
                 settingsAreSeparated = true;
                 //TEST
-                this.pnlRight.Visible = false;
+                //this.pnlRight.Visible = false;
 
                 frmSettings.Show();
                 
             }
             else //if user does not want separated settings 
             {
-                //TEST
+                
                 this.pnlRight.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
-                this.pnlRight.AutoSize = false;
-                this.Controls.Add(pnlSettings);
+                this.Controls.Add(pnlRight);
                 this.pnlRight.Visible = true;
 
                 //pnlRight.Controls.Add(pnlSettings); // adding settings panel to main form again

@@ -97,6 +97,7 @@
             this.lblFahrschneutralbei = new System.Windows.Forms.Label();
             this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
+            this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.cbHidesettings = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbFokusFahrtzurueck = new System.Windows.Forms.CheckBox();
@@ -193,7 +194,6 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
-            this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -1121,6 +1121,19 @@
             this.tabDarstellung.Text = "Darstellung";
             this.tabDarstellung.Click += new System.EventHandler(this.tabDarstellung_Click);
             // 
+            // cbSettingsSeparate
+            // 
+            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
+            this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 172);
+            this.cbSettingsSeparate.Name = "cbSettingsSeparate";
+            this.cbSettingsSeparate.Size = new System.Drawing.Size(118, 35);
+            this.cbSettingsSeparate.TabIndex = 23;
+            this.cbSettingsSeparate.Text = "Einstellungen in separatem Fenster";
+            this.cbSettingsSeparate.UseVisualStyleBackColor = false;
+            this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
+            // 
             // cbHidesettings
             // 
             this.cbHidesettings.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -1568,7 +1581,7 @@
             this.pnlRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlRight.Controls.Add(this.pnlSettings);
             this.pnlRight.Controls.Add(this.pnlDebug);
-            this.pnlRight.Location = new System.Drawing.Point(149, 13);
+            this.pnlRight.Location = new System.Drawing.Point(136, 13);
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.Size = new System.Drawing.Size(571, 442);
             this.pnlRight.TabIndex = 14;
@@ -2251,19 +2264,6 @@
             // 
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
-            // 
-            // cbSettingsSeparate
-            // 
-            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
-            this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 172);
-            this.cbSettingsSeparate.Name = "cbSettingsSeparate";
-            this.cbSettingsSeparate.Size = new System.Drawing.Size(118, 35);
-            this.cbSettingsSeparate.TabIndex = 23;
-            this.cbSettingsSeparate.Text = "Einstellungen in separatem Fenster";
-            this.cbSettingsSeparate.UseVisualStyleBackColor = false;
-            this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
             // 
             // CMainWindow
             // 
