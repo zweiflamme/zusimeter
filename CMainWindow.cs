@@ -64,8 +64,8 @@ namespace ZusiMeter
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
 
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
-            //MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
-            //MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
+            MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
+            MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
             //MyTCPConnection.RequestData(2564); // "Druck Hauptluftbehälter"
             //MyTCPConnection.RequestData(2579); // "Druck Hilfsluftbehälter"
 
@@ -370,80 +370,31 @@ namespace ZusiMeter
                 }
                 #endregion
 
+                #region Druck Hll
+                case 2562:
+                {
+                    float hlldruck = data.Value;
+                    lblHlldruck.Text = String.Format("{0:0.0}", hlldruck);
+                    break;
+                }
 
+                #endregion
+
+                #region Druck Bz
+                case 2563:
+                {
+                    float bzdruck = data.Value;
+                    lblBzdruck.Text = String.Format("{0:0.0}", bzdruck);
+                    break;
+                }
+                #endregion
+
+                default:
+                    break;
             }
         }
         private void HandleIncomingData(DataSet<float> dataSet)
         {
-
-        //    if (dataSet.Id == MyTCPConnection["Bremshundertstel"]) // 2654
-        //    {
-        //        if (dataSet.Value > 0)
-        //        {
-        //            setStatus("Verbunden");
-
-        //            brh = Convert.ToDouble(dataSet.Value);
-        //            lblBrh.Text = String.Format("{0:0}", brh);
-        //        }
-
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["Geschwindigkeit"]) // 2561
-        //    {
-        //        if (verbunden) //only if connected to Zusi. //TODO: check if this is needed
-        //        {
-        //             geschwindigkeit = dataSet.Value;
-        //             vmps = geschwindigkeit / 3.6;
-
-        //             //vAlt = vNeu;
-        //             //vNeu = geschwindigkeit;
-        //             //deltaV = vNeu - vAlt;
-
-        //             lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
-
-        //            if (geschwindigkeit > 0.1) hasMoved = true;
-
-        //            //TEST
-        //            if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false) 
-        //            {
-        //                if (settingsAreSeparated)
-        //                    frmSettings.Hide();
-        //                else
-        //                    pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden                        
-        //            }
-
-        //            if (hasMoved == true && geschwindigkeit == 0) //if train has stopped
-        //            {
-        //                hasMoved = false;
-        //                alwaysShowSettings = false; //TEST: reset so that settings can autohide again
-        //            }
-
-        //                maxVerz = Convert.ToDouble(tbVerz.Text);
-        //                //TODO: check sharp braking by by determining deltaV
-        //                if (deltaV < -maxVerz) //if deceleration was greater than user set value maxVerz
-        //                {
-        //                    lblFlag.Visible = true;
-        //                    lblFlag.Text = "scharf angehalten";
-        //                    scharf = true;
-        //                    timerFlag.Start(); // TODO: flag shall not hide after x seconds, but only after accelerating again
-        //                }
-        //            }
-        //        }
-            
-        //    else if (dataSet.Id == MyTCPConnection["Druck Bremszylinder"]) // 2563
-        //    {
-
-        //        if (verbunden)
-        //        {
-        //            float bzdruck = dataSet.Value;              
-        //            lblBzdruck.Text = String.Format("{0:0.0}", bzdruck);
-        //        }
-
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["Druck Hauptluftleitung"]) // 2562
-        //    {
-        //        float hlldruck = dataSet.Value;               
-        //        lblHlldruck.Text = String.Format("{0:0.0}", hlldruck);
-        //    }
 
         //    else if (dataSet.Id == MyTCPConnection["LM Schleudern"]) // 2599
         //    {
