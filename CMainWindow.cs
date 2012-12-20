@@ -45,7 +45,7 @@ namespace ZusiMeter
 
             //we need to define a new connection to the TCP server:
             MyTCPConnection = new ZusiTcpConn(
-             "ZusiMeter v0.4",                            // The name of this application (Shows up on the server's list)
+             "ZusiMeter v0.5",                            // The name of this application (Shows up on the server's list)
              ClientPriority.High,                            
              new ReceiveEvent<float>(HandleIncomingData),   // A delegate method for the connection class to call when it receives float data (may be null)
              null,                                          // A delegate method for the connection class to call when it receives string data (may be null)

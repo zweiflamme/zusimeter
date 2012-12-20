@@ -2279,7 +2279,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CMainWindow";
-            this.Text = "ZusiMeter - v0.4";
+            this.Text = "ZusiMeter - v0.5";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.CMainWindow_Load);
             this.Click += new System.EventHandler(this.CMainWindow_Click);
