@@ -1,0 +1,42 @@
+LIZENZ FÜR ZUSI-TCP-SCHNITTSTELLE FÜR .NET
+
+Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE,
+sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK.
+
+In gar keinem Fall ist der Autor verantwortlich für irgendwelche Schäden, direkter oder indirekter Art,
+Verlust von Geschäftsvorhaben und dem dadurch verursachten Verlust oder einer anderen Beschädigung. Selbst dann nicht,
+wenn der Autor zuvor über mögliche entstehende Schäden in Kenntnis gesetzt wurde. Der Benutzer ist verpflichtet,
+tägliche Sicherungen seiner Daten zu machen, so dass die Daten bei Verlust jederzeit wieder hergestellt werden können.
+
+Die Software darf nirgends eingesetzt, installiert und betrieben werden, wo durch Ausfall Menschen zu Schaden kommen
+können oder erheblicher Schaden oder Gefahren verursacht werden können.
+
+Diese Software ist lizensiert entweder als "Freeware" oder als "Shareware" abhängig vom Umfeld, in dem sie eingesetzt wird.
+
+Die Software ist Freeware:
+Für private Anwender, wenn der Computer ausschließlich für private Zwecke zu Hause benutzt wird, für staatlich
+kontrollierte Lehranstalten (Schulen), gemeinnützige Organisationen, Hilfsorganisationen oder Bibliotheken. "Freeware"
+bedeutet, dass für das Programm keine Registrierung notwendig ist, es muss keine Lizenz erworben werden; im Zweifelsfall
+kontaktieren Sie bitte den Autor. 
+
+Die Software ist Shareware: 
+Ist Ihr Benutzerumfeld nicht im oberen Abschnitt erwähnt, wird von einem kommerziellen Umfeld ausgegangen und die Software
+ist für Sie lizensiert als "Shareware". Die Bedeutung von "Shareware" ist in diesem Fall: Sie können die Software bis zu
+30 Tage lang testen. Danach ist es erforderlich, eine Lizenz zu erwerben oder den Gebrauch der Software einzustellen und
+sie von allen Datenträgern zu löschen. Setzen Sie sich zum Erwerb der Lizenz mit dem Programmautor in Verbindung. 
+Die Software ist Eigentum des Autors. Dekompilierung oder Deassembilierung ist strengstens verboten. Veränderungen an der
+Software, Dokumentation oder dem Verteilungsarchiv sind strengstens verboten und verletzen das Copyright des Autors.
+
+Es ist erlaubt, die Software auf Bücher- oder Magazin-CDs weiterzugeben, ohne die vorherige Erlaubnis des Autors einzuholen.
+Der Autor muss jedoch darüber informiert werden.
+
+Private und nicht kommerzielle Weitergabe ist erlaubt, solange keine Kosten dafür erhoben werden. Es ist keine Information
+des Autors notwendig.
+
+Die Software darf auf keinen Fall ohne ausdrückliche schriftliche Genehmigung des Autors zum Download auf Internetseiten
+angeboten werden. Ein Link zur Webseite des Autors ist erlaubt und bedarf keiner Genehmigung durch den Autor.
+
+Das Copyright und das Urheberrecht dieser Software liegt bei Andreas Karg.
+
+Kontakt:
+AKarg@fahrpult.de

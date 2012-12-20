@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zusi-Datenausgabe</name>
+    </assembly>
+    <members>
+        <member name="T:Zusi_Datenausgabe.ZusiData`2">
+            <summary>
+            Die Wörterbuch-Klasse, in der beispielsweise die ID-Liste umgesetzt ist.
+            </summary>
+            <typeparam name="TMeasure">Der Schlüssel-Parameter. (ID-Liste: Name der Größe)</typeparam>
+            <typeparam name="TValue">Der Wert-Parameter. (ID-Liste: Die ID-Nummer der Größe)</typeparam>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiData`2.GetEnumerator">
+            <summary>
+            Gibt den Enumerator des zugrundeliegenden Dictionary zurück.
+            </summary>
+            <returns>Der Enumerator des zugrundeliegenden Dictionary.</returns>
+        </member>
+        <member name="P:Zusi_Datenausgabe.ZusiData`2.Item(`0)">
+            <summary>
+            Enthält die generischen Werte.
+            </summary>
+            <param name="id">Die ID des Werts.</param>
+            <returns>Einen generischen Wert.</returns>
+        </member>
+        <member name="T:Zusi_Datenausgabe.ReceiveEvent`1">
+            <summary>
+            Der Delegat-Typ, der für die Ereignisbehandlung nötig ist.
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:Zusi_Datenausgabe.DataSet`1">
+            <summary>
+            Struktur, über die Datensätze an das Anwenderprogramm übergeben werden.
+            </summary>
+            <typeparam name="T">Der Datentyp für den Zusi-Datensatz. Single, String oder Byte[]</typeparam>
+        </member>
+        <member name="M:Zusi_Datenausgabe.DataSet`1.#ctor(System.Int32,`0)">
+            <summary>
+            Ein ganz normaler Konstruktor.
+            </summary>
+            <param name="id">Die ID-Nummer der Messgröße</param>
+            <param name="value">Der neue Wert der Messgröße</param>
+        </member>
+        <member name="P:Zusi_Datenausgabe.DataSet`1.Id">
+            <summary>
+            Die ID-Nummer, die Zusi für die jeweilige Messgröße verwendet.
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.DataSet`1.Value">
+            <summary>
+            Der neue Wert der Messgröße.
+            </summary>
+        </member>
+        <member name="T:Zusi_Datenausgabe.ZusiTcpConn">
+            <summary>
+            Das Kernstück der Zusi-TCP-Schnittstelle.
+            <para>Schritte bei der Verwendung:
+            <list type="bullet">
+            <item><description>Man benötigt wahlweise eine Windows Forms-Anwendung oder ein anderes Objekt, das die
+            <see cref="T:System.ComponentModel.ISynchronizeInvoke"/>-Schnittstelle implementiert.</description></item>
+            
+            <item><description>Ereignismethoden innerhalb der Klasse des Windows-Fensters oder des Schnittstellenobjekts implementieren.
+            Diese müssen dem Delegaten Zusi_Datenausgabe.Dataset.ReceiveEvent entsprechen.
+            Die Schnittstelle benutzt die Datentypen <see cref="T:System.Single"/>, <see cref="T:System.String"/> und <c>Byte[]</c>.</description></item>
+            
+            <item><description>Instanz der Klasse erzeugen (<see cref="T:Zusi_Datenausgabe.ZusiTcpConn"/>). Für Fahrpulte wird 
+            die Priorität "High" empfohlen. Als Parameter für SynchronizesObject und die Handler-Delegaten das Windows-Fenster
+            bzw. die Ereignismethoden angeben.</description></item>
+            <item><description>Der Eigenschaft RequestedData (<see cref="P:Zusi_Datenausgabe.ZusiTcpConn.RequestedData"/>) die benötigten Größen als IDs hinzufügen.
+            Bei Bedarf können die ID-Nummern aus dem deutschen Klartextnamen wie in der Zusi-Dokumentation(z.B. "Geschwindigkeit") direkt aus der Eigenschaft
+            IDs (<see cref="P:Zusi_Datenausgabe.ZusiTcpConn.Ids"/>) entnommen werden.</description></item>
+            <item><description>Per Connect-Methode (<see cref="M:Zusi_Datenausgabe.ZusiTcpConn.Connect(System.String,System.Int32)"/>) die Verbindung zum TCP-Server herstellen.</description></item>
+            <item><description>Sobald von Zusi Daten kommen, werden diese automatisch aufbereitet. Für jeden empfangenen Wert
+            wird die zum jeweiligen Typ gehörige Ereignismethode aufgerufen. Dort kann mit den Daten beliebig weiter verfahren werden.</description></item>
+            </list></para>
+            </summary>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpConn.#ctor(System.String,Zusi_Datenausgabe.ClientPriority,Zusi_Datenausgabe.ReceiveEvent{System.Single},Zusi_Datenausgabe.ReceiveEvent{System.String},Zusi_Datenausgabe.ReceiveEvent{System.Byte[]})">
+            <summary>
+            Der Konstruktor für die ZusiTCPConn-Klasse. 
+            </summary>
+            <param name="clientId">Der Name des Clients. Bspw. "Am Hansi sei Broggramm"</param>
+            <param name="priority">Die Priorität des Clients. Beeinflusst die 
+            Aktualisierungsraten der Datensätze. Für Fahrpultanwendungen wird "High" empfohlen.</param>
+            <param name="floatHandler">Ein Ereignishandler, der Zusi_Datenausgabe.Dataset.ReceiveEvent entspricht und Daten mit Fließkommawerten annimmt.</param>
+            <param name="stringHandler">Ein Ereignishandler, der Zusi_Datenausgabe.Dataset.ReceiveEvent entspricht und Daten mit Strings annimmt.</param>
+            <param name="byteHandler">Ein Ereignishandler, der Zusi_Datenausgabe.Dataset.ReceiveEvent entspricht und Daten mit Byte-Arrays annimmt</param>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpConn.Connect(System.String,System.Int32)">
+            <summary>
+            Stellt eine Verbindung zum TCP-Server her.
+            </summary>
+            <param name="hostName">Enthält den Hostnamen oder die IP-Adresse, unter der der TCP-Server erreichbar ist.</param>
+            <param name="port">Der Port, unter dem der TCP-Server erreichbar ist.</param>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpConn.Disconnnect">
+            <summary>
+            Trennt die Verbindung zum TCP-Server.
+            </summary>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpConn.RequestData(System.String)">
+            <summary>
+            Fügt aRequestedData einen Eintrag mit dem angegebenen Messgrößennamen hinzu. Kurzform für TCP.RequestedData.Add(TCP.IDs[Name]);.
+            </summary>
+            <param name="name">Der Name der Messgröße</param>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpConn.RequestData(System.Int32)">
+            <summary>
+            Fügt aRequestedData einen Eintrag mit der angegebenen Messgrößen-ID hinzu. Kurzform für TCP.RequestedData.Add(ID);.
+            </summary>
+            <param name="id">Die ID-Nummer der Messgröße</param>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpConn.Dispose">
+            <summary>
+            Entsorgt die TCP-Verbindung
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.ZusiTcpConn.ClientId">
+            <summary>
+            Der angegebene Name des Clients.
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.ZusiTcpConn.Ids">
+            <summary>
+            Enthält eine vollständige Liste aller Größen, die von Zusi ausgegeben werden, als Schlüssel-Wert-Paare. Schlüssel ist der deutsche Klartextname der Größe. <c>IDs["Geschwindigkeit"]</c> gibt also den Wert <c>01</c> zurück.
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.ZusiTcpConn.ReverseIds">
+            <summary>
+            Die Umkehrung der Eigenschaft IDs: Zu den einzelnen ID-Nummern kann der jeweilige Name abgerufen werden.
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.ZusiTcpConn.ConnectionState">
+            <summary>
+            Enthält den aktuellen Verbindungszustand der Schnittstelle.
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.ZusiTcpConn.ClientPriority">
+            <summary>
+            Enthält die Priorität des Clients.
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.ZusiTcpConn.RequestedData">
+            <summary>
+            Eine Liste aller von Zusi angeforderten Größen. Fügen Sie hier die ID-Nummern der Größen hinzu, 
+            bevor Sie eine Verbindung zum TCP-Server herstellen. <seealso cref="P:Zusi_Datenausgabe.ZusiTcpConn.Ids"/>
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.ZusiTcpConn.Item(System.String)">
+            <summary>
+            Gibt die ID-Nummer der im Parameter in Klartext angegebenen Messgröße zurück.
+            </summary>
+            <param name="name">Der Name der Messgröße</param>
+            <returns>Die zugehörige ID-Nummer</returns>
+        </member>
+        <member name="P:Zusi_Datenausgabe.ZusiTcpConn.Item(System.Int32)">
+            <summary>
+            Gibt den Namen der im Parameter angegebenen ID-Nummer als Klartext zurück.
+            </summary>
+            <param name="id">Die ID-Nummer der Messgröße</param>
+            <returns>Der Name der Messgröße</returns>
+        </member>
+        <member name="T:Zusi_Datenausgabe.ConnectionState">
+            <summary>
+            Der Zustand, in dem sich die Verbindung befindet.
+            </summary>
+        </member>
+        <member name="F:Zusi_Datenausgabe.ConnectionState.Disconnected">
+            <summary>
+            Es besteht keine Verbindung zum TCP-Server.
+            </summary>
+        </member>
+        <member name="F:Zusi_Datenausgabe.ConnectionState.Connected">
+            <summary>
+            Eine Verbindung zum TCP-Server wurde hergestellt.
+            </summary>
+        </member>
+        <member name="F:Zusi_Datenausgabe.ConnectionState.Error">
+            <summary>
+            Ein Fehler ist aufgetreten. Verbindung trennen und wieder herstellen, um das Problem zu lösen.
+            </summary>
+        </member>
+        <member name="T:Zusi_Datenausgabe.ClientPriority">
+            <summary>
+            Stellt die Priorität des Clients bei der Datenausgabe dar. Beeinflusst die Frequenz, mit der aktualisierte Daten verschickt werden.
+            </summary>
+        </member>
+        <member name="F:Zusi_Datenausgabe.ClientPriority.Undefined">
+            <summary>
+            Undefinierte Priorität.
+            </summary>
+        </member>
+        <member name="F:Zusi_Datenausgabe.ClientPriority.Master">
+            <summary>
+            Reserviert für Zusi.
+            </summary>
+        </member>
+        <member name="F:Zusi_Datenausgabe.ClientPriority.High">
+            <summary>
+            Hohe Priorität für Fahrpulte und Anzeigeprogramme.
+            </summary>
+        </member>
+        <member name="F:Zusi_Datenausgabe.ClientPriority.Medium">
+            <summary>
+            Mittlere Priorität
+            </summary>
+        </member>
+        <member name="F:Zusi_Datenausgabe.ClientPriority.Low">
+            <summary>
+            Niedrige Priorität
+            </summary>
+        </member>
+        <member name="F:Zusi_Datenausgabe.ClientPriority.RealTime">
+            <summary>
+            Maximalstesteste Priorität überhauptst.
+            </summary>
+        </member>
+        <member name="T:Zusi_Datenausgabe.DatenIDs">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.DatenIDs.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Zusi_Datenausgabe.DatenIDs.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Zusi_Datenausgabe.ZusiTcpException">
+            <summary>
+            Wird geschmissen, wenn bei der Verbindung zum TCP-Server ein Fehler auftritt.
+            </summary>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpException.#ctor(System.String)">
+            <summary>
+            Standardkonstruktor
+            </summary>
+            <param name="msg">Nachricht</param>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpException.#ctor">
+            <summary>
+            Noch ein Standardkonstruktor
+            </summary>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpException.#ctor(System.String,System.Exception)">
+            <summary>
+            Konstruktor, der eine Nachricht und eine Ausnahme annimmt.
+            </summary>
+            <param name="msg">Nachricht</param>
+            <param name="e">Ausnahme</param>
+        </member>
+        <member name="M:Zusi_Datenausgabe.ZusiTcpException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialisierungskonstruktor
+            </summary>
+            <param name="serializationInfo">Serialisierungsinfo</param>
+            <param name="streamingContext">Streaming context</param>
+        </member>
+    </members>
+</doc>
