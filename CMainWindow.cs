@@ -652,22 +652,31 @@ namespace ZusiMeter
             }
             else if (dataSet.Id == MyTCPConnection["Schalter Sifa"])
             {
+                //DEBUG
+                //if (dataSet.Value > 0)
+                //{
+                //    schaltersifa++;
+                //    lblDebugsifaschalter.Text = schaltersifa.ToString();
+                //}
                 if (dataSet.Value > 0)
                 {
                     schaltersifa++;
-                    if(schaltersifa == 1)
+                    lblDebugsifaschalter.Text = schaltersifa.ToString();
+                    if (schaltersifa == 1)
+                    {
                         timerResetSifaschalter.Start();
-                    lblDebugsifaschalter.Text = schaltersifa.ToString();
-                }
-                else if (schaltersifa >= 2)
-                {
-                    lblDebugsifaschalter.Text = schaltersifa.ToString();
-                    schaltersifa = 0;
-                    timerResetSifaschalter.Stop();
-                    SetRR();   
+                        lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
+                    }
+                    else if (schaltersifa == 2)
+                    {
+                        schaltersifa = 0;
+                        timerResetSifaschalter.Stop();
+                        lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
+                        if (cbRailrunner.Checked)  //IMPORTANT - only if cbRailrunner is checked, RR counter will start
+                            SetRR();
+                    }
                 }
             }
-            
         }
         #endregion
 
@@ -1583,6 +1592,8 @@ namespace ZusiMeter
         {
             schaltersifa = 0;
             lblDebugsifaschalter.Text = schaltersifa.ToString();
+            timerResetSifaschalter.Enabled = false;
+            lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
         }
 
         private void timerCheckSifaschalter_Tick(object sender, EventArgs e)

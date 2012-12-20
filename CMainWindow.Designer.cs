@@ -193,6 +193,7 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
+            this.lblDebugtimerresetsifa = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -1388,6 +1389,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.lblDebugtimerresetsifa);
             this.grpDebug.Controls.Add(this.label8);
             this.grpDebug.Controls.Add(this.lblDebugsifaschalter);
             this.grpDebug.Controls.Add(this.btnDebugPlaysound);
@@ -2239,8 +2241,17 @@
             // 
             // timerResetSifaschalter
             // 
-            this.timerResetSifaschalter.Interval = 1000;
+            this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
+            // 
+            // lblDebugtimerresetsifa
+            // 
+            this.lblDebugtimerresetsifa.AutoSize = true;
+            this.lblDebugtimerresetsifa.Location = new System.Drawing.Point(12, 382);
+            this.lblDebugtimerresetsifa.Name = "lblDebugtimerresetsifa";
+            this.lblDebugtimerresetsifa.Size = new System.Drawing.Size(75, 13);
+            this.lblDebugtimerresetsifa.TabIndex = 29;
+            this.lblDebugtimerresetsifa.Text = "timerResetSifa";
             // 
             // CMainWindow
             // 
@@ -2478,6 +2489,7 @@
         private System.Windows.Forms.Timer timerResetSifaschalter;
         private System.Windows.Forms.Label lblDebugsifaschalter;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblDebugtimerresetsifa;
 
     }
 
