@@ -49,13 +49,21 @@ namespace ZusiMeter
              "ZusiMeter - v" + Assembly.GetExecutingAssembly().GetName().Version.ToString(), // Name and version, showing up in server's list
              ClientPriority.Low);
 
-            MyTCPConnection.FloatReceived += TCPConnection_FloatReceived;
             MyTCPConnection.ErrorReceived += TCPConnection_ErrorReceived;
+            MyTCPConnection.FloatReceived += TCPConnection_FloatReceived;            
+            //MyTCPConnection.BoolReceived += TCPConnection_BoolReceived;
+            //MyTCPConnection.IntReceived += TCPConnection_IntReceived;
+            //MyTCPConnection.StringReceived += TCPConnection_StringReceived;
+            //MyTCPConnection.DateTimeReceived += TCPConnection_DateTimeReceived;
+            //MyTCPConnection.BrakeConfigReceived += TCPConnection_BrakeConfigReceived;
+            //MyTCPConnection.DoorsReceived += TCPConnection_DoorsReceived;
+            //MyTCPConnection.PZBReceived += TCPConnection_PZBReceived;
+
 
             #region RequestData
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
 
-            //MyTCPConnection.RequestData(2654); // "Bremshundertstel"
+            MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             //MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
             //MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
             //MyTCPConnection.RequestData(2564); // "Druck Hauptluftbehälter"
@@ -305,7 +313,8 @@ namespace ZusiMeter
         {
             switch (data.Id)
             {
-            case 2561:
+                #region Geschwindigkeit
+                case 2561:
                 {
                     geschwindigkeit = data.Value;
                         vmps = geschwindigkeit / 3.6;
@@ -342,10 +351,26 @@ namespace ZusiMeter
                         scharf = true;
                         timerFlag.Start(); // TODO: flag shall not hide after x seconds, but only after accelerating again
                     }
+
+                    break;
                 }
-                break;         
-                default:                    
-                break;
+                #endregion
+
+                #region Bremshundertstel
+                case 2654: //Bremshundertstel
+                {
+                    if (data.Value > 0)  //TODO: do we still need this check?
+                    {
+                        setStatus("Verbunden");
+
+                        brh = Convert.ToDouble(data.Value); //TODO: do we need to convert here? what if brh were a float?
+                        lblBrh.Text = String.Format("{0:0}", brh);
+                    }
+                    break;
+                }
+                #endregion
+
+
             }
         }
         private void HandleIncomingData(DataSet<float> dataSet)
