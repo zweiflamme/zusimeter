@@ -194,6 +194,7 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
+            this.lblTime = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -1390,6 +1391,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.lblTime);
             this.grpDebug.Controls.Add(this.label9);
             this.grpDebug.Controls.Add(this.lblDebugtimerresetsifa);
             this.grpDebug.Controls.Add(this.label8);
@@ -2264,6 +2266,15 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Location = new System.Drawing.Point(8, 313);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(31, 13);
+            this.lblTime.TabIndex = 20;
+            this.lblTime.Text = "--:--:--";
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2501,6 +2512,7 @@
         private System.Windows.Forms.CheckBox cbHidesettings;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox cbSettingsSeparate;
+        private System.Windows.Forms.Label lblTime;
 
     }
 

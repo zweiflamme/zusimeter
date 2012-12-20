@@ -54,7 +54,7 @@ namespace ZusiMeter
             MyTCPConnection.BoolReceived += TCPConnection_BoolReceived;
             //MyTCPConnection.IntReceived += TCPConnection_IntReceived;
             //MyTCPConnection.StringReceived += TCPConnection_StringReceived;
-            //MyTCPConnection.DateTimeReceived += TCPConnection_DateTimeReceived;
+            MyTCPConnection.DateTimeReceived += TCPConnection_DateTimeReceived;
             //MyTCPConnection.BrakeConfigReceived += TCPConnection_BrakeConfigReceived;
             //MyTCPConnection.DoorsReceived += TCPConnection_DoorsReceived;
             //MyTCPConnection.PZBReceived += TCPConnection_PZBReceived;
@@ -73,11 +73,12 @@ namespace ZusiMeter
 
             MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
             MyTCPConnection.RequestData(2576); // "Fahrstufe"
-
-            //MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
+            MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
             
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
-            MyTCPConnection.RequestData(2596); // "LM Sifa "
+            MyTCPConnection.RequestData(2596); // "LM Sifa"
+
+            MyTCPConnection.RequestData(2610); // "LM Uhrzeit (digital)"
             
             
             //MyTCPConnection.RequestData(2646); // "Türen"
@@ -411,7 +412,15 @@ namespace ZusiMeter
                     break;
                 }
                 #endregion
-                
+
+                #region Schalter Führerbremsventil // NOT YET NEEDED
+                case 2612:
+                {
+                    lblFbventil.Text = data.Value.ToString();
+                    break;
+                }
+                #endregion
+
                 #region Fahrstufe
                 case 2576:
                 {
@@ -432,6 +441,16 @@ namespace ZusiMeter
                 #region LM Sifa
                 case 2596:
                     {
+                        if (data.Value) // if true, LM Sifa is on 
+                        {
+                            lblSifa.Text = "SIFA";
+                            lblSifa.BackColor = Color.White;
+                        }
+                        else
+                        {
+                            lblSifa.Text = "";
+                            lblSifa.BackColor = Color.DarkGray;
+                        }
                         break;
                     }
                 #endregion
@@ -439,43 +458,49 @@ namespace ZusiMeter
                 #region LM Schleudern
                 case 2599:
                     {
-                        lblFlag.Text = "Schleudern!";
-                        lblFlag.Visible = true;
-                        timerFlag.Start();
+                        if (data.Value) // if true, LM Schleudern is on
+                        {
+                            lblFlag.Text = "Schleudern!";
+                            lblFlag.Visible = true;
+                            //timerFlag.Start(); //TEST: TODO: do we need the timer?
+                        }
+                        else
+                        {
+                            lblFlag.Text = "";
+                            lblFlag.Visible = false;
+                        }
                         break;
                     }
                 #endregion
+
+                default:
+                    break;
             }
         }
+
+        private void TCPConnection_DateTimeReceived(object sender, DataSet<DateTime> data) // Handles MyTCPConnection.DateTimeReceived 
+        {
+            switch (data.Id)
+            {
+                #region LM Uhrzeit (digital)
+                case 2610:
+                    {
+                        lblTime.Text = string.Format("{0}", data.Value.ToLongTimeString());
+                        break;
+                    }
+                #endregion
+
+                default:
+                    break;
+            }
+            
+
+        }
+
         private void HandleIncomingData(DataSet<float> dataSet)
         {
 
-        //    
-        //    else if (dataSet.Id == MyTCPConnection["Schalter Führerbremsventil"])
-        //    {
-        //        lblFbventil.Text = dataSet.Value.ToString();
-        //    }
-        //    
-        //    else if (dataSet.Id == MyTCPConnection["LM Sifa"]) // 2596
-        //    {
-        //        if (dataSet.Value > 0)
-        //        {
-        //            lblSifa.Text = "SIFA";
-        //            lblSifa.BackColor = Color.White;
-        //        }
-        //        else
-        //        {
-        //            lblSifa.Text = "";
-        //            lblSifa.BackColor = Color.DarkGray;
-        //        }
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["Fahrstufe"] && cbFahrstufe.Checked == true) // 2576
-        //    {
-        //        if (dataSet.Value > -50 | dataSet.Value < 50) //TODO: check if useful; what's the maximum value?
-        //            lblFahrstufe.Text = String.Format("{0:0}", dataSet.Value);
-        //        else
-        //            lblFahrstufe.Text = "--";
-        //    }
+        
         //    else if (dataSet.Id == MyTCPConnection["Reisezug"])
         //    {
         //        if (dataSet.Value == 0) //if Güterzug
