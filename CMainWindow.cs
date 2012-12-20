@@ -301,16 +301,51 @@ namespace ZusiMeter
             btnConnect.Text = "Connect";
         }
 
-        private void TCPConnection_FloatReceived(object sender, DataSet<float> data) // Handles MyTCPConnection.FloatReceived   
+        private void  TCPConnection_FloatReceived(object sender, DataSet<float> data) // Handles MyTCPConnection.FloatReceived   
         {
             switch (data.Id)
             {
-                case 2561: //Geschwindigkeit
-                    lblV.Text = String.Format("Geschwindigkeit: {0} km/h ", data.Value.ToString("0.00")); // two decimals 
-                    //MessageBox.Show("DEBUG: case 2561 (float) received");
-                    break;
-                default:
-                    break;
+            case 2561:
+                {
+                    geschwindigkeit = data.Value;
+                        vmps = geschwindigkeit / 3.6;
+
+                        //vAlt = vNeu;
+                        //vNeu = geschwindigkeit;
+                        //deltaV = vNeu - vAlt;
+
+                        lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
+
+                    if (geschwindigkeit > 0.1) hasMoved = true;
+
+                    //TEST
+                    if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false) 
+                    {
+                        if (settingsAreSeparated)
+                            frmSettings.Hide();
+                        else
+                            pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden                        
+                    }
+
+                    if (hasMoved == true && geschwindigkeit == 0) //if train has stopped
+                    {
+                        hasMoved = false;
+                        alwaysShowSettings = false; //TEST: reset so that settings can autohide again
+                    }
+
+                    maxVerz = Convert.ToDouble(tbVerz.Text);
+                    //TODO: check sharp braking by by determining deltaV
+                    if (deltaV < -maxVerz) //if deceleration was greater than user set value maxVerz
+                    {
+                        lblFlag.Visible = true;
+                        lblFlag.Text = "scharf angehalten";
+                        scharf = true;
+                        timerFlag.Start(); // TODO: flag shall not hide after x seconds, but only after accelerating again
+                    }
+                }
+                break;         
+                default:                    
+                break;
             }
         }
         private void HandleIncomingData(DataSet<float> dataSet)
