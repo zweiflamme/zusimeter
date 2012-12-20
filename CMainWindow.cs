@@ -321,8 +321,10 @@ namespace ZusiMeter
                     //TEST
                     if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false) 
                     {
-                        pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden
-                        
+                        if (settingsAreSeparated)
+                            frmSettings.Hide();
+                        else
+                            pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden                        
                     }
 
                     if (hasMoved == true && geschwindigkeit == 0) //if train has stopped
@@ -1084,6 +1086,22 @@ namespace ZusiMeter
 
                 }
             }
+            else if (settingsAreSeparated == true)
+            {
+                //TEST
+                if (hasMoved)
+                {
+                    alwaysShowSettings = true; //when we're moving, we do NOT want to autohide at the moment
+                    //pnlRight.Visible = !pnlRight.Visible;
+                    frmSettings.Visible = !frmSettings.Visible;
+                }
+                else
+                {
+                    alwaysShowSettings = false;
+                    //pnlRight.Visible = !pnlRight.Visible;
+                    frmSettings.Visible = !frmSettings.Visible;
+                }
+            }
 
             FokusAnZusi();
         }
@@ -1647,7 +1665,8 @@ namespace ZusiMeter
 
         private void cbSettingsSeparate_CheckedChanged(object sender, EventArgs e)
         {
-            cbHidesettings.Enabled = !cbSettingsSeparate.Checked; //settings shall not be autohidden if on a separate form
+            bool hideSettingsCheckedOLD = cbHidesettings.Checked; //stores the user checked box value
+            cbHidesettings.Checked = !cbSettingsSeparate.Checked; //settings shall not be autohidden if on a separate form
 
             //TEST
             Point pnlRightOldPosition = new Point(pnlRight.Location.X, pnlRight.Location.Y);
@@ -1677,16 +1696,12 @@ namespace ZusiMeter
                 
                 this.pnlRight.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
                 this.Controls.Add(pnlRight);
+                cbHidesettings.Checked = hideSettingsCheckedOLD; // restore value from before settings were separated
                 this.pnlRight.Visible = true;
-
-                //pnlRight.Controls.Add(pnlSettings); // adding settings panel to main form again
+                
                 settingsAreSeparated = false;
-                //this.pnlRight.Visible = true;
 
-                //TEST: should hide the settings form
-                //TODO: can we close and / or dispose it?
                 frmSettings.Hide();
-               
             }
         }
 
