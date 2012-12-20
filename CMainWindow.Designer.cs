@@ -285,7 +285,7 @@
             this.btnSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(3, 539);
+            this.btnSettings.Location = new System.Drawing.Point(3, 562);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(118, 25);
             this.btnSettings.TabIndex = 6;
@@ -1391,7 +1391,6 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.grpDebug.Controls.Add(this.lblTime);
             this.grpDebug.Controls.Add(this.label9);
             this.grpDebug.Controls.Add(this.lblDebugtimerresetsifa);
             this.grpDebug.Controls.Add(this.label8);
@@ -1598,7 +1597,7 @@
             this.btnNacht.AutoSize = true;
             this.btnNacht.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNacht.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNacht.Location = new System.Drawing.Point(3, 479);
+            this.btnNacht.Location = new System.Drawing.Point(3, 502);
             this.btnNacht.Name = "btnNacht";
             this.btnNacht.Size = new System.Drawing.Size(118, 23);
             this.btnNacht.TabIndex = 15;
@@ -1683,15 +1682,18 @@
             this.pnlDataGrunddaten.Controls.Add(this.lblMeter, 0, 1);
             this.pnlDataGrunddaten.Controls.Add(this.lblm, 1, 1);
             this.pnlDataGrunddaten.Controls.Add(this.lblTueren, 0, 4);
+            this.pnlDataGrunddaten.Controls.Add(this.lblTime, 0, 6);
             this.pnlDataGrunddaten.Location = new System.Drawing.Point(3, 74);
             this.pnlDataGrunddaten.Name = "pnlDataGrunddaten";
-            this.pnlDataGrunddaten.RowCount = 5;
+            this.pnlDataGrunddaten.RowCount = 7;
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlDataGrunddaten.Size = new System.Drawing.Size(109, 76);
+            this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.pnlDataGrunddaten.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDataGrunddaten.Size = new System.Drawing.Size(109, 99);
             this.pnlDataGrunddaten.TabIndex = 16;
             // 
             // lblFahrstufenschalter
@@ -1771,7 +1773,7 @@
             this.pnlDataBremsen.Controls.Add(this.lblHLBwert, 1, 6);
             this.pnlDataBremsen.Controls.Add(this.lblhbl, 0, 7);
             this.pnlDataBremsen.Controls.Add(this.lblHBLwert, 1, 7);
-            this.pnlDataBremsen.Location = new System.Drawing.Point(3, 298);
+            this.pnlDataBremsen.Location = new System.Drawing.Point(3, 321);
             this.pnlDataBremsen.Name = "pnlDataBremsen";
             this.pnlDataBremsen.RowCount = 8;
             this.pnlDataBremsen.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1902,7 +1904,7 @@
             this.pnlDataAFBLZB.Controls.Add(this.lblLZBsollgeschw, 1, 2);
             this.pnlDataAFBLZB.Controls.Add(this.lblLZBzielgeschw, 1, 3);
             this.pnlDataAFBLZB.Controls.Add(this.lblLZBzielweg, 1, 4);
-            this.pnlDataAFBLZB.Location = new System.Drawing.Point(3, 408);
+            this.pnlDataAFBLZB.Location = new System.Drawing.Point(3, 431);
             this.pnlDataAFBLZB.Name = "pnlDataAFBLZB";
             this.pnlDataAFBLZB.RowCount = 5;
             this.pnlDataAFBLZB.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -2041,7 +2043,7 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlLeft.Size = new System.Drawing.Size(124, 567);
+            this.pnlLeft.Size = new System.Drawing.Size(124, 590);
             this.pnlLeft.TabIndex = 19;
             // 
             // pnlDataLZB
@@ -2058,7 +2060,7 @@
             this.pnlDataLZB.Controls.Add(this.lblLZB_G, 0, 0);
             this.pnlDataLZB.Controls.Add(this.lblLZB_Ende, 1, 0);
             this.pnlDataLZB.Controls.Add(this.lblLZB_Ue, 2, 0);
-            this.pnlDataLZB.Location = new System.Drawing.Point(3, 227);
+            this.pnlDataLZB.Location = new System.Drawing.Point(3, 250);
             this.pnlDataLZB.Name = "pnlDataLZB";
             this.pnlDataLZB.RowCount = 2;
             this.pnlDataLZB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -2156,7 +2158,7 @@
             this.pnlDataPZB90.Controls.Add(this.lblPZB_U, 0, 0);
             this.pnlDataPZB90.Controls.Add(this.lblPZB_M, 1, 0);
             this.pnlDataPZB90.Controls.Add(this.lblPZB_O, 2, 0);
-            this.pnlDataPZB90.Location = new System.Drawing.Point(3, 156);
+            this.pnlDataPZB90.Location = new System.Drawing.Point(3, 179);
             this.pnlDataPZB90.Name = "pnlDataPZB90";
             this.pnlDataPZB90.RowCount = 2;
             this.pnlDataPZB90.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -2245,7 +2247,7 @@
             this.btnRailrunner.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnRailrunner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRailrunner.Location = new System.Drawing.Point(3, 508);
+            this.btnRailrunner.Location = new System.Drawing.Point(3, 531);
             this.btnRailrunner.Name = "btnRailrunner";
             this.btnRailrunner.Size = new System.Drawing.Size(118, 25);
             this.btnRailrunner.TabIndex = 21;
@@ -2269,7 +2271,7 @@
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(8, 313);
+            this.lblTime.Location = new System.Drawing.Point(3, 86);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(31, 13);
             this.lblTime.TabIndex = 20;
