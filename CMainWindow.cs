@@ -47,62 +47,61 @@ namespace ZusiMeter
             //we need to define a new connection to the TCP server:
             MyTCPConnection = new ZusiTcpConn(
              "ZusiMeter - v" + Assembly.GetExecutingAssembly().GetName().Version.ToString(), // Name and version, showing up in server's list
-             ClientPriority.High,
-             new ReceiveEvent<float>(HandleIncomingData),   // A delegate method for the connection class to call when it receives float data (may be null)
-             null,                                          // A delegate method for the connection class to call when it receives string data (may be null)
-             null                                           //TODO: need to make use of the new DLL v1.1.6                                                            
-            );
+             ClientPriority.Low);
+
+            MyTCPConnection.FloatReceived += TCPConnection_FloatReceived;
+            MyTCPConnection.ErrorReceived += TCPConnection_ErrorReceived;
 
             #region RequestData
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
 
-            MyTCPConnection.RequestData(2654); // "Bremshundertstel"
-            MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
-            MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
-            MyTCPConnection.RequestData(2564); // "Druck Hauptluftbehälter"
-            MyTCPConnection.RequestData(2579); // "Druck Hilfsluftbehälter"
+            //MyTCPConnection.RequestData(2654); // "Bremshundertstel"
+            //MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
+            //MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
+            //MyTCPConnection.RequestData(2564); // "Druck Hauptluftbehälter"
+            //MyTCPConnection.RequestData(2579); // "Druck Hilfsluftbehälter"
 
-            MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
-            MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
-            MyTCPConnection.RequestData(2599); // "LM Schleudern"     
-            MyTCPConnection.RequestData(2596); // "LM Sifa "
-            MyTCPConnection.RequestData(2576); // "Fahrstufe"
-            MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
-            MyTCPConnection.RequestData(2646); // "Türen"
-            //TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
-            //TODO MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
-            MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
-            MyTCPConnection.RequestData(2616); // "Schalter AFB ein/aus"
-            MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
-            MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
-            MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
-            MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
-            MyTCPConnection.RequestData(2648); // "Reisezug" 
-            MyTCPConnection.RequestData(2647); // "Autopilot"
-            //###PZB-90###//
-            MyTCPConnection.RequestData(2583); // "LM PZB Zugart U"
-            MyTCPConnection.RequestData(2584); // "LM PZB Zugart M"
-            MyTCPConnection.RequestData(2585); // "LM PZB Zugart O"
-            MyTCPConnection.RequestData(2580); // "LM PZB 1000Hz"
-            MyTCPConnection.RequestData(2581); // "LM PZB 500Hz"
-            MyTCPConnection.RequestData(2582); // "LM PZB Befehl"
-            //###//
-            //###LZB###//
-            MyTCPConnection.RequestData(2587); // "LM LZB G"
-            MyTCPConnection.RequestData(2590); // "LM LZB Ende"
-            MyTCPConnection.RequestData(2592); // "LM LZB B"
-            MyTCPConnection.RequestData(2593); // "LM LZB S "
-            MyTCPConnection.RequestData(2594); // "LM LZB Ü"
-            MyTCPConnection.RequestData(2595); // "LM LZB Prüfen"
-            //###//
-            MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
-            //###Uhrzeit###//
-            //MyTCPConnection.RequestData(2570); // "Uhrzeit Stunde"
-            //MyTCPConnection.RequestData(2571); // "Uhrzeit Minute"
-            //MyTCPConnection.RequestData(2572); // "Uhrzeit Sekunde"
-            //###//
-            //###Schalter Sifa for Railrunner activation###//
-            MyTCPConnection.RequestData(2621); //"Schalter Sifa"
+            //MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
+            //MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
+            //MyTCPConnection.RequestData(2599); // "LM Schleudern"     
+            //MyTCPConnection.RequestData(2596); // "LM Sifa "
+            //MyTCPConnection.RequestData(2576); // "Fahrstufe"
+            //MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
+            //MyTCPConnection.RequestData(2646); // "Türen"
+            ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
+            ////TODO MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
+            //MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
+            //MyTCPConnection.RequestData(2616); // "Schalter AFB ein/aus"
+            //MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
+            //MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
+            //MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
+            //MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
+            //MyTCPConnection.RequestData(2648); // "Reisezug" 
+            //MyTCPConnection.RequestData(2647); // "Autopilot"
+            ////###PZB-90###//
+            //MyTCPConnection.RequestData(2583); // "LM PZB Zugart U"
+            //MyTCPConnection.RequestData(2584); // "LM PZB Zugart M"
+            //MyTCPConnection.RequestData(2585); // "LM PZB Zugart O"
+            //MyTCPConnection.RequestData(2580); // "LM PZB 1000Hz"
+            //MyTCPConnection.RequestData(2581); // "LM PZB 500Hz"
+            //MyTCPConnection.RequestData(2582); // "LM PZB Befehl"
+            ////###//
+            ////###LZB###//
+            //MyTCPConnection.RequestData(2587); // "LM LZB G"
+            //MyTCPConnection.RequestData(2590); // "LM LZB Ende"
+            //MyTCPConnection.RequestData(2592); // "LM LZB B"
+            //MyTCPConnection.RequestData(2593); // "LM LZB S "
+            //MyTCPConnection.RequestData(2594); // "LM LZB Ü"
+            //MyTCPConnection.RequestData(2595); // "LM LZB Prüfen"
+            ////###//
+            //MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
+            ////###Uhrzeit###//
+            ////MyTCPConnection.RequestData(2570); // "Uhrzeit Stunde"
+            ////MyTCPConnection.RequestData(2571); // "Uhrzeit Minute"
+            ////MyTCPConnection.RequestData(2572); // "Uhrzeit Sekunde"
+            ////###//
+            ////###Schalter Sifa for Railrunner activation###//
+            //MyTCPConnection.RequestData(2621); //"Schalter Sifa"
             #endregion 
 
         }
@@ -294,8 +293,29 @@ namespace ZusiMeter
         
 
         #region HandleIncomingData
+        private void TCPConnection_ErrorReceived(object sender, ZusiTcpException ex)
+        {
+            System.Windows.Forms.MessageBox.Show(String.Format("An error occured when receiving data: {0}", ex.Message));
+
+            MyTCPConnection.Disconnnect();
+            btnConnect.Text = "Connect";
+        }
+
+        private void TCPConnection_FloatReceived(object sender, DataSet<float> data) // Handles MyTCPConnection.FloatReceived   
+        {
+            switch (data.Id)
+            {
+                case 2561: //Geschwindigkeit
+                    lblV.Text = String.Format("Geschwindigkeit: {0} km/h ", data.Value.ToString("0.00")); // two decimals 
+                    //MessageBox.Show("DEBUG: case 2561 (float) received");
+                    break;
+                default:
+                    break;
+            }
+        }
         private void HandleIncomingData(DataSet<float> dataSet)
         {
+
         //    if (dataSet.Id == MyTCPConnection["Bremshundertstel"]) // 2654
         //    {
         //        if (dataSet.Value > 0)
