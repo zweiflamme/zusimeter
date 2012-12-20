@@ -193,6 +193,7 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
+            this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -1102,6 +1103,7 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.cbSettingsSeparate);
             this.tabDarstellung.Controls.Add(this.cbHidesettings);
             this.tabDarstellung.Controls.Add(this.label1);
             this.tabDarstellung.Controls.Add(this.cbFokusFahrtzurueck);
@@ -1181,7 +1183,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 57);
+            this.label3.Location = new System.Drawing.Point(5, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 5;
@@ -1189,7 +1191,7 @@
             // 
             // numSifagroesse
             // 
-            this.numSifagroesse.Location = new System.Drawing.Point(67, 50);
+            this.numSifagroesse.Location = new System.Drawing.Point(67, 56);
             this.numSifagroesse.Maximum = new decimal(new int[] {
             3,
             0,
@@ -1216,7 +1218,7 @@
             // 
             this.panel1.Controls.Add(this.rbDarstMeter);
             this.panel1.Controls.Add(this.rbDarstKm);
-            this.panel1.Location = new System.Drawing.Point(7, 22);
+            this.panel1.Location = new System.Drawing.Point(7, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(131, 23);
             this.panel1.TabIndex = 3;
@@ -1248,7 +1250,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 6);
+            this.label2.Location = new System.Drawing.Point(4, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 0;
@@ -2250,6 +2252,19 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
+            // cbSettingsSeparate
+            // 
+            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
+            this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 172);
+            this.cbSettingsSeparate.Name = "cbSettingsSeparate";
+            this.cbSettingsSeparate.Size = new System.Drawing.Size(118, 35);
+            this.cbSettingsSeparate.TabIndex = 23;
+            this.cbSettingsSeparate.Text = "Einstellungen in separatem Fenster";
+            this.cbSettingsSeparate.UseVisualStyleBackColor = false;
+            this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2486,6 +2501,7 @@
         private System.Windows.Forms.Label lblDebugtimerresetsifa;
         private System.Windows.Forms.CheckBox cbHidesettings;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox cbSettingsSeparate;
 
     }
 

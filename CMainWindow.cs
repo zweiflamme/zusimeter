@@ -1627,6 +1627,23 @@ namespace ZusiMeter
                 pnlRight.Visible = false;
         }
 
+        private void cbSettingsSeparate_CheckedChanged(object sender, EventArgs e)
+        {
+            cbHidesettings.Enabled = !cbSettingsSeparate.Checked; //settings shall not be autohidden if on a separate form
+
+            if (cbSettingsSeparate.Checked)
+            {
+                SettingsForm frmSettings = new SettingsForm();
+                //TODO: does not yet work, why? Location is determined correctly
+                frmSettings.Location = new Point(this.Location.X + this.Width + 10, this.Location.Y);
+
+                pnlRight.Controls.Remove(pnlSettings); // removing settings panel from main form
+                frmSettings.Controls.Add(pnlSettings); //adding settings panel to settings form
+
+                frmSettings.Show();
+            }
+        }
+
         
           
     }
