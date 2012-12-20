@@ -229,6 +229,7 @@ namespace ZusiMeter
 
         //TODO: TEST: is this the best place?
         SettingsForm frmSettings = new SettingsForm();
+        
     
 
         #endregion
@@ -1641,33 +1642,46 @@ namespace ZusiMeter
             
         }
        
+        
 
         private void cbSettingsSeparate_CheckedChanged(object sender, EventArgs e)
         {
             cbHidesettings.Enabled = !cbSettingsSeparate.Checked; //settings shall not be autohidden if on a separate form
 
+            //TEST
+            Point pnlRightOldPosition = new Point(pnlRight.Location.X, pnlRight.Location.Y);
             
 
             if (cbSettingsSeparate.Checked)
             {
                 //TODO: does not yet work, why? Location is determined correctly
                 frmSettings.StartPosition = FormStartPosition.Manual;
-                frmSettings.Location = new Point(this.Location.X + this.Width + 10, this.Location.Y);
+                frmSettings.Location = new Point(this.Location.X + 200, this.Location.Y);
 
-                pnlRight.Controls.Remove(pnlSettings); // removing settings panel from main form
+                this.Controls.Remove(pnlSettings); // removing settings panel from main form
                 frmSettings.Controls.Add(pnlSettings); //adding settings panel to settings form
 
+                //TEST
+                pnlRight.Location = new Point(0, 0);
+
                 settingsAreSeparated = true;
+                //TEST
                 this.pnlRight.Visible = false;
 
                 frmSettings.Show();
                 
             }
-            else
+            else //if user does not want separated settings 
             {
-                pnlRight.Controls.Add(pnlSettings); // adding settings panel to main form again
-                settingsAreSeparated = false;
+                //TEST
+                this.pnlRight.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
+                this.pnlRight.AutoSize = false;
+                this.Controls.Add(pnlSettings);
                 this.pnlRight.Visible = true;
+
+                //pnlRight.Controls.Add(pnlSettings); // adding settings panel to main form again
+                settingsAreSeparated = false;
+                //this.pnlRight.Visible = true;
 
                 //TEST: should hide the settings form
                 //TODO: can we close and / or dispose it?
