@@ -97,10 +97,9 @@
             this.lblFahrschneutralbei = new System.Windows.Forms.Label();
             this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
+            this.cbHidesettings = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbFokusFahrtzurueck = new System.Windows.Forms.CheckBox();
-            this.btnFarbeTag = new System.Windows.Forms.Button();
-            this.btnFarbeNacht = new System.Windows.Forms.Button();
             this.cbTopmost = new System.Windows.Forms.CheckBox();
             this.cbFokusImmerzurueck = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -121,6 +120,8 @@
             this.lblFlag = new System.Windows.Forms.Label();
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.grpDebug = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblDebugtimerresetsifa = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblDebugsifaschalter = new System.Windows.Forms.Label();
             this.btnDebugPlaysound = new System.Windows.Forms.Button();
@@ -162,7 +163,6 @@
             this.lblHLBwert = new System.Windows.Forms.Label();
             this.lblhbl = new System.Windows.Forms.Label();
             this.lblHBLwert = new System.Windows.Forms.Label();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.pnlDataAFBLZB = new System.Windows.Forms.TableLayoutPanel();
             this.lblAFBvorwahl = new System.Windows.Forms.Label();
             this.lblafbvorw = new System.Windows.Forms.Label();
@@ -193,7 +193,6 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
-            this.lblDebugtimerresetsifa = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -1103,10 +1102,9 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.cbHidesettings);
             this.tabDarstellung.Controls.Add(this.label1);
             this.tabDarstellung.Controls.Add(this.cbFokusFahrtzurueck);
-            this.tabDarstellung.Controls.Add(this.btnFarbeTag);
-            this.tabDarstellung.Controls.Add(this.btnFarbeNacht);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
             this.tabDarstellung.Controls.Add(this.cbFokusImmerzurueck);
             this.tabDarstellung.Controls.Add(this.label3);
@@ -1121,10 +1119,23 @@
             this.tabDarstellung.Text = "Darstellung";
             this.tabDarstellung.Click += new System.EventHandler(this.tabDarstellung_Click);
             // 
+            // cbHidesettings
+            // 
+            this.cbHidesettings.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cbHidesettings.Checked = true;
+            this.cbHidesettings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbHidesettings.Location = new System.Drawing.Point(6, 275);
+            this.cbHidesettings.Name = "cbHidesettings";
+            this.cbHidesettings.Size = new System.Drawing.Size(159, 33);
+            this.cbHidesettings.TabIndex = 22;
+            this.cbHidesettings.Text = "Einstellungen automatisch ausblenden";
+            this.cbHidesettings.UseVisualStyleBackColor = true;
+            this.cbHidesettings.CheckedChanged += new System.EventHandler(this.cbHidesettings_CheckedChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 246);
+            this.label1.Location = new System.Drawing.Point(3, 330);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 13);
             this.label1.TabIndex = 21;
@@ -1135,7 +1146,7 @@
             this.cbFokusFahrtzurueck.AutoSize = true;
             this.cbFokusFahrtzurueck.Checked = true;
             this.cbFokusFahrtzurueck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbFokusFahrtzurueck.Location = new System.Drawing.Point(66, 264);
+            this.cbFokusFahrtzurueck.Location = new System.Drawing.Point(66, 348);
             this.cbFokusFahrtzurueck.Name = "cbFokusFahrtzurueck";
             this.cbFokusFahrtzurueck.Size = new System.Drawing.Size(115, 17);
             this.cbFokusFahrtzurueck.TabIndex = 20;
@@ -1143,36 +1154,12 @@
             this.cbFokusFahrtzurueck.UseVisualStyleBackColor = true;
             this.cbFokusFahrtzurueck.CheckedChanged += new System.EventHandler(this.cbFokusFahrtzurueck_CheckedChanged);
             // 
-            // btnFarbeTag
-            // 
-            this.btnFarbeTag.Enabled = false;
-            this.btnFarbeTag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFarbeTag.Location = new System.Drawing.Point(9, 167);
-            this.btnFarbeTag.Name = "btnFarbeTag";
-            this.btnFarbeTag.Size = new System.Drawing.Size(121, 23);
-            this.btnFarbeTag.TabIndex = 19;
-            this.btnFarbeTag.Text = "Farbe Tagmodus";
-            this.btnFarbeTag.UseVisualStyleBackColor = true;
-            this.btnFarbeTag.Click += new System.EventHandler(this.btnFarbeTag_Click);
-            // 
-            // btnFarbeNacht
-            // 
-            this.btnFarbeNacht.Enabled = false;
-            this.btnFarbeNacht.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFarbeNacht.Location = new System.Drawing.Point(9, 138);
-            this.btnFarbeNacht.Name = "btnFarbeNacht";
-            this.btnFarbeNacht.Size = new System.Drawing.Size(121, 23);
-            this.btnFarbeNacht.TabIndex = 18;
-            this.btnFarbeNacht.Text = "Farbe Nachtmodus";
-            this.btnFarbeNacht.UseVisualStyleBackColor = true;
-            this.btnFarbeNacht.Click += new System.EventHandler(this.btnFarbeNacht_Click);
-            // 
             // cbTopmost
             // 
             this.cbTopmost.AutoSize = true;
             this.cbTopmost.Checked = true;
             this.cbTopmost.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTopmost.Location = new System.Drawing.Point(6, 213);
+            this.cbTopmost.Location = new System.Drawing.Point(6, 252);
             this.cbTopmost.Name = "cbTopmost";
             this.cbTopmost.Size = new System.Drawing.Size(128, 17);
             this.cbTopmost.TabIndex = 17;
@@ -1183,7 +1170,7 @@
             // cbFokusImmerzurueck
             // 
             this.cbFokusImmerzurueck.AutoSize = true;
-            this.cbFokusImmerzurueck.Location = new System.Drawing.Point(6, 264);
+            this.cbFokusImmerzurueck.Location = new System.Drawing.Point(6, 348);
             this.cbFokusImmerzurueck.Name = "cbFokusImmerzurueck";
             this.cbFokusImmerzurueck.Size = new System.Drawing.Size(54, 17);
             this.cbFokusImmerzurueck.TabIndex = 16;
@@ -1194,7 +1181,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 60);
+            this.label3.Location = new System.Drawing.Point(5, 57);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 5;
@@ -1202,7 +1189,7 @@
             // 
             // numSifagroesse
             // 
-            this.numSifagroesse.Location = new System.Drawing.Point(68, 53);
+            this.numSifagroesse.Location = new System.Drawing.Point(67, 50);
             this.numSifagroesse.Maximum = new decimal(new int[] {
             3,
             0,
@@ -1389,6 +1376,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.label9);
             this.grpDebug.Controls.Add(this.lblDebugtimerresetsifa);
             this.grpDebug.Controls.Add(this.label8);
             this.grpDebug.Controls.Add(this.lblDebugsifaschalter);
@@ -1408,6 +1396,24 @@
             this.grpDebug.TabIndex = 12;
             this.grpDebug.TabStop = false;
             this.grpDebug.Text = "Debug";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 381);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(73, 13);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "Sifatimer läuft:";
+            // 
+            // lblDebugtimerresetsifa
+            // 
+            this.lblDebugtimerresetsifa.AutoSize = true;
+            this.lblDebugtimerresetsifa.Location = new System.Drawing.Point(87, 378);
+            this.lblDebugtimerresetsifa.Name = "lblDebugtimerresetsifa";
+            this.lblDebugtimerresetsifa.Size = new System.Drawing.Size(13, 13);
+            this.lblDebugtimerresetsifa.TabIndex = 29;
+            this.lblDebugtimerresetsifa.Text = "--";
             // 
             // label8
             // 
@@ -1433,7 +1439,7 @@
             this.btnDebugPlaysound.Name = "btnDebugPlaysound";
             this.btnDebugPlaysound.Size = new System.Drawing.Size(75, 23);
             this.btnDebugPlaysound.TabIndex = 26;
-            this.btnDebugPlaysound.Text = "Sound";
+            this.btnDebugPlaysound.Text = "RR-Sound";
             this.btnDebugPlaysound.UseVisualStyleBackColor = true;
             this.btnDebugPlaysound.Click += new System.EventHandler(this.btnDebugPlaysound_Click);
             // 
@@ -2244,15 +2250,6 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
-            // lblDebugtimerresetsifa
-            // 
-            this.lblDebugtimerresetsifa.AutoSize = true;
-            this.lblDebugtimerresetsifa.Location = new System.Drawing.Point(12, 382);
-            this.lblDebugtimerresetsifa.Name = "lblDebugtimerresetsifa";
-            this.lblDebugtimerresetsifa.Size = new System.Drawing.Size(75, 13);
-            this.lblDebugtimerresetsifa.TabIndex = 29;
-            this.lblDebugtimerresetsifa.Text = "timerResetSifa";
-            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2404,9 +2401,6 @@
         private System.Windows.Forms.CheckBox cbSchleuderschutz;
         private System.Windows.Forms.CheckBox cbHauptsch;
         private System.Windows.Forms.Label lblfahrst;
-        private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button btnFarbeTag;
-        private System.Windows.Forms.Button btnFarbeNacht;
         private System.Windows.Forms.Panel pnlAFBLZB;
         private System.Windows.Forms.CheckBox cbAFBLZB;
         private System.Windows.Forms.TableLayoutPanel pnlDataAFBLZB;
@@ -2490,6 +2484,8 @@
         private System.Windows.Forms.Label lblDebugsifaschalter;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblDebugtimerresetsifa;
+        private System.Windows.Forms.CheckBox cbHidesettings;
+        private System.Windows.Forms.Label label9;
 
     }
 

@@ -201,7 +201,7 @@ namespace ZusiMeter
         public bool vMaxErreicht = false; //has a specific speed been reached yet? //TODO: check if still needed
         bool afbistein = false; //reflects the AFB switch status on/off
         public bool debugging = false; //if user has opened the debug panel debugging will be true
-        public bool settingsVisible = false; //for determining if the settings panel shall auto hide
+        public bool alwaysShowSettings = false; //for determining if the settings panel shall auto hide: has button been clicked?
         bool nightmode = false; //for letting the user choose between two different color sets
         //TODO: maybe it makes sense to determine day- and nightmode automatically when receiving daytime from Zusi
         bool reisezug; //if not true door label will be "Güterzug"
@@ -310,14 +310,18 @@ namespace ZusiMeter
 
                     if (geschwindigkeit > 0.1) hasMoved = true;
 
-                    if (hasMoved == true && settingsVisible == false && debugging == false)
+                    //TEST
+                    if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false) 
                     {
                         pnlRight.Visible = false; //auto hide feature: If we start moving, right panel shall be hidden
                         
                     }
 
                     if (hasMoved == true && geschwindigkeit == 0) //if train has stopped
+                    {
                         hasMoved = false;
+                        alwaysShowSettings = false; //TEST: reset so that settings can autohide again
+                    }
 
                         maxVerz = Convert.ToDouble(tbVerz.Text);
                         //TODO: check sharp braking by by determining deltaV
@@ -1044,22 +1048,33 @@ namespace ZusiMeter
 
         #region User Button Interaction
 
-        //setting user colors for night- and daymode
-        private void btnFarbeNacht_Click(object sender, EventArgs e)
-        {
-            colorDialog1.ShowDialog();
-        }
-        private void btnFarbeTag_Click(object sender, EventArgs e)
-        {
-            colorDialog1.ShowDialog();
-        }
+        ////setting user colors for night- and daymode
+        //private void btnFarbeNacht_Click(object sender, EventArgs e)
+        //{
+        //    colorDialog1.ShowDialog();
+        //}
+        //private void btnFarbeTag_Click(object sender, EventArgs e)
+        //{
+        //    colorDialog1.ShowDialog();
+        //}
 
         //if the user clicks the "Einstellungen" button...
         private void btnSettings_Click(object sender, EventArgs e)
         {
+            //TEST
+            if (hasMoved)
+            {
+                alwaysShowSettings = true; //when we're moving, we do NOT want to autohide at the moment
+                pnlRight.Visible = !pnlRight.Visible;
+            }
+            else
+            {
+                alwaysShowSettings = false;
+                pnlRight.Visible = !pnlRight.Visible;
+
+            }
+
             FokusAnZusi();
-            pnlRight.Visible = !pnlRight.Visible; //if visible make invisible and vice versa
-            settingsVisible = true; //once btnSettings has been clicked, the settings panel shall not auto hide                                
         }
 
         //if the user clicks the "Verbinden / Trennen" button
@@ -1603,6 +1618,13 @@ namespace ZusiMeter
             //    SetRR();
             //    schaltersifa = 0; //TODO: check if this is the right place
             //}            
+        }
+
+        private void cbHidesettings_CheckedChanged(object sender, EventArgs e)
+        {
+            //TEST
+            if (hasMoved && cbHidesettings.Checked)
+                pnlRight.Visible = false;
         }
 
         
