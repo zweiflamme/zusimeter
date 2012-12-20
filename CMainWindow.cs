@@ -241,7 +241,7 @@ namespace ZusiMeter
                 this.TopMost = true;
             
             //TEST
-            //setting form title directly from the assembly information
+            //setting form title directly from the assembly information.
             this.Text = this.Text + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             
             //showing 'System' tab first so that the user is able to establish a connection to the TCP server
