@@ -551,7 +551,6 @@
             0,
             0});
             this.numRRfest.Name = "numRRfest";
-            this.numRRfest.ReadOnly = true;
             this.numRRfest.Size = new System.Drawing.Size(45, 20);
             this.numRRfest.TabIndex = 35;
             this.numRRfest.Value = new decimal(new int[] {
@@ -2279,7 +2278,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CMainWindow";
-            this.Text = "ZusiMeter - v0.5";
+            this.Text = "ZusiMeter - ";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.CMainWindow_Load);
             this.Click += new System.EventHandler(this.CMainWindow_Click);

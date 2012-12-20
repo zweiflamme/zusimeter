@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.Reflection; //for usage of assembly data
 using System.Diagnostics; // usage of stopwatch
 using Zusi_Datenausgabe; //TODO: v1.0.0
 using System.Runtime.InteropServices; //to hand over the focus to Zusi main window
@@ -45,8 +46,8 @@ namespace ZusiMeter
 
             //we need to define a new connection to the TCP server:
             MyTCPConnection = new ZusiTcpConn(
-             "ZusiMeter v0.5",                            // The name of this application (Shows up on the server's list)
-             ClientPriority.High,                            
+             "ZusiMeter - v" + Assembly.GetExecutingAssembly().GetName().Version.ToString(), // Name and version, showing up in server's list
+             ClientPriority.High,
              new ReceiveEvent<float>(HandleIncomingData),   // A delegate method for the connection class to call when it receives float data (may be null)
              null,                                          // A delegate method for the connection class to call when it receives string data (may be null)
              null                                           //TODO: need to make use of the new DLL v1.1.6                                                            
@@ -238,7 +239,10 @@ namespace ZusiMeter
         {
             if (cbTopmost.Checked == true)
                 this.TopMost = true;
-
+            
+            //TEST
+            //setting form title directly from the assembly information
+            this.Text = this.Text + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             
             //showing 'System' tab first so that the user is able to establish a connection to the TCP server
             tabEinstellungen.SelectTab("tabSystem");   
