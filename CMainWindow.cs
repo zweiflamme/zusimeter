@@ -245,6 +245,7 @@ namespace ZusiMeter
         double schaltersifa; // if pressed twice RR is activated
         bool settingsAreSeparated = false; // true if settings are shown on a separate form (frmSettings)
         bool lzbIsActive = false; // is LZB active (LM LZB Ü)?
+        double afbsoll, lzbsoll; //TEST
 
         //TODO: TEST: is this the best place?
         SettingsForm frmSettings = new SettingsForm();
@@ -375,10 +376,24 @@ namespace ZusiMeter
                 #region AFB Soll-Geschwindigkeit
                 case 2578:
                 {
-                    double afbvschalter = data.Value;
+                    afbsoll = data.Value;
+                    lblAFBgeschwindigkeit.Text = String.Format("{0:0} km/h", afbsoll);
 
-                    //TODO: check if LZB vSoll is less; if so paint LZB speed value bold instead
-                    lblAFBgeschwindigkeit.Text = String.Format("{0:0} km/h", afbvschalter);
+                    if (afbsoll <= lzbsoll && lzbIsActive) // if AFB is NOT restricted by LZB vSoll
+                    {
+                        lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Bold); //make AFB labels bold
+                        lblAFBgeschwindigkeit.Font = new Font(lblAFBgeschwindigkeit.Font, FontStyle.Bold);
+                        lblLZBsollgeschw.Font = new Font(lblLZBsollgeschw.Font, FontStyle.Regular); // make LZB vSoll labels regular
+                        lbllzbvsoll.Font = new Font(lbllzbvsoll.Font, FontStyle.Regular); 
+                    }
+                    else // if AFB is RESTRICTED by LZB vSoll
+                    {
+                        lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular); //make AFB labels regular
+                        lblAFBgeschwindigkeit.Font = new Font(lblAFBgeschwindigkeit.Font, FontStyle.Regular);
+                        lblLZBsollgeschw.Font = new Font(lblLZBsollgeschw.Font, FontStyle.Bold); // make LZB vSoll labels bold
+                        lbllzbvsoll.Font = new Font(lbllzbvsoll.Font, FontStyle.Bold); 
+                    }
+                    
                     break;
                 }
                 #endregion
@@ -386,7 +401,7 @@ namespace ZusiMeter
                 #region LZB Soll-Geschwindigkeit
                 case 2636:
                 {
-                    double lzbsoll = data.Value; //TODO: make global
+                    lzbsoll = data.Value; //TODO: make global
                     if (lzbIsActive)
                     {                        
                         lblLZBsollgeschw.Text = String.Format("{0:0}", lzbsoll);
