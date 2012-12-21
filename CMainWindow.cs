@@ -93,14 +93,14 @@ namespace ZusiMeter
             
             
             //MyTCPConnection.RequestData(2646); // "Türen"
-            ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
+            
            
             //MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
            
     
 
             
-            //MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
+            MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
            
             ////###PZB-90###//
             //MyTCPConnection.RequestData(2583); // "LM PZB Zugart U"
@@ -119,14 +119,9 @@ namespace ZusiMeter
             //MyTCPConnection.RequestData(2595); // "LM LZB Prüfen"
             ////###//
             
-            ////###Uhrzeit###//
-            ////MyTCPConnection.RequestData(2570); // "Uhrzeit Stunde"
-            ////MyTCPConnection.RequestData(2571); // "Uhrzeit Minute"
-            ////MyTCPConnection.RequestData(2572); // "Uhrzeit Sekunde"
-            ////###//
-            ////###Schalter Sifa for Railrunner activation###//
            
 
+            ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
             //TODO: is this needed? MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             #endregion 
 
@@ -404,6 +399,15 @@ namespace ZusiMeter
                 {
                     double lzbziel = data.Value;
                     lblLZBzielgeschw.Text = String.Format("{0:0}", lzbziel);
+                    break;
+                }
+                #endregion
+
+                #region LM LZB-Zielweg (ab 0)
+                case 2635:
+                {
+                    double lzbweg = data.Value;
+                    lblLZBzielweg.Text = String.Format("{0:0}", lzbweg);                
                     break;
                 }
                 #endregion
@@ -715,12 +719,7 @@ namespace ZusiMeter
         //    }
         //    
 
-        //    
-        //    else if (dataSet.Id == MyTCPConnection["LM LZB Zielweg (ab 0)"])
-        //    {
-        //        double lzbweg = dataSet.Value;
-        //        lblLZBzielweg.Text = String.Format("{0:0}", lzbweg);
-        //    }
+        
         //    //DEBUG TEST
         //    /* else if (dataSet.Id == MyTCPConnection["Zugdatei"])...
         //    {/*zugdateiOld = zugnummer;
