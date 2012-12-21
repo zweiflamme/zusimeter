@@ -88,28 +88,33 @@ namespace ZusiMeter
 
             MyTCPConnection.RequestData(2648); // "Reisezug" 
             MyTCPConnection.RequestData(2647); // "Autopilot"
+
+            //###PZB-90###//
+            MyTCPConnection.RequestData(2583); // "LM PZB Zugart U"
+            MyTCPConnection.RequestData(2584); // "LM PZB Zugart M"
+            MyTCPConnection.RequestData(2585); // "LM PZB Zugart O"
+            MyTCPConnection.RequestData(2580); // "LM PZB 1000Hz"
+            MyTCPConnection.RequestData(2581); // "LM PZB 500Hz"
+            MyTCPConnection.RequestData(2582); // "LM PZB Befehl"
+            //###//
+
+            //###LZB###//
+            MyTCPConnection.RequestData(2587); // "LM LZB G"
+            MyTCPConnection.RequestData(2590); // "LM LZB Ende"
+            MyTCPConnection.RequestData(2592); // "LM LZB B"
+            MyTCPConnection.RequestData(2593); // "LM LZB S "
+            MyTCPConnection.RequestData(2594); // "LM LZB Ü"
+            MyTCPConnection.RequestData(2595); // "LM LZB Prüfen"
+            //###//
+
             //###//
             MyTCPConnection.RequestData(2610); // "LM Uhrzeit (digital)"
             
             
             //MyTCPConnection.RequestData(2646); // "Türen"
+
             
-            ////###PZB-90###//
-            //MyTCPConnection.RequestData(2583); // "LM PZB Zugart U"
-            //MyTCPConnection.RequestData(2584); // "LM PZB Zugart M"
-            //MyTCPConnection.RequestData(2585); // "LM PZB Zugart O"
-            //MyTCPConnection.RequestData(2580); // "LM PZB 1000Hz"
-            //MyTCPConnection.RequestData(2581); // "LM PZB 500Hz"
-            //MyTCPConnection.RequestData(2582); // "LM PZB Befehl"
-            ////###//
-            ////###LZB###//
-            //MyTCPConnection.RequestData(2587); // "LM LZB G"
-            //MyTCPConnection.RequestData(2590); // "LM LZB Ende"
-            //MyTCPConnection.RequestData(2592); // "LM LZB B"
-            //MyTCPConnection.RequestData(2593); // "LM LZB S "
-            //MyTCPConnection.RequestData(2594); // "LM LZB Ü"
-            //MyTCPConnection.RequestData(2595); // "LM LZB Prüfen"
-            ////###//
+            
             
 
             ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
@@ -394,8 +399,7 @@ namespace ZusiMeter
                     break;
                 }
                 #endregion
-
-                
+                                    
                 #region LM LZB-Zielweg (ab 0)
                 case 2635:
                 {
@@ -514,6 +518,116 @@ namespace ZusiMeter
         {
             switch (data.Id)
             {
+                #region PZB-90
+                case 2583: //LM PZB U
+                    {
+                        if (data.Value)
+                            lblPZB_U.BackColor = Color.CornflowerBlue;
+                        else
+                            lblPZB_U.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2584: // LM PZB M
+                    {
+                        if (data.Value)
+                            lblPZB_M.BackColor = Color.CornflowerBlue;
+                        else
+                            lblPZB_M.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2585: // LM PZB O
+                    {
+                        if (data.Value)
+                            lblPZB_O.BackColor = Color.CornflowerBlue;
+                        else
+                            lblPZB_O.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2580: // LM PZB 1000Hz
+                    {
+                        if (data.Value)
+                            lblPZB_1000.BackColor = Color.Yellow;
+                        else
+                            lblPZB_1000.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2581: // LM PZB 500Hz
+                    {
+                        if (data.Value)
+                            lblPZB_500.BackColor = Color.Red;
+                        else
+                            lblPZB_500.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2582: //LM PZB Befehl
+                    {
+                        if (data.Value)
+                        { 
+                            lblPZB_Bef.BackColor = Color.Black; 
+                            lblPZB_Bef.ForeColor = Color.White; 
+                        }
+                        else
+                        { 
+                            lblPZB_Bef.BackColor = Color.FromName("Transparent"); 
+                            lblPZB_Bef.ForeColor = Color.FromName("ControlText"); 
+                        }
+                        break;
+                    }
+                #endregion
+
+                #region LZB
+
+                case 2587: // LM LZB G
+                    {
+                        if (data.Value )
+                            lblLZB_G.BackColor = Color.Red;
+                        else
+                            lblLZB_G.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2590: // LM LZB Ende
+                    {
+                        if (data.Value)
+                            lblLZB_Ende.BackColor = Color.Yellow;
+                        else
+                            lblLZB_Ende.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2593: // LM LZB S
+                    {
+                        if (data.Value)
+                            lblLZB_S.BackColor = Color.Red;
+                        else
+                            lblLZB_S.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2592: // LM LZB B
+                    {
+                        if (data.Value)
+                            lblLZB_B.BackColor = Color.CornflowerBlue;
+                        else
+                            lblLZB_B.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2594: // LM LZB Ü
+                    {
+                        if (data.Value)
+                            lblLZB_Ue.BackColor = Color.CornflowerBlue;
+                        else
+                            lblLZB_Ue.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                case 2595: // LM LZB Prüfen
+                    {
+                        if (data.Value)
+                            lblLZB_Pruefstoer.BackColor = Color.White;
+                        else
+                            lblLZB_Pruefstoer.BackColor = Color.FromName("Transparent");
+                        break;
+                    }
+                
+                #endregion
+
                 #region LM Sifa
                 case 2596:
                     {
@@ -662,9 +776,9 @@ namespace ZusiMeter
         private void HandleIncomingData(DataSet<float> dataSet)
         {
 
-        
-        
-        //    else if (dataSet.Id == MyTCPConnection["Türen"])
+
+            #region TÜREN
+            //    else if (dataSet.Id == MyTCPConnection["Türen"])
         //    {
 
         //        //DEBUG
@@ -710,107 +824,19 @@ namespace ZusiMeter
         //            lblTueren.Text = "Güterzug";
         //        }
         //    }
-        //    
+            //    
+            #endregion
 
-        
-        //    //DEBUG TEST
+
+            //    //DEBUG TEST
         //    /* else if (dataSet.Id == MyTCPConnection["Zugdatei"])...
         //    {/*zugdateiOld = zugnummer;
         //        zugdatei = dataSet.Value.ToString();
         //        if (zugnummer != zugnummerOld)
-        //            MessageBox.Show("DEBUG: Zugdatei has changed"); } */   
+            //            MessageBox.Show("DEBUG: Zugdatei has changed"); } */   
 
-        
-        //    //###PZB-90###//
-        //    else if (dataSet.Id == MyTCPConnection["LM PZB Zugart O"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblPZB_O.BackColor = Color.CornflowerBlue;                      
-        //        else
-        //            lblPZB_O.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM PZB Zugart M"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblPZB_M.BackColor = Color.CornflowerBlue;
-        //        else
-        //            lblPZB_M.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM PZB Zugart U"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblPZB_M.BackColor = Color.CornflowerBlue;
-        //        else
-        //            lblPZB_M.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM PZB 1000Hz"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblPZB_1000.BackColor = Color.Yellow;
-        //        else
-        //            lblPZB_1000.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM PZB 500Hz"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblPZB_500.BackColor = Color.Red;
-        //        else
-        //            lblPZB_500.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM PZB Befehl"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //        { lblPZB_Bef.BackColor = Color.Black; lblPZB_Bef.ForeColor = Color.White; }
-        //        else
-        //        { lblPZB_Bef.BackColor = Color.FromName("Transparent"); lblPZB_Bef.ForeColor = Color.FromName("ControlText"); }
-        //    }
-        //    //###LZB###//
-        //    else if (dataSet.Id == MyTCPConnection["LM LZB G"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblLZB_G.BackColor = Color.Red;
-        //        else
-        //            lblLZB_G.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM LZB Ende"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblLZB_Ende.BackColor = Color.Yellow;
-        //        else
-        //            lblLZB_Ende.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM LZB S"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblLZB_S.BackColor = Color.Red;
-        //        else
-        //            lblLZB_S.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM LZB Prüfen"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblLZB_Pruefstoer.BackColor = Color.White;
-        //        else
-        //            lblLZB_Pruefstoer.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM LZB Ü"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblLZB_Ue.BackColor = Color.CornflowerBlue;
-        //        else
-        //            lblLZB_Ue.BackColor = Color.FromName("Transparent");
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LM LZB B"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            lblLZB_B.BackColor = Color.CornflowerBlue;
-        //        else
-        //            lblLZB_B.BackColor = Color.FromName("Transparent");
-        //    }
-        //    //######//
-        //    
-        //    
-        //   
+            
+   
         }
         #endregion
 
