@@ -82,8 +82,9 @@ namespace ZusiMeter
             
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
             MyTCPConnection.RequestData(2596); // "LM Sifa"
-
+            
             MyTCPConnection.RequestData(2616); // "Schalter AFB ein/aus"
+            MyTCPConnection.RequestData(2621); // "Schalter Sifa"
 
             MyTCPConnection.RequestData(2648); // "Reisezug" 
             MyTCPConnection.RequestData(2647); // "Autopilot"
@@ -117,14 +118,16 @@ namespace ZusiMeter
             //MyTCPConnection.RequestData(2594); // "LM LZB Ü"
             //MyTCPConnection.RequestData(2595); // "LM LZB Prüfen"
             ////###//
-            //MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
+            
             ////###Uhrzeit###//
             ////MyTCPConnection.RequestData(2570); // "Uhrzeit Stunde"
             ////MyTCPConnection.RequestData(2571); // "Uhrzeit Minute"
             ////MyTCPConnection.RequestData(2572); // "Uhrzeit Sekunde"
             ////###//
             ////###Schalter Sifa for Railrunner activation###//
-            //MyTCPConnection.RequestData(2621); //"Schalter Sifa"
+           
+
+            //TODO: is this needed? MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             #endregion 
 
         }
@@ -609,6 +612,31 @@ namespace ZusiMeter
                     }
                 #endregion
 
+                #region Schalter Sifa
+                case 2621:
+                    {
+                        if (data.Value) // if true, Sifa switch has been pressed
+                        {
+                            schaltersifa++;
+                            lblDebugsifaschalter.Text = schaltersifa.ToString();
+                            if (schaltersifa == 1)
+                            {
+                                timerResetSifaschalter.Start();
+                                lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
+                            }
+                            else if (schaltersifa == 2)
+                            {
+                                schaltersifa = 0;
+                                timerResetSifaschalter.Stop();
+                                lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
+                                if (cbRailrunner.Checked)  //only if cbRailrunner is checked, RR counter will start
+                                    SetRR();
+                            }
+                        }
+                        break;
+                    }
+                #endregion
+
                 default:
                     break;
             }
@@ -790,33 +818,7 @@ namespace ZusiMeter
         //    //######//
         //    
         //    
-        //    else if (dataSet.Id == MyTCPConnection["Schalter Sifa"])
-        //    {
-        //        //DEBUG
-        //        //if (dataSet.Value > 0)
-        //        //{
-        //        //    schaltersifa++;
-        //        //    lblDebugsifaschalter.Text = schaltersifa.ToString();
-        //        //}
-        //        if (dataSet.Value > 0)
-        //        {
-        //            schaltersifa++;
-        //            lblDebugsifaschalter.Text = schaltersifa.ToString();
-        //            if (schaltersifa == 1)
-        //            {
-        //                timerResetSifaschalter.Start();
-        //                lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
-        //            }
-        //            else if (schaltersifa == 2)
-        //            {
-        //                schaltersifa = 0;
-        //                timerResetSifaschalter.Stop();
-        //                lblDebugtimerresetsifa.Text = timerResetSifaschalter.Enabled.ToString();
-        //                if (cbRailrunner.Checked)  //IMPORTANT - only if cbRailrunner is checked, RR counter will start
-        //                    SetRR();
-        //            }
-        //        }
-        //    }
+        //   
         }
         #endregion
 
