@@ -105,9 +105,8 @@
             this.cbFokusImmerzurueck = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.rbDarstMeter = new System.Windows.Forms.RadioButton();
-            this.rbDarstKm = new System.Windows.Forms.RadioButton();
+            this.rbUnitm = new System.Windows.Forms.RadioButton();
+            this.rbUnitkm = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.tabSystem = new System.Windows.Forms.TabPage();
             this.btnAbout = new System.Windows.Forms.Button();
@@ -195,6 +194,12 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
+            this.grpUnits = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.rbUnitmps = new System.Windows.Forms.RadioButton();
+            this.rbUnitkph = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -211,7 +216,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).BeginInit();
             this.tabDarstellung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).BeginInit();
-            this.panel1.SuspendLayout();
             this.tabSystem.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -226,6 +230,9 @@
             this.pnlLeft.SuspendLayout();
             this.pnlDataLZB.SuspendLayout();
             this.pnlDataPZB90.SuspendLayout();
+            this.grpUnits.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -1105,6 +1112,7 @@
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDarstellung.Controls.Add(this.grpUnits);
             this.tabDarstellung.Controls.Add(this.cbSettingsSeparate);
             this.tabDarstellung.Controls.Add(this.cbHidesettings);
             this.tabDarstellung.Controls.Add(this.label1);
@@ -1113,8 +1121,6 @@
             this.tabDarstellung.Controls.Add(this.cbFokusImmerzurueck);
             this.tabDarstellung.Controls.Add(this.label3);
             this.tabDarstellung.Controls.Add(this.numSifagroesse);
-            this.tabDarstellung.Controls.Add(this.panel1);
-            this.tabDarstellung.Controls.Add(this.label2);
             this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
             this.tabDarstellung.Name = "tabDarstellung";
             this.tabDarstellung.Padding = new System.Windows.Forms.Padding(3);
@@ -1198,7 +1204,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 63);
+            this.label3.Location = new System.Drawing.Point(5, 123);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 5;
@@ -1206,7 +1212,7 @@
             // 
             // numSifagroesse
             // 
-            this.numSifagroesse.Location = new System.Drawing.Point(67, 56);
+            this.numSifagroesse.Location = new System.Drawing.Point(67, 116);
             this.numSifagroesse.Maximum = new decimal(new int[] {
             3,
             0,
@@ -1229,43 +1235,34 @@
             0});
             this.numSifagroesse.ValueChanged += new System.EventHandler(this.numSifagroesse_ValueChanged);
             // 
-            // panel1
+            // rbUnitm
             // 
-            this.panel1.Controls.Add(this.rbDarstMeter);
-            this.panel1.Controls.Add(this.rbDarstKm);
-            this.panel1.Location = new System.Drawing.Point(7, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(131, 23);
-            this.panel1.TabIndex = 3;
+            this.rbUnitm.AutoSize = true;
+            this.rbUnitm.Location = new System.Drawing.Point(76, 21);
+            this.rbUnitm.Name = "rbUnitm";
+            this.rbUnitm.Size = new System.Drawing.Size(52, 17);
+            this.rbUnitm.TabIndex = 1;
+            this.rbUnitm.Text = "Meter";
+            this.rbUnitm.UseVisualStyleBackColor = true;
+            this.rbUnitm.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
             // 
-            // rbDarstMeter
+            // rbUnitkm
             // 
-            this.rbDarstMeter.AutoSize = true;
-            this.rbDarstMeter.Location = new System.Drawing.Point(3, 0);
-            this.rbDarstMeter.Name = "rbDarstMeter";
-            this.rbDarstMeter.Size = new System.Drawing.Size(52, 17);
-            this.rbDarstMeter.TabIndex = 1;
-            this.rbDarstMeter.Text = "Meter";
-            this.rbDarstMeter.UseVisualStyleBackColor = true;
-            this.rbDarstMeter.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
-            // 
-            // rbDarstKm
-            // 
-            this.rbDarstKm.AutoSize = true;
-            this.rbDarstKm.Checked = true;
-            this.rbDarstKm.Location = new System.Drawing.Point(61, 0);
-            this.rbDarstKm.Name = "rbDarstKm";
-            this.rbDarstKm.Size = new System.Drawing.Size(68, 17);
-            this.rbDarstKm.TabIndex = 2;
-            this.rbDarstKm.TabStop = true;
-            this.rbDarstKm.Text = "Kilometer";
-            this.rbDarstKm.UseVisualStyleBackColor = true;
-            this.rbDarstKm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
+            this.rbUnitkm.AutoSize = true;
+            this.rbUnitkm.Checked = true;
+            this.rbUnitkm.Location = new System.Drawing.Point(6, 21);
+            this.rbUnitkm.Name = "rbUnitkm";
+            this.rbUnitkm.Size = new System.Drawing.Size(68, 17);
+            this.rbUnitkm.TabIndex = 2;
+            this.rbUnitkm.TabStop = true;
+            this.rbUnitkm.Text = "Kilometer";
+            this.rbUnitkm.UseVisualStyleBackColor = true;
+            this.rbUnitkm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 12);
+            this.label2.Location = new System.Drawing.Point(3, 5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 0;
@@ -2280,6 +2277,74 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
+            // grpUnits
+            // 
+            this.grpUnits.Controls.Add(this.panel2);
+            this.grpUnits.Controls.Add(this.panel1);
+            this.grpUnits.Location = new System.Drawing.Point(6, 11);
+            this.grpUnits.Name = "grpUnits";
+            this.grpUnits.Size = new System.Drawing.Size(142, 100);
+            this.grpUnits.TabIndex = 24;
+            this.grpUnits.TabStop = false;
+            this.grpUnits.Text = "Einheiten";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(85, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Geschwindigkeit";
+            // 
+            // rbUnitmps
+            // 
+            this.rbUnitmps.AutoSize = true;
+            this.rbUnitmps.Location = new System.Drawing.Point(56, 19);
+            this.rbUnitmps.Name = "rbUnitmps";
+            this.rbUnitmps.Size = new System.Drawing.Size(43, 17);
+            this.rbUnitmps.TabIndex = 4;
+            this.rbUnitmps.Text = "m/s";
+            this.rbUnitmps.UseVisualStyleBackColor = true;
+            this.rbUnitmps.CheckedChanged += new System.EventHandler(this.rbUnitmps_CheckedChanged);
+            // 
+            // rbUnitkph
+            // 
+            this.rbUnitkph.AutoSize = true;
+            this.rbUnitkph.Checked = true;
+            this.rbUnitkph.Location = new System.Drawing.Point(6, 19);
+            this.rbUnitkph.Name = "rbUnitkph";
+            this.rbUnitkph.Size = new System.Drawing.Size(50, 17);
+            this.rbUnitkph.TabIndex = 5;
+            this.rbUnitkph.TabStop = true;
+            this.rbUnitkph.Text = "km/h";
+            this.rbUnitkph.UseVisualStyleBackColor = true;
+            this.rbUnitkph.CheckedChanged += new System.EventHandler(this.rbUnitkph_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.AutoSize = true;
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.rbUnitkm);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.rbUnitm);
+            this.panel1.Location = new System.Drawing.Point(6, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(131, 41);
+            this.panel1.TabIndex = 20;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.rbUnitkph);
+            this.panel2.Controls.Add(this.rbUnitmps);
+            this.panel2.Location = new System.Drawing.Point(6, 58);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(102, 39);
+            this.panel2.TabIndex = 20;
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2322,8 +2387,6 @@
             this.tabDarstellung.ResumeLayout(false);
             this.tabDarstellung.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.tabSystem.ResumeLayout(false);
             this.grpVerbindung.ResumeLayout(false);
             this.grpVerbindung.PerformLayout();
@@ -2347,6 +2410,12 @@
             this.pnlLeft.PerformLayout();
             this.pnlDataLZB.ResumeLayout(false);
             this.pnlDataPZB90.ResumeLayout(false);
+            this.grpUnits.ResumeLayout(false);
+            this.grpUnits.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2407,9 +2476,8 @@
         private System.Windows.Forms.CheckBox cbFahrstufenschalter;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblVerbstatus;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton rbDarstMeter;
-        private System.Windows.Forms.RadioButton rbDarstKm;
+        private System.Windows.Forms.RadioButton rbUnitm;
+        private System.Windows.Forms.RadioButton rbUnitkm;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numSifagroesse;
@@ -2518,6 +2586,12 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox cbSettingsSeparate;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.GroupBox grpUnits;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.RadioButton rbUnitmps;
+        private System.Windows.Forms.RadioButton rbUnitkph;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
 
     }
 

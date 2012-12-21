@@ -323,17 +323,22 @@ namespace ZusiMeter
                 case 2561:
                 {
                     geschwindigkeit = data.Value;
-                        vmps = geschwindigkeit / 3.6;
+                    vmps = geschwindigkeit / 3.6;
 
+                        //TODO: calculate deltaV
                         //vAlt = vNeu;
                         //vNeu = geschwindigkeit;
                         //deltaV = vNeu - vAlt;
 
-                        lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
+                    //displays speed either in kph or in mps
+                    if(rbUnitkph.Checked)
+                        lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed in kph
+                    else if (rbUnitmps.Checked)
+                        lblV.Text = String.Format("{0:0.0}", vmps); //show current speed in mps
 
-                    if (geschwindigkeit > 0.1) hasMoved = true;
-
-                    //TEST
+                    if (geschwindigkeit > 0.1) 
+                        hasMoved = true;
+                    
                     if (hasMoved == true && alwaysShowSettings == false && cbHidesettings.Checked && debugging == false) 
                     {
                         if (settingsAreSeparated)
@@ -1346,7 +1351,10 @@ namespace ZusiMeter
                 //vAlt = vNeu;
                 //vNeu = geschwindigkeit;
                 //deltaV = vNeu - vAlt;
-                lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed
+                if (rbUnitkph.Checked)
+                    lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed in kph
+                else if (rbUnitmps.Checked)
+                    lblV.Text = String.Format("{0:0.0}", vmps); //show current speed in mps
             }
         }
 
@@ -1813,6 +1821,16 @@ namespace ZusiMeter
         private void cbTime_CheckedChanged(object sender, EventArgs e)
         {
             lblTime.Visible = cbTime.Checked;
+        }
+
+        private void rbUnitmps_CheckedChanged(object sender, EventArgs e)
+        {
+            lblkmh.Text = "m/s";
+        }
+
+        private void rbUnitkph_CheckedChanged(object sender, EventArgs e)
+        {
+            lblkmh.Text = "km/h";
         }
 
         
