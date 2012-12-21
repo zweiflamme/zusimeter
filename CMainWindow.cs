@@ -62,6 +62,10 @@ namespace ZusiMeter
 
             #region RequestData
             MyTCPConnection.RequestData(2561); // "Geschwindigkeit"
+            MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
+            MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
+            MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
+
 
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
@@ -92,9 +96,9 @@ namespace ZusiMeter
            
             //MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
            
-            //MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
-            //MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
-            //MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
+    
+
+            
             //MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
            
             ////###PZB-90###//
@@ -368,6 +372,35 @@ namespace ZusiMeter
                         timerFlag.Start(); // TODO: flag shall not hide after x seconds, but only after accelerating again
                     }
 
+                    break;
+                }
+                #endregion
+
+                #region AFB Soll-Geschwindigkeit
+                case 2578:
+                {
+                    double afbvschalter = data.Value;
+
+                    //TODO: check if LZB vSoll is less; if so paint LZB speed value bold instead
+                    lblAFBgeschwindigkeit.Text = String.Format("{0:0} km/h", afbvschalter);
+                    break;
+                }
+                #endregion
+
+                #region LZB Soll-Geschwindigkeit
+                case 2636:
+                {
+                    double lzbsoll = data.Value;
+                    lblLZBsollgeschw.Text = String.Format("{0:0}", lzbsoll);
+                    break;
+                }
+                #endregion
+
+                #region LZB Ziel-Geschwindigkeit
+                case 2573:
+                {
+                    double lzbziel = data.Value;
+                    lblLZBzielgeschw.Text = String.Format("{0:0}", lzbziel);
                     break;
                 }
                 #endregion
@@ -654,26 +687,7 @@ namespace ZusiMeter
         //    }
         //    
 
-
-        //   
-        //    else if (dataSet.Id == MyTCPConnection["AFB Soll-Geschwindigkeit"])
-        //    //TODO: check if there's a value available that reflects some kind of AFB "preset speed" value
-        //    {
-        //        double afbvschalter = dataSet.Value;
-                
-        //        //TODO: check if LZB vSoll is less; if so paint LZB speed value bold instead
-        //        lblAFBgeschwindigkeit.Text = String.Format("{0:0} km/h", afbvschalter);
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LZB Soll-Geschwindigkeit"])
-        //    {
-        //        double lzbsoll = dataSet.Value;
-        //        lblLZBsollgeschw.Text = String.Format("{0:0}", lzbsoll);
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["LZB Ziel-Geschwindigkeit"])
-        //    {
-        //        double lzbziel = dataSet.Value;
-        //        lblLZBzielgeschw.Text = String.Format("{0:0}", lzbziel);
-        //    }
+        //    
         //    else if (dataSet.Id == MyTCPConnection["LM LZB Zielweg (ab 0)"])
         //    {
         //        double lzbweg = dataSet.Value;
