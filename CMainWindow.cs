@@ -73,19 +73,22 @@ namespace ZusiMeter
 
             MyTCPConnection.RequestData(2611); // "Schalter Fahrstufen"
             MyTCPConnection.RequestData(2576); // "Fahrstufe"
+            MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
             
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
             MyTCPConnection.RequestData(2596); // "LM Sifa"
+
+            MyTCPConnection.RequestData(2616); // "Schalter AFB ein/aus"
 
             MyTCPConnection.RequestData(2610); // "LM Uhrzeit (digital)"
             
             
             //MyTCPConnection.RequestData(2646); // "Türen"
             ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
-            ////TODO MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
+           
             //MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
-            //MyTCPConnection.RequestData(2616); // "Schalter AFB ein/aus"
+           
             //MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
             //MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
             //MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
@@ -418,7 +421,6 @@ namespace ZusiMeter
                     }
                 #endregion
 
-
                 #region Streckenkilometer
                 case 2645:
                 {
@@ -441,6 +443,21 @@ namespace ZusiMeter
                 case 2612:
                 {
                     lblFbventil.Text = data.Value.ToString();
+                    break;
+                }
+                #endregion
+
+                #region Schalter AFB-Geschwindigkeit
+                case 2615:
+                {
+                    afbschalter = data.Value;
+
+                    if (rbAFBvor5.Checked)
+                        afbvorwahl = afbschalter * 5;
+                    else if (rbAFBvor10.Checked)
+                        afbvorwahl = afbschalter * 10;
+
+                    lblAFBvorwahl.Text = afbvorwahl.ToString();
                     break;
                 }
                 #endregion
@@ -493,6 +510,26 @@ namespace ZusiMeter
                             lblFlag.Text = "";
                             lblFlag.Visible = false;
                         }
+                        break;
+                    }
+                #endregion
+
+                #region Schalter AFB ein/aus
+                case 2616:
+                    {
+                        if (data.Value) // if true, AFB switch is ON
+                        {
+                            afbistein = true;
+                            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Bold);
+                            lblafbeinaus.Text = "AFB ein";
+                        }
+                        else // else, AFB switch is OFF
+                        {
+                            afbistein = false;
+                            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular);
+                            lblafbeinaus.Text = "AFB aus";
+                        }
+
                         break;
                     }
                 #endregion
@@ -587,25 +624,7 @@ namespace ZusiMeter
         //    
 
 
-        //    else if (dataSet.Id == MyTCPConnection["Schalter AFB ein/aus"])
-        //    {
-        //        if (dataSet.Value > 0)
-        //            afbistein = true;
-        //        else
-        //            afbistein = false;
-
-        //        if (afbistein)
-        //        {
-        //            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Bold);
-        //            lblafbeinaus.Text = "AFB ein";
-        //        }
-        //        else
-        //        {
-        //            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular);
-        //            lblafbeinaus.Text = "AFB aus";
-        //        }
-
-        //    }
+        //   
         //    else if (dataSet.Id == MyTCPConnection["AFB Soll-Geschwindigkeit"])
         //    //TODO: check if there's a value available that reflects some kind of AFB "preset speed" value
         //    {
@@ -738,28 +757,8 @@ namespace ZusiMeter
         //            lblLZB_B.BackColor = Color.FromName("Transparent");
         //    }
         //    //######//
-        //    else if (dataSet.Id == MyTCPConnection["Schalter AFB-Geschwindigkeit"])
-        //    {
-        //        afbschalter = dataSet.Value;
-
-        //        if(rbAFBvor5.Checked)
-        //            afbvorwahl = afbschalter * 5;
-        //        else if (rbAFBvor10.Checked)
-        //            afbvorwahl = afbschalter * 10;
-
-        //        lblAFBvorwahl.Text = afbvorwahl.ToString();
-        //    }
         //    
-        //    else if (dataSet.Id == MyTCPConnection["Druck Hauptluftbehälter"])
-        //    {
-        //        druckhbl = dataSet.Value;
-        //        lblHBLwert.Text = String.Format("{0:0.0} bar", druckhbl);
-        //    }
-        //    else if (dataSet.Id == MyTCPConnection["Druck Hilfsluftbehälter"])
-        //    {
-        //        druckhlb = dataSet.Value;
-        //        lblHLBwert.Text = String.Format("{0:0.0} bar", druckhlb);
-        //    }
+        //    
         //    else if (dataSet.Id == MyTCPConnection["Schalter Sifa"])
         //    {
         //        //DEBUG
