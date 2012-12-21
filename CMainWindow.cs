@@ -244,6 +244,7 @@ namespace ZusiMeter
         double druckhbl, druckhlb;
         double schaltersifa; // if pressed twice RR is activated
         bool settingsAreSeparated = false; // true if settings are shown on a separate form (frmSettings)
+        bool lzbIsActive = false; // is LZB active (LM LZB Ü)?
 
         //TODO: TEST: is this the best place?
         SettingsForm frmSettings = new SettingsForm();
@@ -385,8 +386,15 @@ namespace ZusiMeter
                 #region LZB Soll-Geschwindigkeit
                 case 2636:
                 {
-                    double lzbsoll = data.Value;
-                    lblLZBsollgeschw.Text = String.Format("{0:0}", lzbsoll);
+                    double lzbsoll = data.Value; //TODO: make global
+                    if (lzbIsActive)
+                    {                        
+                        lblLZBsollgeschw.Text = String.Format("{0:0}", lzbsoll);
+                    }
+                    else
+                    {
+                        lblLZBsollgeschw.Text = "--";
+                    }
                     break;
                 }
                 #endregion
@@ -395,7 +403,14 @@ namespace ZusiMeter
                 case 2573:
                 {
                     double lzbziel = data.Value;
-                    lblLZBzielgeschw.Text = String.Format("{0:0}", lzbziel);
+                    if (lzbIsActive) // if LZB is active
+                    {
+                        lblLZBzielgeschw.Text = String.Format("{0:0}", lzbziel);                     
+                    }
+                    else // if LZB is NOT active
+                    {
+                        lblLZBzielgeschw.Text = "--";                        
+                    }
                     break;
                 }
                 #endregion
@@ -403,8 +418,16 @@ namespace ZusiMeter
                 #region LM LZB-Zielweg (ab 0)
                 case 2635:
                 {
-                    double lzbweg = data.Value;
-                    lblLZBzielweg.Text = String.Format("{0:0}", lzbweg);                
+                    double lzbweg = data.Value; // TODO: make global
+
+                    if (lzbIsActive)
+                    {
+                        lblLZBzielweg.Text = String.Format("{0:0}", lzbweg);
+                    }
+                    else
+                    {
+                        lblLZBzielweg.Text = "--";
+                    }
                     break;
                 }
                 #endregion
@@ -612,9 +635,15 @@ namespace ZusiMeter
                 case 2594: // LM LZB Ü
                     {
                         if (data.Value)
+                        {
                             lblLZB_Ue.BackColor = Color.CornflowerBlue;
+                            lzbIsActive = true; // LZB is active
+                        }
                         else
+                        {
                             lblLZB_Ue.BackColor = Color.FromName("Transparent");
+                            lzbIsActive = false; // LZB is NOT active
+                        }
                         break;
                     }
                 case 2595: // LM LZB Prüfen
@@ -773,7 +802,7 @@ namespace ZusiMeter
 
         }
 
-        private void TCPConnection_DoorsReceived(object sender, DataSet<DoorState> data) // Handles MyTCPConnection.DateTimeReceived 
+        private void TCPConnection_DoorsReceived(object sender, DataSet<DoorState> data) // Handles MyTCPConnection.DoorsReceived 
         {
             switch(data.Id)
             {
@@ -834,33 +863,6 @@ namespace ZusiMeter
 
         }
 
-        private void HandleIncomingData(DataSet<float> dataSet)
-        {
-
-
-            #region TÜREN
-            //    else if (dataSet.Id == MyTCPConnection["Türen"])
-        //    {
-
-        //        //DEBUG
-        //        String reisezugOld = reisezug.ToString();
-        //        //lblDebugreisezwert.Text = reisezugOld;
-
-        //        if (reisezug == true)
-        //        {
-        //           
-        //        }
-        //        else if (reisezug == false)//if reisezug is not true
-        //        {
-        //            //DEBUG
-        //            //MessageBox.Show("DEBUG: Reisezug=FALSE" + "--old:" + reisezugOld + "--:" + reisezug);        
-        //            
-        //        }
-        //    }
-            //    
-            #endregion
-
-
             //    //DEBUG TEST
         //    /* else if (dataSet.Id == MyTCPConnection["Zugdatei"])...
         //    {/*zugdateiOld = zugnummer;
@@ -870,7 +872,7 @@ namespace ZusiMeter
 
             
    
-        }
+        
         #endregion
 
         #region SetStatus
@@ -1382,9 +1384,13 @@ namespace ZusiMeter
 
         public void ShowFlagtest()
         {
-            lblFlag.Visible = true;
-            lblFlag.Text = "TEST";
-            timerFlag.Start(); //Zeigt für eine Sekunde ein Testflag
+            if (lblFlag.Visible == false) // only show flagtest if flag is not already visible
+            {
+                lblFlag.BackColor = Color.Orange;
+                lblFlag.Visible = true;
+                lblFlag.Text = "TEST";
+                timerFlag.Start(); //Zeigt für eine Sekunde ein Testflag
+            }
 
         }
         
@@ -1409,6 +1415,7 @@ namespace ZusiMeter
         {
             if (autopilot == true)
             {
+                lblFlag.BackColor = Color.Orange;
                 lblFlag.Visible = true;
                 lblFlag.Text = "Autopilot ein";
             }
