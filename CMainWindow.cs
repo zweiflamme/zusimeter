@@ -56,7 +56,7 @@ namespace ZusiMeter
             //MyTCPConnection.StringReceived += TCPConnection_StringReceived;
             MyTCPConnection.DateTimeReceived += TCPConnection_DateTimeReceived;
             //MyTCPConnection.BrakeConfigReceived += TCPConnection_BrakeConfigReceived;
-            //MyTCPConnection.DoorsReceived += TCPConnection_DoorsReceived;
+            MyTCPConnection.DoorsReceived += TCPConnection_DoorsReceived;
             //MyTCPConnection.PZBReceived += TCPConnection_PZBReceived;
 
 
@@ -111,7 +111,7 @@ namespace ZusiMeter
             MyTCPConnection.RequestData(2610); // "LM Uhrzeit (digital)"
             
             
-            //MyTCPConnection.RequestData(2646); // "Türen"
+            MyTCPConnection.RequestData(2646); // "Türen"
 
             
             
@@ -773,6 +773,64 @@ namespace ZusiMeter
 
         }
 
+        private void TCPConnection_DoorsReceived(object sender, DataSet<DoorState> data) // Handles MyTCPConnection.DateTimeReceived 
+        {
+            switch(data.Id)
+            {
+                case 2646:
+                {
+                    if (reisezug) // only display door status if passenger train
+                    {
+                        if (data.Value.ToString() == "Released")
+                        {
+                            lblTueren.Text = "Türen freigegeben";
+                        }
+                        if (data.Value.ToString() == "Open")
+                        {
+                            lblFlag.Visible = true;
+                            lblFlag.Text = "Türen geöffnet";
+                            lblTueren.Text = "Türen offen";
+                        }
+                        if (data.Value.ToString() == "ReadyToClose")
+                        {
+                            lblTueren.Text = "Fahrgäste i.O.";
+                        }
+                        if (data.Value.ToString() == "Closing")
+                        {
+                            lblTueren.Text = "Türen schließen";
+                        }
+                        if (data.Value.ToString() == "Depart")
+                        {
+                            //TODO: Abfahrtauftrag!
+                            lblFlag.Visible = true;
+                            //TODO: lblFlag.BackColor = Color.Green;
+                            lblFlag.Text = "Abfahrt! (Zp9)";
+                        }
+                        if (data.Value.ToString() == "Closed")
+                        {
+                            lblFlag.Visible = false;
+                            lblFlag.Text = "";
+                            lblTueren.Text = "Türen zu";
+                        }
+                        if (data.Value.ToString() == "Locked")
+                        {
+                            lblTueren.Text = "Türen verriegelt";
+                        }
+                    }
+                    else // if freight train
+                    {
+                        lblTueren.Text = "Güterzug";
+                    }
+
+                    break;
+                }
+            
+                default:
+                    break;
+            }
+
+        }
+
         private void HandleIncomingData(DataSet<float> dataSet)
         {
 
@@ -787,41 +845,13 @@ namespace ZusiMeter
 
         //        if (reisezug == true)
         //        {
-        //            //DEBUG
-        //            //MessageBox.Show("DEBUG: Reisezug=TRUE" + "--old:" + reisezugOld + "--:" + reisezug);
-
-        //            double tuerwert = dataSet.Value;
-
-        //            if (tuerwert > 7E-45 && cbTueren.Checked) // closed
-        //            {
-        //                lblFlag.Visible = false;
-        //                lblFlag.Text = "";
-        //                lblTueren.Text = "Türen zu";
-        //            }
-        //            else if (tuerwert < 2E-45 && tuerwert > 0 && cbTueren.Checked) //open
-        //            {
-        //                lblFlag.Visible = true;
-        //                lblFlag.Text = "Türen geöffnet";
-        //                lblTueren.Text = "Türen offen";
-        //            }
-        //            else if (tuerwert > 5E-45 && tuerwert < 7E-45) //closing
-        //            {
-        //                lblTueren.Text = "Türen schließen";
-        //            }
-        //            else if (tuerwert > 4E-45 && tuerwert < 5E-45)  //passengers okay
-        //            {
-        //                lblTueren.Text = "Fahrgäste i.O.";
-        //            }
-        //            else if (tuerwert == 0)  //doors unblocked
-        //            {
-        //                lblTueren.Text = "Türen freigegeben";
-        //            }
+        //           
         //        }
         //        else if (reisezug == false)//if reisezug is not true
         //        {
         //            //DEBUG
         //            //MessageBox.Show("DEBUG: Reisezug=FALSE" + "--old:" + reisezugOld + "--:" + reisezug);        
-        //            lblTueren.Text = "Güterzug";
+        //            
         //        }
         //    }
             //    
