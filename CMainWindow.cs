@@ -1198,9 +1198,15 @@ namespace ZusiMeter
         private void cbTopmost_CheckedChanged(object sender, EventArgs e)
         {
             if (cbTopmost.Checked == true)
+            {
                 this.TopMost = true;
+                frmSettings.TopMost = true;
+            }
             else
+            {
                 this.TopMost = false;
+                frmSettings.TopMost = false;
+            }
         }
 
         private void numSifagroesse_ValueChanged(object sender, EventArgs e)
@@ -1908,6 +1914,8 @@ namespace ZusiMeter
             if (cbSettingsSeparate.Checked)
             {
                 //TODO: does not yet work, why? Location is determined correctly
+                frmSettings.BackColor = this.BackColor; // makes sure day-/nightmode is set for the form too
+
                 frmSettings.StartPosition = FormStartPosition.Manual;
                 frmSettings.Location = new Point(this.Location.X + 200, this.Location.Y);
 
