@@ -379,19 +379,18 @@ namespace ZusiMeter
                     afbsoll = data.Value;
                     lblAFBgeschwindigkeit.Text = String.Format("{0:0} km/h", afbsoll);
 
-                    if (afbsoll <= lzbsoll && lzbIsActive) // if AFB is NOT restricted by LZB vSoll
+                    if (lzbIsActive)
                     {
-                        lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Bold); //make AFB labels bold
-                        lblAFBgeschwindigkeit.Font = new Font(lblAFBgeschwindigkeit.Font, FontStyle.Bold);
-                        lblLZBsollgeschw.Font = new Font(lblLZBsollgeschw.Font, FontStyle.Regular); // make LZB vSoll labels regular
-                        lbllzbvsoll.Font = new Font(lbllzbvsoll.Font, FontStyle.Regular); 
-                    }
-                    else // if AFB is RESTRICTED by LZB vSoll
-                    {
-                        lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular); //make AFB labels regular
-                        lblAFBgeschwindigkeit.Font = new Font(lblAFBgeschwindigkeit.Font, FontStyle.Regular);
-                        lblLZBsollgeschw.Font = new Font(lblLZBsollgeschw.Font, FontStyle.Bold); // make LZB vSoll labels bold
-                        lbllzbvsoll.Font = new Font(lbllzbvsoll.Font, FontStyle.Bold); 
+                        if (afbvorwahl < lzbsoll) // if AFB is NOT restricted by LZB vSoll
+                        {
+                            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Bold); //make AFB label bold
+                            lbllzbvsoll.Font = new Font(lbllzbvsoll.Font, FontStyle.Regular); // make LZB vSoll label regular
+                        }
+                        else if (afbvorwahl > lzbsoll) // if AFB is RESTRICTED by LZB vSoll
+                        {
+                            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular); //make AFB labels regular
+                            lbllzbvsoll.Font = new Font(lbllzbvsoll.Font, FontStyle.Bold); // make LZB vSoll label bold
+                        }
                     }
                     
                     break;
@@ -401,10 +400,21 @@ namespace ZusiMeter
                 #region LZB Soll-Geschwindigkeit
                 case 2636:
                 {
-                    lzbsoll = data.Value; //TODO: make global
+                    lzbsoll = data.Value;
                     if (lzbIsActive)
                     {                        
                         lblLZBsollgeschw.Text = String.Format("{0:0}", lzbsoll);
+
+                        if (lzbsoll > afbvorwahl) // if AFB is NOT restricted by LZB vSoll
+                        {
+                            lbllzbvsoll.Font = new Font(lbllzbvsoll.Font, FontStyle.Regular); // make LZB vSoll label regular
+                            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Bold); //make AFB label bold
+                        }
+                        else if (lzbsoll < afbvorwahl) // if AFB is RESTRICTED by LZB vSoll
+                        {
+                            lbllzbvsoll.Font = new Font(lbllzbvsoll.Font, FontStyle.Bold); // make LZB vSoll label bold
+                            lblafbeinaus.Font = new Font(lblafbeinaus.Font, FontStyle.Regular); //make AFB labels regular
+                        }
                     }
                     else
                     {
@@ -658,6 +668,7 @@ namespace ZusiMeter
                         {
                             lblLZB_Ue.BackColor = Color.FromName("Transparent");
                             lzbIsActive = false; // LZB is NOT active
+                            lzbsoll = 0; //TEST: reset lzbsoll, in some cases thi does not seem to be updated
                         }
                         break;
                     }
