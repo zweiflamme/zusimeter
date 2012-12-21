@@ -802,6 +802,7 @@ namespace ZusiMeter
                         }
                         if (data.Value.ToString() == "Depart")
                         {
+                            lblTueren.Text = "Türen zu";
                             //TODO: Abfahrtauftrag!
                             lblFlag.BackColor = Color.LimeGreen;
                             lblFlag.Visible = true;                            
@@ -821,7 +822,7 @@ namespace ZusiMeter
                     }
                     else // if freight train
                     {
-                        lblTueren.Text = "Güterzug";
+                        lblTueren.Text = "--";
                     }
 
                     break;
