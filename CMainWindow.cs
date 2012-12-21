@@ -787,6 +787,7 @@ namespace ZusiMeter
                         }
                         if (data.Value.ToString() == "Open")
                         {
+                            lblFlag.BackColor = Color.Orange;
                             lblFlag.Visible = true;
                             lblFlag.Text = "Türen geöffnet";
                             lblTueren.Text = "Türen offen";
@@ -802,8 +803,8 @@ namespace ZusiMeter
                         if (data.Value.ToString() == "Depart")
                         {
                             //TODO: Abfahrtauftrag!
-                            lblFlag.Visible = true;
-                            //TODO: lblFlag.BackColor = Color.Green;
+                            lblFlag.BackColor = Color.LimeGreen;
+                            lblFlag.Visible = true;                            
                             lblFlag.Text = "Abfahrt! (Zp9)";
                         }
                         if (data.Value.ToString() == "Closed")
@@ -814,6 +815,7 @@ namespace ZusiMeter
                         }
                         if (data.Value.ToString() == "Locked")
                         {
+                            lblFlag.Visible = false;
                             lblTueren.Text = "Türen verriegelt";
                         }
                     }
