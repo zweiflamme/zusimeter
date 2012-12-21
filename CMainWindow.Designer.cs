@@ -79,8 +79,8 @@
             this.pnlBremsen = new System.Windows.Forms.Panel();
             this.cbZusbremse = new System.Windows.Forms.CheckBox();
             this.cbDruckhbl = new System.Windows.Forms.CheckBox();
-            this.cbDynbremse = new System.Windows.Forms.CheckBox();
             this.cbDruckhlb = new System.Windows.Forms.CheckBox();
+            this.cbDynbremse = new System.Windows.Forms.CheckBox();
             this.cbFbv = new System.Windows.Forms.CheckBox();
             this.cbDruckhll = new System.Windows.Forms.CheckBox();
             this.cbBrh = new System.Windows.Forms.CheckBox();
@@ -905,17 +905,6 @@
             this.cbDruckhbl.UseVisualStyleBackColor = true;
             this.cbDruckhbl.CheckedChanged += new System.EventHandler(this.cbDruckhbl_CheckedChanged);
             // 
-            // cbDynbremse
-            // 
-            this.cbDynbremse.AutoSize = true;
-            this.cbDynbremse.Enabled = false;
-            this.cbDynbremse.Location = new System.Drawing.Point(113, 62);
-            this.cbDynbremse.Name = "cbDynbremse";
-            this.cbDynbremse.Size = new System.Drawing.Size(86, 17);
-            this.cbDynbremse.TabIndex = 24;
-            this.cbDynbremse.Text = "Dyn. Bremse";
-            this.cbDynbremse.UseVisualStyleBackColor = true;
-            // 
             // cbDruckhlb
             // 
             this.cbDruckhlb.AutoSize = true;
@@ -926,6 +915,17 @@
             this.cbDruckhlb.Text = "Druck HLB";
             this.cbDruckhlb.UseVisualStyleBackColor = true;
             this.cbDruckhlb.CheckedChanged += new System.EventHandler(this.cbDruckhlb_CheckedChanged);
+            // 
+            // cbDynbremse
+            // 
+            this.cbDynbremse.AutoSize = true;
+            this.cbDynbremse.Enabled = false;
+            this.cbDynbremse.Location = new System.Drawing.Point(113, 62);
+            this.cbDynbremse.Name = "cbDynbremse";
+            this.cbDynbremse.Size = new System.Drawing.Size(86, 17);
+            this.cbDynbremse.TabIndex = 24;
+            this.cbDynbremse.Text = "Dyn. Bremse";
+            this.cbDynbremse.UseVisualStyleBackColor = true;
             // 
             // cbFbv
             // 
@@ -1421,7 +1421,7 @@
             this.grpVerbindung.Controls.Add(this.btnConnect);
             this.grpVerbindung.Location = new System.Drawing.Point(3, 4);
             this.grpVerbindung.Name = "grpVerbindung";
-            this.grpVerbindung.Size = new System.Drawing.Size(174, 114);
+            this.grpVerbindung.Size = new System.Drawing.Size(122, 114);
             this.grpVerbindung.TabIndex = 12;
             this.grpVerbindung.TabStop = false;
             this.grpVerbindung.Text = "Verbindung";
@@ -1460,7 +1460,7 @@
             this.btnDebugpanel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSalmon;
             this.btnDebugpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDebugpanel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDebugpanel.Location = new System.Drawing.Point(143, 10);
+            this.btnDebugpanel.Location = new System.Drawing.Point(159, 10);
             this.btnDebugpanel.Name = "btnDebugpanel";
             this.btnDebugpanel.Size = new System.Drawing.Size(18, 107);
             this.btnDebugpanel.TabIndex = 13;
@@ -1980,7 +1980,7 @@
             // lblhlb
             // 
             this.lblhlb.AutoSize = true;
-            this.lblhlb.Location = new System.Drawing.Point(3, 78);
+            this.lblhlb.Location = new System.Drawing.Point(3, 91);
             this.lblhlb.Name = "lblhlb";
             this.lblhlb.Size = new System.Drawing.Size(28, 13);
             this.lblhlb.TabIndex = 18;
@@ -1990,7 +1990,7 @@
             // lblHLBwert
             // 
             this.lblHLBwert.AutoSize = true;
-            this.lblHLBwert.Location = new System.Drawing.Point(54, 78);
+            this.lblHLBwert.Location = new System.Drawing.Point(54, 91);
             this.lblHLBwert.Name = "lblHLBwert";
             this.lblHLBwert.Size = new System.Drawing.Size(16, 13);
             this.lblHLBwert.TabIndex = 19;
@@ -2000,7 +2000,7 @@
             // lblhbl
             // 
             this.lblhbl.AutoSize = true;
-            this.lblhbl.Location = new System.Drawing.Point(3, 91);
+            this.lblhbl.Location = new System.Drawing.Point(3, 78);
             this.lblhbl.Name = "lblhbl";
             this.lblhbl.Size = new System.Drawing.Size(28, 13);
             this.lblhbl.TabIndex = 20;
@@ -2010,7 +2010,7 @@
             // lblHBLwert
             // 
             this.lblHBLwert.AutoSize = true;
-            this.lblHBLwert.Location = new System.Drawing.Point(54, 91);
+            this.lblHBLwert.Location = new System.Drawing.Point(54, 78);
             this.lblHBLwert.Name = "lblHBLwert";
             this.lblHBLwert.Size = new System.Drawing.Size(16, 13);
             this.lblHBLwert.TabIndex = 21;

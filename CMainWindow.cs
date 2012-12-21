@@ -81,6 +81,9 @@ namespace ZusiMeter
 
             MyTCPConnection.RequestData(2616); // "Schalter AFB ein/aus"
 
+            MyTCPConnection.RequestData(2648); // "Reisezug" 
+            MyTCPConnection.RequestData(2647); // "Autopilot"
+
             MyTCPConnection.RequestData(2610); // "LM Uhrzeit (digital)"
             
             
@@ -93,8 +96,7 @@ namespace ZusiMeter
             //MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
             //MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
             //MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
-            //MyTCPConnection.RequestData(2648); // "Reisezug" 
-            //MyTCPConnection.RequestData(2647); // "Autopilot"
+           
             ////###PZB-90###//
             //MyTCPConnection.RequestData(2583); // "LM PZB Zugart U"
             //MyTCPConnection.RequestData(2584); // "LM PZB Zugart M"
@@ -534,6 +536,46 @@ namespace ZusiMeter
                     }
                 #endregion
 
+                #region Autopilot
+                case 2647:
+                    {
+                        if (data.Value) //if true, autopilot is on...
+                        {
+                            autopilot = true;
+                            timer100.Enabled = true; //makes sure "Autopilot ein" lblFlag is displayed as long as A/P is on
+                        }
+                        else // if false, autopilot is off
+                        {
+                            autopilot = false;
+                            lblFlag.Visible = false;
+                            lblFlag.Text = "";
+                            timer100.Enabled = false;
+                        }
+                        break;
+                    }
+                #endregion
+
+                #region Reisezug
+                case 2648:
+                    {
+                        //DEBUG:
+                        lblDebugreiseztrue.Text = data.Value.ToString();
+                        //TODO: check if correct
+
+                        if (data.Value) //if true -> passenger train
+                        {
+                            reisezug = true;                            
+                        }
+                        else //if false -> freight train
+                        {
+                            reisezug = false;
+                            lblFlag.Visible = false; //hide if doors were open when a freight train has been selected as new train
+                        }
+
+                        break;
+                    }
+                #endregion
+
                 default:
                     break;
             }
@@ -563,18 +605,7 @@ namespace ZusiMeter
         {
 
         
-        //    else if (dataSet.Id == MyTCPConnection["Reisezug"])
-        //    {
-        //        if (dataSet.Value == 0) //if Güterzug
-        //        {
-        //            reisezug = false;
-        //            lblFlag.Visible = false; //if doors were open when a freight train has been selected as new train
-        //        }
-        //        else
-        //        {
-        //            reisezug = true;
-        //        }
-        //    } 
+        
         //    else if (dataSet.Id == MyTCPConnection["Türen"])
         //    {
 
@@ -655,21 +686,7 @@ namespace ZusiMeter
         //        if (zugnummer != zugnummerOld)
         //            MessageBox.Show("DEBUG: Zugdatei has changed"); } */   
 
-        //    else if (dataSet.Id == MyTCPConnection["Autopilot"])
-        //    {
-        //        if (dataSet.Value > 0) //if autopilot is on...
-        //        {
-        //            autopilot = true;
-        //            timer100.Enabled = true; //makes sure "Autopilot ein" lblFlag is displayed as long as A/P is on
-        //        }
-        //        else
-        //        {
-        //            autopilot = false;
-        //            lblFlag.Visible = false;
-        //            lblFlag.Text = "";
-        //            timer100.Enabled = false;
-        //        }
-        //    }
+        
         //    //###PZB-90###//
         //    else if (dataSet.Id == MyTCPConnection["LM PZB Zugart O"])
         //    {
