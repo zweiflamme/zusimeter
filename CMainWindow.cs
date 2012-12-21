@@ -65,7 +65,7 @@ namespace ZusiMeter
             MyTCPConnection.RequestData(2578); // "AFB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2636); // "LZB Soll-Geschwindigkeit"
             MyTCPConnection.RequestData(2573); // "LZB Ziel-Geschwindigkeit"
-
+            MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
 
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
@@ -79,7 +79,7 @@ namespace ZusiMeter
             MyTCPConnection.RequestData(2576); // "Fahrstufe"
             MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             MyTCPConnection.RequestData(2612); // "Schalter Führerbremsventil"
-            
+            //###//
             MyTCPConnection.RequestData(2599); // "LM Schleudern"     
             MyTCPConnection.RequestData(2596); // "LM Sifa"
             
@@ -88,20 +88,12 @@ namespace ZusiMeter
 
             MyTCPConnection.RequestData(2648); // "Reisezug" 
             MyTCPConnection.RequestData(2647); // "Autopilot"
-
+            //###//
             MyTCPConnection.RequestData(2610); // "LM Uhrzeit (digital)"
             
             
             //MyTCPConnection.RequestData(2646); // "Türen"
             
-           
-            //MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
-           
-    
-
-            
-            MyTCPConnection.RequestData(2635); // "LM LZB-Zielweg (ab 0)"   
-           
             ////###PZB-90###//
             //MyTCPConnection.RequestData(2583); // "LM PZB Zugart U"
             //MyTCPConnection.RequestData(2584); // "LM PZB Zugart M"
@@ -119,9 +111,9 @@ namespace ZusiMeter
             //MyTCPConnection.RequestData(2595); // "LM LZB Prüfen"
             ////###//
             
-           
 
             ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
+            //TODO: is this needed? MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
             //TODO: is this needed? MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             #endregion 
 
@@ -403,6 +395,7 @@ namespace ZusiMeter
                 }
                 #endregion
 
+                
                 #region LM LZB-Zielweg (ab 0)
                 case 2635:
                 {
