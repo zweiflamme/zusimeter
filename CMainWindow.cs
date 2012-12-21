@@ -861,7 +861,7 @@ namespace ZusiMeter
                             //TODO: Abfahrtauftrag!
                             lblFlag.BackColor = Color.LimeGreen;
                             lblFlag.Visible = true;                            
-                            lblFlag.Text = "Abfahrt! (Zp9)";
+                            lblFlag.Text = "Abfahrt! (Zp 9)";
                         }
                         if (data.Value.ToString() == "Closed")
                         {
