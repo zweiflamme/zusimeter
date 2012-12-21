@@ -97,6 +97,15 @@
             this.lblFahrschneutralbei = new System.Windows.Forms.Label();
             this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
+            this.grpUnits = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.rbUnitkph = new System.Windows.Forms.RadioButton();
+            this.rbUnitmps = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rbUnitkm = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.rbUnitm = new System.Windows.Forms.RadioButton();
             this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.cbHidesettings = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -105,10 +114,11 @@
             this.cbFokusImmerzurueck = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
-            this.rbUnitm = new System.Windows.Forms.RadioButton();
-            this.rbUnitkm = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabSystem = new System.Windows.Forms.TabPage();
+            this.grpManageSettings = new System.Windows.Forms.GroupBox();
+            this.btnDefaultSettings = new System.Windows.Forms.Button();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.btnLoadSettings = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
             this.tbServer = new System.Windows.Forms.TextBox();
@@ -194,16 +204,6 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
-            this.grpUnits = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.rbUnitmps = new System.Windows.Forms.RadioButton();
-            this.rbUnitkph = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.grpManageSettings = new System.Windows.Forms.GroupBox();
-            this.btnDefaultSettings = new System.Windows.Forms.Button();
-            this.btnSaveSettings = new System.Windows.Forms.Button();
-            this.btnLoadSettings = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -219,8 +219,12 @@
             this.pnlSchalterst.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).BeginInit();
             this.tabDarstellung.SuspendLayout();
+            this.grpUnits.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).BeginInit();
             this.tabSystem.SuspendLayout();
+            this.grpManageSettings.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pnlDebug.SuspendLayout();
@@ -234,10 +238,6 @@
             this.pnlLeft.SuspendLayout();
             this.pnlDataLZB.SuspendLayout();
             this.pnlDataPZB90.SuspendLayout();
-            this.grpUnits.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.grpManageSettings.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -872,8 +872,8 @@
             this.pnlBremsen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlBremsen.Controls.Add(this.cbZusbremse);
             this.pnlBremsen.Controls.Add(this.cbDruckhbl);
-            this.pnlBremsen.Controls.Add(this.cbDynbremse);
             this.pnlBremsen.Controls.Add(this.cbDruckhlb);
+            this.pnlBremsen.Controls.Add(this.cbDynbremse);
             this.pnlBremsen.Controls.Add(this.cbFbv);
             this.pnlBremsen.Controls.Add(this.cbDruckhll);
             this.pnlBremsen.Controls.Add(this.cbBrh);
@@ -897,7 +897,7 @@
             // cbDruckhbl
             // 
             this.cbDruckhbl.AutoSize = true;
-            this.cbDruckhbl.Location = new System.Drawing.Point(113, 23);
+            this.cbDruckhbl.Location = new System.Drawing.Point(113, 6);
             this.cbDruckhbl.Name = "cbDruckhbl";
             this.cbDruckhbl.Size = new System.Drawing.Size(79, 17);
             this.cbDruckhbl.TabIndex = 11;
@@ -919,7 +919,7 @@
             // cbDruckhlb
             // 
             this.cbDruckhlb.AutoSize = true;
-            this.cbDruckhlb.Location = new System.Drawing.Point(113, 5);
+            this.cbDruckhlb.Location = new System.Drawing.Point(113, 23);
             this.cbDruckhlb.Name = "cbDruckhlb";
             this.cbDruckhlb.Size = new System.Drawing.Size(79, 17);
             this.cbDruckhlb.TabIndex = 10;
@@ -1134,6 +1134,107 @@
             this.tabDarstellung.Text = "Darstellung";
             this.tabDarstellung.Click += new System.EventHandler(this.tabDarstellung_Click);
             // 
+            // grpUnits
+            // 
+            this.grpUnits.Controls.Add(this.panel2);
+            this.grpUnits.Controls.Add(this.panel1);
+            this.grpUnits.Location = new System.Drawing.Point(6, 11);
+            this.grpUnits.Name = "grpUnits";
+            this.grpUnits.Size = new System.Drawing.Size(142, 100);
+            this.grpUnits.TabIndex = 24;
+            this.grpUnits.TabStop = false;
+            this.grpUnits.Text = "Einheiten";
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.rbUnitkph);
+            this.panel2.Controls.Add(this.rbUnitmps);
+            this.panel2.Location = new System.Drawing.Point(6, 58);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(102, 39);
+            this.panel2.TabIndex = 20;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(85, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Geschwindigkeit";
+            // 
+            // rbUnitkph
+            // 
+            this.rbUnitkph.AutoSize = true;
+            this.rbUnitkph.Checked = true;
+            this.rbUnitkph.Location = new System.Drawing.Point(6, 19);
+            this.rbUnitkph.Name = "rbUnitkph";
+            this.rbUnitkph.Size = new System.Drawing.Size(50, 17);
+            this.rbUnitkph.TabIndex = 5;
+            this.rbUnitkph.TabStop = true;
+            this.rbUnitkph.Text = "km/h";
+            this.rbUnitkph.UseVisualStyleBackColor = true;
+            this.rbUnitkph.CheckedChanged += new System.EventHandler(this.rbUnitkph_CheckedChanged);
+            // 
+            // rbUnitmps
+            // 
+            this.rbUnitmps.AutoSize = true;
+            this.rbUnitmps.Location = new System.Drawing.Point(56, 19);
+            this.rbUnitmps.Name = "rbUnitmps";
+            this.rbUnitmps.Size = new System.Drawing.Size(43, 17);
+            this.rbUnitmps.TabIndex = 4;
+            this.rbUnitmps.Text = "m/s";
+            this.rbUnitmps.UseVisualStyleBackColor = true;
+            this.rbUnitmps.CheckedChanged += new System.EventHandler(this.rbUnitmps_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.AutoSize = true;
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.rbUnitkm);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.rbUnitm);
+            this.panel1.Location = new System.Drawing.Point(6, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(131, 41);
+            this.panel1.TabIndex = 20;
+            // 
+            // rbUnitkm
+            // 
+            this.rbUnitkm.AutoSize = true;
+            this.rbUnitkm.Checked = true;
+            this.rbUnitkm.Location = new System.Drawing.Point(6, 21);
+            this.rbUnitkm.Name = "rbUnitkm";
+            this.rbUnitkm.Size = new System.Drawing.Size(68, 17);
+            this.rbUnitkm.TabIndex = 2;
+            this.rbUnitkm.TabStop = true;
+            this.rbUnitkm.Text = "Kilometer";
+            this.rbUnitkm.UseVisualStyleBackColor = true;
+            this.rbUnitkm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Streckenmeter";
+            // 
+            // rbUnitm
+            // 
+            this.rbUnitm.AutoSize = true;
+            this.rbUnitm.Location = new System.Drawing.Point(76, 21);
+            this.rbUnitm.Name = "rbUnitm";
+            this.rbUnitm.Size = new System.Drawing.Size(52, 17);
+            this.rbUnitm.TabIndex = 1;
+            this.rbUnitm.Text = "Meter";
+            this.rbUnitm.UseVisualStyleBackColor = true;
+            this.rbUnitm.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
+            // 
             // cbSettingsSeparate
             // 
             this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
@@ -1240,39 +1341,6 @@
             0});
             this.numSifagroesse.ValueChanged += new System.EventHandler(this.numSifagroesse_ValueChanged);
             // 
-            // rbUnitm
-            // 
-            this.rbUnitm.AutoSize = true;
-            this.rbUnitm.Location = new System.Drawing.Point(76, 21);
-            this.rbUnitm.Name = "rbUnitm";
-            this.rbUnitm.Size = new System.Drawing.Size(52, 17);
-            this.rbUnitm.TabIndex = 1;
-            this.rbUnitm.Text = "Meter";
-            this.rbUnitm.UseVisualStyleBackColor = true;
-            this.rbUnitm.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
-            // 
-            // rbUnitkm
-            // 
-            this.rbUnitkm.AutoSize = true;
-            this.rbUnitkm.Checked = true;
-            this.rbUnitkm.Location = new System.Drawing.Point(6, 21);
-            this.rbUnitkm.Name = "rbUnitkm";
-            this.rbUnitkm.Size = new System.Drawing.Size(68, 17);
-            this.rbUnitkm.TabIndex = 2;
-            this.rbUnitkm.TabStop = true;
-            this.rbUnitkm.Text = "Kilometer";
-            this.rbUnitkm.UseVisualStyleBackColor = true;
-            this.rbUnitkm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Streckenmeter";
-            // 
             // tabSystem
             // 
             this.tabSystem.BackColor = System.Drawing.SystemColors.Control;
@@ -1286,6 +1354,53 @@
             this.tabSystem.TabIndex = 2;
             this.tabSystem.Text = "System";
             this.tabSystem.Click += new System.EventHandler(this.tabSystem_Click);
+            // 
+            // grpManageSettings
+            // 
+            this.grpManageSettings.Controls.Add(this.btnDefaultSettings);
+            this.grpManageSettings.Controls.Add(this.btnSaveSettings);
+            this.grpManageSettings.Controls.Add(this.btnLoadSettings);
+            this.grpManageSettings.Enabled = false;
+            this.grpManageSettings.Location = new System.Drawing.Point(3, 124);
+            this.grpManageSettings.Name = "grpManageSettings";
+            this.grpManageSettings.Size = new System.Drawing.Size(174, 92);
+            this.grpManageSettings.TabIndex = 15;
+            this.grpManageSettings.TabStop = false;
+            this.grpManageSettings.Text = "Einstellungen verwalten";
+            this.grpManageSettings.Enter += new System.EventHandler(this.grpManageSettings_Enter);
+            // 
+            // btnDefaultSettings
+            // 
+            this.btnDefaultSettings.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDefaultSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDefaultSettings.Location = new System.Drawing.Point(6, 55);
+            this.btnDefaultSettings.Name = "btnDefaultSettings";
+            this.btnDefaultSettings.Size = new System.Drawing.Size(162, 23);
+            this.btnDefaultSettings.TabIndex = 16;
+            this.btnDefaultSettings.Text = "Auf Standardwerte";
+            this.btnDefaultSettings.UseVisualStyleBackColor = false;
+            // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSaveSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveSettings.Location = new System.Drawing.Point(90, 25);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(78, 23);
+            this.btnSaveSettings.TabIndex = 17;
+            this.btnSaveSettings.Text = "Speichern";
+            this.btnSaveSettings.UseVisualStyleBackColor = false;
+            // 
+            // btnLoadSettings
+            // 
+            this.btnLoadSettings.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLoadSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadSettings.Location = new System.Drawing.Point(6, 26);
+            this.btnLoadSettings.Name = "btnLoadSettings";
+            this.btnLoadSettings.Size = new System.Drawing.Size(78, 23);
+            this.btnLoadSettings.TabIndex = 18;
+            this.btnLoadSettings.Text = "Laden";
+            this.btnLoadSettings.UseVisualStyleBackColor = false;
             // 
             // btnAbout
             // 
@@ -1784,10 +1899,10 @@
             this.pnlDataBremsen.Controls.Add(this.lblFbventil, 1, 3);
             this.pnlDataBremsen.Controls.Add(this.lblDynbremse, 1, 4);
             this.pnlDataBremsen.Controls.Add(this.lblZusbremse, 1, 5);
-            this.pnlDataBremsen.Controls.Add(this.lblhlb, 0, 6);
-            this.pnlDataBremsen.Controls.Add(this.lblHLBwert, 1, 6);
-            this.pnlDataBremsen.Controls.Add(this.lblhbl, 0, 7);
-            this.pnlDataBremsen.Controls.Add(this.lblHBLwert, 1, 7);
+            this.pnlDataBremsen.Controls.Add(this.lblhlb, 0, 7);
+            this.pnlDataBremsen.Controls.Add(this.lblHLBwert, 1, 7);
+            this.pnlDataBremsen.Controls.Add(this.lblhbl, 0, 6);
+            this.pnlDataBremsen.Controls.Add(this.lblHBLwert, 1, 6);
             this.pnlDataBremsen.Location = new System.Drawing.Point(3, 321);
             this.pnlDataBremsen.Name = "pnlDataBremsen";
             this.pnlDataBremsen.RowCount = 8;
@@ -2283,121 +2398,6 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
-            // grpUnits
-            // 
-            this.grpUnits.Controls.Add(this.panel2);
-            this.grpUnits.Controls.Add(this.panel1);
-            this.grpUnits.Location = new System.Drawing.Point(6, 11);
-            this.grpUnits.Name = "grpUnits";
-            this.grpUnits.Size = new System.Drawing.Size(142, 100);
-            this.grpUnits.TabIndex = 24;
-            this.grpUnits.TabStop = false;
-            this.grpUnits.Text = "Einheiten";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 3);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 13);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Geschwindigkeit";
-            // 
-            // rbUnitmps
-            // 
-            this.rbUnitmps.AutoSize = true;
-            this.rbUnitmps.Location = new System.Drawing.Point(56, 19);
-            this.rbUnitmps.Name = "rbUnitmps";
-            this.rbUnitmps.Size = new System.Drawing.Size(43, 17);
-            this.rbUnitmps.TabIndex = 4;
-            this.rbUnitmps.Text = "m/s";
-            this.rbUnitmps.UseVisualStyleBackColor = true;
-            this.rbUnitmps.CheckedChanged += new System.EventHandler(this.rbUnitmps_CheckedChanged);
-            // 
-            // rbUnitkph
-            // 
-            this.rbUnitkph.AutoSize = true;
-            this.rbUnitkph.Checked = true;
-            this.rbUnitkph.Location = new System.Drawing.Point(6, 19);
-            this.rbUnitkph.Name = "rbUnitkph";
-            this.rbUnitkph.Size = new System.Drawing.Size(50, 17);
-            this.rbUnitkph.TabIndex = 5;
-            this.rbUnitkph.TabStop = true;
-            this.rbUnitkph.Text = "km/h";
-            this.rbUnitkph.UseVisualStyleBackColor = true;
-            this.rbUnitkph.CheckedChanged += new System.EventHandler(this.rbUnitkph_CheckedChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.AutoSize = true;
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.rbUnitkm);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.rbUnitm);
-            this.panel1.Location = new System.Drawing.Point(6, 15);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(131, 41);
-            this.panel1.TabIndex = 20;
-            // 
-            // panel2
-            // 
-            this.panel2.AutoSize = true;
-            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.rbUnitkph);
-            this.panel2.Controls.Add(this.rbUnitmps);
-            this.panel2.Location = new System.Drawing.Point(6, 58);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(102, 39);
-            this.panel2.TabIndex = 20;
-            // 
-            // grpManageSettings
-            // 
-            this.grpManageSettings.Controls.Add(this.btnDefaultSettings);
-            this.grpManageSettings.Controls.Add(this.btnSaveSettings);
-            this.grpManageSettings.Controls.Add(this.btnLoadSettings);
-            this.grpManageSettings.Enabled = false;
-            this.grpManageSettings.Location = new System.Drawing.Point(3, 124);
-            this.grpManageSettings.Name = "grpManageSettings";
-            this.grpManageSettings.Size = new System.Drawing.Size(174, 92);
-            this.grpManageSettings.TabIndex = 15;
-            this.grpManageSettings.TabStop = false;
-            this.grpManageSettings.Text = "Einstellungen verwalten";
-            this.grpManageSettings.Enter += new System.EventHandler(this.grpManageSettings_Enter);
-            // 
-            // btnDefaultSettings
-            // 
-            this.btnDefaultSettings.BackColor = System.Drawing.SystemColors.Control;
-            this.btnDefaultSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDefaultSettings.Location = new System.Drawing.Point(6, 55);
-            this.btnDefaultSettings.Name = "btnDefaultSettings";
-            this.btnDefaultSettings.Size = new System.Drawing.Size(162, 23);
-            this.btnDefaultSettings.TabIndex = 16;
-            this.btnDefaultSettings.Text = "Auf Standardwerte";
-            this.btnDefaultSettings.UseVisualStyleBackColor = false;
-            // 
-            // btnSaveSettings
-            // 
-            this.btnSaveSettings.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSaveSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveSettings.Location = new System.Drawing.Point(90, 25);
-            this.btnSaveSettings.Name = "btnSaveSettings";
-            this.btnSaveSettings.Size = new System.Drawing.Size(78, 23);
-            this.btnSaveSettings.TabIndex = 17;
-            this.btnSaveSettings.Text = "Speichern";
-            this.btnSaveSettings.UseVisualStyleBackColor = false;
-            // 
-            // btnLoadSettings
-            // 
-            this.btnLoadSettings.BackColor = System.Drawing.SystemColors.Control;
-            this.btnLoadSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadSettings.Location = new System.Drawing.Point(6, 26);
-            this.btnLoadSettings.Name = "btnLoadSettings";
-            this.btnLoadSettings.Size = new System.Drawing.Size(78, 23);
-            this.btnLoadSettings.TabIndex = 18;
-            this.btnLoadSettings.Text = "Laden";
-            this.btnLoadSettings.UseVisualStyleBackColor = false;
-            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2439,8 +2439,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).EndInit();
             this.tabDarstellung.ResumeLayout(false);
             this.tabDarstellung.PerformLayout();
+            this.grpUnits.ResumeLayout(false);
+            this.grpUnits.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).EndInit();
             this.tabSystem.ResumeLayout(false);
+            this.grpManageSettings.ResumeLayout(false);
             this.grpVerbindung.ResumeLayout(false);
             this.grpVerbindung.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -2463,13 +2470,6 @@
             this.pnlLeft.PerformLayout();
             this.pnlDataLZB.ResumeLayout(false);
             this.pnlDataPZB90.ResumeLayout(false);
-            this.grpUnits.ResumeLayout(false);
-            this.grpUnits.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.grpManageSettings.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
