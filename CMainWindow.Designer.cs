@@ -200,6 +200,10 @@
             this.rbUnitkph = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.grpManageSettings = new System.Windows.Forms.GroupBox();
+            this.btnDefaultSettings = new System.Windows.Forms.Button();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.btnLoadSettings = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -233,6 +237,7 @@
             this.grpUnits.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.grpManageSettings.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -1271,6 +1276,7 @@
             // tabSystem
             // 
             this.tabSystem.BackColor = System.Drawing.SystemColors.Control;
+            this.tabSystem.Controls.Add(this.grpManageSettings);
             this.tabSystem.Controls.Add(this.btnAbout);
             this.tabSystem.Controls.Add(this.grpVerbindung);
             this.tabSystem.Controls.Add(this.btnDebugpanel);
@@ -1285,7 +1291,7 @@
             // 
             this.btnAbout.BackColor = System.Drawing.SystemColors.Control;
             this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAbout.Location = new System.Drawing.Point(3, 132);
+            this.btnAbout.Location = new System.Drawing.Point(3, 242);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(121, 23);
             this.btnAbout.TabIndex = 14;
@@ -1300,7 +1306,7 @@
             this.grpVerbindung.Controls.Add(this.btnConnect);
             this.grpVerbindung.Location = new System.Drawing.Point(3, 4);
             this.grpVerbindung.Name = "grpVerbindung";
-            this.grpVerbindung.Size = new System.Drawing.Size(121, 114);
+            this.grpVerbindung.Size = new System.Drawing.Size(174, 114);
             this.grpVerbindung.TabIndex = 12;
             this.grpVerbindung.TabStop = false;
             this.grpVerbindung.Text = "Verbindung";
@@ -2345,6 +2351,53 @@
             this.panel2.Size = new System.Drawing.Size(102, 39);
             this.panel2.TabIndex = 20;
             // 
+            // grpManageSettings
+            // 
+            this.grpManageSettings.Controls.Add(this.btnDefaultSettings);
+            this.grpManageSettings.Controls.Add(this.btnSaveSettings);
+            this.grpManageSettings.Controls.Add(this.btnLoadSettings);
+            this.grpManageSettings.Enabled = false;
+            this.grpManageSettings.Location = new System.Drawing.Point(3, 124);
+            this.grpManageSettings.Name = "grpManageSettings";
+            this.grpManageSettings.Size = new System.Drawing.Size(174, 92);
+            this.grpManageSettings.TabIndex = 15;
+            this.grpManageSettings.TabStop = false;
+            this.grpManageSettings.Text = "Einstellungen verwalten";
+            this.grpManageSettings.Enter += new System.EventHandler(this.grpManageSettings_Enter);
+            // 
+            // btnDefaultSettings
+            // 
+            this.btnDefaultSettings.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDefaultSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDefaultSettings.Location = new System.Drawing.Point(6, 55);
+            this.btnDefaultSettings.Name = "btnDefaultSettings";
+            this.btnDefaultSettings.Size = new System.Drawing.Size(162, 23);
+            this.btnDefaultSettings.TabIndex = 16;
+            this.btnDefaultSettings.Text = "Auf Standardwerte";
+            this.btnDefaultSettings.UseVisualStyleBackColor = false;
+            // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSaveSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveSettings.Location = new System.Drawing.Point(90, 25);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(78, 23);
+            this.btnSaveSettings.TabIndex = 17;
+            this.btnSaveSettings.Text = "Speichern";
+            this.btnSaveSettings.UseVisualStyleBackColor = false;
+            // 
+            // btnLoadSettings
+            // 
+            this.btnLoadSettings.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLoadSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadSettings.Location = new System.Drawing.Point(6, 26);
+            this.btnLoadSettings.Name = "btnLoadSettings";
+            this.btnLoadSettings.Size = new System.Drawing.Size(78, 23);
+            this.btnLoadSettings.TabIndex = 18;
+            this.btnLoadSettings.Text = "Laden";
+            this.btnLoadSettings.UseVisualStyleBackColor = false;
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2416,6 +2469,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.grpManageSettings.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2592,6 +2646,10 @@
         private System.Windows.Forms.RadioButton rbUnitkph;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox grpManageSettings;
+        private System.Windows.Forms.Button btnDefaultSettings;
+        private System.Windows.Forms.Button btnSaveSettings;
+        private System.Windows.Forms.Button btnLoadSettings;
 
     }
 

@@ -66,8 +66,8 @@ namespace ZusiMeter
             MyTCPConnection.RequestData(2654); // "Bremshundertstel"
             MyTCPConnection.RequestData(2562); // "Druck Hauptluftleitung"
             MyTCPConnection.RequestData(2563); // "Druck Bremszylinder"
-            //MyTCPConnection.RequestData(2564); // "Druck Hauptluftbehälter"
-            //MyTCPConnection.RequestData(2579); // "Druck Hilfsluftbehälter"
+            MyTCPConnection.RequestData(2564); // "Druck Hauptluftbehälter"
+            MyTCPConnection.RequestData(2579); // "Druck Hilfsluftbehälter"
 
             MyTCPConnection.RequestData(2645); // "Strecken-Km in Metern"
 
@@ -400,6 +400,25 @@ namespace ZusiMeter
                 }
                 #endregion
 
+                #region Druck HBL
+                case 2564:
+                    {
+                        druckhbl = data.Value;
+                        lblHBLwert.Text = String.Format("{0:0.0} bar", druckhbl);
+                        break;
+                    }
+                #endregion
+
+                #region Druck HLB
+                case 2579:
+                    {
+                        druckhlb = data.Value;
+                        lblHLBwert.Text = String.Format("{0:0.0} bar", druckhlb);
+                        break;
+                    }
+                #endregion
+
+
                 #region Streckenkilometer
                 case 2645:
                 {
@@ -730,22 +749,7 @@ namespace ZusiMeter
 
         //        lblAFBvorwahl.Text = afbvorwahl.ToString();
         //    }
-        //    //TODO TEST display time
-        //    //else if (dataSet.Id == MyTCPConnection["Uhrzeit Stunde"])
-        //    //{
-        //    //    stunde = dataSet.Value;
-        //    //    DisplayTime();
-        //    //}
-        //    //else if (dataSet.Id == MyTCPConnection["Uhrzeit Minute"])
-        //    //{
-        //    //    minute = dataSet.Value;
-        //    //    DisplayTime();
-        //    //}
-        //    //else if (dataSet.Id == MyTCPConnection["Uhrzeit Sekunde"])
-        //    //{
-        //    //    sekunde = dataSet.Value;
-        //    //    DisplayTime();
-        //    //}
+        //    
         //    else if (dataSet.Id == MyTCPConnection["Druck Hauptluftbehälter"])
         //    {
         //        druckhbl = dataSet.Value;
@@ -1831,6 +1835,11 @@ namespace ZusiMeter
         private void rbUnitkph_CheckedChanged(object sender, EventArgs e)
         {
             lblkmh.Text = "km/h";
+        }
+
+        private void grpManageSettings_Enter(object sender, EventArgs e)
+        {
+
         }
 
         
