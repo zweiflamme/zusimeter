@@ -428,14 +428,15 @@ namespace ZusiMeter
                 case 2573:
                 {
                     double lzbziel = data.Value;
-                    if (lzbIsActive) // if LZB is active
+                    //TODO: check why lzbIsActive does not appear to be true only in this case
+                    //if (lzbIsActive) // if LZB is active
                     {
                         lblLZBzielgeschw.Text = String.Format("{0:0}", lzbziel);                     
                     }
-                    else // if LZB is NOT active
-                    {
-                        lblLZBzielgeschw.Text = "--";                        
-                    }
+                    ////else // if LZB is NOT active
+                    //{
+                    //    lblLZBzielgeschw.Text = "--";                        
+                    //}
                     break;
                 }
                 #endregion
@@ -447,7 +448,7 @@ namespace ZusiMeter
 
                     if (lzbIsActive)
                     {
-                        lblLZBzielweg.Text = String.Format("{0:0}", lzbweg);
+                        lblLZBzielweg.Text = String.Format("{0:0}", lzbweg);                        
                     }
                     else
                     {
@@ -661,14 +662,14 @@ namespace ZusiMeter
                     {
                         if (data.Value)
                         {
+                            lzbIsActive = true;
                             lblLZB_Ue.BackColor = Color.CornflowerBlue;
-                            lzbIsActive = true; // LZB is active
                         }
                         else
                         {
+                            lzbIsActive = false;
                             lblLZB_Ue.BackColor = Color.FromName("Transparent");
-                            lzbIsActive = false; // LZB is NOT active
-                            lzbsoll = 0; //TEST: reset lzbsoll, in some cases thi does not seem to be updated
+                            lzbsoll = 0; //TEST: reset lzbsoll, in some cases this does not seem to be updated
                         }
                         break;
                     }
