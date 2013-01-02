@@ -42,7 +42,6 @@
             this.tabAnzeigen1 = new System.Windows.Forms.TabPage();
             this.numSizeAFBLZB = new System.Windows.Forms.NumericUpDown();
             this.numSizeBremsen = new System.Windows.Forms.NumericUpDown();
-            this.cbRailrunner = new System.Windows.Forms.CheckBox();
             this.numSizeGrunddaten = new System.Windows.Forms.NumericUpDown();
             this.pnlRailrunner = new System.Windows.Forms.Panel();
             this.cbRRautoreset = new System.Windows.Forms.CheckBox();
@@ -65,14 +64,7 @@
             this.cbLZBvsoll = new System.Windows.Forms.CheckBox();
             this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
-            this.cbPZBLM = new System.Windows.Forms.CheckBox();
-            this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
-            this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
-            this.cbFahrstufe = new System.Windows.Forms.CheckBox();
-            this.cbLmsifa = new System.Windows.Forms.CheckBox();
-            this.cbTueren = new System.Windows.Forms.CheckBox();
             this.cbTime = new System.Windows.Forms.CheckBox();
-            this.cbLmschleudern = new System.Windows.Forms.CheckBox();
             this.pnlBremsen = new System.Windows.Forms.Panel();
             this.cbZusbremse = new System.Windows.Forms.CheckBox();
             this.cbDruckhbl = new System.Windows.Forms.CheckBox();
@@ -117,8 +109,6 @@
             this.btnLoadSettings = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
-            this.tbServer = new System.Windows.Forms.TextBox();
-            this.tbPort = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnDebugpanel = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -200,10 +190,20 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
+            this.cbRailrunner = new System.Windows.Forms.CheckBox();
             this.cbSchalterst = new System.Windows.Forms.CheckBox();
             this.cbAFBLZB = new System.Windows.Forms.CheckBox();
             this.cbGrunddaten = new System.Windows.Forms.CheckBox();
+            this.cbPZBLM = new System.Windows.Forms.CheckBox();
+            this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
+            this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
+            this.cbFahrstufe = new System.Windows.Forms.CheckBox();
+            this.cbLmsifa = new System.Windows.Forms.CheckBox();
+            this.cbTueren = new System.Windows.Forms.CheckBox();
+            this.cbLmschleudern = new System.Windows.Forms.CheckBox();
             this.cbBremsen = new System.Windows.Forms.CheckBox();
+            this.tbServer = new System.Windows.Forms.TextBox();
+            this.tbPort = new System.Windows.Forms.TextBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -394,24 +394,6 @@
             this.numSizeBremsen.TabIndex = 39;
             this.numSizeBremsen.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             this.numSizeBremsen.ValueChanged += new System.EventHandler(this.numSizeBremsen_ValueChanged);
-            // 
-            // cbRailrunner
-            // 
-            this.cbRailrunner.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbRailrunner.AutoSize = true;
-            this.cbRailrunner.Checked = global::ZusiMeter.Properties.Settings.Default.cbRailrunner;
-            this.cbRailrunner.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRailrunner.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRailrunner", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbRailrunner.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbRailrunner.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRailrunner.Location = new System.Drawing.Point(6, 280);
-            this.cbRailrunner.Name = "cbRailrunner";
-            this.cbRailrunner.Size = new System.Drawing.Size(65, 23);
-            this.cbRailrunner.TabIndex = 31;
-            this.cbRailrunner.Text = "Railrunner";
-            this.cbRailrunner.UseVisualStyleBackColor = true;
-            this.cbRailrunner.CheckedChanged += new System.EventHandler(this.cbRailrunner_CheckedChanged);
             // 
             // numSizeGrunddaten
             // 
@@ -712,90 +694,12 @@
             this.pnlGrunddaten.Size = new System.Drawing.Size(205, 95);
             this.pnlGrunddaten.TabIndex = 19;
             // 
-            // cbPZBLM
-            // 
-            this.cbPZBLM.AutoSize = true;
-            this.cbPZBLM.Checked = true;
-            this.cbPZBLM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbPZBLM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPZBLM.Location = new System.Drawing.Point(3, 71);
-            this.cbPZBLM.Name = "cbPZBLM";
-            this.cbPZBLM.Size = new System.Drawing.Size(114, 17);
-            this.cbPZBLM.TabIndex = 9;
-            this.cbPZBLM.Text = "PZB-Leuchtmelder";
-            this.cbPZBLM.UseVisualStyleBackColor = true;
-            this.cbPZBLM.CheckedChanged += new System.EventHandler(this.cbPZBLM_CheckedChanged);
-            // 
-            // cbStreckenmeter
-            // 
-            this.cbStreckenmeter.AutoSize = true;
-            this.cbStreckenmeter.Checked = true;
-            this.cbStreckenmeter.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbStreckenmeter.Location = new System.Drawing.Point(3, 20);
-            this.cbStreckenmeter.Name = "cbStreckenmeter";
-            this.cbStreckenmeter.Size = new System.Drawing.Size(95, 17);
-            this.cbStreckenmeter.TabIndex = 1;
-            this.cbStreckenmeter.Text = "Streckenmeter";
-            this.cbStreckenmeter.UseVisualStyleBackColor = true;
-            this.cbStreckenmeter.CheckedChanged += new System.EventHandler(this.cbStreckenmeter_CheckedChanged);
-            // 
-            // cbGeschwindigkeit
-            // 
-            this.cbGeschwindigkeit.AutoSize = true;
-            this.cbGeschwindigkeit.Checked = true;
-            this.cbGeschwindigkeit.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbGeschwindigkeit.Location = new System.Drawing.Point(3, 3);
-            this.cbGeschwindigkeit.Name = "cbGeschwindigkeit";
-            this.cbGeschwindigkeit.Size = new System.Drawing.Size(104, 17);
-            this.cbGeschwindigkeit.TabIndex = 0;
-            this.cbGeschwindigkeit.Text = "Geschwindigkeit";
-            this.cbGeschwindigkeit.UseVisualStyleBackColor = true;
-            this.cbGeschwindigkeit.CheckedChanged += new System.EventHandler(this.cbGeschwindigkeit_CheckedChanged);
-            // 
-            // cbFahrstufe
-            // 
-            this.cbFahrstufe.AutoSize = true;
-            this.cbFahrstufe.Checked = true;
-            this.cbFahrstufe.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbFahrstufe.Location = new System.Drawing.Point(3, 36);
-            this.cbFahrstufe.Name = "cbFahrstufe";
-            this.cbFahrstufe.Size = new System.Drawing.Size(70, 17);
-            this.cbFahrstufe.TabIndex = 7;
-            this.cbFahrstufe.Text = "Fahrstufe";
-            this.cbFahrstufe.UseVisualStyleBackColor = true;
-            this.cbFahrstufe.CheckedChanged += new System.EventHandler(this.cbFahrstufe_CheckedChanged);
-            // 
-            // cbLmsifa
-            // 
-            this.cbLmsifa.AutoSize = true;
-            this.cbLmsifa.Checked = true;
-            this.cbLmsifa.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLmsifa.Location = new System.Drawing.Point(113, 3);
-            this.cbLmsifa.Name = "cbLmsifa";
-            this.cbLmsifa.Size = new System.Drawing.Size(44, 17);
-            this.cbLmsifa.TabIndex = 2;
-            this.cbLmsifa.Text = "Sifa";
-            this.cbLmsifa.UseVisualStyleBackColor = true;
-            this.cbLmsifa.CheckedChanged += new System.EventHandler(this.cbLmsifa_CheckedChanged);
-            // 
-            // cbTueren
-            // 
-            this.cbTueren.AutoSize = true;
-            this.cbTueren.Checked = true;
-            this.cbTueren.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTueren.Location = new System.Drawing.Point(113, 20);
-            this.cbTueren.Name = "cbTueren";
-            this.cbTueren.Size = new System.Drawing.Size(54, 17);
-            this.cbTueren.TabIndex = 3;
-            this.cbTueren.Text = "Türen";
-            this.cbTueren.UseVisualStyleBackColor = true;
-            this.cbTueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
-            // 
             // cbTime
             // 
             this.cbTime.AutoSize = true;
-            this.cbTime.Checked = true;
+            this.cbTime.Checked = global::ZusiMeter.Properties.Settings.Default.cbTime;
             this.cbTime.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTime.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbTime.Location = new System.Drawing.Point(113, 36);
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(59, 17);
@@ -803,19 +707,6 @@
             this.cbTime.Text = "Uhrzeit";
             this.cbTime.UseVisualStyleBackColor = true;
             this.cbTime.CheckedChanged += new System.EventHandler(this.cbTime_CheckedChanged);
-            // 
-            // cbLmschleudern
-            // 
-            this.cbLmschleudern.AutoSize = true;
-            this.cbLmschleudern.Checked = true;
-            this.cbLmschleudern.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLmschleudern.Location = new System.Drawing.Point(3, 54);
-            this.cbLmschleudern.Name = "cbLmschleudern";
-            this.cbLmschleudern.Size = new System.Drawing.Size(142, 17);
-            this.cbLmschleudern.TabIndex = 4;
-            this.cbLmschleudern.Text = "LM Schleudern / Gleiten";
-            this.cbLmschleudern.UseVisualStyleBackColor = true;
-            this.cbLmschleudern.CheckedChanged += new System.EventHandler(this.cbLmschleudern_CheckedChanged);
             // 
             // pnlBremsen
             // 
@@ -1293,7 +1184,6 @@
             this.grpManageSettings.Controls.Add(this.btnDefaultSettings);
             this.grpManageSettings.Controls.Add(this.btnSaveSettings);
             this.grpManageSettings.Controls.Add(this.btnLoadSettings);
-            this.grpManageSettings.Enabled = false;
             this.grpManageSettings.Location = new System.Drawing.Point(3, 124);
             this.grpManageSettings.Name = "grpManageSettings";
             this.grpManageSettings.Size = new System.Drawing.Size(174, 92);
@@ -1312,6 +1202,7 @@
             this.btnDefaultSettings.TabIndex = 16;
             this.btnDefaultSettings.Text = "Auf Standardwerte";
             this.btnDefaultSettings.UseVisualStyleBackColor = false;
+            this.btnDefaultSettings.Click += new System.EventHandler(this.btnDefaultSettings_Click);
             // 
             // btnSaveSettings
             // 
@@ -1358,22 +1249,6 @@
             this.grpVerbindung.TabIndex = 12;
             this.grpVerbindung.TabStop = false;
             this.grpVerbindung.Text = "Verbindung";
-            // 
-            // tbServer
-            // 
-            this.tbServer.Location = new System.Drawing.Point(7, 26);
-            this.tbServer.Name = "tbServer";
-            this.tbServer.Size = new System.Drawing.Size(74, 20);
-            this.tbServer.TabIndex = 13;
-            this.tbServer.Text = "127.0.0.1";
-            // 
-            // tbPort
-            // 
-            this.tbPort.Location = new System.Drawing.Point(7, 52);
-            this.tbPort.Name = "tbPort";
-            this.tbPort.Size = new System.Drawing.Size(74, 20);
-            this.tbPort.TabIndex = 12;
-            this.tbPort.Text = "1435";
             // 
             // btnConnect
             // 
@@ -2331,6 +2206,24 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
+            // cbRailrunner
+            // 
+            this.cbRailrunner.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbRailrunner.AutoSize = true;
+            this.cbRailrunner.Checked = global::ZusiMeter.Properties.Settings.Default.cbRailrunner;
+            this.cbRailrunner.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRailrunner.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRailrunner", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRailrunner.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbRailrunner.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRailrunner.Location = new System.Drawing.Point(6, 280);
+            this.cbRailrunner.Name = "cbRailrunner";
+            this.cbRailrunner.Size = new System.Drawing.Size(65, 23);
+            this.cbRailrunner.TabIndex = 31;
+            this.cbRailrunner.Text = "Railrunner";
+            this.cbRailrunner.UseVisualStyleBackColor = true;
+            this.cbRailrunner.CheckedChanged += new System.EventHandler(this.cbRailrunner_CheckedChanged);
+            // 
             // cbSchalterst
             // 
             this.cbSchalterst.Appearance = System.Windows.Forms.Appearance.Button;
@@ -2385,6 +2278,105 @@
             this.cbGrunddaten.UseVisualStyleBackColor = true;
             this.cbGrunddaten.CheckedChanged += new System.EventHandler(this.cbGrunddaten_CheckedChanged);
             // 
+            // cbPZBLM
+            // 
+            this.cbPZBLM.AutoSize = true;
+            this.cbPZBLM.Checked = global::ZusiMeter.Properties.Settings.Default.cbPZBLM;
+            this.cbPZBLM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPZBLM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbPZBLM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbPZBLM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPZBLM.Location = new System.Drawing.Point(3, 71);
+            this.cbPZBLM.Name = "cbPZBLM";
+            this.cbPZBLM.Size = new System.Drawing.Size(114, 17);
+            this.cbPZBLM.TabIndex = 9;
+            this.cbPZBLM.Text = "PZB-Leuchtmelder";
+            this.cbPZBLM.UseVisualStyleBackColor = true;
+            this.cbPZBLM.CheckedChanged += new System.EventHandler(this.cbPZBLM_CheckedChanged);
+            // 
+            // cbStreckenmeter
+            // 
+            this.cbStreckenmeter.AutoSize = true;
+            this.cbStreckenmeter.Checked = global::ZusiMeter.Properties.Settings.Default.cbStreckenmeter;
+            this.cbStreckenmeter.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbStreckenmeter.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbStreckenmeter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbStreckenmeter.Location = new System.Drawing.Point(3, 20);
+            this.cbStreckenmeter.Name = "cbStreckenmeter";
+            this.cbStreckenmeter.Size = new System.Drawing.Size(95, 17);
+            this.cbStreckenmeter.TabIndex = 1;
+            this.cbStreckenmeter.Text = "Streckenmeter";
+            this.cbStreckenmeter.UseVisualStyleBackColor = true;
+            this.cbStreckenmeter.CheckedChanged += new System.EventHandler(this.cbStreckenmeter_CheckedChanged);
+            // 
+            // cbGeschwindigkeit
+            // 
+            this.cbGeschwindigkeit.AutoSize = true;
+            this.cbGeschwindigkeit.Checked = global::ZusiMeter.Properties.Settings.Default.cbGeschwindigkeit;
+            this.cbGeschwindigkeit.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbGeschwindigkeit.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbGeschwindigkeit", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbGeschwindigkeit.Location = new System.Drawing.Point(3, 3);
+            this.cbGeschwindigkeit.Name = "cbGeschwindigkeit";
+            this.cbGeschwindigkeit.Size = new System.Drawing.Size(104, 17);
+            this.cbGeschwindigkeit.TabIndex = 0;
+            this.cbGeschwindigkeit.Text = "Geschwindigkeit";
+            this.cbGeschwindigkeit.UseVisualStyleBackColor = true;
+            this.cbGeschwindigkeit.CheckedChanged += new System.EventHandler(this.cbGeschwindigkeit_CheckedChanged);
+            // 
+            // cbFahrstufe
+            // 
+            this.cbFahrstufe.AutoSize = true;
+            this.cbFahrstufe.Checked = global::ZusiMeter.Properties.Settings.Default.cbFahrstufe;
+            this.cbFahrstufe.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbFahrstufe.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFahrstufe", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbFahrstufe.Location = new System.Drawing.Point(3, 36);
+            this.cbFahrstufe.Name = "cbFahrstufe";
+            this.cbFahrstufe.Size = new System.Drawing.Size(70, 17);
+            this.cbFahrstufe.TabIndex = 7;
+            this.cbFahrstufe.Text = "Fahrstufe";
+            this.cbFahrstufe.UseVisualStyleBackColor = true;
+            this.cbFahrstufe.CheckedChanged += new System.EventHandler(this.cbFahrstufe_CheckedChanged);
+            // 
+            // cbLmsifa
+            // 
+            this.cbLmsifa.AutoSize = true;
+            this.cbLmsifa.Checked = global::ZusiMeter.Properties.Settings.Default.cbLmsifa;
+            this.cbLmsifa.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbLmsifa.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLmsifa", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLmsifa.Location = new System.Drawing.Point(113, 3);
+            this.cbLmsifa.Name = "cbLmsifa";
+            this.cbLmsifa.Size = new System.Drawing.Size(44, 17);
+            this.cbLmsifa.TabIndex = 2;
+            this.cbLmsifa.Text = "Sifa";
+            this.cbLmsifa.UseVisualStyleBackColor = true;
+            this.cbLmsifa.CheckedChanged += new System.EventHandler(this.cbLmsifa_CheckedChanged);
+            // 
+            // cbTueren
+            // 
+            this.cbTueren.AutoSize = true;
+            this.cbTueren.Checked = global::ZusiMeter.Properties.Settings.Default.cbTueren;
+            this.cbTueren.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTueren.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTueren", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbTueren.Location = new System.Drawing.Point(113, 20);
+            this.cbTueren.Name = "cbTueren";
+            this.cbTueren.Size = new System.Drawing.Size(54, 17);
+            this.cbTueren.TabIndex = 3;
+            this.cbTueren.Text = "Türen";
+            this.cbTueren.UseVisualStyleBackColor = true;
+            this.cbTueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
+            // 
+            // cbLmschleudern
+            // 
+            this.cbLmschleudern.AutoSize = true;
+            this.cbLmschleudern.Checked = global::ZusiMeter.Properties.Settings.Default.cbLmschleudern;
+            this.cbLmschleudern.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbLmschleudern.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLmschleudern", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLmschleudern.Location = new System.Drawing.Point(3, 54);
+            this.cbLmschleudern.Name = "cbLmschleudern";
+            this.cbLmschleudern.Size = new System.Drawing.Size(142, 17);
+            this.cbLmschleudern.TabIndex = 4;
+            this.cbLmschleudern.Text = "LM Schleudern / Gleiten";
+            this.cbLmschleudern.UseVisualStyleBackColor = true;
+            this.cbLmschleudern.CheckedChanged += new System.EventHandler(this.cbLmschleudern_CheckedChanged);
+            // 
             // cbBremsen
             // 
             this.cbBremsen.Appearance = System.Windows.Forms.Appearance.Button;
@@ -2402,6 +2394,24 @@
             this.cbBremsen.Text = "Bremsen";
             this.cbBremsen.UseVisualStyleBackColor = true;
             this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
+            // 
+            // tbServer
+            // 
+            this.tbServer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ZusiMeter.Properties.Settings.Default, "tbServer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbServer.Location = new System.Drawing.Point(7, 26);
+            this.tbServer.Name = "tbServer";
+            this.tbServer.Size = new System.Drawing.Size(74, 20);
+            this.tbServer.TabIndex = 13;
+            this.tbServer.Text = global::ZusiMeter.Properties.Settings.Default.tbServer;
+            // 
+            // tbPort
+            // 
+            this.tbPort.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ZusiMeter.Properties.Settings.Default, "tbPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbPort.Location = new System.Drawing.Point(7, 52);
+            this.tbPort.Name = "tbPort";
+            this.tbPort.Size = new System.Drawing.Size(74, 20);
+            this.tbPort.TabIndex = 12;
+            this.tbPort.Text = global::ZusiMeter.Properties.Settings.Default.tbPort;
             // 
             // CMainWindow
             // 

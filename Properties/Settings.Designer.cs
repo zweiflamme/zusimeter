@@ -82,5 +82,125 @@ namespace ZusiMeter.Properties {
                 this["cbRailrunner"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string tbServer {
+            get {
+                return ((string)(this["tbServer"]));
+            }
+            set {
+                this["tbServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1435")]
+        public string tbPort {
+            get {
+                return ((string)(this["tbPort"]));
+            }
+            set {
+                this["tbPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbGeschwindigkeit {
+            get {
+                return ((bool)(this["cbGeschwindigkeit"]));
+            }
+            set {
+                this["cbGeschwindigkeit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbStreckenmeter {
+            get {
+                return ((bool)(this["cbStreckenmeter"]));
+            }
+            set {
+                this["cbStreckenmeter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbFahrstufe {
+            get {
+                return ((bool)(this["cbFahrstufe"]));
+            }
+            set {
+                this["cbFahrstufe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbLmschleudern {
+            get {
+                return ((bool)(this["cbLmschleudern"]));
+            }
+            set {
+                this["cbLmschleudern"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbPZBLM {
+            get {
+                return ((bool)(this["cbPZBLM"]));
+            }
+            set {
+                this["cbPZBLM"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbLmsifa {
+            get {
+                return ((bool)(this["cbLmsifa"]));
+            }
+            set {
+                this["cbLmsifa"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbTueren {
+            get {
+                return ((bool)(this["cbTueren"]));
+            }
+            set {
+                this["cbTueren"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbTime {
+            get {
+                return ((bool)(this["cbTime"]));
+            }
+            set {
+                this["cbTime"] = value;
+            }
+        }
     }
 }

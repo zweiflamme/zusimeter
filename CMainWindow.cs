@@ -1974,6 +1974,13 @@ namespace ZusiMeter
             Properties.Settings.Default.Save();
         }
 
+        private void btnDefaultSettings_Click(object sender, EventArgs e)
+        {
+            //TEST
+            //set default values for all bound controls
+            Properties.Settings.Default.Reset();
+        }
+
         
           
     }
