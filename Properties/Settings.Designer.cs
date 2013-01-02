@@ -478,5 +478,113 @@ namespace ZusiMeter.Properties {
                 this["cbLZBlm"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool rbUnitkm {
+            get {
+                return ((bool)(this["rbUnitkm"]));
+            }
+            set {
+                this["rbUnitkm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool rbUnitkph {
+            get {
+                return ((bool)(this["rbUnitkph"]));
+            }
+            set {
+                this["rbUnitkph"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal numSifagroesse {
+            get {
+                return ((decimal)(this["numSifagroesse"]));
+            }
+            set {
+                this["numSifagroesse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbSettingsSeparate {
+            get {
+                return ((bool)(this["cbSettingsSeparate"]));
+            }
+            set {
+                this["cbSettingsSeparate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbTopmost {
+            get {
+                return ((bool)(this["cbTopmost"]));
+            }
+            set {
+                this["cbTopmost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbHidesettings {
+            get {
+                return ((bool)(this["cbHidesettings"]));
+            }
+            set {
+                this["cbHidesettings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbFokusFahrtzurueck {
+            get {
+                return ((bool)(this["cbFokusFahrtzurueck"]));
+            }
+            set {
+                this["cbFokusFahrtzurueck"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbFokusImmerzurueck {
+            get {
+                return ((bool)(this["cbFokusImmerzurueck"]));
+            }
+            set {
+                this["cbFokusImmerzurueck"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point SettingsForm {
+            get {
+                return ((global::System.Drawing.Point)(this["SettingsForm"]));
+            }
+            set {
+                this["SettingsForm"] = value;
+            }
+        }
     }
 }

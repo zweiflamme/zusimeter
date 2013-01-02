@@ -258,7 +258,7 @@ namespace ZusiMeter
         {
             //TEST TODO
             #region Ensure loaded settings apply
-            //make sure every label and panel is visible according to checkboxes:
+            //make sure every label and panel is visible according to checkboxes:           
 
             lblhbl.Visible = cbDruckhbl.Checked;
             lblHBLwert.Visible = cbDruckhbl.Checked;
@@ -272,20 +272,38 @@ namespace ZusiMeter
             lbllzbzielw.Visible = cbLZBweg.Checked;
             lblLZBzielweg.Visible = cbLZBweg.Checked;
 
-            lblafbvorw.Visible = cbAFBgeschw.Checked;
-            lblAFBvorwahl.Visible = cbAFBgeschw.Checked;
+            lblafbvorw.Visible = cbAFBVorwahl.Checked;
+            lblAFBvorwahl.Visible = cbAFBVorwahl.Checked;
 
             pnlDataLZB.Visible = cbLZBlm.Checked;
 
+            //make sure Sifa label has the proper size:
+            ResizeSifa();
+            
+
             //make sure radio buttons are in their correct state
-            rbRRfest.Checked = !rbRRfrei.Checked; //rbRRfrei is bound to settings
-            rbAFBvor10.Checked = !rbAFBvor5.Checked; //rbAFBvor5 is bound to settings
+            rbRRfest.Checked = !rbRRfrei.Checked; //second rb is bound to settings
+            rbAFBvor10.Checked = !rbAFBvor5.Checked; 
+            rbUnitm.Checked = !rbUnitkm.Checked;
+            rbUnitmps.Checked = !rbUnitkph.Checked;
+
+            //make sure checkboxes that exclude each other are properly checked
+            cbFokusImmerzurueck.Checked = !cbFokusFahrtzurueck.Checked; // second checkbox is bound to settings
 
             #endregion
 
             if (cbTopmost.Checked == true)
                 this.TopMost = true;
             
+            //TEST DEBUG
+            //if separate settings window will be used, show it
+            ShowSeparateSettingsWindow(); //includes check if cbSeparateSettings is checked
+
+            //TEST
+            //moving pnlRight a bit
+            //TODO: move according to pnlLeft size
+            this.pnlRight.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
+
             //TEST
             //setting form title directly from the assembly information.
             this.Text = this.Text + "v" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -1238,7 +1256,7 @@ namespace ZusiMeter
             }
         }
 
-        private void numSifagroesse_ValueChanged(object sender, EventArgs e)
+        public void ResizeSifa()
         {
             if (numSifagroesse.Value == 3)
             {
@@ -1261,6 +1279,11 @@ namespace ZusiMeter
                 lblSifa.Height = Convert.ToInt32(labelsifadefaultheight * faktor);
                 lblFlag.Width = Convert.ToInt32(labelflagdefaultwidth * faktor);
             }
+        }
+
+        private void numSifagroesse_ValueChanged(object sender, EventArgs e)
+        {
+            ResizeSifa();
         }
 
         private void cbFahrschneutral_ValueChanged(object sender, EventArgs e)
@@ -1928,51 +1951,57 @@ namespace ZusiMeter
         {
             
         }
-       
-        
 
-        private void cbSettingsSeparate_CheckedChanged(object sender, EventArgs e)
+        public void ShowSeparateSettingsWindow()
         {
-            //bool hideSettingsCheckedOLD = cbHidesettings.Checked; //stores the user checked box value, -- "!" because value has already changed!
-            cbHidesettings.Checked = !cbSettingsSeparate.Checked; //settings shall not be autohidden if on a separate form
 
-            //TEST
-            Point pnlRightOldPosition = new Point(pnlRight.Location.X, pnlRight.Location.Y);
-            
-
-            if (cbSettingsSeparate.Checked)
+            if (cbSettingsSeparate.Checked && settingsAreSeparated == false)
+            //DEBUG:  //WORKAROUND - if checkbox is bound to settings, weird things happened
             {
-                //TODO: does not yet work, why? Location is determined correctly
+                MessageBox.Show("SEPARATED");
+
+
                 frmSettings.BackColor = this.BackColor; // makes sure day-/nightmode is set for the form too
 
                 frmSettings.StartPosition = FormStartPosition.Manual;
                 frmSettings.Location = new Point(this.Location.X + 200, this.Location.Y);
 
                 this.Controls.Remove(pnlRight); // removing settings panel from main form
-                frmSettings.Controls.Add(pnlRight); //adding settings panel to settings form
-
-                //TEST
-                pnlRight.Location = new Point(0, 0);
-
+                frmSettings.Controls.Add(pnlRight); //adding settings panel to settings form               
+                
                 settingsAreSeparated = true;
-                //TEST
-                //this.pnlRight.Visible = false;
 
+                pnlRight.Location = new Point(0, 0);
+                frmSettings.AutoSize = true;
+                frmSettings.PerformAutoScale();
                 frmSettings.Show();
+               
+                //DEBUG:
+                cbSettingsSeparate.Checked = true;
                 
             }
-            else //if user does not want separated settings 
+            else if(cbSettingsSeparate.Checked == false && settingsAreSeparated == true) //DEBUG:
+                    //WORKAROUND - if checkbox is bound to settings, weird things happened
             {
-                
+                MessageBox.Show("NOT separated");
+
                 this.pnlRight.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
                 this.Controls.Add(pnlRight);
                 //cbHidesettings.Checked = hideSettingsCheckedOLD; // restore value from before settings were separated                
                 this.pnlRight.Visible = true;
-                
+
                 settingsAreSeparated = false;
 
                 frmSettings.Hide();
-            }
+
+                //DEBUG:
+                cbSettingsSeparate.Checked = false;
+            }        
+        }
+
+        private void cbSettingsSeparate_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowSeparateSettingsWindow();
         }
 
         private void cbTime_CheckedChanged(object sender, EventArgs e)

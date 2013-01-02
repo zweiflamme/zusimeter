@@ -25,6 +25,13 @@ namespace ZusiMeter
         private void SettingsForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             this.Hide();
+            //TEST
+            //Properties.Settings.Default.Save();
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
