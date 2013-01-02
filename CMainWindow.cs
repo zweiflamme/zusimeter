@@ -255,7 +255,7 @@ namespace ZusiMeter
         #endregion
 
         private void CMainWindow_Load(object sender, EventArgs e) //on loading of the main window...
-        {
+        {   
             if (cbTopmost.Checked == true)
                 this.TopMost = true;
             
@@ -1966,6 +1966,12 @@ namespace ZusiMeter
         private void grpManageSettings_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void CMainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //saving default user settings on FormClosing
+            Properties.Settings.Default.Save();
         }
 
         

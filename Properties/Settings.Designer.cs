@@ -22,5 +22,17 @@ namespace ZusiMeter.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbGrunddaten {
+            get {
+                return ((bool)(this["cbGrunddaten"]));
+            }
+            set {
+                this["cbGrunddaten"] = value;
+            }
+        }
     }
 }

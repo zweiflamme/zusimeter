@@ -55,7 +55,6 @@
             this.numRRfest = new System.Windows.Forms.NumericUpDown();
             this.rbRRfrei = new System.Windows.Forms.RadioButton();
             this.cbAFBLZB = new System.Windows.Forms.CheckBox();
-            this.cbGrunddaten = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlAFBLZB = new System.Windows.Forms.Panel();
             this.pnlAFBrbvor = new System.Windows.Forms.Panel();
@@ -204,6 +203,7 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
+            this.cbGrunddaten = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -602,23 +602,6 @@
             this.cbAFBLZB.Text = "AFB / LZB";
             this.cbAFBLZB.UseVisualStyleBackColor = true;
             this.cbAFBLZB.CheckedChanged += new System.EventHandler(this.cbAFBLZB_CheckedChanged);
-            // 
-            // cbGrunddaten
-            // 
-            this.cbGrunddaten.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbGrunddaten.AutoSize = true;
-            this.cbGrunddaten.Checked = true;
-            this.cbGrunddaten.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbGrunddaten.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbGrunddaten.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbGrunddaten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbGrunddaten.Location = new System.Drawing.Point(6, 9);
-            this.cbGrunddaten.Name = "cbGrunddaten";
-            this.cbGrunddaten.Size = new System.Drawing.Size(73, 23);
-            this.cbGrunddaten.TabIndex = 8;
-            this.cbGrunddaten.Text = "Grunddaten";
-            this.cbGrunddaten.UseVisualStyleBackColor = true;
-            this.cbGrunddaten.CheckedChanged += new System.EventHandler(this.cbGrunddaten_CheckedChanged);
             // 
             // label6
             // 
@@ -2398,6 +2381,24 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
+            // cbGrunddaten
+            // 
+            this.cbGrunddaten.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbGrunddaten.AutoSize = true;
+            this.cbGrunddaten.Checked = global::ZusiMeter.Properties.Settings.Default.cbGrunddaten;
+            this.cbGrunddaten.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbGrunddaten.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbGrunddaten", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbGrunddaten.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbGrunddaten.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbGrunddaten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbGrunddaten.Location = new System.Drawing.Point(6, 9);
+            this.cbGrunddaten.Name = "cbGrunddaten";
+            this.cbGrunddaten.Size = new System.Drawing.Size(73, 23);
+            this.cbGrunddaten.TabIndex = 8;
+            this.cbGrunddaten.Text = "Grunddaten";
+            this.cbGrunddaten.UseVisualStyleBackColor = true;
+            this.cbGrunddaten.CheckedChanged += new System.EventHandler(this.cbGrunddaten_CheckedChanged);
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2414,6 +2415,7 @@
             this.Name = "CMainWindow";
             this.Text = "ZusiMeter - ";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CMainWindow_FormClosing);
             this.Load += new System.EventHandler(this.CMainWindow_Load);
             this.Click += new System.EventHandler(this.CMainWindow_Click);
             this.pnlSettings.ResumeLayout(false);
