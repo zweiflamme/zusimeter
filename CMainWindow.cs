@@ -258,15 +258,28 @@ namespace ZusiMeter
         {
             //TEST TODO
             #region Ensure loaded settings apply
-            //make sure every label is visible according to checkboxes:
+            //make sure every label and panel is visible according to checkboxes:
 
             lblhbl.Visible = cbDruckhbl.Checked;
             lblHBLwert.Visible = cbDruckhbl.Checked;
             lblhlb.Visible = cbDruckhlb.Checked;
             lblHLBwert.Visible = cbDruckhlb.Checked;
 
+            lblLZBsollgeschw.Visible = cbLZBvsoll.Checked;
+            lbllzbvsoll.Visible = cbLZBvsoll.Checked;
+            lbllzbvziel.Visible = cbLZBvziel.Checked;
+            lblLZBzielgeschw.Visible = cbLZBvziel.Checked;
+            lbllzbzielw.Visible = cbLZBweg.Checked;
+            lblLZBzielweg.Visible = cbLZBweg.Checked;
+
+            lblafbvorw.Visible = cbAFBgeschw.Checked;
+            lblAFBvorwahl.Visible = cbAFBgeschw.Checked;
+
+            pnlDataLZB.Visible = cbLZBlm.Checked;
+
             //make sure radio buttons are in their correct state
             rbRRfest.Checked = !rbRRfrei.Checked; //rbRRfrei is bound to settings
+            rbAFBvor10.Checked = !rbAFBvor5.Checked; //rbAFBvor5 is bound to settings
 
             #endregion
 

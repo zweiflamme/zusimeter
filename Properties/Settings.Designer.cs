@@ -394,5 +394,89 @@ namespace ZusiMeter.Properties {
                 this["numFahrschneutral"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbAFBgeschw {
+            get {
+                return ((bool)(this["cbAFBgeschw"]));
+            }
+            set {
+                this["cbAFBgeschw"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbLZBvsoll {
+            get {
+                return ((bool)(this["cbLZBvsoll"]));
+            }
+            set {
+                this["cbLZBvsoll"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbLZBvziel {
+            get {
+                return ((bool)(this["cbLZBvziel"]));
+            }
+            set {
+                this["cbLZBvziel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbLZBweg {
+            get {
+                return ((bool)(this["cbLZBweg"]));
+            }
+            set {
+                this["cbLZBweg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbAFBVorwahl {
+            get {
+                return ((bool)(this["cbAFBVorwahl"]));
+            }
+            set {
+                this["cbAFBVorwahl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool rbAFBvor5 {
+            get {
+                return ((bool)(this["rbAFBvor5"]));
+            }
+            set {
+                this["rbAFBvor5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbLZBlm {
+            get {
+                return ((bool)(this["cbLZBlm"]));
+            }
+            set {
+                this["cbLZBlm"] = value;
+            }
+        }
     }
 }

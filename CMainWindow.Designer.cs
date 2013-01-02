@@ -49,14 +49,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.pnlAFBLZB = new System.Windows.Forms.Panel();
             this.pnlAFBrbvor = new System.Windows.Forms.Panel();
-            this.rbAFBvor5 = new System.Windows.Forms.RadioButton();
-            this.cbAFBVorwahl = new System.Windows.Forms.CheckBox();
             this.rbAFBvor10 = new System.Windows.Forms.RadioButton();
             this.cbLZBlm = new System.Windows.Forms.CheckBox();
-            this.cbLZBvziel = new System.Windows.Forms.CheckBox();
-            this.cbLZBweg = new System.Windows.Forms.CheckBox();
-            this.cbLZBvsoll = new System.Windows.Forms.CheckBox();
-            this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
             this.pnlBremsen = new System.Windows.Forms.Panel();
             this.pnlSchalterst = new System.Windows.Forms.Panel();
@@ -66,7 +60,6 @@
             this.cbFahrtrichtg = new System.Windows.Forms.CheckBox();
             this.cbSchleuderschutz = new System.Windows.Forms.CheckBox();
             this.cbHauptsch = new System.Windows.Forms.CheckBox();
-            this.numFahrschneutral = new System.Windows.Forms.NumericUpDown();
             this.lblFahrschneutralbei = new System.Windows.Forms.Label();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
             this.grpUnits = new System.Windows.Forms.GroupBox();
@@ -184,6 +177,12 @@
             this.rbRRfrei = new System.Windows.Forms.RadioButton();
             this.cbAFBLZB = new System.Windows.Forms.CheckBox();
             this.cbGrunddaten = new System.Windows.Forms.CheckBox();
+            this.rbAFBvor5 = new System.Windows.Forms.RadioButton();
+            this.cbAFBVorwahl = new System.Windows.Forms.CheckBox();
+            this.cbLZBvziel = new System.Windows.Forms.CheckBox();
+            this.cbLZBweg = new System.Windows.Forms.CheckBox();
+            this.cbLZBvsoll = new System.Windows.Forms.CheckBox();
+            this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.cbPZBLM = new System.Windows.Forms.CheckBox();
             this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
             this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
@@ -201,6 +200,7 @@
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
             this.cbBremsen = new System.Windows.Forms.CheckBox();
+            this.numFahrschneutral = new System.Windows.Forms.NumericUpDown();
             this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.tbServer = new System.Windows.Forms.TextBox();
             this.tbPort = new System.Windows.Forms.TextBox();
@@ -216,7 +216,6 @@
             this.pnlGrunddaten.SuspendLayout();
             this.pnlBremsen.SuspendLayout();
             this.pnlSchalterst.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).BeginInit();
             this.tabDarstellung.SuspendLayout();
             this.grpUnits.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -238,6 +237,7 @@
             this.pnlDataLZB.SuspendLayout();
             this.pnlDataPZB90.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -487,30 +487,6 @@
             this.pnlAFBrbvor.Size = new System.Drawing.Size(149, 37);
             this.pnlAFBrbvor.TabIndex = 22;
             // 
-            // rbAFBvor5
-            // 
-            this.rbAFBvor5.AutoSize = true;
-            this.rbAFBvor5.Checked = true;
-            this.rbAFBvor5.Location = new System.Drawing.Point(22, 17);
-            this.rbAFBvor5.Name = "rbAFBvor5";
-            this.rbAFBvor5.Size = new System.Drawing.Size(59, 17);
-            this.rbAFBvor5.TabIndex = 20;
-            this.rbAFBvor5.TabStop = true;
-            this.rbAFBvor5.Text = "5 km/h";
-            this.rbAFBvor5.UseVisualStyleBackColor = true;
-            this.rbAFBvor5.CheckedChanged += new System.EventHandler(this.rbAFBvor5_CheckedChanged);
-            // 
-            // cbAFBVorwahl
-            // 
-            this.cbAFBVorwahl.AutoSize = true;
-            this.cbAFBVorwahl.Location = new System.Drawing.Point(3, 2);
-            this.cbAFBVorwahl.Name = "cbAFBVorwahl";
-            this.cbAFBVorwahl.Size = new System.Drawing.Size(101, 17);
-            this.cbAFBVorwahl.TabIndex = 31;
-            this.cbAFBVorwahl.Text = "AFB vorgewählt";
-            this.cbAFBVorwahl.UseVisualStyleBackColor = true;
-            this.cbAFBVorwahl.CheckedChanged += new System.EventHandler(this.cbAFBVorwahl_CheckedChanged);
-            // 
             // rbAFBvor10
             // 
             this.rbAFBvor10.AutoSize = true;
@@ -525,6 +501,8 @@
             // cbLZBlm
             // 
             this.cbLZBlm.AutoSize = true;
+            this.cbLZBlm.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBlm;
+            this.cbLZBlm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBlm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbLZBlm.Location = new System.Drawing.Point(3, 90);
             this.cbLZBlm.Name = "cbLZBlm";
             this.cbLZBlm.Size = new System.Drawing.Size(113, 17);
@@ -532,52 +510,6 @@
             this.cbLZBlm.Text = "LZB-Leuchtmelder";
             this.cbLZBlm.UseVisualStyleBackColor = true;
             this.cbLZBlm.CheckedChanged += new System.EventHandler(this.cbLZBlm_CheckedChanged);
-            // 
-            // cbLZBvziel
-            // 
-            this.cbLZBvziel.AutoSize = true;
-            this.cbLZBvziel.Location = new System.Drawing.Point(86, 4);
-            this.cbLZBvziel.Name = "cbLZBvziel";
-            this.cbLZBvziel.Size = new System.Drawing.Size(78, 17);
-            this.cbLZBvziel.TabIndex = 30;
-            this.cbLZBvziel.Text = "LZB - vZiel";
-            this.cbLZBvziel.UseVisualStyleBackColor = true;
-            this.cbLZBvziel.CheckedChanged += new System.EventHandler(this.cbLZBvziel_CheckedChanged);
-            // 
-            // cbLZBweg
-            // 
-            this.cbLZBweg.AutoSize = true;
-            this.cbLZBweg.Location = new System.Drawing.Point(86, 20);
-            this.cbLZBweg.Name = "cbLZBweg";
-            this.cbLZBweg.Size = new System.Drawing.Size(89, 17);
-            this.cbLZBweg.TabIndex = 29;
-            this.cbLZBweg.Text = "LZB - Ziel (m)";
-            this.cbLZBweg.UseVisualStyleBackColor = true;
-            this.cbLZBweg.CheckedChanged += new System.EventHandler(this.cbLZBweg_CheckedChanged);
-            // 
-            // cbLZBvsoll
-            // 
-            this.cbLZBvsoll.AutoSize = true;
-            this.cbLZBvsoll.Location = new System.Drawing.Point(3, 20);
-            this.cbLZBvsoll.Name = "cbLZBvsoll";
-            this.cbLZBvsoll.Size = new System.Drawing.Size(78, 17);
-            this.cbLZBvsoll.TabIndex = 28;
-            this.cbLZBvsoll.Text = "LZB - vSoll";
-            this.cbLZBvsoll.UseVisualStyleBackColor = true;
-            this.cbLZBvsoll.CheckedChanged += new System.EventHandler(this.cbLZBvsoll_CheckedChanged);
-            // 
-            // cbAFBgeschw
-            // 
-            this.cbAFBgeschw.AutoSize = true;
-            this.cbAFBgeschw.Checked = true;
-            this.cbAFBgeschw.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAFBgeschw.Location = new System.Drawing.Point(3, 3);
-            this.cbAFBgeschw.Name = "cbAFBgeschw";
-            this.cbAFBgeschw.Size = new System.Drawing.Size(78, 17);
-            this.cbAFBgeschw.TabIndex = 27;
-            this.cbAFBgeschw.Text = "AFB - vSoll";
-            this.cbAFBgeschw.UseVisualStyleBackColor = true;
-            this.cbAFBgeschw.CheckedChanged += new System.EventHandler(this.cbAFBgeschw_CheckedChanged);
             // 
             // pnlGrunddaten
             // 
@@ -693,24 +625,6 @@
             this.cbHauptsch.TabIndex = 22;
             this.cbHauptsch.Text = "Hauptschalter";
             this.cbHauptsch.UseVisualStyleBackColor = true;
-            // 
-            // numFahrschneutral
-            // 
-            this.numFahrschneutral.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numFahrschneutral", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numFahrschneutral.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numFahrschneutral.Location = new System.Drawing.Point(142, 0);
-            this.numFahrschneutral.Maximum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.numFahrschneutral.Name = "numFahrschneutral";
-            this.numFahrschneutral.ReadOnly = true;
-            this.numFahrschneutral.Size = new System.Drawing.Size(33, 20);
-            this.numFahrschneutral.TabIndex = 20;
-            this.numFahrschneutral.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.numFahrschneutral.Value = global::ZusiMeter.Properties.Settings.Default.numFahrschneutral;
-            this.numFahrschneutral.ValueChanged += new System.EventHandler(this.numFahrschneutral_ValueChanged);
             // 
             // lblFahrschneutralbei
             // 
@@ -2164,6 +2078,86 @@
             this.cbGrunddaten.UseVisualStyleBackColor = true;
             this.cbGrunddaten.CheckedChanged += new System.EventHandler(this.cbGrunddaten_CheckedChanged);
             // 
+            // rbAFBvor5
+            // 
+            this.rbAFBvor5.AutoSize = true;
+            this.rbAFBvor5.Checked = global::ZusiMeter.Properties.Settings.Default.rbAFBvor5;
+            this.rbAFBvor5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbAFBvor5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rbAFBvor5.Location = new System.Drawing.Point(22, 17);
+            this.rbAFBvor5.Name = "rbAFBvor5";
+            this.rbAFBvor5.Size = new System.Drawing.Size(59, 17);
+            this.rbAFBvor5.TabIndex = 20;
+            this.rbAFBvor5.TabStop = true;
+            this.rbAFBvor5.Text = "5 km/h";
+            this.rbAFBvor5.UseVisualStyleBackColor = true;
+            this.rbAFBvor5.CheckedChanged += new System.EventHandler(this.rbAFBvor5_CheckedChanged);
+            // 
+            // cbAFBVorwahl
+            // 
+            this.cbAFBVorwahl.AutoSize = true;
+            this.cbAFBVorwahl.Checked = global::ZusiMeter.Properties.Settings.Default.cbAFBVorwahl;
+            this.cbAFBVorwahl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbAFBVorwahl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbAFBVorwahl.Location = new System.Drawing.Point(3, 2);
+            this.cbAFBVorwahl.Name = "cbAFBVorwahl";
+            this.cbAFBVorwahl.Size = new System.Drawing.Size(101, 17);
+            this.cbAFBVorwahl.TabIndex = 31;
+            this.cbAFBVorwahl.Text = "AFB vorgewählt";
+            this.cbAFBVorwahl.UseVisualStyleBackColor = true;
+            this.cbAFBVorwahl.CheckedChanged += new System.EventHandler(this.cbAFBVorwahl_CheckedChanged);
+            // 
+            // cbLZBvziel
+            // 
+            this.cbLZBvziel.AutoSize = true;
+            this.cbLZBvziel.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBvziel;
+            this.cbLZBvziel.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBvziel", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLZBvziel.Location = new System.Drawing.Point(86, 4);
+            this.cbLZBvziel.Name = "cbLZBvziel";
+            this.cbLZBvziel.Size = new System.Drawing.Size(78, 17);
+            this.cbLZBvziel.TabIndex = 30;
+            this.cbLZBvziel.Text = "LZB - vZiel";
+            this.cbLZBvziel.UseVisualStyleBackColor = true;
+            this.cbLZBvziel.CheckedChanged += new System.EventHandler(this.cbLZBvziel_CheckedChanged);
+            // 
+            // cbLZBweg
+            // 
+            this.cbLZBweg.AutoSize = true;
+            this.cbLZBweg.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBweg;
+            this.cbLZBweg.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBweg", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLZBweg.Location = new System.Drawing.Point(86, 20);
+            this.cbLZBweg.Name = "cbLZBweg";
+            this.cbLZBweg.Size = new System.Drawing.Size(89, 17);
+            this.cbLZBweg.TabIndex = 29;
+            this.cbLZBweg.Text = "LZB - Ziel (m)";
+            this.cbLZBweg.UseVisualStyleBackColor = true;
+            this.cbLZBweg.CheckedChanged += new System.EventHandler(this.cbLZBweg_CheckedChanged);
+            // 
+            // cbLZBvsoll
+            // 
+            this.cbLZBvsoll.AutoSize = true;
+            this.cbLZBvsoll.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBvsoll;
+            this.cbLZBvsoll.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBvsoll", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLZBvsoll.Location = new System.Drawing.Point(3, 20);
+            this.cbLZBvsoll.Name = "cbLZBvsoll";
+            this.cbLZBvsoll.Size = new System.Drawing.Size(78, 17);
+            this.cbLZBvsoll.TabIndex = 28;
+            this.cbLZBvsoll.Text = "LZB - vSoll";
+            this.cbLZBvsoll.UseVisualStyleBackColor = true;
+            this.cbLZBvsoll.CheckedChanged += new System.EventHandler(this.cbLZBvsoll_CheckedChanged);
+            // 
+            // cbAFBgeschw
+            // 
+            this.cbAFBgeschw.AutoSize = true;
+            this.cbAFBgeschw.Checked = global::ZusiMeter.Properties.Settings.Default.cbAFBgeschw;
+            this.cbAFBgeschw.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAFBgeschw.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbAFBgeschw", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbAFBgeschw.Location = new System.Drawing.Point(3, 3);
+            this.cbAFBgeschw.Name = "cbAFBgeschw";
+            this.cbAFBgeschw.Size = new System.Drawing.Size(78, 17);
+            this.cbAFBgeschw.TabIndex = 27;
+            this.cbAFBgeschw.Text = "AFB - vSoll";
+            this.cbAFBgeschw.UseVisualStyleBackColor = true;
+            this.cbAFBgeschw.CheckedChanged += new System.EventHandler(this.cbAFBgeschw_CheckedChanged);
+            // 
             // cbPZBLM
             // 
             this.cbPZBLM.AutoSize = true;
@@ -2402,6 +2396,24 @@
             this.cbBremsen.UseVisualStyleBackColor = true;
             this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
             // 
+            // numFahrschneutral
+            // 
+            this.numFahrschneutral.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numFahrschneutral", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numFahrschneutral.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numFahrschneutral.Location = new System.Drawing.Point(142, 0);
+            this.numFahrschneutral.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.numFahrschneutral.Name = "numFahrschneutral";
+            this.numFahrschneutral.ReadOnly = true;
+            this.numFahrschneutral.Size = new System.Drawing.Size(33, 20);
+            this.numFahrschneutral.TabIndex = 20;
+            this.numFahrschneutral.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numFahrschneutral.Value = global::ZusiMeter.Properties.Settings.Default.numFahrschneutral;
+            this.numFahrschneutral.ValueChanged += new System.EventHandler(this.numFahrschneutral_ValueChanged);
+            // 
             // cbFahrstufenschalter
             // 
             this.cbFahrstufenschalter.AutoSize = true;
@@ -2471,7 +2483,6 @@
             this.pnlBremsen.PerformLayout();
             this.pnlSchalterst.ResumeLayout(false);
             this.pnlSchalterst.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).EndInit();
             this.tabDarstellung.ResumeLayout(false);
             this.tabDarstellung.PerformLayout();
             this.grpUnits.ResumeLayout(false);
@@ -2506,6 +2517,7 @@
             this.pnlDataLZB.ResumeLayout(false);
             this.pnlDataPZB90.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
