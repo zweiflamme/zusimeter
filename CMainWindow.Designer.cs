@@ -45,7 +45,6 @@
             this.numSizeGrunddaten = new System.Windows.Forms.NumericUpDown();
             this.pnlRailrunner = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.cbRRcountup = new System.Windows.Forms.CheckBox();
             this.rbRRfest = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlAFBLZB = new System.Windows.Forms.Panel();
@@ -69,7 +68,6 @@
             this.cbHauptsch = new System.Windows.Forms.CheckBox();
             this.numFahrschneutral = new System.Windows.Forms.NumericUpDown();
             this.lblFahrschneutralbei = new System.Windows.Forms.Label();
-            this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
             this.grpUnits = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -181,6 +179,7 @@
             this.cbRRautoreset = new System.Windows.Forms.CheckBox();
             this.cbRRSound = new System.Windows.Forms.CheckBox();
             this.cbRRcountdown = new System.Windows.Forms.CheckBox();
+            this.cbRRcountup = new System.Windows.Forms.CheckBox();
             this.numRRfest = new System.Windows.Forms.NumericUpDown();
             this.rbRRfrei = new System.Windows.Forms.RadioButton();
             this.cbAFBLZB = new System.Windows.Forms.CheckBox();
@@ -202,6 +201,7 @@
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
             this.cbBremsen = new System.Windows.Forms.CheckBox();
+            this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.tbServer = new System.Windows.Forms.TextBox();
             this.tbPort = new System.Windows.Forms.TextBox();
             this.pnlSettings.SuspendLayout();
@@ -440,25 +440,6 @@
             this.label7.Size = new System.Drawing.Size(15, 13);
             this.label7.TabIndex = 36;
             this.label7.Text = "m";
-            // 
-            // cbRRcountup
-            // 
-            this.cbRRcountup.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbRRcountup.AutoSize = true;
-            this.cbRRcountup.BackColor = System.Drawing.Color.Transparent;
-            this.cbRRcountup.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRcountup;
-            this.cbRRcountup.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRcountup", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbRRcountup.Enabled = false;
-            this.cbRRcountup.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
-            this.cbRRcountup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRRcountup.Location = new System.Drawing.Point(114, 23);
-            this.cbRRcountup.Name = "cbRRcountup";
-            this.cbRRcountup.Size = new System.Drawing.Size(23, 23);
-            this.cbRRcountup.TabIndex = 20;
-            this.cbRRcountup.Text = "˄";
-            this.cbRRcountup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbRRcountup.UseVisualStyleBackColor = false;
-            this.cbRRcountup.CheckedChanged += new System.EventHandler(this.cbRRcountup_CheckedChanged);
             // 
             // rbRRfest
             // 
@@ -715,6 +696,7 @@
             // 
             // numFahrschneutral
             // 
+            this.numFahrschneutral.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numFahrschneutral", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numFahrschneutral.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numFahrschneutral.Location = new System.Drawing.Point(142, 0);
             this.numFahrschneutral.Maximum = new decimal(new int[] {
@@ -727,6 +709,7 @@
             this.numFahrschneutral.Size = new System.Drawing.Size(33, 20);
             this.numFahrschneutral.TabIndex = 20;
             this.numFahrschneutral.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numFahrschneutral.Value = global::ZusiMeter.Properties.Settings.Default.numFahrschneutral;
             this.numFahrschneutral.ValueChanged += new System.EventHandler(this.numFahrschneutral_ValueChanged);
             // 
             // lblFahrschneutralbei
@@ -738,17 +721,6 @@
             this.lblFahrschneutralbei.Size = new System.Drawing.Size(56, 13);
             this.lblFahrschneutralbei.TabIndex = 21;
             this.lblFahrschneutralbei.Text = "neutral bei";
-            // 
-            // cbFahrstufenschalter
-            // 
-            this.cbFahrstufenschalter.AutoSize = true;
-            this.cbFahrstufenschalter.Location = new System.Drawing.Point(3, 5);
-            this.cbFahrstufenschalter.Name = "cbFahrstufenschalter";
-            this.cbFahrstufenschalter.Size = new System.Drawing.Size(84, 17);
-            this.cbFahrstufenschalter.TabIndex = 9;
-            this.cbFahrstufenschalter.Text = "Fahrschalter";
-            this.cbFahrstufenschalter.UseVisualStyleBackColor = true;
-            this.cbFahrstufenschalter.CheckedChanged += new System.EventHandler(this.cbFahrstufenschalter_CheckedChanged);
             // 
             // tabDarstellung
             // 
@@ -2102,6 +2074,25 @@
             this.cbRRcountdown.UseVisualStyleBackColor = false;
             this.cbRRcountdown.CheckedChanged += new System.EventHandler(this.cbRRcountdown_CheckedChanged);
             // 
+            // cbRRcountup
+            // 
+            this.cbRRcountup.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbRRcountup.AutoSize = true;
+            this.cbRRcountup.BackColor = System.Drawing.Color.Transparent;
+            this.cbRRcountup.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRcountup;
+            this.cbRRcountup.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRcountup", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRRcountup.Enabled = false;
+            this.cbRRcountup.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
+            this.cbRRcountup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRRcountup.Location = new System.Drawing.Point(114, 23);
+            this.cbRRcountup.Name = "cbRRcountup";
+            this.cbRRcountup.Size = new System.Drawing.Size(23, 23);
+            this.cbRRcountup.TabIndex = 20;
+            this.cbRRcountup.Text = "˄";
+            this.cbRRcountup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbRRcountup.UseVisualStyleBackColor = false;
+            this.cbRRcountup.CheckedChanged += new System.EventHandler(this.cbRRcountup_CheckedChanged);
+            // 
             // numRRfest
             // 
             this.numRRfest.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numRRfest", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -2410,6 +2401,19 @@
             this.cbBremsen.Text = "Bremsen";
             this.cbBremsen.UseVisualStyleBackColor = true;
             this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
+            // 
+            // cbFahrstufenschalter
+            // 
+            this.cbFahrstufenschalter.AutoSize = true;
+            this.cbFahrstufenschalter.Checked = global::ZusiMeter.Properties.Settings.Default.cbFahrstufenschalter;
+            this.cbFahrstufenschalter.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFahrstufenschalter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbFahrstufenschalter.Location = new System.Drawing.Point(3, 5);
+            this.cbFahrstufenschalter.Name = "cbFahrstufenschalter";
+            this.cbFahrstufenschalter.Size = new System.Drawing.Size(84, 17);
+            this.cbFahrstufenschalter.TabIndex = 9;
+            this.cbFahrstufenschalter.Text = "Fahrschalter";
+            this.cbFahrstufenschalter.UseVisualStyleBackColor = true;
+            this.cbFahrstufenschalter.CheckedChanged += new System.EventHandler(this.cbFahrstufenschalter_CheckedChanged);
             // 
             // tbServer
             // 

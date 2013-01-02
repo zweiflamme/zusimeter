@@ -370,5 +370,29 @@ namespace ZusiMeter.Properties {
                 this["cbRRcountup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbFahrstufenschalter {
+            get {
+                return ((bool)(this["cbFahrstufenschalter"]));
+            }
+            set {
+                this["cbFahrstufenschalter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal numFahrschneutral {
+            get {
+                return ((decimal)(this["numFahrschneutral"]));
+            }
+            set {
+                this["numFahrschneutral"] = value;
+            }
+        }
     }
 }
