@@ -262,5 +262,41 @@ namespace ZusiMeter.Properties {
                 this["cbDruckhlb"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbFbv {
+            get {
+                return ((bool)(this["cbFbv"]));
+            }
+            set {
+                this["cbFbv"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbDynbremse {
+            get {
+                return ((bool)(this["cbDynbremse"]));
+            }
+            set {
+                this["cbDynbremse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbZusbremse {
+            get {
+                return ((bool)(this["cbZusbremse"]));
+            }
+            set {
+                this["cbZusbremse"] = value;
+            }
+        }
     }
 }

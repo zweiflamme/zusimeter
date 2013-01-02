@@ -66,9 +66,7 @@
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
             this.pnlBremsen = new System.Windows.Forms.Panel();
             this.cbZusbremse = new System.Windows.Forms.CheckBox();
-            this.cbDruckhlb = new System.Windows.Forms.CheckBox();
             this.cbDynbremse = new System.Windows.Forms.CheckBox();
-            this.cbFbv = new System.Windows.Forms.CheckBox();
             this.pnlSchalterst = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -198,6 +196,8 @@
             this.cbTime = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
             this.cbDruckhbl = new System.Windows.Forms.CheckBox();
+            this.cbDruckhlb = new System.Windows.Forms.CheckBox();
+            this.cbFbv = new System.Windows.Forms.CheckBox();
             this.cbDruckhll = new System.Windows.Forms.CheckBox();
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
@@ -721,22 +721,11 @@
             this.cbZusbremse.Text = "Zusatzbremse";
             this.cbZusbremse.UseVisualStyleBackColor = true;
             // 
-            // cbDruckhlb
-            // 
-            this.cbDruckhlb.AutoSize = true;
-            this.cbDruckhlb.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhlb;
-            this.cbDruckhlb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhlb", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbDruckhlb.Location = new System.Drawing.Point(113, 23);
-            this.cbDruckhlb.Name = "cbDruckhlb";
-            this.cbDruckhlb.Size = new System.Drawing.Size(79, 17);
-            this.cbDruckhlb.TabIndex = 10;
-            this.cbDruckhlb.Text = "Druck HLB";
-            this.cbDruckhlb.UseVisualStyleBackColor = true;
-            this.cbDruckhlb.CheckedChanged += new System.EventHandler(this.cbDruckhlb_CheckedChanged);
-            // 
             // cbDynbremse
             // 
             this.cbDynbremse.AutoSize = true;
+            this.cbDynbremse.Checked = global::ZusiMeter.Properties.Settings.Default.cbDynbremse;
+            this.cbDynbremse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDynbremse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbDynbremse.Enabled = false;
             this.cbDynbremse.Location = new System.Drawing.Point(113, 62);
             this.cbDynbremse.Name = "cbDynbremse";
@@ -744,17 +733,6 @@
             this.cbDynbremse.TabIndex = 24;
             this.cbDynbremse.Text = "Dyn. Bremse";
             this.cbDynbremse.UseVisualStyleBackColor = true;
-            // 
-            // cbFbv
-            // 
-            this.cbFbv.AutoSize = true;
-            this.cbFbv.Enabled = false;
-            this.cbFbv.Location = new System.Drawing.Point(3, 62);
-            this.cbFbv.Name = "cbFbv";
-            this.cbFbv.Size = new System.Drawing.Size(109, 17);
-            this.cbFbv.TabIndex = 23;
-            this.cbFbv.Text = "Führerbremsventil";
-            this.cbFbv.UseVisualStyleBackColor = true;
             // 
             // pnlSchalterst
             // 
@@ -2341,6 +2319,32 @@
             this.cbDruckhbl.Text = "Druck HBL";
             this.cbDruckhbl.UseVisualStyleBackColor = true;
             this.cbDruckhbl.CheckedChanged += new System.EventHandler(this.cbDruckhbl_CheckedChanged);
+            // 
+            // cbDruckhlb
+            // 
+            this.cbDruckhlb.AutoSize = true;
+            this.cbDruckhlb.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhlb;
+            this.cbDruckhlb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhlb", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDruckhlb.Location = new System.Drawing.Point(113, 23);
+            this.cbDruckhlb.Name = "cbDruckhlb";
+            this.cbDruckhlb.Size = new System.Drawing.Size(79, 17);
+            this.cbDruckhlb.TabIndex = 10;
+            this.cbDruckhlb.Text = "Druck HLB";
+            this.cbDruckhlb.UseVisualStyleBackColor = true;
+            this.cbDruckhlb.CheckedChanged += new System.EventHandler(this.cbDruckhlb_CheckedChanged);
+            // 
+            // cbFbv
+            // 
+            this.cbFbv.AutoSize = true;
+            this.cbFbv.Checked = global::ZusiMeter.Properties.Settings.Default.cbFbv;
+            this.cbFbv.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFbv", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbFbv.Enabled = false;
+            this.cbFbv.Location = new System.Drawing.Point(3, 62);
+            this.cbFbv.Name = "cbFbv";
+            this.cbFbv.Size = new System.Drawing.Size(109, 17);
+            this.cbFbv.TabIndex = 23;
+            this.cbFbv.Text = "Führerbremsventil";
+            this.cbFbv.UseVisualStyleBackColor = true;
             // 
             // cbDruckhll
             // 
