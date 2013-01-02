@@ -64,16 +64,11 @@
             this.cbLZBvsoll = new System.Windows.Forms.CheckBox();
             this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
-            this.cbTime = new System.Windows.Forms.CheckBox();
             this.pnlBremsen = new System.Windows.Forms.Panel();
             this.cbZusbremse = new System.Windows.Forms.CheckBox();
-            this.cbDruckhbl = new System.Windows.Forms.CheckBox();
             this.cbDruckhlb = new System.Windows.Forms.CheckBox();
             this.cbDynbremse = new System.Windows.Forms.CheckBox();
             this.cbFbv = new System.Windows.Forms.CheckBox();
-            this.cbDruckhll = new System.Windows.Forms.CheckBox();
-            this.cbBrh = new System.Windows.Forms.CheckBox();
-            this.cbDruckbz = new System.Windows.Forms.CheckBox();
             this.pnlSchalterst = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -200,7 +195,12 @@
             this.cbFahrstufe = new System.Windows.Forms.CheckBox();
             this.cbLmsifa = new System.Windows.Forms.CheckBox();
             this.cbTueren = new System.Windows.Forms.CheckBox();
+            this.cbTime = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
+            this.cbDruckhbl = new System.Windows.Forms.CheckBox();
+            this.cbDruckhll = new System.Windows.Forms.CheckBox();
+            this.cbBrh = new System.Windows.Forms.CheckBox();
+            this.cbDruckbz = new System.Windows.Forms.CheckBox();
             this.cbBremsen = new System.Windows.Forms.CheckBox();
             this.tbServer = new System.Windows.Forms.TextBox();
             this.tbPort = new System.Windows.Forms.TextBox();
@@ -694,20 +694,6 @@
             this.pnlGrunddaten.Size = new System.Drawing.Size(205, 95);
             this.pnlGrunddaten.TabIndex = 19;
             // 
-            // cbTime
-            // 
-            this.cbTime.AutoSize = true;
-            this.cbTime.Checked = global::ZusiMeter.Properties.Settings.Default.cbTime;
-            this.cbTime.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTime.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbTime.Location = new System.Drawing.Point(113, 36);
-            this.cbTime.Name = "cbTime";
-            this.cbTime.Size = new System.Drawing.Size(59, 17);
-            this.cbTime.TabIndex = 6;
-            this.cbTime.Text = "Uhrzeit";
-            this.cbTime.UseVisualStyleBackColor = true;
-            this.cbTime.CheckedChanged += new System.EventHandler(this.cbTime_CheckedChanged);
-            // 
             // pnlBremsen
             // 
             this.pnlBremsen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -735,20 +721,11 @@
             this.cbZusbremse.Text = "Zusatzbremse";
             this.cbZusbremse.UseVisualStyleBackColor = true;
             // 
-            // cbDruckhbl
-            // 
-            this.cbDruckhbl.AutoSize = true;
-            this.cbDruckhbl.Location = new System.Drawing.Point(113, 6);
-            this.cbDruckhbl.Name = "cbDruckhbl";
-            this.cbDruckhbl.Size = new System.Drawing.Size(79, 17);
-            this.cbDruckhbl.TabIndex = 11;
-            this.cbDruckhbl.Text = "Druck HBL";
-            this.cbDruckhbl.UseVisualStyleBackColor = true;
-            this.cbDruckhbl.CheckedChanged += new System.EventHandler(this.cbDruckhbl_CheckedChanged);
-            // 
             // cbDruckhlb
             // 
             this.cbDruckhlb.AutoSize = true;
+            this.cbDruckhlb.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhlb;
+            this.cbDruckhlb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhlb", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbDruckhlb.Location = new System.Drawing.Point(113, 23);
             this.cbDruckhlb.Name = "cbDruckhlb";
             this.cbDruckhlb.Size = new System.Drawing.Size(79, 17);
@@ -778,45 +755,6 @@
             this.cbFbv.TabIndex = 23;
             this.cbFbv.Text = "Führerbremsventil";
             this.cbFbv.UseVisualStyleBackColor = true;
-            // 
-            // cbDruckhll
-            // 
-            this.cbDruckhll.AutoSize = true;
-            this.cbDruckhll.Checked = true;
-            this.cbDruckhll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckhll.Location = new System.Drawing.Point(3, 23);
-            this.cbDruckhll.Name = "cbDruckhll";
-            this.cbDruckhll.Size = new System.Drawing.Size(70, 17);
-            this.cbDruckhll.TabIndex = 2;
-            this.cbDruckhll.Text = "Druck Hll";
-            this.cbDruckhll.UseVisualStyleBackColor = true;
-            this.cbDruckhll.CheckedChanged += new System.EventHandler(this.cbDruckhll_CheckedChanged);
-            // 
-            // cbBrh
-            // 
-            this.cbBrh.AutoSize = true;
-            this.cbBrh.Checked = true;
-            this.cbBrh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBrh.Location = new System.Drawing.Point(3, 5);
-            this.cbBrh.Name = "cbBrh";
-            this.cbBrh.Size = new System.Drawing.Size(107, 17);
-            this.cbBrh.TabIndex = 4;
-            this.cbBrh.Text = "Bremshundertstel";
-            this.cbBrh.UseVisualStyleBackColor = true;
-            this.cbBrh.CheckedChanged += new System.EventHandler(this.cbBrh_CheckedChanged);
-            // 
-            // cbDruckbz
-            // 
-            this.cbDruckbz.AutoSize = true;
-            this.cbDruckbz.Checked = true;
-            this.cbDruckbz.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckbz.Location = new System.Drawing.Point(3, 43);
-            this.cbDruckbz.Name = "cbDruckbz";
-            this.cbDruckbz.Size = new System.Drawing.Size(122, 17);
-            this.cbDruckbz.TabIndex = 3;
-            this.cbDruckbz.Text = "Druck Bremszylinder";
-            this.cbDruckbz.UseVisualStyleBackColor = true;
-            this.cbDruckbz.CheckedChanged += new System.EventHandler(this.cbDruckbz_CheckedChanged);
             // 
             // pnlSchalterst
             // 
@@ -2363,6 +2301,20 @@
             this.cbTueren.UseVisualStyleBackColor = true;
             this.cbTueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
             // 
+            // cbTime
+            // 
+            this.cbTime.AutoSize = true;
+            this.cbTime.Checked = global::ZusiMeter.Properties.Settings.Default.cbTime;
+            this.cbTime.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTime.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbTime.Location = new System.Drawing.Point(113, 36);
+            this.cbTime.Name = "cbTime";
+            this.cbTime.Size = new System.Drawing.Size(59, 17);
+            this.cbTime.TabIndex = 6;
+            this.cbTime.Text = "Uhrzeit";
+            this.cbTime.UseVisualStyleBackColor = true;
+            this.cbTime.CheckedChanged += new System.EventHandler(this.cbTime_CheckedChanged);
+            // 
             // cbLmschleudern
             // 
             this.cbLmschleudern.AutoSize = true;
@@ -2376,6 +2328,61 @@
             this.cbLmschleudern.Text = "LM Schleudern / Gleiten";
             this.cbLmschleudern.UseVisualStyleBackColor = true;
             this.cbLmschleudern.CheckedChanged += new System.EventHandler(this.cbLmschleudern_CheckedChanged);
+            // 
+            // cbDruckhbl
+            // 
+            this.cbDruckhbl.AutoSize = true;
+            this.cbDruckhbl.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhbl;
+            this.cbDruckhbl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhbl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDruckhbl.Location = new System.Drawing.Point(113, 6);
+            this.cbDruckhbl.Name = "cbDruckhbl";
+            this.cbDruckhbl.Size = new System.Drawing.Size(79, 17);
+            this.cbDruckhbl.TabIndex = 11;
+            this.cbDruckhbl.Text = "Druck HBL";
+            this.cbDruckhbl.UseVisualStyleBackColor = true;
+            this.cbDruckhbl.CheckedChanged += new System.EventHandler(this.cbDruckhbl_CheckedChanged);
+            // 
+            // cbDruckhll
+            // 
+            this.cbDruckhll.AutoSize = true;
+            this.cbDruckhll.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhll;
+            this.cbDruckhll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDruckhll.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhll", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDruckhll.Location = new System.Drawing.Point(3, 23);
+            this.cbDruckhll.Name = "cbDruckhll";
+            this.cbDruckhll.Size = new System.Drawing.Size(70, 17);
+            this.cbDruckhll.TabIndex = 2;
+            this.cbDruckhll.Text = "Druck Hll";
+            this.cbDruckhll.UseVisualStyleBackColor = true;
+            this.cbDruckhll.CheckedChanged += new System.EventHandler(this.cbDruckhll_CheckedChanged);
+            // 
+            // cbBrh
+            // 
+            this.cbBrh.AutoSize = true;
+            this.cbBrh.Checked = global::ZusiMeter.Properties.Settings.Default.cbBrh;
+            this.cbBrh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBrh.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbBrh", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbBrh.Location = new System.Drawing.Point(3, 5);
+            this.cbBrh.Name = "cbBrh";
+            this.cbBrh.Size = new System.Drawing.Size(107, 17);
+            this.cbBrh.TabIndex = 4;
+            this.cbBrh.Text = "Bremshundertstel";
+            this.cbBrh.UseVisualStyleBackColor = true;
+            this.cbBrh.CheckedChanged += new System.EventHandler(this.cbBrh_CheckedChanged);
+            // 
+            // cbDruckbz
+            // 
+            this.cbDruckbz.AutoSize = true;
+            this.cbDruckbz.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckbz;
+            this.cbDruckbz.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDruckbz.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckbz", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDruckbz.Location = new System.Drawing.Point(3, 43);
+            this.cbDruckbz.Name = "cbDruckbz";
+            this.cbDruckbz.Size = new System.Drawing.Size(122, 17);
+            this.cbDruckbz.TabIndex = 3;
+            this.cbDruckbz.Text = "Druck Bremszylinder";
+            this.cbDruckbz.UseVisualStyleBackColor = true;
+            this.cbDruckbz.CheckedChanged += new System.EventHandler(this.cbDruckbz_CheckedChanged);
             // 
             // cbBremsen
             // 

@@ -202,5 +202,65 @@ namespace ZusiMeter.Properties {
                 this["cbTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbBrh {
+            get {
+                return ((bool)(this["cbBrh"]));
+            }
+            set {
+                this["cbBrh"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbDruckhll {
+            get {
+                return ((bool)(this["cbDruckhll"]));
+            }
+            set {
+                this["cbDruckhll"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbDruckbz {
+            get {
+                return ((bool)(this["cbDruckbz"]));
+            }
+            set {
+                this["cbDruckbz"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbDruckhbl {
+            get {
+                return ((bool)(this["cbDruckhbl"]));
+            }
+            set {
+                this["cbDruckhbl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbDruckhlb {
+            get {
+                return ((bool)(this["cbDruckhlb"]));
+            }
+            set {
+                this["cbDruckhlb"] = value;
+            }
+        }
     }
 }
