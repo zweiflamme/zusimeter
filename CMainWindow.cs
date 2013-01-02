@@ -259,6 +259,7 @@ namespace ZusiMeter
             //TEST TODO
             #region Ensure loaded settings apply
             //make sure every label and panel is visible according to checkboxes:           
+            //TODO
 
             lblhbl.Visible = cbDruckhbl.Checked;
             lblHBLwert.Visible = cbDruckhbl.Checked;
@@ -277,6 +278,9 @@ namespace ZusiMeter
 
             pnlDataLZB.Visible = cbLZBlm.Checked;
 
+            lblfahrstschalter.Visible = cbFahrstufenschalter.Checked;
+            lblFahrstufenschalter.Visible = cbFahrstufenschalter.Checked;
+
             //make sure Sifa label has the proper size:
             ResizeSifa();
             
@@ -288,7 +292,7 @@ namespace ZusiMeter
             rbUnitmps.Checked = !rbUnitkph.Checked;
 
             //make sure checkboxes that exclude each other are properly checked
-            cbFokusImmerzurueck.Checked = !cbFokusFahrtzurueck.Checked; // second checkbox is bound to settings
+            //TODO
 
             #endregion
 
@@ -297,7 +301,7 @@ namespace ZusiMeter
             
             //TEST DEBUG
             //if separate settings window will be used, show it
-            ShowSeparateSettingsWindow(); //includes check if cbSeparateSettings is checked
+            //TODO ShowSeparateSettingsWindow(); //includes check if cbSeparateSettings is checked
 
             //TEST
             //moving pnlRight a bit
@@ -1115,14 +1119,9 @@ namespace ZusiMeter
         //either one or the other checkbox is allowed to be checked, or none
         private void cbFokusImmerzurueck_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbFokusImmerzurueck.Checked)
-                cbFokusFahrtzurueck.Checked = false;
+            
         }
-        private void cbFokusFahrtzurueck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbFokusFahrtzurueck.Checked)
-                cbFokusImmerzurueck.Checked = false;
-        }
+        
 
         private void cbAFBgeschw_CheckedChanged(object sender, EventArgs e)
         {
@@ -1480,18 +1479,9 @@ namespace ZusiMeter
         
         public void FokusAnZusi()
         {
-            if (hasMoved == true && cbFokusFahrtzurueck.Checked) //give focus back to Zusi when already moving
-            {
-                String window = "Zusi";
-                //SetActiveWindow(FindWindow(null, window));
-                SetForegroundWindow(FindWindow(null, window));
-            }
-            else if (cbFokusImmerzurueck.Checked)
-            {                
-                String window = "Zusi";
-                //SetActiveWindow(FindWindow(null, window));
-                SetForegroundWindow(FindWindow(null, window));
-            }
+            String window = "Zusi";
+            //SetActiveWindow(FindWindow(null, window));
+            SetForegroundWindow(FindWindow(null, window));
         }
 
         //TEST
@@ -1958,7 +1948,7 @@ namespace ZusiMeter
             if (cbSettingsSeparate.Checked && settingsAreSeparated == false)
             //DEBUG:  //WORKAROUND - if checkbox is bound to settings, weird things happened
             {
-                MessageBox.Show("SEPARATED");
+                //MessageBox.Show("SEPARATED");
 
 
                 frmSettings.BackColor = this.BackColor; // makes sure day-/nightmode is set for the form too
@@ -1971,7 +1961,7 @@ namespace ZusiMeter
                 
                 settingsAreSeparated = true;
 
-                pnlRight.Location = new Point(0, 0);
+                this.pnlRight.Location = new Point(0, 0);
                 frmSettings.AutoSize = true;
                 frmSettings.PerformAutoScale();
                 frmSettings.Show();
@@ -1983,7 +1973,7 @@ namespace ZusiMeter
             else if(cbSettingsSeparate.Checked == false && settingsAreSeparated == true) //DEBUG:
                     //WORKAROUND - if checkbox is bound to settings, weird things happened
             {
-                MessageBox.Show("NOT separated");
+                //MessageBox.Show("NOT separated");
 
                 this.pnlRight.Location = new Point(pnlLeft.Location.X + pnlLeft.Width + 10, pnlLeft.Location.Y);
                 this.Controls.Add(pnlRight);
@@ -2034,7 +2024,15 @@ namespace ZusiMeter
         {
             //TEST
             //set default values for all bound controls
-            Properties.Settings.Default.Reset();
+            if(MessageBox.Show("Einstellungen auf Standardwerte zurücksetzen?", "Zurücksetzen", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                Properties.Settings.Default.Reset();
+        }
+
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString() + " speichert die Einstellungen "
+                + "automatisch beim Beenden. Mit einer späteren Version werden mehrere Einstellungen anlegbar sein.");
         }
 
         

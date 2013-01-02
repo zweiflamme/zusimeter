@@ -541,7 +541,7 @@ namespace ZusiMeter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool cbHidesettings {
             get {
                 return ((bool)(this["cbHidesettings"]));
@@ -565,7 +565,7 @@ namespace ZusiMeter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool cbFokusImmerzurueck {
             get {
                 return ((bool)(this["cbFokusImmerzurueck"]));

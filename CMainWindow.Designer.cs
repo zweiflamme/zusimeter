@@ -68,7 +68,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.rbUnitm = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabSystem = new System.Windows.Forms.TabPage();
             this.grpManageSettings = new System.Windows.Forms.GroupBox();
@@ -158,7 +157,7 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
-            this.cbHidesettings = new System.Windows.Forms.CheckBox();
+            this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.cbRailrunner = new System.Windows.Forms.CheckBox();
             this.cbSchalterst = new System.Windows.Forms.CheckBox();
             this.cbRRautoreset = new System.Windows.Forms.CheckBox();
@@ -197,8 +196,7 @@
             this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.rbUnitkph = new System.Windows.Forms.RadioButton();
             this.rbUnitkm = new System.Windows.Forms.RadioButton();
-            this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
-            this.cbFokusFahrtzurueck = new System.Windows.Forms.CheckBox();
+            this.cbHidesettings = new System.Windows.Forms.CheckBox();
             this.cbTopmost = new System.Windows.Forms.CheckBox();
             this.cbFokusImmerzurueck = new System.Windows.Forms.CheckBox();
             this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
@@ -629,8 +627,6 @@
             this.tabDarstellung.Controls.Add(this.grpUnits);
             this.tabDarstellung.Controls.Add(this.cbSettingsSeparate);
             this.tabDarstellung.Controls.Add(this.cbHidesettings);
-            this.tabDarstellung.Controls.Add(this.label1);
-            this.tabDarstellung.Controls.Add(this.cbFokusFahrtzurueck);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
             this.tabDarstellung.Controls.Add(this.cbFokusImmerzurueck);
             this.tabDarstellung.Controls.Add(this.label3);
@@ -718,15 +714,6 @@
             this.rbUnitm.UseVisualStyleBackColor = true;
             this.rbUnitm.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 330);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Fokus nach Klick zurück an Zusi";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -785,10 +772,12 @@
             this.btnSaveSettings.TabIndex = 17;
             this.btnSaveSettings.Text = "Speichern";
             this.btnSaveSettings.UseVisualStyleBackColor = false;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
             // btnLoadSettings
             // 
             this.btnLoadSettings.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLoadSettings.Enabled = false;
             this.btnLoadSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadSettings.Location = new System.Drawing.Point(6, 26);
             this.btnLoadSettings.Name = "btnLoadSettings";
@@ -1776,18 +1765,18 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
-            // cbHidesettings
+            // cbSettingsSeparate
             // 
-            this.cbHidesettings.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.cbHidesettings.Checked = true;
-            this.cbHidesettings.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbHidesettings.Location = new System.Drawing.Point(6, 275);
-            this.cbHidesettings.Name = "cbHidesettings";
-            this.cbHidesettings.Size = new System.Drawing.Size(159, 33);
-            this.cbHidesettings.TabIndex = 22;
-            this.cbHidesettings.Text = "Einstellungen automatisch ausblenden";
-            this.cbHidesettings.UseVisualStyleBackColor = true;
-            this.cbHidesettings.CheckedChanged += new System.EventHandler(this.cbHidesettings_CheckedChanged);
+            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
+            this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 172);
+            this.cbSettingsSeparate.Name = "cbSettingsSeparate";
+            this.cbSettingsSeparate.Size = new System.Drawing.Size(118, 35);
+            this.cbSettingsSeparate.TabIndex = 23;
+            this.cbSettingsSeparate.Text = "Einstellungen in separatem Fenster";
+            this.cbSettingsSeparate.UseVisualStyleBackColor = false;
+            this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
             // 
             // cbRailrunner
             // 
@@ -2353,32 +2342,19 @@
             this.rbUnitkm.UseVisualStyleBackColor = true;
             this.rbUnitkm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
             // 
-            // cbSettingsSeparate
+            // cbHidesettings
             // 
-            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
-            this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 172);
-            this.cbSettingsSeparate.Name = "cbSettingsSeparate";
-            this.cbSettingsSeparate.Size = new System.Drawing.Size(118, 35);
-            this.cbSettingsSeparate.TabIndex = 23;
-            this.cbSettingsSeparate.Text = "Einstellungen in separatem Fenster";
-            this.cbSettingsSeparate.UseVisualStyleBackColor = false;
-            this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
-            // 
-            // cbFokusFahrtzurueck
-            // 
-            this.cbFokusFahrtzurueck.AutoSize = true;
-            this.cbFokusFahrtzurueck.Checked = global::ZusiMeter.Properties.Settings.Default.cbFokusFahrtzurueck;
-            this.cbFokusFahrtzurueck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbFokusFahrtzurueck.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFokusFahrtzurueck", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbFokusFahrtzurueck.Location = new System.Drawing.Point(66, 348);
-            this.cbFokusFahrtzurueck.Name = "cbFokusFahrtzurueck";
-            this.cbFokusFahrtzurueck.Size = new System.Drawing.Size(115, 17);
-            this.cbFokusFahrtzurueck.TabIndex = 20;
-            this.cbFokusFahrtzurueck.Text = "Während der Fahrt";
-            this.cbFokusFahrtzurueck.UseVisualStyleBackColor = true;
-            this.cbFokusFahrtzurueck.CheckedChanged += new System.EventHandler(this.cbFokusFahrtzurueck_CheckedChanged);
+            this.cbHidesettings.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cbHidesettings.Checked = global::ZusiMeter.Properties.Settings.Default.cbHidesettings;
+            this.cbHidesettings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbHidesettings.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbHidesettings", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbHidesettings.Location = new System.Drawing.Point(6, 275);
+            this.cbHidesettings.Name = "cbHidesettings";
+            this.cbHidesettings.Size = new System.Drawing.Size(159, 33);
+            this.cbHidesettings.TabIndex = 22;
+            this.cbHidesettings.Text = "Einstellungen automatisch ausblenden";
+            this.cbHidesettings.UseVisualStyleBackColor = true;
+            this.cbHidesettings.CheckedChanged += new System.EventHandler(this.cbHidesettings_CheckedChanged);
             // 
             // cbTopmost
             // 
@@ -2398,12 +2374,13 @@
             // 
             this.cbFokusImmerzurueck.AutoSize = true;
             this.cbFokusImmerzurueck.Checked = global::ZusiMeter.Properties.Settings.Default.cbFokusImmerzurueck;
+            this.cbFokusImmerzurueck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbFokusImmerzurueck.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFokusImmerzurueck", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbFokusImmerzurueck.Location = new System.Drawing.Point(6, 348);
+            this.cbFokusImmerzurueck.Location = new System.Drawing.Point(6, 331);
             this.cbFokusImmerzurueck.Name = "cbFokusImmerzurueck";
-            this.cbFokusImmerzurueck.Size = new System.Drawing.Size(54, 17);
+            this.cbFokusImmerzurueck.Size = new System.Drawing.Size(181, 17);
             this.cbFokusImmerzurueck.TabIndex = 16;
-            this.cbFokusImmerzurueck.Text = "Immer";
+            this.cbFokusImmerzurueck.Text = "Fokus nach Klick zurück an Zusi";
             this.cbFokusImmerzurueck.UseVisualStyleBackColor = true;
             this.cbFokusImmerzurueck.CheckedChanged += new System.EventHandler(this.cbFokusImmerzurueck_CheckedChanged);
             // 
@@ -2626,8 +2603,6 @@
         private System.Windows.Forms.Label lblDynbremse;
         private System.Windows.Forms.Label lblZusbremse;
         private System.Windows.Forms.Button btnDebugFokusZusi;
-        private System.Windows.Forms.CheckBox cbFokusFahrtzurueck;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDebugreisezug;
         private System.Windows.Forms.Label lblDebugreisezwert;
         private System.Windows.Forms.Label lblDebugreiseztrue;
