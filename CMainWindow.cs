@@ -1157,6 +1157,7 @@ namespace ZusiMeter
         {
             pnlDataGrunddaten.Visible = cbGrunddaten.Checked;
             pnlDataPZB90.Visible = cbGrunddaten.Checked && cbPZBLM.Checked; //TODO: watch out if PZB controls visibility can also be controlled by another checkbox
+            lblSifa.Visible = cbGrunddaten.Checked && cbLmsifa.Checked;
             pnlGrunddaten.Enabled = cbGrunddaten.Checked;
         }
 
