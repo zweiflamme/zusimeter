@@ -289,6 +289,18 @@ namespace ZusiMeter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool rbRRfrei {
+            get {
+                return ((bool)(this["rbRRfrei"]));
+            }
+            set {
+                this["rbRRfrei"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool cbZusbremse {
             get {
@@ -296,6 +308,66 @@ namespace ZusiMeter.Properties {
             }
             set {
                 this["cbZusbremse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal numRRfest {
+            get {
+                return ((decimal)(this["numRRfest"]));
+            }
+            set {
+                this["numRRfest"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbRRSound {
+            get {
+                return ((bool)(this["cbRRSound"]));
+            }
+            set {
+                this["cbRRSound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbRRautoreset {
+            get {
+                return ((bool)(this["cbRRautoreset"]));
+            }
+            set {
+                this["cbRRautoreset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbRRcountdown {
+            get {
+                return ((bool)(this["cbRRcountdown"]));
+            }
+            set {
+                this["cbRRcountdown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbRRcountup {
+            get {
+                return ((bool)(this["cbRRcountup"]));
+            }
+            set {
+                this["cbRRcountup"] = value;
             }
         }
     }

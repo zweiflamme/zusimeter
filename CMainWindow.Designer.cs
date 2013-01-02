@@ -44,14 +44,9 @@
             this.numSizeBremsen = new System.Windows.Forms.NumericUpDown();
             this.numSizeGrunddaten = new System.Windows.Forms.NumericUpDown();
             this.pnlRailrunner = new System.Windows.Forms.Panel();
-            this.cbRRautoreset = new System.Windows.Forms.CheckBox();
-            this.cbRRSound = new System.Windows.Forms.CheckBox();
-            this.cbRRcountdown = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cbRRcountup = new System.Windows.Forms.CheckBox();
             this.rbRRfest = new System.Windows.Forms.RadioButton();
-            this.numRRfest = new System.Windows.Forms.NumericUpDown();
-            this.rbRRfrei = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlAFBLZB = new System.Windows.Forms.Panel();
             this.pnlAFBrbvor = new System.Windows.Forms.Panel();
@@ -65,8 +60,6 @@
             this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
             this.pnlBremsen = new System.Windows.Forms.Panel();
-            this.cbZusbremse = new System.Windows.Forms.CheckBox();
-            this.cbDynbremse = new System.Windows.Forms.CheckBox();
             this.pnlSchalterst = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -185,6 +178,11 @@
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
             this.cbRailrunner = new System.Windows.Forms.CheckBox();
             this.cbSchalterst = new System.Windows.Forms.CheckBox();
+            this.cbRRautoreset = new System.Windows.Forms.CheckBox();
+            this.cbRRSound = new System.Windows.Forms.CheckBox();
+            this.cbRRcountdown = new System.Windows.Forms.CheckBox();
+            this.numRRfest = new System.Windows.Forms.NumericUpDown();
+            this.rbRRfrei = new System.Windows.Forms.RadioButton();
             this.cbAFBLZB = new System.Windows.Forms.CheckBox();
             this.cbGrunddaten = new System.Windows.Forms.CheckBox();
             this.cbPZBLM = new System.Windows.Forms.CheckBox();
@@ -195,8 +193,10 @@
             this.cbTueren = new System.Windows.Forms.CheckBox();
             this.cbTime = new System.Windows.Forms.CheckBox();
             this.cbLmschleudern = new System.Windows.Forms.CheckBox();
+            this.cbZusbremse = new System.Windows.Forms.CheckBox();
             this.cbDruckhbl = new System.Windows.Forms.CheckBox();
             this.cbDruckhlb = new System.Windows.Forms.CheckBox();
+            this.cbDynbremse = new System.Windows.Forms.CheckBox();
             this.cbFbv = new System.Windows.Forms.CheckBox();
             this.cbDruckhll = new System.Windows.Forms.CheckBox();
             this.cbBrh = new System.Windows.Forms.CheckBox();
@@ -211,7 +211,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSizeBremsen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSizeGrunddaten)).BeginInit();
             this.pnlRailrunner.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).BeginInit();
             this.pnlAFBLZB.SuspendLayout();
             this.pnlAFBrbvor.SuspendLayout();
             this.pnlGrunddaten.SuspendLayout();
@@ -238,6 +237,7 @@
             this.pnlLeft.SuspendLayout();
             this.pnlDataLZB.SuspendLayout();
             this.pnlDataPZB90.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -431,51 +431,6 @@
             this.pnlRailrunner.Size = new System.Drawing.Size(171, 68);
             this.pnlRailrunner.TabIndex = 25;
             // 
-            // cbRRautoreset
-            // 
-            this.cbRRautoreset.AutoSize = true;
-            this.cbRRautoreset.Checked = true;
-            this.cbRRautoreset.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRRautoreset.Enabled = false;
-            this.cbRRautoreset.Location = new System.Drawing.Point(3, 46);
-            this.cbRRautoreset.Name = "cbRRautoreset";
-            this.cbRRautoreset.Size = new System.Drawing.Size(139, 17);
-            this.cbRRautoreset.TabIndex = 38;
-            this.cbRRautoreset.Text = "Automatisch rücksetzen";
-            this.cbRRautoreset.UseVisualStyleBackColor = true;
-            // 
-            // cbRRSound
-            // 
-            this.cbRRSound.AutoSize = true;
-            this.cbRRSound.Checked = true;
-            this.cbRRSound.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRRSound.Enabled = false;
-            this.cbRRSound.Location = new System.Drawing.Point(4, 25);
-            this.cbRRSound.Name = "cbRRSound";
-            this.cbRRSound.Size = new System.Drawing.Size(62, 17);
-            this.cbRRSound.TabIndex = 37;
-            this.cbRRSound.Text = "Ton ein";
-            this.cbRRSound.UseVisualStyleBackColor = true;
-            // 
-            // cbRRcountdown
-            // 
-            this.cbRRcountdown.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbRRcountdown.AutoSize = true;
-            this.cbRRcountdown.BackColor = System.Drawing.Color.Transparent;
-            this.cbRRcountdown.Checked = true;
-            this.cbRRcountdown.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRRcountdown.Enabled = false;
-            this.cbRRcountdown.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
-            this.cbRRcountdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRRcountdown.Location = new System.Drawing.Point(93, 23);
-            this.cbRRcountdown.Name = "cbRRcountdown";
-            this.cbRRcountdown.Size = new System.Drawing.Size(23, 23);
-            this.cbRRcountdown.TabIndex = 21;
-            this.cbRRcountdown.Text = "˅";
-            this.cbRRcountdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbRRcountdown.UseVisualStyleBackColor = false;
-            this.cbRRcountdown.CheckedChanged += new System.EventHandler(this.cbRRcountdown_CheckedChanged);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -491,6 +446,8 @@
             this.cbRRcountup.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbRRcountup.AutoSize = true;
             this.cbRRcountup.BackColor = System.Drawing.Color.Transparent;
+            this.cbRRcountup.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRcountup;
+            this.cbRRcountup.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRcountup", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbRRcountup.Enabled = false;
             this.cbRRcountup.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
             this.cbRRcountup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -514,43 +471,6 @@
             this.rbRRfest.Text = "fest:";
             this.rbRRfest.UseVisualStyleBackColor = true;
             this.rbRRfest.CheckedChanged += new System.EventHandler(this.rbRRfest_CheckedChanged);
-            // 
-            // numRRfest
-            // 
-            this.numRRfest.Enabled = false;
-            this.numRRfest.Increment = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.numRRfest.Location = new System.Drawing.Point(93, 1);
-            this.numRRfest.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.numRRfest.Name = "numRRfest";
-            this.numRRfest.Size = new System.Drawing.Size(45, 20);
-            this.numRRfest.TabIndex = 35;
-            this.numRRfest.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.numRRfest.ValueChanged += new System.EventHandler(this.numRRfest_ValueChanged);
-            // 
-            // rbRRfrei
-            // 
-            this.rbRRfrei.AutoSize = true;
-            this.rbRRfrei.Checked = true;
-            this.rbRRfrei.Location = new System.Drawing.Point(3, 4);
-            this.rbRRfrei.Name = "rbRRfrei";
-            this.rbRRfrei.Size = new System.Drawing.Size(39, 17);
-            this.rbRRfrei.TabIndex = 33;
-            this.rbRRfrei.TabStop = true;
-            this.rbRRfrei.Text = "frei";
-            this.rbRRfrei.UseVisualStyleBackColor = true;
-            this.rbRRfrei.CheckedChanged += new System.EventHandler(this.rbRRfrei_CheckedChanged);
             // 
             // label6
             // 
@@ -709,30 +629,6 @@
             this.pnlBremsen.Name = "pnlBremsen";
             this.pnlBremsen.Size = new System.Drawing.Size(205, 107);
             this.pnlBremsen.TabIndex = 19;
-            // 
-            // cbZusbremse
-            // 
-            this.cbZusbremse.AutoSize = true;
-            this.cbZusbremse.Enabled = false;
-            this.cbZusbremse.Location = new System.Drawing.Point(3, 83);
-            this.cbZusbremse.Name = "cbZusbremse";
-            this.cbZusbremse.Size = new System.Drawing.Size(92, 17);
-            this.cbZusbremse.TabIndex = 25;
-            this.cbZusbremse.Text = "Zusatzbremse";
-            this.cbZusbremse.UseVisualStyleBackColor = true;
-            // 
-            // cbDynbremse
-            // 
-            this.cbDynbremse.AutoSize = true;
-            this.cbDynbremse.Checked = global::ZusiMeter.Properties.Settings.Default.cbDynbremse;
-            this.cbDynbremse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDynbremse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbDynbremse.Enabled = false;
-            this.cbDynbremse.Location = new System.Drawing.Point(113, 62);
-            this.cbDynbremse.Name = "cbDynbremse";
-            this.cbDynbremse.Size = new System.Drawing.Size(86, 17);
-            this.cbDynbremse.TabIndex = 24;
-            this.cbDynbremse.Text = "Dyn. Bremse";
-            this.cbDynbremse.UseVisualStyleBackColor = true;
             // 
             // pnlSchalterst
             // 
@@ -2158,6 +2054,89 @@
             this.cbSchalterst.UseVisualStyleBackColor = true;
             this.cbSchalterst.CheckedChanged += new System.EventHandler(this.cbSchalterst_CheckedChanged);
             // 
+            // cbRRautoreset
+            // 
+            this.cbRRautoreset.AutoSize = true;
+            this.cbRRautoreset.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRautoreset;
+            this.cbRRautoreset.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRRautoreset.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRautoreset", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRRautoreset.Enabled = false;
+            this.cbRRautoreset.Location = new System.Drawing.Point(3, 46);
+            this.cbRRautoreset.Name = "cbRRautoreset";
+            this.cbRRautoreset.Size = new System.Drawing.Size(139, 17);
+            this.cbRRautoreset.TabIndex = 38;
+            this.cbRRautoreset.Text = "Automatisch rücksetzen";
+            this.cbRRautoreset.UseVisualStyleBackColor = true;
+            // 
+            // cbRRSound
+            // 
+            this.cbRRSound.AutoSize = true;
+            this.cbRRSound.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRSound;
+            this.cbRRSound.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRRSound.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRSound", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRRSound.Enabled = false;
+            this.cbRRSound.Location = new System.Drawing.Point(4, 25);
+            this.cbRRSound.Name = "cbRRSound";
+            this.cbRRSound.Size = new System.Drawing.Size(62, 17);
+            this.cbRRSound.TabIndex = 37;
+            this.cbRRSound.Text = "Ton ein";
+            this.cbRRSound.UseVisualStyleBackColor = true;
+            // 
+            // cbRRcountdown
+            // 
+            this.cbRRcountdown.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbRRcountdown.AutoSize = true;
+            this.cbRRcountdown.BackColor = System.Drawing.Color.Transparent;
+            this.cbRRcountdown.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRcountdown;
+            this.cbRRcountdown.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRRcountdown.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRcountdown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRRcountdown.Enabled = false;
+            this.cbRRcountdown.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
+            this.cbRRcountdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRRcountdown.Location = new System.Drawing.Point(93, 23);
+            this.cbRRcountdown.Name = "cbRRcountdown";
+            this.cbRRcountdown.Size = new System.Drawing.Size(23, 23);
+            this.cbRRcountdown.TabIndex = 21;
+            this.cbRRcountdown.Text = "˅";
+            this.cbRRcountdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbRRcountdown.UseVisualStyleBackColor = false;
+            this.cbRRcountdown.CheckedChanged += new System.EventHandler(this.cbRRcountdown_CheckedChanged);
+            // 
+            // numRRfest
+            // 
+            this.numRRfest.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numRRfest", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numRRfest.Enabled = false;
+            this.numRRfest.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numRRfest.Location = new System.Drawing.Point(93, 1);
+            this.numRRfest.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numRRfest.Name = "numRRfest";
+            this.numRRfest.Size = new System.Drawing.Size(45, 20);
+            this.numRRfest.TabIndex = 35;
+            this.numRRfest.Value = global::ZusiMeter.Properties.Settings.Default.numRRfest;
+            this.numRRfest.ValueChanged += new System.EventHandler(this.numRRfest_ValueChanged);
+            // 
+            // rbRRfrei
+            // 
+            this.rbRRfrei.AutoSize = true;
+            this.rbRRfrei.Checked = global::ZusiMeter.Properties.Settings.Default.rbRRfrei;
+            this.rbRRfrei.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbRRfrei", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rbRRfrei.Location = new System.Drawing.Point(3, 4);
+            this.rbRRfrei.Name = "rbRRfrei";
+            this.rbRRfrei.Size = new System.Drawing.Size(39, 17);
+            this.rbRRfrei.TabIndex = 33;
+            this.rbRRfrei.TabStop = true;
+            this.rbRRfrei.Text = "frei";
+            this.rbRRfrei.UseVisualStyleBackColor = true;
+            this.rbRRfrei.CheckedChanged += new System.EventHandler(this.rbRRfrei_CheckedChanged);
+            // 
             // cbAFBLZB
             // 
             this.cbAFBLZB.Appearance = System.Windows.Forms.Appearance.Button;
@@ -2307,6 +2286,19 @@
             this.cbLmschleudern.UseVisualStyleBackColor = true;
             this.cbLmschleudern.CheckedChanged += new System.EventHandler(this.cbLmschleudern_CheckedChanged);
             // 
+            // cbZusbremse
+            // 
+            this.cbZusbremse.AutoSize = true;
+            this.cbZusbremse.Checked = global::ZusiMeter.Properties.Settings.Default.cbZusbremse;
+            this.cbZusbremse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbZusbremse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbZusbremse.Enabled = false;
+            this.cbZusbremse.Location = new System.Drawing.Point(3, 83);
+            this.cbZusbremse.Name = "cbZusbremse";
+            this.cbZusbremse.Size = new System.Drawing.Size(92, 17);
+            this.cbZusbremse.TabIndex = 25;
+            this.cbZusbremse.Text = "Zusatzbremse";
+            this.cbZusbremse.UseVisualStyleBackColor = true;
+            // 
             // cbDruckhbl
             // 
             this.cbDruckhbl.AutoSize = true;
@@ -2332,6 +2324,19 @@
             this.cbDruckhlb.Text = "Druck HLB";
             this.cbDruckhlb.UseVisualStyleBackColor = true;
             this.cbDruckhlb.CheckedChanged += new System.EventHandler(this.cbDruckhlb_CheckedChanged);
+            // 
+            // cbDynbremse
+            // 
+            this.cbDynbremse.AutoSize = true;
+            this.cbDynbremse.Checked = global::ZusiMeter.Properties.Settings.Default.cbDynbremse;
+            this.cbDynbremse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDynbremse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDynbremse.Enabled = false;
+            this.cbDynbremse.Location = new System.Drawing.Point(113, 62);
+            this.cbDynbremse.Name = "cbDynbremse";
+            this.cbDynbremse.Size = new System.Drawing.Size(86, 17);
+            this.cbDynbremse.TabIndex = 24;
+            this.cbDynbremse.Text = "Dyn. Bremse";
+            this.cbDynbremse.UseVisualStyleBackColor = true;
             // 
             // cbFbv
             // 
@@ -2452,7 +2457,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSizeGrunddaten)).EndInit();
             this.pnlRailrunner.ResumeLayout(false);
             this.pnlRailrunner.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).EndInit();
             this.pnlAFBLZB.ResumeLayout(false);
             this.pnlAFBLZB.PerformLayout();
             this.pnlAFBrbvor.ResumeLayout(false);
@@ -2497,6 +2501,7 @@
             this.pnlLeft.PerformLayout();
             this.pnlDataLZB.ResumeLayout(false);
             this.pnlDataPZB90.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -255,7 +255,21 @@ namespace ZusiMeter
         #endregion
 
         private void CMainWindow_Load(object sender, EventArgs e) //on loading of the main window...
-        {   
+        {
+            //TEST TODO
+            #region Ensure loaded settings apply
+            //make sure every label is visible according to checkboxes:
+
+            lblhbl.Visible = cbDruckhbl.Checked;
+            lblHBLwert.Visible = cbDruckhbl.Checked;
+            lblhlb.Visible = cbDruckhlb.Checked;
+            lblHLBwert.Visible = cbDruckhlb.Checked;
+
+            //make sure radio buttons are in their correct state
+            rbRRfest.Checked = !rbRRfrei.Checked; //rbRRfrei is bound to settings
+
+            #endregion
+
             if (cbTopmost.Checked == true)
                 this.TopMost = true;
             
