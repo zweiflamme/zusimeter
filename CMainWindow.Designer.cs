@@ -43,7 +43,6 @@
             this.numSizeAFBLZB = new System.Windows.Forms.NumericUpDown();
             this.numSizeBremsen = new System.Windows.Forms.NumericUpDown();
             this.cbRailrunner = new System.Windows.Forms.CheckBox();
-            this.cbSchalterst = new System.Windows.Forms.CheckBox();
             this.numSizeGrunddaten = new System.Windows.Forms.NumericUpDown();
             this.pnlRailrunner = new System.Windows.Forms.Panel();
             this.cbRRautoreset = new System.Windows.Forms.CheckBox();
@@ -54,7 +53,6 @@
             this.rbRRfest = new System.Windows.Forms.RadioButton();
             this.numRRfest = new System.Windows.Forms.NumericUpDown();
             this.rbRRfrei = new System.Windows.Forms.RadioButton();
-            this.cbAFBLZB = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlAFBLZB = new System.Windows.Forms.Panel();
             this.pnlAFBrbvor = new System.Windows.Forms.Panel();
@@ -84,7 +82,6 @@
             this.cbDruckhll = new System.Windows.Forms.CheckBox();
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
-            this.cbBremsen = new System.Windows.Forms.CheckBox();
             this.pnlSchalterst = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -203,7 +200,10 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
+            this.cbSchalterst = new System.Windows.Forms.CheckBox();
+            this.cbAFBLZB = new System.Windows.Forms.CheckBox();
             this.cbGrunddaten = new System.Windows.Forms.CheckBox();
+            this.cbBremsen = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -399,8 +399,9 @@
             // 
             this.cbRailrunner.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbRailrunner.AutoSize = true;
-            this.cbRailrunner.Checked = true;
+            this.cbRailrunner.Checked = global::ZusiMeter.Properties.Settings.Default.cbRailrunner;
             this.cbRailrunner.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRailrunner.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRailrunner", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbRailrunner.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
             this.cbRailrunner.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.cbRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -411,23 +412,6 @@
             this.cbRailrunner.Text = "Railrunner";
             this.cbRailrunner.UseVisualStyleBackColor = true;
             this.cbRailrunner.CheckedChanged += new System.EventHandler(this.cbRailrunner_CheckedChanged);
-            // 
-            // cbSchalterst
-            // 
-            this.cbSchalterst.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbSchalterst.AutoSize = true;
-            this.cbSchalterst.Checked = true;
-            this.cbSchalterst.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSchalterst.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbSchalterst.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbSchalterst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbSchalterst.Location = new System.Drawing.Point(217, 9);
-            this.cbSchalterst.Name = "cbSchalterst";
-            this.cbSchalterst.Size = new System.Drawing.Size(104, 23);
-            this.cbSchalterst.TabIndex = 8;
-            this.cbSchalterst.Text = "Schalterstellungen";
-            this.cbSchalterst.UseVisualStyleBackColor = true;
-            this.cbSchalterst.CheckedChanged += new System.EventHandler(this.cbSchalterst_CheckedChanged);
             // 
             // numSizeGrunddaten
             // 
@@ -585,23 +569,6 @@
             this.rbRRfrei.Text = "frei";
             this.rbRRfrei.UseVisualStyleBackColor = true;
             this.rbRRfrei.CheckedChanged += new System.EventHandler(this.rbRRfrei_CheckedChanged);
-            // 
-            // cbAFBLZB
-            // 
-            this.cbAFBLZB.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbAFBLZB.AutoSize = true;
-            this.cbAFBLZB.Checked = true;
-            this.cbAFBLZB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAFBLZB.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbAFBLZB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbAFBLZB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbAFBLZB.Location = new System.Drawing.Point(217, 165);
-            this.cbAFBLZB.Name = "cbAFBLZB";
-            this.cbAFBLZB.Size = new System.Drawing.Size(68, 23);
-            this.cbAFBLZB.TabIndex = 26;
-            this.cbAFBLZB.Text = "AFB / LZB";
-            this.cbAFBLZB.UseVisualStyleBackColor = true;
-            this.cbAFBLZB.CheckedChanged += new System.EventHandler(this.cbAFBLZB_CheckedChanged);
             // 
             // label6
             // 
@@ -959,23 +926,6 @@
             this.cbDruckbz.Text = "Druck Bremszylinder";
             this.cbDruckbz.UseVisualStyleBackColor = true;
             this.cbDruckbz.CheckedChanged += new System.EventHandler(this.cbDruckbz_CheckedChanged);
-            // 
-            // cbBremsen
-            // 
-            this.cbBremsen.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbBremsen.AutoSize = true;
-            this.cbBremsen.Checked = true;
-            this.cbBremsen.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBremsen.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbBremsen.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbBremsen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbBremsen.Location = new System.Drawing.Point(6, 141);
-            this.cbBremsen.Name = "cbBremsen";
-            this.cbBremsen.Size = new System.Drawing.Size(58, 23);
-            this.cbBremsen.TabIndex = 9;
-            this.cbBremsen.Text = "Bremsen";
-            this.cbBremsen.UseVisualStyleBackColor = true;
-            this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
             // 
             // pnlSchalterst
             // 
@@ -2381,6 +2331,42 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
+            // cbSchalterst
+            // 
+            this.cbSchalterst.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbSchalterst.AutoSize = true;
+            this.cbSchalterst.Checked = global::ZusiMeter.Properties.Settings.Default.cbSchalterst;
+            this.cbSchalterst.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSchalterst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbSchalterst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbSchalterst.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbSchalterst.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbSchalterst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbSchalterst.Location = new System.Drawing.Point(217, 9);
+            this.cbSchalterst.Name = "cbSchalterst";
+            this.cbSchalterst.Size = new System.Drawing.Size(104, 23);
+            this.cbSchalterst.TabIndex = 8;
+            this.cbSchalterst.Text = "Schalterstellungen";
+            this.cbSchalterst.UseVisualStyleBackColor = true;
+            this.cbSchalterst.CheckedChanged += new System.EventHandler(this.cbSchalterst_CheckedChanged);
+            // 
+            // cbAFBLZB
+            // 
+            this.cbAFBLZB.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbAFBLZB.AutoSize = true;
+            this.cbAFBLZB.Checked = global::ZusiMeter.Properties.Settings.Default.cbAFBLZB;
+            this.cbAFBLZB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAFBLZB.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbAFBLZB", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbAFBLZB.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbAFBLZB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbAFBLZB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbAFBLZB.Location = new System.Drawing.Point(217, 165);
+            this.cbAFBLZB.Name = "cbAFBLZB";
+            this.cbAFBLZB.Size = new System.Drawing.Size(68, 23);
+            this.cbAFBLZB.TabIndex = 26;
+            this.cbAFBLZB.Text = "AFB / LZB";
+            this.cbAFBLZB.UseVisualStyleBackColor = true;
+            this.cbAFBLZB.CheckedChanged += new System.EventHandler(this.cbAFBLZB_CheckedChanged);
+            // 
             // cbGrunddaten
             // 
             this.cbGrunddaten.Appearance = System.Windows.Forms.Appearance.Button;
@@ -2398,6 +2384,24 @@
             this.cbGrunddaten.Text = "Grunddaten";
             this.cbGrunddaten.UseVisualStyleBackColor = true;
             this.cbGrunddaten.CheckedChanged += new System.EventHandler(this.cbGrunddaten_CheckedChanged);
+            // 
+            // cbBremsen
+            // 
+            this.cbBremsen.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbBremsen.AutoSize = true;
+            this.cbBremsen.Checked = global::ZusiMeter.Properties.Settings.Default.cbBremsen;
+            this.cbBremsen.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBremsen.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbBremsen", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbBremsen.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbBremsen.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbBremsen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbBremsen.Location = new System.Drawing.Point(6, 141);
+            this.cbBremsen.Name = "cbBremsen";
+            this.cbBremsen.Size = new System.Drawing.Size(58, 23);
+            this.cbBremsen.TabIndex = 9;
+            this.cbBremsen.Text = "Bremsen";
+            this.cbBremsen.UseVisualStyleBackColor = true;
+            this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
             // 
             // CMainWindow
             // 

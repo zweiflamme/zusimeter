@@ -34,5 +34,53 @@ namespace ZusiMeter.Properties {
                 this["cbGrunddaten"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbSchalterst {
+            get {
+                return ((bool)(this["cbSchalterst"]));
+            }
+            set {
+                this["cbSchalterst"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbBremsen {
+            get {
+                return ((bool)(this["cbBremsen"]));
+            }
+            set {
+                this["cbBremsen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbAFBLZB {
+            get {
+                return ((bool)(this["cbAFBLZB"]));
+            }
+            set {
+                this["cbAFBLZB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cbRailrunner {
+            get {
+                return ((bool)(this["cbRailrunner"]));
+            }
+            set {
+                this["cbRailrunner"] = value;
+            }
+        }
     }
 }
