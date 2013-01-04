@@ -247,6 +247,8 @@ namespace ZusiMeter
         bool settingsAreSeparated = false; // true if settings are shown on a separate form (frmSettings)
         bool lzbIsActive = false; // is LZB active (LM LZB Ü)?
         double afbsoll, lzbsoll; //TEST
+        double fahrschalter; //Fahrstufenschalter less neutral setting
+        double fahrschalterOld;
 
         String zugdatei = "";
         String zugdateiOld = "";
@@ -297,6 +299,8 @@ namespace ZusiMeter
 
             //make sure checkboxes that exclude each other are properly checked
             //TODO
+
+            setFahrschalterNeutral();
 
             #endregion
 
@@ -574,8 +578,11 @@ namespace ZusiMeter
                 #region Schalter Fahrstufen
                 case 2611:
                 {
-                    double fahrschalter = data.Value - fahrschalterneutral;
-                   lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalter);
+                    //TEST: for neutral setting issue
+                    fahrschalterOld = fahrschalter;
+
+                    fahrschalter = data.Value - fahrschalterneutral;
+                    lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalter);
                     break;
                 }
                 #endregion
@@ -1031,7 +1038,7 @@ namespace ZusiMeter
         public void setNightmode()
         {
             this.btnSettings.BackColor = buttonnightcolor;
-            this.btnSettings.BackColor = buttonnightcolor;
+            this.btnRailrunner.BackColor = buttonnightcolor;
 
             this.BackColor = formnightcolor; //the whole main form's background color
             if (settingsAreSeparated) // if there's a separate settings window
@@ -1084,7 +1091,7 @@ namespace ZusiMeter
         public void setDaymode()
         {
             this.btnSettings.BackColor = buttondaycolor;
-            this.btnSettings.BackColor = buttondaycolor;
+            this.btnRailrunner.BackColor = buttondaycolor;
 
             BackColor = formdaycolor; //the whole main form's background color
             if (settingsAreSeparated) // if there's a separate settings window
@@ -1544,6 +1551,13 @@ namespace ZusiMeter
         private void numFahrschneutral_ValueChanged(object sender, EventArgs e)
         {
             fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
+                        
+            //TEST: should update Fahrstufe in pnlGrunddaten according to neutral setting
+            if (lblFahrstufenschalter.Text != "--")
+            {
+                double fahrschalterTestvalue = (fahrschalterOld - fahrschalterneutral);
+                lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalterTestvalue);
+            }
         }
 
         //TODO: rename method
@@ -1978,6 +1992,19 @@ namespace ZusiMeter
         public void createSettingsForm()
         {
             
+        }
+
+        public void setFahrschalterNeutral()
+        {
+            //fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
+            //double fahrschalterTestvalue = fahrschalter;
+
+            ////TEST: should update Fahrstufe in pnlGrunddaten according to neutral setting
+            //if (lblFahrstufenschalter.Text != "--")
+            //{
+            //    fahrschalterTestvalue = fahrschalter - fahrschalterneutral;
+            //    lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalterTestvalue);
+            //}
         }
 
         public void ShowSeparateSettingsWindow()
