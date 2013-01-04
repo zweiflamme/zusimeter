@@ -1541,8 +1541,6 @@ namespace ZusiMeter
 
         }
 
-        
-
         private void cbPZBLM_CheckedChanged(object sender, EventArgs e)
         {
             pnlDataPZB90.Visible = cbPZBLM.Checked;
