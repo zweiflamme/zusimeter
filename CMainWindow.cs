@@ -756,6 +756,7 @@ namespace ZusiMeter
                         if (data.Value) // if true, LM Schleudern is on
                         {
                             lblFlag.Text = "Schleudern!";
+                            lblFlag.BackColor = Color.Orange;
                             lblFlag.Visible = true;
                             //timerFlag.Start(); //TEST: TODO: do we need the timer?
                         }
@@ -886,6 +887,9 @@ namespace ZusiMeter
                 {
                     if (reisezug) // only display door status if passenger train
                     {
+                        //TEST: try to resolve issue that Zp9 label is always visible
+                        lblFlag.Visible = false;
+
                         if (data.Value.ToString() == "Released")
                         {
                             lblTueren.Text = "Türen freigegeben";
