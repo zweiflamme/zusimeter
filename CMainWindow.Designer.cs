@@ -53,7 +53,6 @@
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
             this.pnlBremsen = new System.Windows.Forms.Panel();
             this.pnlSchalterst = new System.Windows.Forms.Panel();
-            this.cbLuefter = new System.Windows.Forms.CheckBox();
             this.lblFahrschneutralbei = new System.Windows.Forms.Label();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
             this.grpUnits = new System.Windows.Forms.GroupBox();
@@ -187,6 +186,7 @@
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
             this.cbBremsen = new System.Windows.Forms.CheckBox();
+            this.cbLuefter = new System.Windows.Forms.CheckBox();
             this.cbSanden = new System.Windows.Forms.CheckBox();
             this.cbMotorsch = new System.Windows.Forms.CheckBox();
             this.cbFahrtrichtg = new System.Windows.Forms.CheckBox();
@@ -544,19 +544,6 @@
             this.pnlSchalterst.Name = "pnlSchalterst";
             this.pnlSchalterst.Size = new System.Drawing.Size(183, 117);
             this.pnlSchalterst.TabIndex = 23;
-            // 
-            // cbLuefter
-            // 
-            this.cbLuefter.AutoSize = true;
-            this.cbLuefter.Checked = global::ZusiMeter.Properties.Settings.Default.cbLuefter;
-            this.cbLuefter.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLuefter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbLuefter.Enabled = false;
-            this.cbLuefter.Location = new System.Drawing.Point(72, 94);
-            this.cbLuefter.Name = "cbLuefter";
-            this.cbLuefter.Size = new System.Drawing.Size(53, 17);
-            this.cbLuefter.TabIndex = 27;
-            this.cbLuefter.Text = "Lüfter";
-            this.cbLuefter.UseVisualStyleBackColor = true;
             // 
             // lblFahrschneutralbei
             // 
@@ -1037,7 +1024,6 @@
             // 
             // timerFlag
             // 
-            this.timerFlag.Enabled = true;
             this.timerFlag.Interval = 1000;
             this.timerFlag.Tick += new System.EventHandler(this.timerFlag_Tick);
             // 
@@ -2229,6 +2215,19 @@
             this.cbBremsen.Text = "Bremsen";
             this.cbBremsen.UseVisualStyleBackColor = true;
             this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
+            // 
+            // cbLuefter
+            // 
+            this.cbLuefter.AutoSize = true;
+            this.cbLuefter.Checked = global::ZusiMeter.Properties.Settings.Default.cbLuefter;
+            this.cbLuefter.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLuefter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLuefter.Enabled = false;
+            this.cbLuefter.Location = new System.Drawing.Point(72, 94);
+            this.cbLuefter.Name = "cbLuefter";
+            this.cbLuefter.Size = new System.Drawing.Size(53, 17);
+            this.cbLuefter.TabIndex = 27;
+            this.cbLuefter.Text = "Lüfter";
+            this.cbLuefter.UseVisualStyleBackColor = true;
             // 
             // cbSanden
             // 

@@ -887,12 +887,13 @@ namespace ZusiMeter
                 {
                     if (reisezug) // only display door status if passenger train
                     {
-                        //TEST: try to resolve issue that Zp9 label is always visible
-                        lblFlag.Visible = false;
+                        
 
                         if (data.Value.ToString() == "Released")
                         {
                             lblTueren.Text = "Türen freigegeben";
+                            //TEST: try to resolve issue that Zp9 label is always visible
+                            lblFlag.Visible = false;
                         }
                         if (data.Value.ToString() == "Open")
                         {
@@ -1196,7 +1197,6 @@ namespace ZusiMeter
 
         private void cbLmschleudern_CheckedChanged(object sender, EventArgs e)
         {
-            lblFlag.Visible =cbLmschleudern.Checked;
             if(cbLmschleudern.Checked)
                 ShowFlagtest();
         }        
