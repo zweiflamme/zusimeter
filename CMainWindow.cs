@@ -53,7 +53,7 @@ namespace ZusiMeter
             MyTCPConnection.FloatReceived += TCPConnection_FloatReceived;            
             MyTCPConnection.BoolReceived += TCPConnection_BoolReceived;
             //MyTCPConnection.IntReceived += TCPConnection_IntReceived;
-            //MyTCPConnection.StringReceived += TCPConnection_StringReceived;
+            MyTCPConnection.StringReceived += TCPConnection_StringReceived;
             MyTCPConnection.DateTimeReceived += TCPConnection_DateTimeReceived;
             //MyTCPConnection.BrakeConfigReceived += TCPConnection_BrakeConfigReceived;
             MyTCPConnection.DoorsReceived += TCPConnection_DoorsReceived;
@@ -109,15 +109,16 @@ namespace ZusiMeter
 
             //###//
             MyTCPConnection.RequestData(2610); // "LM Uhrzeit (digital)"
+            //###//
             
-            
+            //###//
             MyTCPConnection.RequestData(2646); // "Türen"
+            //###//
 
-            
-            
-            
+            //###//
+            MyTCPConnection.RequestData(2656); // "Zugdatei"
+            //###//
 
-            ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
             //TODO: is this needed? MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
             //TODO: is this needed? MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             #endregion 
@@ -877,6 +878,23 @@ namespace ZusiMeter
             }
             
 
+        }
+
+        private void TCPConnection_StringReceived(object sender, DataSet<String> data) //Handles MyTCPConnection.BoolReceived
+        {
+            switch (data.Id)
+            {
+                #region Zugdatei
+                case 2656:
+                    {
+                        lblDebugZugdatei.Text = data.Value.ToString();
+                        break;
+                    }
+                #endregion
+
+                default:
+                    break;
+            }
         }
 
         private void TCPConnection_DoorsReceived(object sender, DataSet<DoorState> data) // Handles MyTCPConnection.DoorsReceived 

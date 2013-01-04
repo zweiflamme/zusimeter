@@ -202,6 +202,7 @@
             this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
             this.tbServer = new System.Windows.Forms.TextBox();
             this.tbPort = new System.Windows.Forms.TextBox();
+            this.lblDebugZugdatei = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -827,6 +828,7 @@
             // grpDebug
             // 
             this.grpDebug.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpDebug.Controls.Add(this.lblDebugZugdatei);
             this.grpDebug.Controls.Add(this.label9);
             this.grpDebug.Controls.Add(this.lblDebugtimerresetsifa);
             this.grpDebug.Controls.Add(this.label8);
@@ -2435,6 +2437,15 @@
             this.tbPort.TabIndex = 12;
             this.tbPort.Text = global::ZusiMeter.Properties.Settings.Default.tbPort;
             // 
+            // lblDebugZugdatei
+            // 
+            this.lblDebugZugdatei.AutoSize = true;
+            this.lblDebugZugdatei.Location = new System.Drawing.Point(6, 180);
+            this.lblDebugZugdatei.Name = "lblDebugZugdatei";
+            this.lblDebugZugdatei.Size = new System.Drawing.Size(53, 13);
+            this.lblDebugZugdatei.TabIndex = 31;
+            this.lblDebugZugdatei.Text = "(zugdatei)";
+            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2686,6 +2697,7 @@
         private System.Windows.Forms.Button btnDefaultSettings;
         private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.Button btnLoadSettings;
+        private System.Windows.Forms.Label lblDebugZugdatei;
 
     }
 
