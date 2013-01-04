@@ -1030,6 +1030,9 @@ namespace ZusiMeter
 
         public void setNightmode()
         {
+            this.btnSettings.BackColor = buttonnightcolor;
+            this.btnSettings.BackColor = buttonnightcolor;
+
             this.BackColor = formnightcolor; //the whole main form's background color
             if (settingsAreSeparated) // if there's a separate settings window
                 frmSettings.BackColor = formnightcolor;
@@ -1080,6 +1083,9 @@ namespace ZusiMeter
        
         public void setDaymode()
         {
+            this.btnSettings.BackColor = buttondaycolor;
+            this.btnSettings.BackColor = buttondaycolor;
+
             BackColor = formdaycolor; //the whole main form's background color
             if (settingsAreSeparated) // if there's a separate settings window
                 frmSettings.BackColor = formdaycolor;
@@ -1628,7 +1634,7 @@ namespace ZusiMeter
             if (rrrunning)
             {
                 timerRailrunner.Stop();
-                btnRailrunner.BackColor = Color.FromName("Control");
+                btnRailrunner.BackColor = btnSettings.BackColor;
                 btnRailrunner.Text = "Wegmessung";
                 railrunner = 0;
                 rrrunning = false;
