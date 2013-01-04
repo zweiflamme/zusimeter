@@ -53,12 +53,7 @@
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
             this.pnlBremsen = new System.Windows.Forms.Panel();
             this.pnlSchalterst = new System.Windows.Forms.Panel();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.cbMotorsch = new System.Windows.Forms.CheckBox();
-            this.cbFahrtrichtg = new System.Windows.Forms.CheckBox();
-            this.cbSchleuderschutz = new System.Windows.Forms.CheckBox();
-            this.cbHauptsch = new System.Windows.Forms.CheckBox();
+            this.cbLuefter = new System.Windows.Forms.CheckBox();
             this.lblFahrschneutralbei = new System.Windows.Forms.Label();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
             this.grpUnits = new System.Windows.Forms.GroupBox();
@@ -68,6 +63,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.rbUnitm = new System.Windows.Forms.RadioButton();
+            this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabSystem = new System.Windows.Forms.TabPage();
             this.grpManageSettings = new System.Windows.Forms.GroupBox();
@@ -157,7 +153,6 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
-            this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.cbRailrunner = new System.Windows.Forms.CheckBox();
             this.cbSchalterst = new System.Windows.Forms.CheckBox();
             this.cbRRautoreset = new System.Windows.Forms.CheckBox();
@@ -192,6 +187,11 @@
             this.cbBrh = new System.Windows.Forms.CheckBox();
             this.cbDruckbz = new System.Windows.Forms.CheckBox();
             this.cbBremsen = new System.Windows.Forms.CheckBox();
+            this.cbSanden = new System.Windows.Forms.CheckBox();
+            this.cbMotorsch = new System.Windows.Forms.CheckBox();
+            this.cbFahrtrichtg = new System.Windows.Forms.CheckBox();
+            this.cbSchleuderschutz = new System.Windows.Forms.CheckBox();
+            this.cbHauptsch = new System.Windows.Forms.CheckBox();
             this.numFahrschneutral = new System.Windows.Forms.NumericUpDown();
             this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.rbUnitkph = new System.Windows.Forms.RadioButton();
@@ -531,8 +531,8 @@
             // pnlSchalterst
             // 
             this.pnlSchalterst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlSchalterst.Controls.Add(this.checkBox2);
-            this.pnlSchalterst.Controls.Add(this.checkBox1);
+            this.pnlSchalterst.Controls.Add(this.cbLuefter);
+            this.pnlSchalterst.Controls.Add(this.cbSanden);
             this.pnlSchalterst.Controls.Add(this.cbMotorsch);
             this.pnlSchalterst.Controls.Add(this.cbFahrtrichtg);
             this.pnlSchalterst.Controls.Add(this.cbSchleuderschutz);
@@ -545,71 +545,18 @@
             this.pnlSchalterst.Size = new System.Drawing.Size(183, 117);
             this.pnlSchalterst.TabIndex = 23;
             // 
-            // checkBox2
+            // cbLuefter
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(72, 94);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(53, 17);
-            this.checkBox2.TabIndex = 27;
-            this.checkBox2.Text = "Lüfter";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(3, 94);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(63, 17);
-            this.checkBox1.TabIndex = 26;
-            this.checkBox1.Text = "Sanden";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // cbMotorsch
-            // 
-            this.cbMotorsch.AutoSize = true;
-            this.cbMotorsch.Enabled = false;
-            this.cbMotorsch.Location = new System.Drawing.Point(101, 29);
-            this.cbMotorsch.Name = "cbMotorsch";
-            this.cbMotorsch.Size = new System.Drawing.Size(53, 17);
-            this.cbMotorsch.TabIndex = 25;
-            this.cbMotorsch.Text = "Motor";
-            this.cbMotorsch.UseVisualStyleBackColor = true;
-            // 
-            // cbFahrtrichtg
-            // 
-            this.cbFahrtrichtg.AutoSize = true;
-            this.cbFahrtrichtg.Enabled = false;
-            this.cbFahrtrichtg.Location = new System.Drawing.Point(3, 49);
-            this.cbFahrtrichtg.Name = "cbFahrtrichtg";
-            this.cbFahrtrichtg.Size = new System.Drawing.Size(124, 17);
-            this.cbFahrtrichtg.TabIndex = 24;
-            this.cbFahrtrichtg.Text = "Fahrtrichtungs-Hebel";
-            this.cbFahrtrichtg.UseVisualStyleBackColor = true;
-            // 
-            // cbSchleuderschutz
-            // 
-            this.cbSchleuderschutz.AutoSize = true;
-            this.cbSchleuderschutz.Enabled = false;
-            this.cbSchleuderschutz.Location = new System.Drawing.Point(3, 72);
-            this.cbSchleuderschutz.Name = "cbSchleuderschutz";
-            this.cbSchleuderschutz.Size = new System.Drawing.Size(105, 17);
-            this.cbSchleuderschutz.TabIndex = 23;
-            this.cbSchleuderschutz.Text = "Schleuderschutz";
-            this.cbSchleuderschutz.UseVisualStyleBackColor = true;
-            // 
-            // cbHauptsch
-            // 
-            this.cbHauptsch.AutoSize = true;
-            this.cbHauptsch.Enabled = false;
-            this.cbHauptsch.Location = new System.Drawing.Point(3, 29);
-            this.cbHauptsch.Name = "cbHauptsch";
-            this.cbHauptsch.Size = new System.Drawing.Size(92, 17);
-            this.cbHauptsch.TabIndex = 22;
-            this.cbHauptsch.Text = "Hauptschalter";
-            this.cbHauptsch.UseVisualStyleBackColor = true;
+            this.cbLuefter.AutoSize = true;
+            this.cbLuefter.Checked = global::ZusiMeter.Properties.Settings.Default.cbLuefter;
+            this.cbLuefter.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLuefter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLuefter.Enabled = false;
+            this.cbLuefter.Location = new System.Drawing.Point(72, 94);
+            this.cbLuefter.Name = "cbLuefter";
+            this.cbLuefter.Size = new System.Drawing.Size(53, 17);
+            this.cbLuefter.TabIndex = 27;
+            this.cbLuefter.Text = "Lüfter";
+            this.cbLuefter.UseVisualStyleBackColor = true;
             // 
             // lblFahrschneutralbei
             // 
@@ -626,10 +573,10 @@
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
             this.tabDarstellung.Controls.Add(this.grpUnits);
             this.tabDarstellung.Controls.Add(this.cbSettingsSeparate);
+            this.tabDarstellung.Controls.Add(this.label3);
             this.tabDarstellung.Controls.Add(this.cbHidesettings);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
             this.tabDarstellung.Controls.Add(this.cbFokusImmerzurueck);
-            this.tabDarstellung.Controls.Add(this.label3);
             this.tabDarstellung.Controls.Add(this.numSifagroesse);
             this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
             this.tabDarstellung.Name = "tabDarstellung";
@@ -713,6 +660,19 @@
             this.rbUnitm.Text = "Meter";
             this.rbUnitm.UseVisualStyleBackColor = true;
             this.rbUnitm.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
+            // 
+            // cbSettingsSeparate
+            // 
+            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
+            this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 172);
+            this.cbSettingsSeparate.Name = "cbSettingsSeparate";
+            this.cbSettingsSeparate.Size = new System.Drawing.Size(118, 35);
+            this.cbSettingsSeparate.TabIndex = 23;
+            this.cbSettingsSeparate.Text = "Einstellungen in separatem Fenster";
+            this.cbSettingsSeparate.UseVisualStyleBackColor = false;
+            this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
             // 
             // label3
             // 
@@ -1765,19 +1725,6 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
-            // cbSettingsSeparate
-            // 
-            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
-            this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 172);
-            this.cbSettingsSeparate.Name = "cbSettingsSeparate";
-            this.cbSettingsSeparate.Size = new System.Drawing.Size(118, 35);
-            this.cbSettingsSeparate.TabIndex = 23;
-            this.cbSettingsSeparate.Text = "Einstellungen in separatem Fenster";
-            this.cbSettingsSeparate.UseVisualStyleBackColor = false;
-            this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
-            // 
             // cbRailrunner
             // 
             this.cbRailrunner.Appearance = System.Windows.Forms.Appearance.Button;
@@ -2283,6 +2230,71 @@
             this.cbBremsen.UseVisualStyleBackColor = true;
             this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
             // 
+            // cbSanden
+            // 
+            this.cbSanden.AutoSize = true;
+            this.cbSanden.Checked = global::ZusiMeter.Properties.Settings.Default.cbSanden;
+            this.cbSanden.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbSanden", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbSanden.Enabled = false;
+            this.cbSanden.Location = new System.Drawing.Point(3, 94);
+            this.cbSanden.Name = "cbSanden";
+            this.cbSanden.Size = new System.Drawing.Size(63, 17);
+            this.cbSanden.TabIndex = 26;
+            this.cbSanden.Text = "Sanden";
+            this.cbSanden.UseVisualStyleBackColor = true;
+            // 
+            // cbMotorsch
+            // 
+            this.cbMotorsch.AutoSize = true;
+            this.cbMotorsch.Checked = global::ZusiMeter.Properties.Settings.Default.cbMotorsch;
+            this.cbMotorsch.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbMotorsch", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbMotorsch.Enabled = false;
+            this.cbMotorsch.Location = new System.Drawing.Point(101, 29);
+            this.cbMotorsch.Name = "cbMotorsch";
+            this.cbMotorsch.Size = new System.Drawing.Size(53, 17);
+            this.cbMotorsch.TabIndex = 25;
+            this.cbMotorsch.Text = "Motor";
+            this.cbMotorsch.UseVisualStyleBackColor = true;
+            // 
+            // cbFahrtrichtg
+            // 
+            this.cbFahrtrichtg.AutoSize = true;
+            this.cbFahrtrichtg.Checked = global::ZusiMeter.Properties.Settings.Default.cbFahrtrichtg;
+            this.cbFahrtrichtg.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFahrtrichtg", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbFahrtrichtg.Enabled = false;
+            this.cbFahrtrichtg.Location = new System.Drawing.Point(3, 49);
+            this.cbFahrtrichtg.Name = "cbFahrtrichtg";
+            this.cbFahrtrichtg.Size = new System.Drawing.Size(124, 17);
+            this.cbFahrtrichtg.TabIndex = 24;
+            this.cbFahrtrichtg.Text = "Fahrtrichtungs-Hebel";
+            this.cbFahrtrichtg.UseVisualStyleBackColor = true;
+            // 
+            // cbSchleuderschutz
+            // 
+            this.cbSchleuderschutz.AutoSize = true;
+            this.cbSchleuderschutz.Checked = global::ZusiMeter.Properties.Settings.Default.cbSchleuderschutz;
+            this.cbSchleuderschutz.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbSchleuderschutz", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbSchleuderschutz.Enabled = false;
+            this.cbSchleuderschutz.Location = new System.Drawing.Point(3, 72);
+            this.cbSchleuderschutz.Name = "cbSchleuderschutz";
+            this.cbSchleuderschutz.Size = new System.Drawing.Size(105, 17);
+            this.cbSchleuderschutz.TabIndex = 23;
+            this.cbSchleuderschutz.Text = "Schleuderschutz";
+            this.cbSchleuderschutz.UseVisualStyleBackColor = true;
+            // 
+            // cbHauptsch
+            // 
+            this.cbHauptsch.AutoSize = true;
+            this.cbHauptsch.Checked = global::ZusiMeter.Properties.Settings.Default.cbHauptsch;
+            this.cbHauptsch.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbHauptsch", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbHauptsch.Enabled = false;
+            this.cbHauptsch.Location = new System.Drawing.Point(3, 29);
+            this.cbHauptsch.Name = "cbHauptsch";
+            this.cbHauptsch.Size = new System.Drawing.Size(92, 17);
+            this.cbHauptsch.TabIndex = 22;
+            this.cbHauptsch.Text = "Hauptschalter";
+            this.cbHauptsch.UseVisualStyleBackColor = true;
+            // 
             // numFahrschneutral
             // 
             this.numFahrschneutral.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numFahrschneutral", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -2573,8 +2585,8 @@
         private System.Windows.Forms.CheckBox cbSchalterst;
         private System.Windows.Forms.CheckBox cbDruckhbl;
         private System.Windows.Forms.CheckBox cbDruckhlb;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbLuefter;
+        private System.Windows.Forms.CheckBox cbSanden;
         private System.Windows.Forms.CheckBox cbMotorsch;
         private System.Windows.Forms.CheckBox cbFahrtrichtg;
         private System.Windows.Forms.CheckBox cbSchleuderschutz;
