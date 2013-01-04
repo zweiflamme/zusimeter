@@ -398,6 +398,8 @@ namespace ZusiMeter
                         lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed in kph
                     else if (rbUnitmps.Checked)
                         lblV.Text = String.Format("{0:0.0}", vmps); //show current speed in mps
+                    else
+                        lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed in kph
 
                     if (geschwindigkeit > 0.1) 
                         hasMoved = true;
