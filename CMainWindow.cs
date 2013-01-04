@@ -248,6 +248,9 @@ namespace ZusiMeter
         bool lzbIsActive = false; // is LZB active (LM LZB Ü)?
         double afbsoll, lzbsoll; //TEST
 
+        String zugdatei = "";
+        String zugdateiOld = "";
+
         //TODO: TEST: is this the best place?
         SettingsForm frmSettings = new SettingsForm();
         
@@ -887,7 +890,14 @@ namespace ZusiMeter
                 #region Zugdatei
                 case 2656:
                     {
-                        lblDebugZugdatei.Text = data.Value.ToString();
+                        zugdatei = data.Value;
+                        lblDebugZugdatei.Text = zugdatei.ToString();
+
+                        if (zugdatei != zugdateiOld)
+                            zugdateiChanged();
+
+                        zugdateiOld = zugdatei;
+
                         break;
                     }
                 #endregion
@@ -2055,6 +2065,12 @@ namespace ZusiMeter
         {
             MessageBox.Show("Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString() + " speichert die Einstellungen "
                 + "automatisch beim Beenden. Mit einer späteren Version werden mehrere Einstellungen anlegbar sein.");
+        }
+
+        public void zugdateiChanged() //if file name has changed
+        {
+            //TEST for issue V007
+            lblTueren.Text = "--";
         }
 
         
