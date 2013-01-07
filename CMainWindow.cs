@@ -1553,11 +1553,11 @@ namespace ZusiMeter
             fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
                         
             //TEST: should update Fahrstufe in pnlGrunddaten according to neutral setting
-            if (lblFahrstufenschalter.Text != "--")
-            {
-                double fahrschalterTestvalue = (fahrschalterOld - fahrschalterneutral);
-                lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalterTestvalue);
-            }
+            //if (lblFahrstufenschalter.Text != "--")
+            //{
+            //    double fahrschalterTestvalue = (fahrschalterOld - fahrschalterneutral);
+            //    lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalterTestvalue);
+            //}
         }
 
         //TODO: rename method
