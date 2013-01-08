@@ -42,16 +42,51 @@
             this.tabAnzeigen1 = new System.Windows.Forms.TabPage();
             this.numSizeAFBLZB = new System.Windows.Forms.NumericUpDown();
             this.numSizeBremsen = new System.Windows.Forms.NumericUpDown();
+            this.cbRailrunner = new System.Windows.Forms.CheckBox();
+            this.cbSchalterst = new System.Windows.Forms.CheckBox();
             this.numSizeGrunddaten = new System.Windows.Forms.NumericUpDown();
             this.pnlRailrunner = new System.Windows.Forms.Panel();
+            this.rbRRZuglänge = new System.Windows.Forms.RadioButton();
+            this.cbRRautoreset = new System.Windows.Forms.CheckBox();
+            this.cbRRSound = new System.Windows.Forms.CheckBox();
+            this.cbRRcountdown = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.cbRRcountup = new System.Windows.Forms.CheckBox();
             this.rbRRfest = new System.Windows.Forms.RadioButton();
+            this.numRRfest = new System.Windows.Forms.NumericUpDown();
+            this.rbRRfrei = new System.Windows.Forms.RadioButton();
+            this.cbAFBLZB = new System.Windows.Forms.CheckBox();
+            this.cbGrunddaten = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlAFBLZB = new System.Windows.Forms.Panel();
             this.pnlAFBrbvor = new System.Windows.Forms.Panel();
+            this.rbAFBvor5 = new System.Windows.Forms.RadioButton();
+            this.cbAFBVorwahl = new System.Windows.Forms.CheckBox();
             this.rbAFBvor10 = new System.Windows.Forms.RadioButton();
+            this.cbLZBlm = new System.Windows.Forms.CheckBox();
+            this.cbLZBvziel = new System.Windows.Forms.CheckBox();
+            this.cbLZBweg = new System.Windows.Forms.CheckBox();
+            this.cbLZBvsoll = new System.Windows.Forms.CheckBox();
+            this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
             this.pnlGrunddaten = new System.Windows.Forms.Panel();
+            this.cbPZBLM = new System.Windows.Forms.CheckBox();
+            this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
+            this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
+            this.cbFahrstufe = new System.Windows.Forms.CheckBox();
+            this.cbLmsifa = new System.Windows.Forms.CheckBox();
+            this.cbTueren = new System.Windows.Forms.CheckBox();
+            this.cbTime = new System.Windows.Forms.CheckBox();
+            this.cbLmschleudern = new System.Windows.Forms.CheckBox();
             this.pnlBremsen = new System.Windows.Forms.Panel();
+            this.cbZusbremse = new System.Windows.Forms.CheckBox();
+            this.cbDruckhbl = new System.Windows.Forms.CheckBox();
+            this.cbDruckhlb = new System.Windows.Forms.CheckBox();
+            this.cbDynbremse = new System.Windows.Forms.CheckBox();
+            this.cbFbv = new System.Windows.Forms.CheckBox();
+            this.cbDruckhll = new System.Windows.Forms.CheckBox();
+            this.cbBrh = new System.Windows.Forms.CheckBox();
+            this.cbDruckbz = new System.Windows.Forms.CheckBox();
+            this.cbBremsen = new System.Windows.Forms.CheckBox();
             this.pnlSchalterst = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -59,16 +94,25 @@
             this.cbFahrtrichtg = new System.Windows.Forms.CheckBox();
             this.cbSchleuderschutz = new System.Windows.Forms.CheckBox();
             this.cbHauptsch = new System.Windows.Forms.CheckBox();
+            this.numFahrschneutral = new System.Windows.Forms.NumericUpDown();
             this.lblFahrschneutralbei = new System.Windows.Forms.Label();
+            this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
             this.tabDarstellung = new System.Windows.Forms.TabPage();
             this.grpUnits = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.rbUnitkph = new System.Windows.Forms.RadioButton();
             this.rbUnitmps = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rbUnitkm = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.rbUnitm = new System.Windows.Forms.RadioButton();
+            this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.cbHidesettings = new System.Windows.Forms.CheckBox();
+            this.cbTopmost = new System.Windows.Forms.CheckBox();
+            this.cbFokusImmerzurueck = new System.Windows.Forms.CheckBox();
+            this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
             this.tabSystem = new System.Windows.Forms.TabPage();
             this.grpManageSettings = new System.Windows.Forms.GroupBox();
             this.btnDefaultSettings = new System.Windows.Forms.Button();
@@ -76,6 +120,8 @@
             this.btnLoadSettings = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.grpVerbindung = new System.Windows.Forms.GroupBox();
+            this.tbServer = new System.Windows.Forms.TextBox();
+            this.tbPort = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnDebugpanel = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -157,51 +203,6 @@
             this.timer100 = new System.Windows.Forms.Timer(this.components);
             this.timerRailrunner = new System.Windows.Forms.Timer(this.components);
             this.timerResetSifaschalter = new System.Windows.Forms.Timer(this.components);
-            this.cbSettingsSeparate = new System.Windows.Forms.CheckBox();
-            this.cbRailrunner = new System.Windows.Forms.CheckBox();
-            this.cbSchalterst = new System.Windows.Forms.CheckBox();
-            this.cbRRautoreset = new System.Windows.Forms.CheckBox();
-            this.cbRRSound = new System.Windows.Forms.CheckBox();
-            this.cbRRcountdown = new System.Windows.Forms.CheckBox();
-            this.cbRRcountup = new System.Windows.Forms.CheckBox();
-            this.numRRfest = new System.Windows.Forms.NumericUpDown();
-            this.rbRRfrei = new System.Windows.Forms.RadioButton();
-            this.cbAFBLZB = new System.Windows.Forms.CheckBox();
-            this.cbGrunddaten = new System.Windows.Forms.CheckBox();
-            this.rbAFBvor5 = new System.Windows.Forms.RadioButton();
-            this.cbAFBVorwahl = new System.Windows.Forms.CheckBox();
-            this.cbLZBlm = new System.Windows.Forms.CheckBox();
-            this.cbLZBvziel = new System.Windows.Forms.CheckBox();
-            this.cbLZBweg = new System.Windows.Forms.CheckBox();
-            this.cbLZBvsoll = new System.Windows.Forms.CheckBox();
-            this.cbAFBgeschw = new System.Windows.Forms.CheckBox();
-            this.cbPZBLM = new System.Windows.Forms.CheckBox();
-            this.cbStreckenmeter = new System.Windows.Forms.CheckBox();
-            this.cbGeschwindigkeit = new System.Windows.Forms.CheckBox();
-            this.cbFahrstufe = new System.Windows.Forms.CheckBox();
-            this.cbLmsifa = new System.Windows.Forms.CheckBox();
-            this.cbTueren = new System.Windows.Forms.CheckBox();
-            this.cbTime = new System.Windows.Forms.CheckBox();
-            this.cbLmschleudern = new System.Windows.Forms.CheckBox();
-            this.cbZusbremse = new System.Windows.Forms.CheckBox();
-            this.cbDruckhbl = new System.Windows.Forms.CheckBox();
-            this.cbDruckhlb = new System.Windows.Forms.CheckBox();
-            this.cbDynbremse = new System.Windows.Forms.CheckBox();
-            this.cbFbv = new System.Windows.Forms.CheckBox();
-            this.cbDruckhll = new System.Windows.Forms.CheckBox();
-            this.cbBrh = new System.Windows.Forms.CheckBox();
-            this.cbDruckbz = new System.Windows.Forms.CheckBox();
-            this.cbBremsen = new System.Windows.Forms.CheckBox();
-            this.numFahrschneutral = new System.Windows.Forms.NumericUpDown();
-            this.cbFahrstufenschalter = new System.Windows.Forms.CheckBox();
-            this.rbUnitkph = new System.Windows.Forms.RadioButton();
-            this.rbUnitkm = new System.Windows.Forms.RadioButton();
-            this.cbHidesettings = new System.Windows.Forms.CheckBox();
-            this.cbTopmost = new System.Windows.Forms.CheckBox();
-            this.cbFokusImmerzurueck = new System.Windows.Forms.CheckBox();
-            this.numSifagroesse = new System.Windows.Forms.NumericUpDown();
-            this.tbServer = new System.Windows.Forms.TextBox();
-            this.tbPort = new System.Windows.Forms.TextBox();
             this.pnlSettings.SuspendLayout();
             this.tabEinstellungen.SuspendLayout();
             this.tabAnzeigen1.SuspendLayout();
@@ -209,15 +210,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSizeBremsen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSizeGrunddaten)).BeginInit();
             this.pnlRailrunner.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).BeginInit();
             this.pnlAFBLZB.SuspendLayout();
             this.pnlAFBrbvor.SuspendLayout();
             this.pnlGrunddaten.SuspendLayout();
             this.pnlBremsen.SuspendLayout();
             this.pnlSchalterst.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).BeginInit();
             this.tabDarstellung.SuspendLayout();
             this.grpUnits.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).BeginInit();
             this.tabSystem.SuspendLayout();
             this.grpManageSettings.SuspendLayout();
             this.grpVerbindung.SuspendLayout();
@@ -233,9 +237,6 @@
             this.pnlLeft.SuspendLayout();
             this.pnlDataLZB.SuspendLayout();
             this.pnlDataPZB90.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSifa
@@ -393,6 +394,42 @@
             this.numSizeBremsen.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             this.numSizeBremsen.ValueChanged += new System.EventHandler(this.numSizeBremsen_ValueChanged);
             // 
+            // cbRailrunner
+            // 
+            this.cbRailrunner.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbRailrunner.AutoSize = true;
+            this.cbRailrunner.Checked = global::ZusiMeter.Properties.Settings.Default.cbRailrunner;
+            this.cbRailrunner.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRailrunner.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRailrunner", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRailrunner.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbRailrunner.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRailrunner.Location = new System.Drawing.Point(6, 280);
+            this.cbRailrunner.Name = "cbRailrunner";
+            this.cbRailrunner.Size = new System.Drawing.Size(65, 23);
+            this.cbRailrunner.TabIndex = 31;
+            this.cbRailrunner.Text = "Railrunner";
+            this.cbRailrunner.UseVisualStyleBackColor = true;
+            this.cbRailrunner.CheckedChanged += new System.EventHandler(this.cbRailrunner_CheckedChanged);
+            // 
+            // cbSchalterst
+            // 
+            this.cbSchalterst.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbSchalterst.AutoSize = true;
+            this.cbSchalterst.Checked = global::ZusiMeter.Properties.Settings.Default.cbSchalterst;
+            this.cbSchalterst.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSchalterst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbSchalterst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbSchalterst.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbSchalterst.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbSchalterst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbSchalterst.Location = new System.Drawing.Point(217, 9);
+            this.cbSchalterst.Name = "cbSchalterst";
+            this.cbSchalterst.Size = new System.Drawing.Size(104, 23);
+            this.cbSchalterst.TabIndex = 8;
+            this.cbSchalterst.Text = "Schalterstellungen";
+            this.cbSchalterst.UseVisualStyleBackColor = true;
+            this.cbSchalterst.CheckedChanged += new System.EventHandler(this.cbSchalterst_CheckedChanged);
+            // 
             // numSizeGrunddaten
             // 
             this.numSizeGrunddaten.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -416,6 +453,7 @@
             // pnlRailrunner
             // 
             this.pnlRailrunner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlRailrunner.Controls.Add(this.rbRRZuglänge);
             this.pnlRailrunner.Controls.Add(this.cbRRautoreset);
             this.pnlRailrunner.Controls.Add(this.cbRRSound);
             this.pnlRailrunner.Controls.Add(this.cbRRcountdown);
@@ -426,18 +464,98 @@
             this.pnlRailrunner.Controls.Add(this.rbRRfrei);
             this.pnlRailrunner.Location = new System.Drawing.Point(6, 305);
             this.pnlRailrunner.Name = "pnlRailrunner";
-            this.pnlRailrunner.Size = new System.Drawing.Size(171, 68);
+            this.pnlRailrunner.Size = new System.Drawing.Size(205, 68);
             this.pnlRailrunner.TabIndex = 25;
+            // 
+            // rbRRZuglänge
+            // 
+            this.rbRRZuglänge.AutoSize = true;
+            this.rbRRZuglänge.Checked = global::ZusiMeter.Properties.Settings.Default.rbRRZuglaenge;
+            this.rbRRZuglänge.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbRRZuglaenge", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rbRRZuglänge.Location = new System.Drawing.Point(2, 24);
+            this.rbRRZuglänge.Name = "rbRRZuglänge";
+            this.rbRRZuglänge.Size = new System.Drawing.Size(91, 17);
+            this.rbRRZuglänge.TabIndex = 39;
+            this.rbRRZuglänge.Text = "akt. Zuglänge";
+            this.rbRRZuglänge.UseVisualStyleBackColor = true;
+            this.rbRRZuglänge.CheckedChanged += new System.EventHandler(this.rbRRfest_CheckedChanged);
+            // 
+            // cbRRautoreset
+            // 
+            this.cbRRautoreset.AutoSize = true;
+            this.cbRRautoreset.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRautoreset;
+            this.cbRRautoreset.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRRautoreset.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRautoreset", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRRautoreset.Enabled = false;
+            this.cbRRautoreset.Location = new System.Drawing.Point(65, 49);
+            this.cbRRautoreset.Name = "cbRRautoreset";
+            this.cbRRautoreset.Size = new System.Drawing.Size(139, 17);
+            this.cbRRautoreset.TabIndex = 38;
+            this.cbRRautoreset.Text = "Automatisch rücksetzen";
+            this.cbRRautoreset.UseVisualStyleBackColor = true;
+            // 
+            // cbRRSound
+            // 
+            this.cbRRSound.AutoSize = true;
+            this.cbRRSound.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRSound;
+            this.cbRRSound.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRRSound.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRSound", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRRSound.Enabled = false;
+            this.cbRRSound.Location = new System.Drawing.Point(2, 49);
+            this.cbRRSound.Name = "cbRRSound";
+            this.cbRRSound.Size = new System.Drawing.Size(62, 17);
+            this.cbRRSound.TabIndex = 37;
+            this.cbRRSound.Text = "Ton ein";
+            this.cbRRSound.UseVisualStyleBackColor = true;
+            // 
+            // cbRRcountdown
+            // 
+            this.cbRRcountdown.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbRRcountdown.AutoSize = true;
+            this.cbRRcountdown.BackColor = System.Drawing.Color.Transparent;
+            this.cbRRcountdown.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRcountdown;
+            this.cbRRcountdown.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRRcountdown.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRcountdown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRRcountdown.Enabled = false;
+            this.cbRRcountdown.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
+            this.cbRRcountdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRRcountdown.Location = new System.Drawing.Point(97, 23);
+            this.cbRRcountdown.Name = "cbRRcountdown";
+            this.cbRRcountdown.Size = new System.Drawing.Size(23, 23);
+            this.cbRRcountdown.TabIndex = 21;
+            this.cbRRcountdown.Text = "˅";
+            this.cbRRcountdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbRRcountdown.UseVisualStyleBackColor = false;
+            this.cbRRcountdown.CheckedChanged += new System.EventHandler(this.cbRRcountdown_CheckedChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Enabled = false;
-            this.label7.Location = new System.Drawing.Point(144, 8);
+            this.label7.Location = new System.Drawing.Point(148, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(15, 13);
             this.label7.TabIndex = 36;
             this.label7.Text = "m";
+            // 
+            // cbRRcountup
+            // 
+            this.cbRRcountup.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbRRcountup.AutoSize = true;
+            this.cbRRcountup.BackColor = System.Drawing.Color.Transparent;
+            this.cbRRcountup.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRcountup;
+            this.cbRRcountup.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRcountup", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbRRcountup.Enabled = false;
+            this.cbRRcountup.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
+            this.cbRRcountup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRRcountup.Location = new System.Drawing.Point(118, 23);
+            this.cbRRcountup.Name = "cbRRcountup";
+            this.cbRRcountup.Size = new System.Drawing.Size(23, 23);
+            this.cbRRcountup.TabIndex = 20;
+            this.cbRRcountup.Text = "˄";
+            this.cbRRcountup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbRRcountup.UseVisualStyleBackColor = false;
+            this.cbRRcountup.CheckedChanged += new System.EventHandler(this.cbRRcountup_CheckedChanged);
             // 
             // rbRRfest
             // 
@@ -446,10 +564,79 @@
             this.rbRRfest.Name = "rbRRfest";
             this.rbRRfest.Size = new System.Drawing.Size(45, 17);
             this.rbRRfest.TabIndex = 34;
-            this.rbRRfest.TabStop = true;
             this.rbRRfest.Text = "fest:";
             this.rbRRfest.UseVisualStyleBackColor = true;
             this.rbRRfest.CheckedChanged += new System.EventHandler(this.rbRRfest_CheckedChanged);
+            // 
+            // numRRfest
+            // 
+            this.numRRfest.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numRRfest", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numRRfest.Enabled = false;
+            this.numRRfest.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numRRfest.Location = new System.Drawing.Point(97, 1);
+            this.numRRfest.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numRRfest.Name = "numRRfest";
+            this.numRRfest.Size = new System.Drawing.Size(45, 20);
+            this.numRRfest.TabIndex = 35;
+            this.numRRfest.Value = global::ZusiMeter.Properties.Settings.Default.numRRfest;
+            this.numRRfest.ValueChanged += new System.EventHandler(this.numRRfest_ValueChanged);
+            // 
+            // rbRRfrei
+            // 
+            this.rbRRfrei.AutoSize = true;
+            this.rbRRfrei.Checked = global::ZusiMeter.Properties.Settings.Default.rbRRfrei;
+            this.rbRRfrei.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbRRfrei", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rbRRfrei.Location = new System.Drawing.Point(3, 4);
+            this.rbRRfrei.Name = "rbRRfrei";
+            this.rbRRfrei.Size = new System.Drawing.Size(39, 17);
+            this.rbRRfrei.TabIndex = 33;
+            this.rbRRfrei.Text = "frei";
+            this.rbRRfrei.UseVisualStyleBackColor = true;
+            this.rbRRfrei.CheckedChanged += new System.EventHandler(this.rbRRfrei_CheckedChanged);
+            // 
+            // cbAFBLZB
+            // 
+            this.cbAFBLZB.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbAFBLZB.AutoSize = true;
+            this.cbAFBLZB.Checked = global::ZusiMeter.Properties.Settings.Default.cbAFBLZB;
+            this.cbAFBLZB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAFBLZB.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbAFBLZB", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbAFBLZB.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbAFBLZB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbAFBLZB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbAFBLZB.Location = new System.Drawing.Point(217, 165);
+            this.cbAFBLZB.Name = "cbAFBLZB";
+            this.cbAFBLZB.Size = new System.Drawing.Size(68, 23);
+            this.cbAFBLZB.TabIndex = 26;
+            this.cbAFBLZB.Text = "AFB / LZB";
+            this.cbAFBLZB.UseVisualStyleBackColor = true;
+            this.cbAFBLZB.CheckedChanged += new System.EventHandler(this.cbAFBLZB_CheckedChanged);
+            // 
+            // cbGrunddaten
+            // 
+            this.cbGrunddaten.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbGrunddaten.AutoSize = true;
+            this.cbGrunddaten.Checked = global::ZusiMeter.Properties.Settings.Default.cbGrunddaten;
+            this.cbGrunddaten.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbGrunddaten.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbGrunddaten", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbGrunddaten.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbGrunddaten.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbGrunddaten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbGrunddaten.Location = new System.Drawing.Point(6, 9);
+            this.cbGrunddaten.Name = "cbGrunddaten";
+            this.cbGrunddaten.Size = new System.Drawing.Size(73, 23);
+            this.cbGrunddaten.TabIndex = 8;
+            this.cbGrunddaten.Text = "Grunddaten";
+            this.cbGrunddaten.UseVisualStyleBackColor = true;
+            this.cbGrunddaten.CheckedChanged += new System.EventHandler(this.cbGrunddaten_CheckedChanged);
             // 
             // label6
             // 
@@ -485,6 +672,33 @@
             this.pnlAFBrbvor.Size = new System.Drawing.Size(149, 37);
             this.pnlAFBrbvor.TabIndex = 22;
             // 
+            // rbAFBvor5
+            // 
+            this.rbAFBvor5.AutoSize = true;
+            this.rbAFBvor5.Checked = global::ZusiMeter.Properties.Settings.Default.rbAFBvor5;
+            this.rbAFBvor5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbAFBvor5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rbAFBvor5.Location = new System.Drawing.Point(22, 17);
+            this.rbAFBvor5.Name = "rbAFBvor5";
+            this.rbAFBvor5.Size = new System.Drawing.Size(59, 17);
+            this.rbAFBvor5.TabIndex = 20;
+            this.rbAFBvor5.TabStop = true;
+            this.rbAFBvor5.Text = "5 km/h";
+            this.rbAFBvor5.UseVisualStyleBackColor = true;
+            this.rbAFBvor5.CheckedChanged += new System.EventHandler(this.rbAFBvor5_CheckedChanged);
+            // 
+            // cbAFBVorwahl
+            // 
+            this.cbAFBVorwahl.AutoSize = true;
+            this.cbAFBVorwahl.Checked = global::ZusiMeter.Properties.Settings.Default.cbAFBVorwahl;
+            this.cbAFBVorwahl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbAFBVorwahl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbAFBVorwahl.Location = new System.Drawing.Point(3, 2);
+            this.cbAFBVorwahl.Name = "cbAFBVorwahl";
+            this.cbAFBVorwahl.Size = new System.Drawing.Size(101, 17);
+            this.cbAFBVorwahl.TabIndex = 31;
+            this.cbAFBVorwahl.Text = "AFB vorgewählt";
+            this.cbAFBVorwahl.UseVisualStyleBackColor = true;
+            this.cbAFBVorwahl.CheckedChanged += new System.EventHandler(this.cbAFBVorwahl_CheckedChanged);
+            // 
             // rbAFBvor10
             // 
             this.rbAFBvor10.AutoSize = true;
@@ -495,6 +709,72 @@
             this.rbAFBvor10.Text = "10 km/h";
             this.rbAFBvor10.UseVisualStyleBackColor = true;
             this.rbAFBvor10.CheckedChanged += new System.EventHandler(this.rbAFBvor10_CheckedChanged);
+            // 
+            // cbLZBlm
+            // 
+            this.cbLZBlm.AutoSize = true;
+            this.cbLZBlm.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBlm;
+            this.cbLZBlm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBlm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLZBlm.Location = new System.Drawing.Point(3, 90);
+            this.cbLZBlm.Name = "cbLZBlm";
+            this.cbLZBlm.Size = new System.Drawing.Size(113, 17);
+            this.cbLZBlm.TabIndex = 34;
+            this.cbLZBlm.Text = "LZB-Leuchtmelder";
+            this.cbLZBlm.UseVisualStyleBackColor = true;
+            this.cbLZBlm.CheckedChanged += new System.EventHandler(this.cbLZBlm_CheckedChanged);
+            // 
+            // cbLZBvziel
+            // 
+            this.cbLZBvziel.AutoSize = true;
+            this.cbLZBvziel.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBvziel;
+            this.cbLZBvziel.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBvziel", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLZBvziel.Location = new System.Drawing.Point(86, 4);
+            this.cbLZBvziel.Name = "cbLZBvziel";
+            this.cbLZBvziel.Size = new System.Drawing.Size(78, 17);
+            this.cbLZBvziel.TabIndex = 30;
+            this.cbLZBvziel.Text = "LZB - vZiel";
+            this.cbLZBvziel.UseVisualStyleBackColor = true;
+            this.cbLZBvziel.CheckedChanged += new System.EventHandler(this.cbLZBvziel_CheckedChanged);
+            // 
+            // cbLZBweg
+            // 
+            this.cbLZBweg.AutoSize = true;
+            this.cbLZBweg.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBweg;
+            this.cbLZBweg.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBweg", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLZBweg.Location = new System.Drawing.Point(86, 20);
+            this.cbLZBweg.Name = "cbLZBweg";
+            this.cbLZBweg.Size = new System.Drawing.Size(89, 17);
+            this.cbLZBweg.TabIndex = 29;
+            this.cbLZBweg.Text = "LZB - Ziel (m)";
+            this.cbLZBweg.UseVisualStyleBackColor = true;
+            this.cbLZBweg.CheckedChanged += new System.EventHandler(this.cbLZBweg_CheckedChanged);
+            // 
+            // cbLZBvsoll
+            // 
+            this.cbLZBvsoll.AutoSize = true;
+            this.cbLZBvsoll.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBvsoll;
+            this.cbLZBvsoll.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBvsoll", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLZBvsoll.Location = new System.Drawing.Point(3, 20);
+            this.cbLZBvsoll.Name = "cbLZBvsoll";
+            this.cbLZBvsoll.Size = new System.Drawing.Size(78, 17);
+            this.cbLZBvsoll.TabIndex = 28;
+            this.cbLZBvsoll.Text = "LZB - vSoll";
+            this.cbLZBvsoll.UseVisualStyleBackColor = true;
+            this.cbLZBvsoll.CheckedChanged += new System.EventHandler(this.cbLZBvsoll_CheckedChanged);
+            // 
+            // cbAFBgeschw
+            // 
+            this.cbAFBgeschw.AutoSize = true;
+            this.cbAFBgeschw.Checked = global::ZusiMeter.Properties.Settings.Default.cbAFBgeschw;
+            this.cbAFBgeschw.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAFBgeschw.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbAFBgeschw", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbAFBgeschw.Location = new System.Drawing.Point(3, 3);
+            this.cbAFBgeschw.Name = "cbAFBgeschw";
+            this.cbAFBgeschw.Size = new System.Drawing.Size(78, 17);
+            this.cbAFBgeschw.TabIndex = 27;
+            this.cbAFBgeschw.Text = "AFB - vSoll";
+            this.cbAFBgeschw.UseVisualStyleBackColor = true;
+            this.cbAFBgeschw.CheckedChanged += new System.EventHandler(this.cbAFBgeschw_CheckedChanged);
             // 
             // pnlGrunddaten
             // 
@@ -512,6 +792,119 @@
             this.pnlGrunddaten.Size = new System.Drawing.Size(205, 95);
             this.pnlGrunddaten.TabIndex = 19;
             // 
+            // cbPZBLM
+            // 
+            this.cbPZBLM.AutoSize = true;
+            this.cbPZBLM.Checked = global::ZusiMeter.Properties.Settings.Default.cbPZBLM;
+            this.cbPZBLM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPZBLM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbPZBLM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbPZBLM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPZBLM.Location = new System.Drawing.Point(3, 71);
+            this.cbPZBLM.Name = "cbPZBLM";
+            this.cbPZBLM.Size = new System.Drawing.Size(114, 17);
+            this.cbPZBLM.TabIndex = 9;
+            this.cbPZBLM.Text = "PZB-Leuchtmelder";
+            this.cbPZBLM.UseVisualStyleBackColor = true;
+            this.cbPZBLM.CheckedChanged += new System.EventHandler(this.cbPZBLM_CheckedChanged);
+            // 
+            // cbStreckenmeter
+            // 
+            this.cbStreckenmeter.AutoSize = true;
+            this.cbStreckenmeter.Checked = global::ZusiMeter.Properties.Settings.Default.cbStreckenmeter;
+            this.cbStreckenmeter.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbStreckenmeter.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbStreckenmeter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbStreckenmeter.Location = new System.Drawing.Point(3, 20);
+            this.cbStreckenmeter.Name = "cbStreckenmeter";
+            this.cbStreckenmeter.Size = new System.Drawing.Size(95, 17);
+            this.cbStreckenmeter.TabIndex = 1;
+            this.cbStreckenmeter.Text = "Streckenmeter";
+            this.cbStreckenmeter.UseVisualStyleBackColor = true;
+            this.cbStreckenmeter.CheckedChanged += new System.EventHandler(this.cbStreckenmeter_CheckedChanged);
+            // 
+            // cbGeschwindigkeit
+            // 
+            this.cbGeschwindigkeit.AutoSize = true;
+            this.cbGeschwindigkeit.Checked = global::ZusiMeter.Properties.Settings.Default.cbGeschwindigkeit;
+            this.cbGeschwindigkeit.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbGeschwindigkeit.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbGeschwindigkeit", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbGeschwindigkeit.Location = new System.Drawing.Point(3, 3);
+            this.cbGeschwindigkeit.Name = "cbGeschwindigkeit";
+            this.cbGeschwindigkeit.Size = new System.Drawing.Size(104, 17);
+            this.cbGeschwindigkeit.TabIndex = 0;
+            this.cbGeschwindigkeit.Text = "Geschwindigkeit";
+            this.cbGeschwindigkeit.UseVisualStyleBackColor = true;
+            this.cbGeschwindigkeit.CheckedChanged += new System.EventHandler(this.cbGeschwindigkeit_CheckedChanged);
+            // 
+            // cbFahrstufe
+            // 
+            this.cbFahrstufe.AutoSize = true;
+            this.cbFahrstufe.Checked = global::ZusiMeter.Properties.Settings.Default.cbFahrstufe;
+            this.cbFahrstufe.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbFahrstufe.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFahrstufe", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbFahrstufe.Location = new System.Drawing.Point(3, 36);
+            this.cbFahrstufe.Name = "cbFahrstufe";
+            this.cbFahrstufe.Size = new System.Drawing.Size(70, 17);
+            this.cbFahrstufe.TabIndex = 7;
+            this.cbFahrstufe.Text = "Fahrstufe";
+            this.cbFahrstufe.UseVisualStyleBackColor = true;
+            this.cbFahrstufe.CheckedChanged += new System.EventHandler(this.cbFahrstufe_CheckedChanged);
+            // 
+            // cbLmsifa
+            // 
+            this.cbLmsifa.AutoSize = true;
+            this.cbLmsifa.Checked = global::ZusiMeter.Properties.Settings.Default.cbLmsifa;
+            this.cbLmsifa.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbLmsifa.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLmsifa", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLmsifa.Location = new System.Drawing.Point(113, 3);
+            this.cbLmsifa.Name = "cbLmsifa";
+            this.cbLmsifa.Size = new System.Drawing.Size(44, 17);
+            this.cbLmsifa.TabIndex = 2;
+            this.cbLmsifa.Text = "Sifa";
+            this.cbLmsifa.UseVisualStyleBackColor = true;
+            this.cbLmsifa.CheckedChanged += new System.EventHandler(this.cbLmsifa_CheckedChanged);
+            // 
+            // cbTueren
+            // 
+            this.cbTueren.AutoSize = true;
+            this.cbTueren.Checked = global::ZusiMeter.Properties.Settings.Default.cbTueren;
+            this.cbTueren.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTueren.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTueren", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbTueren.Location = new System.Drawing.Point(113, 20);
+            this.cbTueren.Name = "cbTueren";
+            this.cbTueren.Size = new System.Drawing.Size(54, 17);
+            this.cbTueren.TabIndex = 3;
+            this.cbTueren.Text = "Türen";
+            this.cbTueren.UseVisualStyleBackColor = true;
+            this.cbTueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
+            // 
+            // cbTime
+            // 
+            this.cbTime.AutoSize = true;
+            this.cbTime.Checked = global::ZusiMeter.Properties.Settings.Default.cbTime;
+            this.cbTime.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTime.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbTime.Location = new System.Drawing.Point(113, 36);
+            this.cbTime.Name = "cbTime";
+            this.cbTime.Size = new System.Drawing.Size(59, 17);
+            this.cbTime.TabIndex = 6;
+            this.cbTime.Text = "Uhrzeit";
+            this.cbTime.UseVisualStyleBackColor = true;
+            this.cbTime.CheckedChanged += new System.EventHandler(this.cbTime_CheckedChanged);
+            // 
+            // cbLmschleudern
+            // 
+            this.cbLmschleudern.AutoSize = true;
+            this.cbLmschleudern.Checked = global::ZusiMeter.Properties.Settings.Default.cbLmschleudern;
+            this.cbLmschleudern.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbLmschleudern.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLmschleudern", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbLmschleudern.Location = new System.Drawing.Point(3, 54);
+            this.cbLmschleudern.Name = "cbLmschleudern";
+            this.cbLmschleudern.Size = new System.Drawing.Size(142, 17);
+            this.cbLmschleudern.TabIndex = 4;
+            this.cbLmschleudern.Text = "LM Schleudern / Gleiten";
+            this.cbLmschleudern.UseVisualStyleBackColor = true;
+            this.cbLmschleudern.CheckedChanged += new System.EventHandler(this.cbLmschleudern_CheckedChanged);
+            // 
             // pnlBremsen
             // 
             this.pnlBremsen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -527,6 +920,131 @@
             this.pnlBremsen.Name = "pnlBremsen";
             this.pnlBremsen.Size = new System.Drawing.Size(205, 107);
             this.pnlBremsen.TabIndex = 19;
+            // 
+            // cbZusbremse
+            // 
+            this.cbZusbremse.AutoSize = true;
+            this.cbZusbremse.Checked = global::ZusiMeter.Properties.Settings.Default.cbZusbremse;
+            this.cbZusbremse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbZusbremse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbZusbremse.Enabled = false;
+            this.cbZusbremse.Location = new System.Drawing.Point(3, 83);
+            this.cbZusbremse.Name = "cbZusbremse";
+            this.cbZusbremse.Size = new System.Drawing.Size(92, 17);
+            this.cbZusbremse.TabIndex = 25;
+            this.cbZusbremse.Text = "Zusatzbremse";
+            this.cbZusbremse.UseVisualStyleBackColor = true;
+            // 
+            // cbDruckhbl
+            // 
+            this.cbDruckhbl.AutoSize = true;
+            this.cbDruckhbl.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhbl;
+            this.cbDruckhbl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhbl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDruckhbl.Location = new System.Drawing.Point(113, 6);
+            this.cbDruckhbl.Name = "cbDruckhbl";
+            this.cbDruckhbl.Size = new System.Drawing.Size(79, 17);
+            this.cbDruckhbl.TabIndex = 11;
+            this.cbDruckhbl.Text = "Druck HBL";
+            this.cbDruckhbl.UseVisualStyleBackColor = true;
+            this.cbDruckhbl.CheckedChanged += new System.EventHandler(this.cbDruckhbl_CheckedChanged);
+            // 
+            // cbDruckhlb
+            // 
+            this.cbDruckhlb.AutoSize = true;
+            this.cbDruckhlb.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhlb;
+            this.cbDruckhlb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhlb", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDruckhlb.Location = new System.Drawing.Point(113, 23);
+            this.cbDruckhlb.Name = "cbDruckhlb";
+            this.cbDruckhlb.Size = new System.Drawing.Size(79, 17);
+            this.cbDruckhlb.TabIndex = 10;
+            this.cbDruckhlb.Text = "Druck HLB";
+            this.cbDruckhlb.UseVisualStyleBackColor = true;
+            this.cbDruckhlb.CheckedChanged += new System.EventHandler(this.cbDruckhlb_CheckedChanged);
+            // 
+            // cbDynbremse
+            // 
+            this.cbDynbremse.AutoSize = true;
+            this.cbDynbremse.Checked = global::ZusiMeter.Properties.Settings.Default.cbDynbremse;
+            this.cbDynbremse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDynbremse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDynbremse.Enabled = false;
+            this.cbDynbremse.Location = new System.Drawing.Point(113, 62);
+            this.cbDynbremse.Name = "cbDynbremse";
+            this.cbDynbremse.Size = new System.Drawing.Size(86, 17);
+            this.cbDynbremse.TabIndex = 24;
+            this.cbDynbremse.Text = "Dyn. Bremse";
+            this.cbDynbremse.UseVisualStyleBackColor = true;
+            // 
+            // cbFbv
+            // 
+            this.cbFbv.AutoSize = true;
+            this.cbFbv.Checked = global::ZusiMeter.Properties.Settings.Default.cbFbv;
+            this.cbFbv.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFbv", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbFbv.Enabled = false;
+            this.cbFbv.Location = new System.Drawing.Point(3, 62);
+            this.cbFbv.Name = "cbFbv";
+            this.cbFbv.Size = new System.Drawing.Size(109, 17);
+            this.cbFbv.TabIndex = 23;
+            this.cbFbv.Text = "Führerbremsventil";
+            this.cbFbv.UseVisualStyleBackColor = true;
+            // 
+            // cbDruckhll
+            // 
+            this.cbDruckhll.AutoSize = true;
+            this.cbDruckhll.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhll;
+            this.cbDruckhll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDruckhll.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhll", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDruckhll.Location = new System.Drawing.Point(3, 23);
+            this.cbDruckhll.Name = "cbDruckhll";
+            this.cbDruckhll.Size = new System.Drawing.Size(70, 17);
+            this.cbDruckhll.TabIndex = 2;
+            this.cbDruckhll.Text = "Druck Hll";
+            this.cbDruckhll.UseVisualStyleBackColor = true;
+            this.cbDruckhll.CheckedChanged += new System.EventHandler(this.cbDruckhll_CheckedChanged);
+            // 
+            // cbBrh
+            // 
+            this.cbBrh.AutoSize = true;
+            this.cbBrh.Checked = global::ZusiMeter.Properties.Settings.Default.cbBrh;
+            this.cbBrh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBrh.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbBrh", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbBrh.Location = new System.Drawing.Point(3, 5);
+            this.cbBrh.Name = "cbBrh";
+            this.cbBrh.Size = new System.Drawing.Size(107, 17);
+            this.cbBrh.TabIndex = 4;
+            this.cbBrh.Text = "Bremshundertstel";
+            this.cbBrh.UseVisualStyleBackColor = true;
+            this.cbBrh.CheckedChanged += new System.EventHandler(this.cbBrh_CheckedChanged);
+            // 
+            // cbDruckbz
+            // 
+            this.cbDruckbz.AutoSize = true;
+            this.cbDruckbz.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckbz;
+            this.cbDruckbz.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDruckbz.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckbz", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbDruckbz.Location = new System.Drawing.Point(3, 43);
+            this.cbDruckbz.Name = "cbDruckbz";
+            this.cbDruckbz.Size = new System.Drawing.Size(122, 17);
+            this.cbDruckbz.TabIndex = 3;
+            this.cbDruckbz.Text = "Druck Bremszylinder";
+            this.cbDruckbz.UseVisualStyleBackColor = true;
+            this.cbDruckbz.CheckedChanged += new System.EventHandler(this.cbDruckbz_CheckedChanged);
+            // 
+            // cbBremsen
+            // 
+            this.cbBremsen.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbBremsen.AutoSize = true;
+            this.cbBremsen.Checked = global::ZusiMeter.Properties.Settings.Default.cbBremsen;
+            this.cbBremsen.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBremsen.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbBremsen", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbBremsen.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cbBremsen.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.cbBremsen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbBremsen.Location = new System.Drawing.Point(6, 141);
+            this.cbBremsen.Name = "cbBremsen";
+            this.cbBremsen.Size = new System.Drawing.Size(58, 23);
+            this.cbBremsen.TabIndex = 9;
+            this.cbBremsen.Text = "Bremsen";
+            this.cbBremsen.UseVisualStyleBackColor = true;
+            this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
             // 
             // pnlSchalterst
             // 
@@ -611,6 +1129,24 @@
             this.cbHauptsch.Text = "Hauptschalter";
             this.cbHauptsch.UseVisualStyleBackColor = true;
             // 
+            // numFahrschneutral
+            // 
+            this.numFahrschneutral.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numFahrschneutral", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numFahrschneutral.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numFahrschneutral.Location = new System.Drawing.Point(142, 0);
+            this.numFahrschneutral.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.numFahrschneutral.Name = "numFahrschneutral";
+            this.numFahrschneutral.ReadOnly = true;
+            this.numFahrschneutral.Size = new System.Drawing.Size(33, 20);
+            this.numFahrschneutral.TabIndex = 20;
+            this.numFahrschneutral.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numFahrschneutral.Value = global::ZusiMeter.Properties.Settings.Default.numFahrschneutral;
+            this.numFahrschneutral.ValueChanged += new System.EventHandler(this.numFahrschneutral_ValueChanged);
+            // 
             // lblFahrschneutralbei
             // 
             this.lblFahrschneutralbei.AutoSize = true;
@@ -621,15 +1157,28 @@
             this.lblFahrschneutralbei.TabIndex = 21;
             this.lblFahrschneutralbei.Text = "neutral bei";
             // 
+            // cbFahrstufenschalter
+            // 
+            this.cbFahrstufenschalter.AutoSize = true;
+            this.cbFahrstufenschalter.Checked = global::ZusiMeter.Properties.Settings.Default.cbFahrstufenschalter;
+            this.cbFahrstufenschalter.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFahrstufenschalter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbFahrstufenschalter.Location = new System.Drawing.Point(3, 5);
+            this.cbFahrstufenschalter.Name = "cbFahrstufenschalter";
+            this.cbFahrstufenschalter.Size = new System.Drawing.Size(84, 17);
+            this.cbFahrstufenschalter.TabIndex = 9;
+            this.cbFahrstufenschalter.Text = "Fahrschalter";
+            this.cbFahrstufenschalter.UseVisualStyleBackColor = true;
+            this.cbFahrstufenschalter.CheckedChanged += new System.EventHandler(this.cbFahrstufenschalter_CheckedChanged);
+            // 
             // tabDarstellung
             // 
             this.tabDarstellung.BackColor = System.Drawing.SystemColors.Control;
             this.tabDarstellung.Controls.Add(this.grpUnits);
             this.tabDarstellung.Controls.Add(this.cbSettingsSeparate);
+            this.tabDarstellung.Controls.Add(this.label3);
             this.tabDarstellung.Controls.Add(this.cbHidesettings);
             this.tabDarstellung.Controls.Add(this.cbTopmost);
             this.tabDarstellung.Controls.Add(this.cbFokusImmerzurueck);
-            this.tabDarstellung.Controls.Add(this.label3);
             this.tabDarstellung.Controls.Add(this.numSifagroesse);
             this.tabDarstellung.Location = new System.Drawing.Point(4, 22);
             this.tabDarstellung.Name = "tabDarstellung";
@@ -671,6 +1220,20 @@
             this.label10.TabIndex = 3;
             this.label10.Text = "Geschwindigkeit";
             // 
+            // rbUnitkph
+            // 
+            this.rbUnitkph.AutoSize = true;
+            this.rbUnitkph.Checked = global::ZusiMeter.Properties.Settings.Default.rbUnitkph;
+            this.rbUnitkph.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbUnitkph", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rbUnitkph.Location = new System.Drawing.Point(6, 19);
+            this.rbUnitkph.Name = "rbUnitkph";
+            this.rbUnitkph.Size = new System.Drawing.Size(50, 17);
+            this.rbUnitkph.TabIndex = 5;
+            this.rbUnitkph.TabStop = true;
+            this.rbUnitkph.Text = "km/h";
+            this.rbUnitkph.UseVisualStyleBackColor = true;
+            this.rbUnitkph.CheckedChanged += new System.EventHandler(this.rbUnitkph_CheckedChanged);
+            // 
             // rbUnitmps
             // 
             this.rbUnitmps.AutoSize = true;
@@ -694,6 +1257,20 @@
             this.panel1.Size = new System.Drawing.Size(131, 41);
             this.panel1.TabIndex = 20;
             // 
+            // rbUnitkm
+            // 
+            this.rbUnitkm.AutoSize = true;
+            this.rbUnitkm.Checked = global::ZusiMeter.Properties.Settings.Default.rbUnitkm;
+            this.rbUnitkm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbUnitkm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rbUnitkm.Location = new System.Drawing.Point(6, 21);
+            this.rbUnitkm.Name = "rbUnitkm";
+            this.rbUnitkm.Size = new System.Drawing.Size(68, 17);
+            this.rbUnitkm.TabIndex = 2;
+            this.rbUnitkm.TabStop = true;
+            this.rbUnitkm.Text = "Kilometer";
+            this.rbUnitkm.UseVisualStyleBackColor = true;
+            this.rbUnitkm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -714,6 +1291,19 @@
             this.rbUnitm.UseVisualStyleBackColor = true;
             this.rbUnitm.CheckedChanged += new System.EventHandler(this.rbDarstMeter_CheckedChanged);
             // 
+            // cbSettingsSeparate
+            // 
+            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
+            this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 172);
+            this.cbSettingsSeparate.Name = "cbSettingsSeparate";
+            this.cbSettingsSeparate.Size = new System.Drawing.Size(118, 35);
+            this.cbSettingsSeparate.TabIndex = 23;
+            this.cbSettingsSeparate.Text = "Einstellungen in separatem Fenster";
+            this.cbSettingsSeparate.UseVisualStyleBackColor = false;
+            this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -722,6 +1312,70 @@
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Größe Sifa";
+            // 
+            // cbHidesettings
+            // 
+            this.cbHidesettings.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cbHidesettings.Checked = global::ZusiMeter.Properties.Settings.Default.cbHidesettings;
+            this.cbHidesettings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbHidesettings.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbHidesettings", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbHidesettings.Location = new System.Drawing.Point(6, 275);
+            this.cbHidesettings.Name = "cbHidesettings";
+            this.cbHidesettings.Size = new System.Drawing.Size(159, 33);
+            this.cbHidesettings.TabIndex = 22;
+            this.cbHidesettings.Text = "Einstellungen automatisch ausblenden";
+            this.cbHidesettings.UseVisualStyleBackColor = true;
+            this.cbHidesettings.CheckedChanged += new System.EventHandler(this.cbHidesettings_CheckedChanged);
+            // 
+            // cbTopmost
+            // 
+            this.cbTopmost.AutoSize = true;
+            this.cbTopmost.Checked = global::ZusiMeter.Properties.Settings.Default.cbTopmost;
+            this.cbTopmost.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTopmost.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTopmost", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbTopmost.Location = new System.Drawing.Point(6, 252);
+            this.cbTopmost.Name = "cbTopmost";
+            this.cbTopmost.Size = new System.Drawing.Size(128, 17);
+            this.cbTopmost.TabIndex = 17;
+            this.cbTopmost.Text = "Immer im Vordergrund";
+            this.cbTopmost.UseVisualStyleBackColor = true;
+            this.cbTopmost.CheckedChanged += new System.EventHandler(this.cbTopmost_CheckedChanged);
+            // 
+            // cbFokusImmerzurueck
+            // 
+            this.cbFokusImmerzurueck.AutoSize = true;
+            this.cbFokusImmerzurueck.Checked = global::ZusiMeter.Properties.Settings.Default.cbFokusImmerzurueck;
+            this.cbFokusImmerzurueck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbFokusImmerzurueck.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFokusImmerzurueck", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbFokusImmerzurueck.Location = new System.Drawing.Point(6, 331);
+            this.cbFokusImmerzurueck.Name = "cbFokusImmerzurueck";
+            this.cbFokusImmerzurueck.Size = new System.Drawing.Size(181, 17);
+            this.cbFokusImmerzurueck.TabIndex = 16;
+            this.cbFokusImmerzurueck.Text = "Fokus nach Klick zurück an Zusi";
+            this.cbFokusImmerzurueck.UseVisualStyleBackColor = true;
+            this.cbFokusImmerzurueck.CheckedChanged += new System.EventHandler(this.cbFokusImmerzurueck_CheckedChanged);
+            // 
+            // numSifagroesse
+            // 
+            this.numSifagroesse.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numSifagroesse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numSifagroesse.Location = new System.Drawing.Point(67, 116);
+            this.numSifagroesse.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numSifagroesse.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numSifagroesse.Name = "numSifagroesse";
+            this.numSifagroesse.ReadOnly = true;
+            this.numSifagroesse.Size = new System.Drawing.Size(29, 20);
+            this.numSifagroesse.TabIndex = 4;
+            this.numSifagroesse.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numSifagroesse.Value = global::ZusiMeter.Properties.Settings.Default.numSifagroesse;
+            this.numSifagroesse.ValueChanged += new System.EventHandler(this.numSifagroesse_ValueChanged);
             // 
             // tabSystem
             // 
@@ -809,6 +1463,24 @@
             this.grpVerbindung.TabIndex = 12;
             this.grpVerbindung.TabStop = false;
             this.grpVerbindung.Text = "Verbindung";
+            // 
+            // tbServer
+            // 
+            this.tbServer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ZusiMeter.Properties.Settings.Default, "tbServer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbServer.Location = new System.Drawing.Point(7, 26);
+            this.tbServer.Name = "tbServer";
+            this.tbServer.Size = new System.Drawing.Size(74, 20);
+            this.tbServer.TabIndex = 13;
+            this.tbServer.Text = global::ZusiMeter.Properties.Settings.Default.tbServer;
+            // 
+            // tbPort
+            // 
+            this.tbPort.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ZusiMeter.Properties.Settings.Default, "tbPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbPort.Location = new System.Drawing.Point(7, 52);
+            this.tbPort.Name = "tbPort";
+            this.tbPort.Size = new System.Drawing.Size(74, 20);
+            this.tbPort.TabIndex = 12;
+            this.tbPort.Text = global::ZusiMeter.Properties.Settings.Default.tbPort;
             // 
             // btnConnect
             // 
@@ -1765,665 +2437,6 @@
             this.timerResetSifaschalter.Interval = 2000;
             this.timerResetSifaschalter.Tick += new System.EventHandler(this.timerResetSifaschalter_Tick);
             // 
-            // cbSettingsSeparate
-            // 
-            this.cbSettingsSeparate.BackColor = System.Drawing.Color.LightGray;
-            this.cbSettingsSeparate.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.cbSettingsSeparate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cbSettingsSeparate.Location = new System.Drawing.Point(6, 172);
-            this.cbSettingsSeparate.Name = "cbSettingsSeparate";
-            this.cbSettingsSeparate.Size = new System.Drawing.Size(118, 35);
-            this.cbSettingsSeparate.TabIndex = 23;
-            this.cbSettingsSeparate.Text = "Einstellungen in separatem Fenster";
-            this.cbSettingsSeparate.UseVisualStyleBackColor = false;
-            this.cbSettingsSeparate.CheckedChanged += new System.EventHandler(this.cbSettingsSeparate_CheckedChanged);
-            // 
-            // cbRailrunner
-            // 
-            this.cbRailrunner.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbRailrunner.AutoSize = true;
-            this.cbRailrunner.Checked = global::ZusiMeter.Properties.Settings.Default.cbRailrunner;
-            this.cbRailrunner.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRailrunner.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRailrunner", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbRailrunner.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbRailrunner.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbRailrunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRailrunner.Location = new System.Drawing.Point(6, 280);
-            this.cbRailrunner.Name = "cbRailrunner";
-            this.cbRailrunner.Size = new System.Drawing.Size(65, 23);
-            this.cbRailrunner.TabIndex = 31;
-            this.cbRailrunner.Text = "Railrunner";
-            this.cbRailrunner.UseVisualStyleBackColor = true;
-            this.cbRailrunner.CheckedChanged += new System.EventHandler(this.cbRailrunner_CheckedChanged);
-            // 
-            // cbSchalterst
-            // 
-            this.cbSchalterst.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbSchalterst.AutoSize = true;
-            this.cbSchalterst.Checked = global::ZusiMeter.Properties.Settings.Default.cbSchalterst;
-            this.cbSchalterst.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSchalterst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbSchalterst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbSchalterst.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbSchalterst.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbSchalterst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbSchalterst.Location = new System.Drawing.Point(217, 9);
-            this.cbSchalterst.Name = "cbSchalterst";
-            this.cbSchalterst.Size = new System.Drawing.Size(104, 23);
-            this.cbSchalterst.TabIndex = 8;
-            this.cbSchalterst.Text = "Schalterstellungen";
-            this.cbSchalterst.UseVisualStyleBackColor = true;
-            this.cbSchalterst.CheckedChanged += new System.EventHandler(this.cbSchalterst_CheckedChanged);
-            // 
-            // cbRRautoreset
-            // 
-            this.cbRRautoreset.AutoSize = true;
-            this.cbRRautoreset.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRautoreset;
-            this.cbRRautoreset.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRRautoreset.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRautoreset", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbRRautoreset.Enabled = false;
-            this.cbRRautoreset.Location = new System.Drawing.Point(3, 46);
-            this.cbRRautoreset.Name = "cbRRautoreset";
-            this.cbRRautoreset.Size = new System.Drawing.Size(139, 17);
-            this.cbRRautoreset.TabIndex = 38;
-            this.cbRRautoreset.Text = "Automatisch rücksetzen";
-            this.cbRRautoreset.UseVisualStyleBackColor = true;
-            // 
-            // cbRRSound
-            // 
-            this.cbRRSound.AutoSize = true;
-            this.cbRRSound.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRSound;
-            this.cbRRSound.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRRSound.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRSound", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbRRSound.Enabled = false;
-            this.cbRRSound.Location = new System.Drawing.Point(4, 25);
-            this.cbRRSound.Name = "cbRRSound";
-            this.cbRRSound.Size = new System.Drawing.Size(62, 17);
-            this.cbRRSound.TabIndex = 37;
-            this.cbRRSound.Text = "Ton ein";
-            this.cbRRSound.UseVisualStyleBackColor = true;
-            // 
-            // cbRRcountdown
-            // 
-            this.cbRRcountdown.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbRRcountdown.AutoSize = true;
-            this.cbRRcountdown.BackColor = System.Drawing.Color.Transparent;
-            this.cbRRcountdown.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRcountdown;
-            this.cbRRcountdown.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRRcountdown.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRcountdown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbRRcountdown.Enabled = false;
-            this.cbRRcountdown.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
-            this.cbRRcountdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRRcountdown.Location = new System.Drawing.Point(93, 23);
-            this.cbRRcountdown.Name = "cbRRcountdown";
-            this.cbRRcountdown.Size = new System.Drawing.Size(23, 23);
-            this.cbRRcountdown.TabIndex = 21;
-            this.cbRRcountdown.Text = "˅";
-            this.cbRRcountdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbRRcountdown.UseVisualStyleBackColor = false;
-            this.cbRRcountdown.CheckedChanged += new System.EventHandler(this.cbRRcountdown_CheckedChanged);
-            // 
-            // cbRRcountup
-            // 
-            this.cbRRcountup.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbRRcountup.AutoSize = true;
-            this.cbRRcountup.BackColor = System.Drawing.Color.Transparent;
-            this.cbRRcountup.Checked = global::ZusiMeter.Properties.Settings.Default.cbRRcountup;
-            this.cbRRcountup.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbRRcountup", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbRRcountup.Enabled = false;
-            this.cbRRcountup.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSlateGray;
-            this.cbRRcountup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRRcountup.Location = new System.Drawing.Point(114, 23);
-            this.cbRRcountup.Name = "cbRRcountup";
-            this.cbRRcountup.Size = new System.Drawing.Size(23, 23);
-            this.cbRRcountup.TabIndex = 20;
-            this.cbRRcountup.Text = "˄";
-            this.cbRRcountup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbRRcountup.UseVisualStyleBackColor = false;
-            this.cbRRcountup.CheckedChanged += new System.EventHandler(this.cbRRcountup_CheckedChanged);
-            // 
-            // numRRfest
-            // 
-            this.numRRfest.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numRRfest", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numRRfest.Enabled = false;
-            this.numRRfest.Increment = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.numRRfest.Location = new System.Drawing.Point(93, 1);
-            this.numRRfest.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.numRRfest.Name = "numRRfest";
-            this.numRRfest.Size = new System.Drawing.Size(45, 20);
-            this.numRRfest.TabIndex = 35;
-            this.numRRfest.Value = global::ZusiMeter.Properties.Settings.Default.numRRfest;
-            this.numRRfest.ValueChanged += new System.EventHandler(this.numRRfest_ValueChanged);
-            // 
-            // rbRRfrei
-            // 
-            this.rbRRfrei.AutoSize = true;
-            this.rbRRfrei.Checked = global::ZusiMeter.Properties.Settings.Default.rbRRfrei;
-            this.rbRRfrei.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbRRfrei", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rbRRfrei.Location = new System.Drawing.Point(3, 4);
-            this.rbRRfrei.Name = "rbRRfrei";
-            this.rbRRfrei.Size = new System.Drawing.Size(39, 17);
-            this.rbRRfrei.TabIndex = 33;
-            this.rbRRfrei.TabStop = true;
-            this.rbRRfrei.Text = "frei";
-            this.rbRRfrei.UseVisualStyleBackColor = true;
-            this.rbRRfrei.CheckedChanged += new System.EventHandler(this.rbRRfrei_CheckedChanged);
-            // 
-            // cbAFBLZB
-            // 
-            this.cbAFBLZB.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbAFBLZB.AutoSize = true;
-            this.cbAFBLZB.Checked = global::ZusiMeter.Properties.Settings.Default.cbAFBLZB;
-            this.cbAFBLZB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAFBLZB.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbAFBLZB", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbAFBLZB.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbAFBLZB.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbAFBLZB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbAFBLZB.Location = new System.Drawing.Point(217, 165);
-            this.cbAFBLZB.Name = "cbAFBLZB";
-            this.cbAFBLZB.Size = new System.Drawing.Size(68, 23);
-            this.cbAFBLZB.TabIndex = 26;
-            this.cbAFBLZB.Text = "AFB / LZB";
-            this.cbAFBLZB.UseVisualStyleBackColor = true;
-            this.cbAFBLZB.CheckedChanged += new System.EventHandler(this.cbAFBLZB_CheckedChanged);
-            // 
-            // cbGrunddaten
-            // 
-            this.cbGrunddaten.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbGrunddaten.AutoSize = true;
-            this.cbGrunddaten.Checked = global::ZusiMeter.Properties.Settings.Default.cbGrunddaten;
-            this.cbGrunddaten.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbGrunddaten.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbGrunddaten", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbGrunddaten.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbGrunddaten.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbGrunddaten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbGrunddaten.Location = new System.Drawing.Point(6, 9);
-            this.cbGrunddaten.Name = "cbGrunddaten";
-            this.cbGrunddaten.Size = new System.Drawing.Size(73, 23);
-            this.cbGrunddaten.TabIndex = 8;
-            this.cbGrunddaten.Text = "Grunddaten";
-            this.cbGrunddaten.UseVisualStyleBackColor = true;
-            this.cbGrunddaten.CheckedChanged += new System.EventHandler(this.cbGrunddaten_CheckedChanged);
-            // 
-            // rbAFBvor5
-            // 
-            this.rbAFBvor5.AutoSize = true;
-            this.rbAFBvor5.Checked = global::ZusiMeter.Properties.Settings.Default.rbAFBvor5;
-            this.rbAFBvor5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbAFBvor5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rbAFBvor5.Location = new System.Drawing.Point(22, 17);
-            this.rbAFBvor5.Name = "rbAFBvor5";
-            this.rbAFBvor5.Size = new System.Drawing.Size(59, 17);
-            this.rbAFBvor5.TabIndex = 20;
-            this.rbAFBvor5.TabStop = true;
-            this.rbAFBvor5.Text = "5 km/h";
-            this.rbAFBvor5.UseVisualStyleBackColor = true;
-            this.rbAFBvor5.CheckedChanged += new System.EventHandler(this.rbAFBvor5_CheckedChanged);
-            // 
-            // cbAFBVorwahl
-            // 
-            this.cbAFBVorwahl.AutoSize = true;
-            this.cbAFBVorwahl.Checked = global::ZusiMeter.Properties.Settings.Default.cbAFBVorwahl;
-            this.cbAFBVorwahl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbAFBVorwahl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbAFBVorwahl.Location = new System.Drawing.Point(3, 2);
-            this.cbAFBVorwahl.Name = "cbAFBVorwahl";
-            this.cbAFBVorwahl.Size = new System.Drawing.Size(101, 17);
-            this.cbAFBVorwahl.TabIndex = 31;
-            this.cbAFBVorwahl.Text = "AFB vorgewählt";
-            this.cbAFBVorwahl.UseVisualStyleBackColor = true;
-            this.cbAFBVorwahl.CheckedChanged += new System.EventHandler(this.cbAFBVorwahl_CheckedChanged);
-            // 
-            // cbLZBlm
-            // 
-            this.cbLZBlm.AutoSize = true;
-            this.cbLZBlm.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBlm;
-            this.cbLZBlm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBlm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbLZBlm.Location = new System.Drawing.Point(3, 90);
-            this.cbLZBlm.Name = "cbLZBlm";
-            this.cbLZBlm.Size = new System.Drawing.Size(113, 17);
-            this.cbLZBlm.TabIndex = 34;
-            this.cbLZBlm.Text = "LZB-Leuchtmelder";
-            this.cbLZBlm.UseVisualStyleBackColor = true;
-            this.cbLZBlm.CheckedChanged += new System.EventHandler(this.cbLZBlm_CheckedChanged);
-            // 
-            // cbLZBvziel
-            // 
-            this.cbLZBvziel.AutoSize = true;
-            this.cbLZBvziel.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBvziel;
-            this.cbLZBvziel.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBvziel", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbLZBvziel.Location = new System.Drawing.Point(86, 4);
-            this.cbLZBvziel.Name = "cbLZBvziel";
-            this.cbLZBvziel.Size = new System.Drawing.Size(78, 17);
-            this.cbLZBvziel.TabIndex = 30;
-            this.cbLZBvziel.Text = "LZB - vZiel";
-            this.cbLZBvziel.UseVisualStyleBackColor = true;
-            this.cbLZBvziel.CheckedChanged += new System.EventHandler(this.cbLZBvziel_CheckedChanged);
-            // 
-            // cbLZBweg
-            // 
-            this.cbLZBweg.AutoSize = true;
-            this.cbLZBweg.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBweg;
-            this.cbLZBweg.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBweg", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbLZBweg.Location = new System.Drawing.Point(86, 20);
-            this.cbLZBweg.Name = "cbLZBweg";
-            this.cbLZBweg.Size = new System.Drawing.Size(89, 17);
-            this.cbLZBweg.TabIndex = 29;
-            this.cbLZBweg.Text = "LZB - Ziel (m)";
-            this.cbLZBweg.UseVisualStyleBackColor = true;
-            this.cbLZBweg.CheckedChanged += new System.EventHandler(this.cbLZBweg_CheckedChanged);
-            // 
-            // cbLZBvsoll
-            // 
-            this.cbLZBvsoll.AutoSize = true;
-            this.cbLZBvsoll.Checked = global::ZusiMeter.Properties.Settings.Default.cbLZBvsoll;
-            this.cbLZBvsoll.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLZBvsoll", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbLZBvsoll.Location = new System.Drawing.Point(3, 20);
-            this.cbLZBvsoll.Name = "cbLZBvsoll";
-            this.cbLZBvsoll.Size = new System.Drawing.Size(78, 17);
-            this.cbLZBvsoll.TabIndex = 28;
-            this.cbLZBvsoll.Text = "LZB - vSoll";
-            this.cbLZBvsoll.UseVisualStyleBackColor = true;
-            this.cbLZBvsoll.CheckedChanged += new System.EventHandler(this.cbLZBvsoll_CheckedChanged);
-            // 
-            // cbAFBgeschw
-            // 
-            this.cbAFBgeschw.AutoSize = true;
-            this.cbAFBgeschw.Checked = global::ZusiMeter.Properties.Settings.Default.cbAFBgeschw;
-            this.cbAFBgeschw.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAFBgeschw.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbAFBgeschw", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbAFBgeschw.Location = new System.Drawing.Point(3, 3);
-            this.cbAFBgeschw.Name = "cbAFBgeschw";
-            this.cbAFBgeschw.Size = new System.Drawing.Size(78, 17);
-            this.cbAFBgeschw.TabIndex = 27;
-            this.cbAFBgeschw.Text = "AFB - vSoll";
-            this.cbAFBgeschw.UseVisualStyleBackColor = true;
-            this.cbAFBgeschw.CheckedChanged += new System.EventHandler(this.cbAFBgeschw_CheckedChanged);
-            // 
-            // cbPZBLM
-            // 
-            this.cbPZBLM.AutoSize = true;
-            this.cbPZBLM.Checked = global::ZusiMeter.Properties.Settings.Default.cbPZBLM;
-            this.cbPZBLM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbPZBLM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbPZBLM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbPZBLM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPZBLM.Location = new System.Drawing.Point(3, 71);
-            this.cbPZBLM.Name = "cbPZBLM";
-            this.cbPZBLM.Size = new System.Drawing.Size(114, 17);
-            this.cbPZBLM.TabIndex = 9;
-            this.cbPZBLM.Text = "PZB-Leuchtmelder";
-            this.cbPZBLM.UseVisualStyleBackColor = true;
-            this.cbPZBLM.CheckedChanged += new System.EventHandler(this.cbPZBLM_CheckedChanged);
-            // 
-            // cbStreckenmeter
-            // 
-            this.cbStreckenmeter.AutoSize = true;
-            this.cbStreckenmeter.Checked = global::ZusiMeter.Properties.Settings.Default.cbStreckenmeter;
-            this.cbStreckenmeter.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbStreckenmeter.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbStreckenmeter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbStreckenmeter.Location = new System.Drawing.Point(3, 20);
-            this.cbStreckenmeter.Name = "cbStreckenmeter";
-            this.cbStreckenmeter.Size = new System.Drawing.Size(95, 17);
-            this.cbStreckenmeter.TabIndex = 1;
-            this.cbStreckenmeter.Text = "Streckenmeter";
-            this.cbStreckenmeter.UseVisualStyleBackColor = true;
-            this.cbStreckenmeter.CheckedChanged += new System.EventHandler(this.cbStreckenmeter_CheckedChanged);
-            // 
-            // cbGeschwindigkeit
-            // 
-            this.cbGeschwindigkeit.AutoSize = true;
-            this.cbGeschwindigkeit.Checked = global::ZusiMeter.Properties.Settings.Default.cbGeschwindigkeit;
-            this.cbGeschwindigkeit.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbGeschwindigkeit.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbGeschwindigkeit", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbGeschwindigkeit.Location = new System.Drawing.Point(3, 3);
-            this.cbGeschwindigkeit.Name = "cbGeschwindigkeit";
-            this.cbGeschwindigkeit.Size = new System.Drawing.Size(104, 17);
-            this.cbGeschwindigkeit.TabIndex = 0;
-            this.cbGeschwindigkeit.Text = "Geschwindigkeit";
-            this.cbGeschwindigkeit.UseVisualStyleBackColor = true;
-            this.cbGeschwindigkeit.CheckedChanged += new System.EventHandler(this.cbGeschwindigkeit_CheckedChanged);
-            // 
-            // cbFahrstufe
-            // 
-            this.cbFahrstufe.AutoSize = true;
-            this.cbFahrstufe.Checked = global::ZusiMeter.Properties.Settings.Default.cbFahrstufe;
-            this.cbFahrstufe.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbFahrstufe.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFahrstufe", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbFahrstufe.Location = new System.Drawing.Point(3, 36);
-            this.cbFahrstufe.Name = "cbFahrstufe";
-            this.cbFahrstufe.Size = new System.Drawing.Size(70, 17);
-            this.cbFahrstufe.TabIndex = 7;
-            this.cbFahrstufe.Text = "Fahrstufe";
-            this.cbFahrstufe.UseVisualStyleBackColor = true;
-            this.cbFahrstufe.CheckedChanged += new System.EventHandler(this.cbFahrstufe_CheckedChanged);
-            // 
-            // cbLmsifa
-            // 
-            this.cbLmsifa.AutoSize = true;
-            this.cbLmsifa.Checked = global::ZusiMeter.Properties.Settings.Default.cbLmsifa;
-            this.cbLmsifa.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLmsifa.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLmsifa", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbLmsifa.Location = new System.Drawing.Point(113, 3);
-            this.cbLmsifa.Name = "cbLmsifa";
-            this.cbLmsifa.Size = new System.Drawing.Size(44, 17);
-            this.cbLmsifa.TabIndex = 2;
-            this.cbLmsifa.Text = "Sifa";
-            this.cbLmsifa.UseVisualStyleBackColor = true;
-            this.cbLmsifa.CheckedChanged += new System.EventHandler(this.cbLmsifa_CheckedChanged);
-            // 
-            // cbTueren
-            // 
-            this.cbTueren.AutoSize = true;
-            this.cbTueren.Checked = global::ZusiMeter.Properties.Settings.Default.cbTueren;
-            this.cbTueren.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTueren.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTueren", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbTueren.Location = new System.Drawing.Point(113, 20);
-            this.cbTueren.Name = "cbTueren";
-            this.cbTueren.Size = new System.Drawing.Size(54, 17);
-            this.cbTueren.TabIndex = 3;
-            this.cbTueren.Text = "Türen";
-            this.cbTueren.UseVisualStyleBackColor = true;
-            this.cbTueren.CheckedChanged += new System.EventHandler(this.cbLmtueren_CheckedChanged);
-            // 
-            // cbTime
-            // 
-            this.cbTime.AutoSize = true;
-            this.cbTime.Checked = global::ZusiMeter.Properties.Settings.Default.cbTime;
-            this.cbTime.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTime.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbTime.Location = new System.Drawing.Point(113, 36);
-            this.cbTime.Name = "cbTime";
-            this.cbTime.Size = new System.Drawing.Size(59, 17);
-            this.cbTime.TabIndex = 6;
-            this.cbTime.Text = "Uhrzeit";
-            this.cbTime.UseVisualStyleBackColor = true;
-            this.cbTime.CheckedChanged += new System.EventHandler(this.cbTime_CheckedChanged);
-            // 
-            // cbLmschleudern
-            // 
-            this.cbLmschleudern.AutoSize = true;
-            this.cbLmschleudern.Checked = global::ZusiMeter.Properties.Settings.Default.cbLmschleudern;
-            this.cbLmschleudern.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLmschleudern.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbLmschleudern", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbLmschleudern.Location = new System.Drawing.Point(3, 54);
-            this.cbLmschleudern.Name = "cbLmschleudern";
-            this.cbLmschleudern.Size = new System.Drawing.Size(142, 17);
-            this.cbLmschleudern.TabIndex = 4;
-            this.cbLmschleudern.Text = "LM Schleudern / Gleiten";
-            this.cbLmschleudern.UseVisualStyleBackColor = true;
-            this.cbLmschleudern.CheckedChanged += new System.EventHandler(this.cbLmschleudern_CheckedChanged);
-            // 
-            // cbZusbremse
-            // 
-            this.cbZusbremse.AutoSize = true;
-            this.cbZusbremse.Checked = global::ZusiMeter.Properties.Settings.Default.cbZusbremse;
-            this.cbZusbremse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbZusbremse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbZusbremse.Enabled = false;
-            this.cbZusbremse.Location = new System.Drawing.Point(3, 83);
-            this.cbZusbremse.Name = "cbZusbremse";
-            this.cbZusbremse.Size = new System.Drawing.Size(92, 17);
-            this.cbZusbremse.TabIndex = 25;
-            this.cbZusbremse.Text = "Zusatzbremse";
-            this.cbZusbremse.UseVisualStyleBackColor = true;
-            // 
-            // cbDruckhbl
-            // 
-            this.cbDruckhbl.AutoSize = true;
-            this.cbDruckhbl.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhbl;
-            this.cbDruckhbl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhbl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbDruckhbl.Location = new System.Drawing.Point(113, 6);
-            this.cbDruckhbl.Name = "cbDruckhbl";
-            this.cbDruckhbl.Size = new System.Drawing.Size(79, 17);
-            this.cbDruckhbl.TabIndex = 11;
-            this.cbDruckhbl.Text = "Druck HBL";
-            this.cbDruckhbl.UseVisualStyleBackColor = true;
-            this.cbDruckhbl.CheckedChanged += new System.EventHandler(this.cbDruckhbl_CheckedChanged);
-            // 
-            // cbDruckhlb
-            // 
-            this.cbDruckhlb.AutoSize = true;
-            this.cbDruckhlb.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhlb;
-            this.cbDruckhlb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhlb", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbDruckhlb.Location = new System.Drawing.Point(113, 23);
-            this.cbDruckhlb.Name = "cbDruckhlb";
-            this.cbDruckhlb.Size = new System.Drawing.Size(79, 17);
-            this.cbDruckhlb.TabIndex = 10;
-            this.cbDruckhlb.Text = "Druck HLB";
-            this.cbDruckhlb.UseVisualStyleBackColor = true;
-            this.cbDruckhlb.CheckedChanged += new System.EventHandler(this.cbDruckhlb_CheckedChanged);
-            // 
-            // cbDynbremse
-            // 
-            this.cbDynbremse.AutoSize = true;
-            this.cbDynbremse.Checked = global::ZusiMeter.Properties.Settings.Default.cbDynbremse;
-            this.cbDynbremse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDynbremse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbDynbremse.Enabled = false;
-            this.cbDynbremse.Location = new System.Drawing.Point(113, 62);
-            this.cbDynbremse.Name = "cbDynbremse";
-            this.cbDynbremse.Size = new System.Drawing.Size(86, 17);
-            this.cbDynbremse.TabIndex = 24;
-            this.cbDynbremse.Text = "Dyn. Bremse";
-            this.cbDynbremse.UseVisualStyleBackColor = true;
-            // 
-            // cbFbv
-            // 
-            this.cbFbv.AutoSize = true;
-            this.cbFbv.Checked = global::ZusiMeter.Properties.Settings.Default.cbFbv;
-            this.cbFbv.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFbv", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbFbv.Enabled = false;
-            this.cbFbv.Location = new System.Drawing.Point(3, 62);
-            this.cbFbv.Name = "cbFbv";
-            this.cbFbv.Size = new System.Drawing.Size(109, 17);
-            this.cbFbv.TabIndex = 23;
-            this.cbFbv.Text = "Führerbremsventil";
-            this.cbFbv.UseVisualStyleBackColor = true;
-            // 
-            // cbDruckhll
-            // 
-            this.cbDruckhll.AutoSize = true;
-            this.cbDruckhll.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckhll;
-            this.cbDruckhll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckhll.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckhll", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbDruckhll.Location = new System.Drawing.Point(3, 23);
-            this.cbDruckhll.Name = "cbDruckhll";
-            this.cbDruckhll.Size = new System.Drawing.Size(70, 17);
-            this.cbDruckhll.TabIndex = 2;
-            this.cbDruckhll.Text = "Druck Hll";
-            this.cbDruckhll.UseVisualStyleBackColor = true;
-            this.cbDruckhll.CheckedChanged += new System.EventHandler(this.cbDruckhll_CheckedChanged);
-            // 
-            // cbBrh
-            // 
-            this.cbBrh.AutoSize = true;
-            this.cbBrh.Checked = global::ZusiMeter.Properties.Settings.Default.cbBrh;
-            this.cbBrh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBrh.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbBrh", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbBrh.Location = new System.Drawing.Point(3, 5);
-            this.cbBrh.Name = "cbBrh";
-            this.cbBrh.Size = new System.Drawing.Size(107, 17);
-            this.cbBrh.TabIndex = 4;
-            this.cbBrh.Text = "Bremshundertstel";
-            this.cbBrh.UseVisualStyleBackColor = true;
-            this.cbBrh.CheckedChanged += new System.EventHandler(this.cbBrh_CheckedChanged);
-            // 
-            // cbDruckbz
-            // 
-            this.cbDruckbz.AutoSize = true;
-            this.cbDruckbz.Checked = global::ZusiMeter.Properties.Settings.Default.cbDruckbz;
-            this.cbDruckbz.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDruckbz.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbDruckbz", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbDruckbz.Location = new System.Drawing.Point(3, 43);
-            this.cbDruckbz.Name = "cbDruckbz";
-            this.cbDruckbz.Size = new System.Drawing.Size(122, 17);
-            this.cbDruckbz.TabIndex = 3;
-            this.cbDruckbz.Text = "Druck Bremszylinder";
-            this.cbDruckbz.UseVisualStyleBackColor = true;
-            this.cbDruckbz.CheckedChanged += new System.EventHandler(this.cbDruckbz_CheckedChanged);
-            // 
-            // cbBremsen
-            // 
-            this.cbBremsen.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbBremsen.AutoSize = true;
-            this.cbBremsen.Checked = global::ZusiMeter.Properties.Settings.Default.cbBremsen;
-            this.cbBremsen.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBremsen.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbBremsen", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbBremsen.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cbBremsen.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.cbBremsen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbBremsen.Location = new System.Drawing.Point(6, 141);
-            this.cbBremsen.Name = "cbBremsen";
-            this.cbBremsen.Size = new System.Drawing.Size(58, 23);
-            this.cbBremsen.TabIndex = 9;
-            this.cbBremsen.Text = "Bremsen";
-            this.cbBremsen.UseVisualStyleBackColor = true;
-            this.cbBremsen.CheckedChanged += new System.EventHandler(this.cbBremsen_CheckedChanged);
-            // 
-            // numFahrschneutral
-            // 
-            this.numFahrschneutral.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numFahrschneutral", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numFahrschneutral.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numFahrschneutral.Location = new System.Drawing.Point(142, 0);
-            this.numFahrschneutral.Maximum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.numFahrschneutral.Name = "numFahrschneutral";
-            this.numFahrschneutral.ReadOnly = true;
-            this.numFahrschneutral.Size = new System.Drawing.Size(33, 20);
-            this.numFahrschneutral.TabIndex = 20;
-            this.numFahrschneutral.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.numFahrschneutral.Value = global::ZusiMeter.Properties.Settings.Default.numFahrschneutral;
-            this.numFahrschneutral.ValueChanged += new System.EventHandler(this.numFahrschneutral_ValueChanged);
-            // 
-            // cbFahrstufenschalter
-            // 
-            this.cbFahrstufenschalter.AutoSize = true;
-            this.cbFahrstufenschalter.Checked = global::ZusiMeter.Properties.Settings.Default.cbFahrstufenschalter;
-            this.cbFahrstufenschalter.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFahrstufenschalter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbFahrstufenschalter.Location = new System.Drawing.Point(3, 5);
-            this.cbFahrstufenschalter.Name = "cbFahrstufenschalter";
-            this.cbFahrstufenschalter.Size = new System.Drawing.Size(84, 17);
-            this.cbFahrstufenschalter.TabIndex = 9;
-            this.cbFahrstufenschalter.Text = "Fahrschalter";
-            this.cbFahrstufenschalter.UseVisualStyleBackColor = true;
-            this.cbFahrstufenschalter.CheckedChanged += new System.EventHandler(this.cbFahrstufenschalter_CheckedChanged);
-            // 
-            // rbUnitkph
-            // 
-            this.rbUnitkph.AutoSize = true;
-            this.rbUnitkph.Checked = global::ZusiMeter.Properties.Settings.Default.rbUnitkph;
-            this.rbUnitkph.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbUnitkph", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rbUnitkph.Location = new System.Drawing.Point(6, 19);
-            this.rbUnitkph.Name = "rbUnitkph";
-            this.rbUnitkph.Size = new System.Drawing.Size(50, 17);
-            this.rbUnitkph.TabIndex = 5;
-            this.rbUnitkph.TabStop = true;
-            this.rbUnitkph.Text = "km/h";
-            this.rbUnitkph.UseVisualStyleBackColor = true;
-            this.rbUnitkph.CheckedChanged += new System.EventHandler(this.rbUnitkph_CheckedChanged);
-            // 
-            // rbUnitkm
-            // 
-            this.rbUnitkm.AutoSize = true;
-            this.rbUnitkm.Checked = global::ZusiMeter.Properties.Settings.Default.rbUnitkm;
-            this.rbUnitkm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "rbUnitkm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rbUnitkm.Location = new System.Drawing.Point(6, 21);
-            this.rbUnitkm.Name = "rbUnitkm";
-            this.rbUnitkm.Size = new System.Drawing.Size(68, 17);
-            this.rbUnitkm.TabIndex = 2;
-            this.rbUnitkm.TabStop = true;
-            this.rbUnitkm.Text = "Kilometer";
-            this.rbUnitkm.UseVisualStyleBackColor = true;
-            this.rbUnitkm.CheckedChanged += new System.EventHandler(this.rbDarstKm_CheckedChanged);
-            // 
-            // cbHidesettings
-            // 
-            this.cbHidesettings.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.cbHidesettings.Checked = global::ZusiMeter.Properties.Settings.Default.cbHidesettings;
-            this.cbHidesettings.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbHidesettings.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbHidesettings", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbHidesettings.Location = new System.Drawing.Point(6, 275);
-            this.cbHidesettings.Name = "cbHidesettings";
-            this.cbHidesettings.Size = new System.Drawing.Size(159, 33);
-            this.cbHidesettings.TabIndex = 22;
-            this.cbHidesettings.Text = "Einstellungen automatisch ausblenden";
-            this.cbHidesettings.UseVisualStyleBackColor = true;
-            this.cbHidesettings.CheckedChanged += new System.EventHandler(this.cbHidesettings_CheckedChanged);
-            // 
-            // cbTopmost
-            // 
-            this.cbTopmost.AutoSize = true;
-            this.cbTopmost.Checked = global::ZusiMeter.Properties.Settings.Default.cbTopmost;
-            this.cbTopmost.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTopmost.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbTopmost", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbTopmost.Location = new System.Drawing.Point(6, 252);
-            this.cbTopmost.Name = "cbTopmost";
-            this.cbTopmost.Size = new System.Drawing.Size(128, 17);
-            this.cbTopmost.TabIndex = 17;
-            this.cbTopmost.Text = "Immer im Vordergrund";
-            this.cbTopmost.UseVisualStyleBackColor = true;
-            this.cbTopmost.CheckedChanged += new System.EventHandler(this.cbTopmost_CheckedChanged);
-            // 
-            // cbFokusImmerzurueck
-            // 
-            this.cbFokusImmerzurueck.AutoSize = true;
-            this.cbFokusImmerzurueck.Checked = global::ZusiMeter.Properties.Settings.Default.cbFokusImmerzurueck;
-            this.cbFokusImmerzurueck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbFokusImmerzurueck.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ZusiMeter.Properties.Settings.Default, "cbFokusImmerzurueck", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbFokusImmerzurueck.Location = new System.Drawing.Point(6, 331);
-            this.cbFokusImmerzurueck.Name = "cbFokusImmerzurueck";
-            this.cbFokusImmerzurueck.Size = new System.Drawing.Size(181, 17);
-            this.cbFokusImmerzurueck.TabIndex = 16;
-            this.cbFokusImmerzurueck.Text = "Fokus nach Klick zurück an Zusi";
-            this.cbFokusImmerzurueck.UseVisualStyleBackColor = true;
-            this.cbFokusImmerzurueck.CheckedChanged += new System.EventHandler(this.cbFokusImmerzurueck_CheckedChanged);
-            // 
-            // numSifagroesse
-            // 
-            this.numSifagroesse.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::ZusiMeter.Properties.Settings.Default, "numSifagroesse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numSifagroesse.Location = new System.Drawing.Point(67, 116);
-            this.numSifagroesse.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.numSifagroesse.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numSifagroesse.Name = "numSifagroesse";
-            this.numSifagroesse.ReadOnly = true;
-            this.numSifagroesse.Size = new System.Drawing.Size(29, 20);
-            this.numSifagroesse.TabIndex = 4;
-            this.numSifagroesse.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.numSifagroesse.Value = global::ZusiMeter.Properties.Settings.Default.numSifagroesse;
-            this.numSifagroesse.ValueChanged += new System.EventHandler(this.numSifagroesse_ValueChanged);
-            // 
-            // tbServer
-            // 
-            this.tbServer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ZusiMeter.Properties.Settings.Default, "tbServer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbServer.Location = new System.Drawing.Point(7, 26);
-            this.tbServer.Name = "tbServer";
-            this.tbServer.Size = new System.Drawing.Size(74, 20);
-            this.tbServer.TabIndex = 13;
-            this.tbServer.Text = global::ZusiMeter.Properties.Settings.Default.tbServer;
-            // 
-            // tbPort
-            // 
-            this.tbPort.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ZusiMeter.Properties.Settings.Default, "tbPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbPort.Location = new System.Drawing.Point(7, 52);
-            this.tbPort.Name = "tbPort";
-            this.tbPort.Size = new System.Drawing.Size(74, 20);
-            this.tbPort.TabIndex = 12;
-            this.tbPort.Text = global::ZusiMeter.Properties.Settings.Default.tbPort;
-            // 
             // CMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2452,6 +2465,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSizeGrunddaten)).EndInit();
             this.pnlRailrunner.ResumeLayout(false);
             this.pnlRailrunner.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).EndInit();
             this.pnlAFBLZB.ResumeLayout(false);
             this.pnlAFBLZB.PerformLayout();
             this.pnlAFBrbvor.ResumeLayout(false);
@@ -2462,6 +2476,7 @@
             this.pnlBremsen.PerformLayout();
             this.pnlSchalterst.ResumeLayout(false);
             this.pnlSchalterst.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).EndInit();
             this.tabDarstellung.ResumeLayout(false);
             this.tabDarstellung.PerformLayout();
             this.grpUnits.ResumeLayout(false);
@@ -2470,6 +2485,7 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).EndInit();
             this.tabSystem.ResumeLayout(false);
             this.grpManageSettings.ResumeLayout(false);
             this.grpVerbindung.ResumeLayout(false);
@@ -2494,9 +2510,6 @@
             this.pnlLeft.PerformLayout();
             this.pnlDataLZB.ResumeLayout(false);
             this.pnlDataPZB90.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numRRfest)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFahrschneutral)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSifagroesse)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2675,6 +2688,7 @@
         private System.Windows.Forms.Button btnDefaultSettings;
         private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.Button btnLoadSettings;
+        private System.Windows.Forms.RadioButton rbRRZuglänge;
 
     }
 
