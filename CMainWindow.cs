@@ -57,7 +57,7 @@ namespace ZusiMeter
             MyTCPConnection.FloatReceived += TCPConnection_FloatReceived;            
             MyTCPConnection.BoolReceived += TCPConnection_BoolReceived;
             //MyTCPConnection.IntReceived += TCPConnection_IntReceived;
-            //MyTCPConnection.StringReceived += TCPConnection_StringReceived;
+            MyTCPConnection.StringReceived += TCPConnection_StringReceived;
             MyTCPConnection.DateTimeReceived += TCPConnection_DateTimeReceived;
             //MyTCPConnection.BrakeConfigReceived += TCPConnection_BrakeConfigReceived;
             MyTCPConnection.DoorsReceived += TCPConnection_DoorsReceived;
@@ -113,15 +113,16 @@ namespace ZusiMeter
 
             //###//
             MyTCPConnection.RequestData(2610); // "LM Uhrzeit (digital)"
+            //###//
             
-            
+            //###//
             MyTCPConnection.RequestData(2646); // "Türen"
+            //###//
 
-            
-            
-            
+            //###//
+            MyTCPConnection.RequestData(2656); // "Zugdatei"
+            //###//
 
-            ////TODO MyTCPConnection.RequestData(2656); // "Zugdatei"
             //TODO: is this needed? MyTCPConnection.RequestData(2574); // "LZB/AFB Soll-Geschwindigkeit"
             //TODO: is this needed? MyTCPConnection.RequestData(2615); // "Schalter AFB-Geschwindigkeit"
             #endregion 
@@ -250,6 +251,11 @@ namespace ZusiMeter
         bool settingsAreSeparated = false; // true if settings are shown on a separate form (frmSettings)
         bool lzbIsActive = false; // is LZB active (LM LZB Ü)?
         double afbsoll, lzbsoll; //TEST
+        double fahrschalter; //Fahrstufenschalter less neutral setting
+        double fahrschalterOld;
+
+        String zugdatei = "";
+        String zugdateiOld = "";
 
         //TODO: TEST: is this the best place?
         SettingsForm frmSettings = new SettingsForm();
@@ -297,6 +303,8 @@ namespace ZusiMeter
 
             //make sure checkboxes that exclude each other are properly checked
             //TODO
+
+            setFahrschalterNeutral();
 
             #endregion
 
@@ -394,6 +402,8 @@ namespace ZusiMeter
                         lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed in kph
                     else if (rbUnitmps.Checked)
                         lblV.Text = String.Format("{0:0.0}", vmps); //show current speed in mps
+                    else
+                        lblV.Text = String.Format("{0:0.0}", geschwindigkeit); //show current speed in kph
 
                     if (geschwindigkeit > 0.1) 
                         hasMoved = true;
@@ -574,8 +584,11 @@ namespace ZusiMeter
                 #region Schalter Fahrstufen
                 case 2611:
                 {
-                    double fahrschalter = data.Value - fahrschalterneutral;
-                   lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalter);
+                    //TEST: for neutral setting issue
+                    fahrschalterOld = fahrschalter;
+
+                    fahrschalter = data.Value - fahrschalterneutral;
+                    lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalter);
                     break;
                 }
                 #endregion
@@ -760,6 +773,7 @@ namespace ZusiMeter
                         if (data.Value) // if true, LM Schleudern is on
                         {
                             lblFlag.Text = "Schleudern!";
+                            lblFlag.BackColor = Color.Orange;
                             lblFlag.Visible = true;
                             //timerFlag.Start(); //TEST: TODO: do we need the timer?
                         }
@@ -882,6 +896,30 @@ namespace ZusiMeter
 
         }
 
+        private void TCPConnection_StringReceived(object sender, DataSet<String> data) //Handles MyTCPConnection.BoolReceived
+        {
+            switch (data.Id)
+            {
+                #region Zugdatei
+                case 2656:
+                    {
+                        zugdatei = data.Value;
+                        lblDebugZugdatei.Text = zugdatei.ToString();
+
+                        if (zugdatei != zugdateiOld)
+                            zugdateiChanged();
+
+                        zugdateiOld = zugdatei;
+
+                        break;
+                    }
+                #endregion
+
+                default:
+                    break;
+            }
+        }
+
         private void TCPConnection_DoorsReceived(object sender, DataSet<DoorState> data) // Handles MyTCPConnection.DoorsReceived 
         {
             switch(data.Id)
@@ -890,9 +928,13 @@ namespace ZusiMeter
                 {
                     if (reisezug) // only display door status if passenger train
                     {
+                        
+
                         if (data.Value.ToString() == "Released")
                         {
                             lblTueren.Text = "Türen freigegeben";
+                            //TEST: try to resolve issue that Zp9 label is always visible
+                            lblFlag.Visible = false;
                         }
                         if (data.Value.ToString() == "Open")
                         {
@@ -1001,6 +1043,9 @@ namespace ZusiMeter
 
         public void setNightmode()
         {
+            this.btnSettings.BackColor = buttonnightcolor;
+            this.btnRailrunner.BackColor = buttonnightcolor;
+
             this.BackColor = formnightcolor; //the whole main form's background color
             if (settingsAreSeparated) // if there's a separate settings window
                 frmSettings.BackColor = formnightcolor;
@@ -1051,6 +1096,9 @@ namespace ZusiMeter
        
         public void setDaymode()
         {
+            this.btnSettings.BackColor = buttondaycolor;
+            this.btnRailrunner.BackColor = buttondaycolor;
+
             BackColor = formdaycolor; //the whole main form's background color
             if (settingsAreSeparated) // if there's a separate settings window
                 frmSettings.BackColor = formdaycolor;
@@ -1196,7 +1244,6 @@ namespace ZusiMeter
 
         private void cbLmschleudern_CheckedChanged(object sender, EventArgs e)
         {
-            lblFlag.Visible =cbLmschleudern.Checked;
             if(cbLmschleudern.Checked)
                 ShowFlagtest();
         }        
@@ -1500,8 +1547,6 @@ namespace ZusiMeter
 
         }
 
-        
-
         private void cbPZBLM_CheckedChanged(object sender, EventArgs e)
         {
             pnlDataPZB90.Visible = cbPZBLM.Checked;
@@ -1510,6 +1555,13 @@ namespace ZusiMeter
         private void numFahrschneutral_ValueChanged(object sender, EventArgs e)
         {
             fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
+                        
+            //TEST: should update Fahrstufe in pnlGrunddaten according to neutral setting
+            //if (lblFahrstufenschalter.Text != "--")
+            //{
+            //    double fahrschalterTestvalue = (fahrschalterOld - fahrschalterneutral);
+            //    lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalterTestvalue);
+            //}
         }
 
         //TODO: rename method
@@ -1592,7 +1644,7 @@ namespace ZusiMeter
             if (rrrunning)
             {
                 timerRailrunner.Stop();
-                btnRailrunner.BackColor = Color.FromName("Control");
+                btnRailrunner.BackColor = btnSettings.BackColor;
                 btnRailrunner.Text = "Wegmessung";
                 railrunner = 0;
                 rrrunning = false;
@@ -1964,6 +2016,19 @@ namespace ZusiMeter
             
         }
 
+        public void setFahrschalterNeutral()
+        {
+            //fahrschalterneutral = Convert.ToInt32(numFahrschneutral.Value);
+            //double fahrschalterTestvalue = fahrschalter;
+
+            ////TEST: should update Fahrstufe in pnlGrunddaten according to neutral setting
+            //if (lblFahrstufenschalter.Text != "--")
+            //{
+            //    fahrschalterTestvalue = fahrschalter - fahrschalterneutral;
+            //    lblFahrstufenschalter.Text = String.Format("{0:0}", fahrschalterTestvalue);
+            //}
+        }
+
         public void ShowSeparateSettingsWindow()
         {
 
@@ -2055,6 +2120,12 @@ namespace ZusiMeter
         {
             MessageBox.Show("Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString() + " speichert die Einstellungen "
                 + "automatisch beim Beenden. Mit einer späteren Version werden mehrere Einstellungen anlegbar sein.");
+        }
+
+        public void zugdateiChanged() //if file name has changed
+        {
+            //TEST for issue V007
+            lblTueren.Text = "--";
         }
 
         

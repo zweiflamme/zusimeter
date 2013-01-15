@@ -598,5 +598,77 @@ namespace ZusiMeter.Properties {
                 this["rbRRZuglaenge"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbHauptsch {
+            get {
+                return ((bool)(this["cbHauptsch"]));
+            }
+            set {
+                this["cbHauptsch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbMotorsch {
+            get {
+                return ((bool)(this["cbMotorsch"]));
+            }
+            set {
+                this["cbMotorsch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbFahrtrichtg {
+            get {
+                return ((bool)(this["cbFahrtrichtg"]));
+            }
+            set {
+                this["cbFahrtrichtg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbSchleuderschutz {
+            get {
+                return ((bool)(this["cbSchleuderschutz"]));
+            }
+            set {
+                this["cbSchleuderschutz"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbSanden {
+            get {
+                return ((bool)(this["cbSanden"]));
+            }
+            set {
+                this["cbSanden"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cbLuefter {
+            get {
+                return ((bool)(this["cbLuefter"]));
+            }
+            set {
+                this["cbLuefter"] = value;
+            }
+        }
     }
 }
