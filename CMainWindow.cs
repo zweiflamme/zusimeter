@@ -22,6 +22,10 @@ namespace ZusiMeter
         // We do want to have a ZusiTcpConn object, so here's the declaration
         private ZusiTcpConn MyTCPConnection;
 
+        // Target length for RailRunner function: the value entered in the text box
+        // or the current train length, depending on the RailRunner function selected.
+        private double railrunnerTargetLength;
+
         // Initalize a new stopwatch
         Stopwatch stopwatch = new Stopwatch();
            
@@ -1583,17 +1587,31 @@ namespace ZusiMeter
         {
             double intrvl = Convert.ToDouble(timerRailrunner.Interval);
             railrunner = railrunner + (vmps * (intrvl / 1000.0));
+            double currentTrainLength = CurrentTrainLength.GetCurrentTrainLength();
 
-            if (cbRRcountdown.Checked && rbRRfest.Checked)
-            {
-                btnRailrunner.Text = String.Format("noch {0:0} m", Convert.ToDouble(numRRfest.Value) - railrunner);
+            if (rbRRfest.Checked || rbRRZuglänge.Checked) {
+                if (cbRRcountdown.Checked) {
+                    btnRailrunner.Text = String.Format("noch {0:0} m", railrunnerTargetLength - railrunner);
+                } else {
+                    btnRailrunner.Text = String.Format("{0:0} m", railrunner);
+                }
 
-                if (railrunner >= Convert.ToDouble(numRRfest.Value))
+                if (railrunner >= railrunnerTargetLength)
                 {
                     if (vAlt == 0.0 | geschwindigkeit < vAlt)
+                    {
                         vAlt = geschwindigkeit;
+                    }
 
-                    btnRailrunner.Text = "Strecke abgefahren";
+                    if (cbRRcountdown.Checked)
+                    {
+                        btnRailrunner.Text = "Strecke abgefahren";
+                    }
+                    else
+                    {
+                        btnRailrunner.Text = String.Format("{0:0} m OK", railrunnerTargetLength);
+                    }
+
                     btnRailrunner.BackColor = Color.LightGreen;
                     if (cbRRSound.Checked && rrSoundplayed == false)
                        PlayRRSound();
@@ -1604,28 +1622,6 @@ namespace ZusiMeter
                         SetRR(); //will reset RR if rrrunning is still true
                         vAlt = 0.0;
                     }                
-                }
-            }
-            else if (cbRRcountup.Checked && rbRRfest.Checked)
-            {
-                btnRailrunner.Text = String.Format("{0:0} m", railrunner);
-
-                if (railrunner >= Convert.ToDouble(numRRfest.Value))
-                {
-                    if (vAlt == 0.0 | geschwindigkeit < vAlt)
-                        vAlt = geschwindigkeit;
-
-                    btnRailrunner.Text = numRRfest.Value.ToString() + " m OK";
-                    btnRailrunner.BackColor = Color.LightGreen;
-                    if (cbRRSound.Checked && rrSoundplayed == false)
-                        PlayRRSound();
-  
-                    //for determining if train has been accelerated by more than x kph                                  
-                    if (geschwindigkeit > vAlt + 5 && cbRRautoreset.Checked)
-                    {
-                        SetRR(); //will reset RR if rrrunning is still true
-                        vAlt = 0.0;
-                    }
                 }
             }
             else if (rbRRfrei.Checked)
@@ -1656,6 +1652,25 @@ namespace ZusiMeter
             }
             else if (rrrunning == false)
             {
+                // Determine target length for RailRunner
+                if (rbRRZuglänge.Checked)
+                {
+                    try
+                    {
+                        railrunnerTargetLength = CurrentTrainLength.GetCurrentTrainLength();
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Fehler beim Ermitteln der aktuellen Zuglänge: " + e.Message,
+                            "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else if (rbRRfest.Checked)
+                {
+                    railrunnerTargetLength = Convert.ToDouble(numRRfest.Value);
+                }
+
                 timerRailrunner.Start();
                 btnRailrunner.BackColor = Color.LightSkyBlue;
                 rrrunning = true;
@@ -1778,7 +1793,9 @@ namespace ZusiMeter
 
         private void numRRfest_ValueChanged(object sender, EventArgs e)
         {
-            if (rrrunning && railrunner <= Convert.ToDouble(numRRfest.Value)) //if value has increased, change color back to blue
+            railrunnerTargetLength = Convert.ToDouble(numRRfest.Value);
+
+            if (rrrunning && railrunner <= railrunnerTargetLength) //if value has increased, change color back to blue
             {
                 btnRailrunner.BackColor = Color.LightSkyBlue;
                 rrSoundplayed = false; // so that the sound is played when the new value has been reached
@@ -1849,11 +1866,16 @@ namespace ZusiMeter
         private void rbRRfest_CheckedChanged(object sender, EventArgs e)
         {
             //TODO: integrate these controls into a panel...
-            cbRRSound.Enabled = rbRRfest.Checked; //if rbRRfrei is checked, cbRRSound will be disabled ...
+            cbRRSound.Enabled = rbRRfest.Checked || rbRRZuglänge.Checked; //if rbRRfrei is checked, cbRRSound will be disabled ...
             numRRfest.Enabled = rbRRfest.Checked;
-            cbRRcountup.Enabled = rbRRfest.Checked;
-            cbRRcountdown.Enabled = rbRRfest.Checked;
-            cbRRautoreset.Enabled = rbRRfest.Checked;
+            cbRRcountup.Enabled = rbRRfest.Checked || rbRRZuglänge.Checked;
+            cbRRcountdown.Enabled = rbRRfest.Checked || rbRRZuglänge.Checked;
+            cbRRautoreset.Enabled = rbRRfest.Checked || rbRRZuglänge.Checked;
+        }
+
+        private void rbRRZuglänge_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void cbDruckhbl_CheckedChanged(object sender, EventArgs e)

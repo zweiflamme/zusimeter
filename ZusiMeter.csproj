@@ -80,6 +80,7 @@
     <Compile Include="CMainWindow.Designer.cs">
       <DependentUpon>CMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="CurrentTrainLength.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
