@@ -266,6 +266,22 @@ namespace ZusiMeter
 
         private void CMainWindow_Load(object sender, EventArgs e) //on loading of the main window...
         {
+            // Load RailRunner settings
+            switch (Properties.Settings.Default.RailRunnerMode)
+            {
+                case RailRunnerMode.Fest:
+                    rbRRfest.Checked = true;
+                    break;
+
+                case RailRunnerMode.Zuglaenge:
+                    rbRRZuglänge.Checked = true;
+                    break;
+
+                default:
+                    rbRRfrei.Checked = true;
+                    break;
+            }
+
             //TEST TODO
             #region Ensure loaded settings apply
             //make sure every label and panel is visible according to checkboxes:           
@@ -296,7 +312,6 @@ namespace ZusiMeter
             
 
             //make sure radio buttons are in their correct state
-            rbRRfest.Checked = !rbRRfrei.Checked; //second rb is bound to settings
             rbAFBvor10.Checked = !rbAFBvor5.Checked; 
             rbUnitm.Checked = !rbUnitkm.Checked;
             rbUnitmps.Checked = !rbUnitkph.Checked;
@@ -2103,6 +2118,20 @@ namespace ZusiMeter
 
         private void CMainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Save RailRunner settings
+            if (rbRRfest.Checked)
+            {
+                Properties.Settings.Default.RailRunnerMode = RailRunnerMode.Fest;
+            }
+            else if (rbRRfrei.Checked)
+            {
+                Properties.Settings.Default.RailRunnerMode = RailRunnerMode.Frei;
+            }
+            else
+            {
+                Properties.Settings.Default.RailRunnerMode = RailRunnerMode.Zuglaenge;
+            }
+
             //saving default user settings on FormClosing
             Properties.Settings.Default.Save();
         }
@@ -2127,8 +2156,12 @@ namespace ZusiMeter
             //TEST for issue V007
             lblTueren.Text = "--";
         }
+    }
 
-        
-          
+    public enum RailRunnerMode
+    {
+        Frei,
+        Fest,
+        Zuglaenge
     }
 }
