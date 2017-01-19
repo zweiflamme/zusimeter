@@ -135,7 +135,7 @@ namespace ZusiMeter
             {
                 SoundPlayer rrSound = new SoundPlayer(@".\resources\rr_meep.wav");
                 rrSound.Play();
-                //TODO: DEBUG: rrSound needs to be played only ONCE when railrunner i done
+                //TODO: DEBUG: rrSound needs to be played only ONCE when railrunner is done
                 rrSoundplayed = true;
             }
             catch (System.IO.FileNotFoundException)

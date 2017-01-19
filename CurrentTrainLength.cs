@@ -24,6 +24,7 @@ namespace ZusiMeter
             if (zusiDir == null)
             {
                 throw new Exception("Error reading Zusi base dir from Registry");
+                //TODO: Catch exception if zusiDir is not defined
             }
 
             // Retrieve Temp\aktuellerzug.txt file
