@@ -68,9 +68,6 @@
     <Setting Name="cbDynbremse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="rbRRfrei" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="cbZusbremse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -143,9 +140,6 @@
     <Setting Name="SettingsForm" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
-    <Setting Name="rbRRZuglaenge" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="cbHauptsch" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -163,6 +157,9 @@
     </Setting>
     <Setting Name="cbLuefter" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="RailRunnerMode" Type="ZusiMeter.RailRunnerMode" Scope="User">
+      <Value Profile="(Default)">Frei</Value>
     </Setting>
   </Settings>
 </SettingsFile>

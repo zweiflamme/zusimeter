@@ -289,18 +289,6 @@ namespace ZusiMeter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool rbRRfrei {
-            get {
-                return ((bool)(this["rbRRfrei"]));
-            }
-            set {
-                this["rbRRfrei"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool cbZusbremse {
             get {
@@ -590,18 +578,6 @@ namespace ZusiMeter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool rbRRZuglaenge {
-            get {
-                return ((bool)(this["rbRRZuglaenge"]));
-            }
-            set {
-                this["rbRRZuglaenge"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool cbHauptsch {
             get {
                 return ((bool)(this["cbHauptsch"]));
@@ -668,6 +644,18 @@ namespace ZusiMeter.Properties {
             }
             set {
                 this["cbLuefter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Frei")]
+        public global::ZusiMeter.RailRunnerMode RailRunnerMode {
+            get {
+                return ((global::ZusiMeter.RailRunnerMode)(this["RailRunnerMode"]));
+            }
+            set {
+                this["RailRunnerMode"] = value;
             }
         }
     }
