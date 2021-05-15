@@ -26,6 +26,9 @@ namespace ZusiTCPDemoApp
 {
     public partial class CMainWindow : Form
     {
+
+        // Is this visible in another instance?
+
         // We do want to have a ZusiTcpConn object, so here's the declaration
         private ZusiTcpConn MyTCPConnection;
 
